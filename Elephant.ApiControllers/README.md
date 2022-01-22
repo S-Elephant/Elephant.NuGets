@@ -1,1 +1,1 @@
-Adds a new ElephantControllerBase class.
+README is empty.

@@ -1,1 +1,1 @@
-Adds various common code.
+README is empty.
