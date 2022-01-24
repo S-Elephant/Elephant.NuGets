@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.Constants.SqlServe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4F5D45E5-E7E9-4D89-8261-0B52F71DD917}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elephant.Common.Tests", "Tests\Elephant.Common.Tests\Elephant.Common.Tests.csproj", "{673747C7-B8A6-4820-81A7-73F90E49F3DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.Common.Tests", "Tests\Elephant.Common.Tests\Elephant.Common.Tests.csproj", "{673747C7-B8A6-4820-81A7-73F90E49F3DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elephant.Testing.Xunit", "Elephant.Testing.Xunit\Elephant.Testing.Xunit.csproj", "{9CA32614-E664-4209-B328-A299DFC6518C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.Testing.Xunit", "Elephant.Testing.Xunit\Elephant.Testing.Xunit.csproj", "{9CA32614-E664-4209-B328-A299DFC6518C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elephant.CodeFirst.SqlServer", "Elephant.CodeFirst.SqlServer\Elephant.CodeFirst.SqlServer.csproj", "{F34D57E2-26B4-40E7-B2BD-2F93A6FA2753}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{9CA32614-E664-4209-B328-A299DFC6518C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CA32614-E664-4209-B328-A299DFC6518C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CA32614-E664-4209-B328-A299DFC6518C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F34D57E2-26B4-40E7-B2BD-2F93A6FA2753}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F34D57E2-26B4-40E7-B2BD-2F93A6FA2753}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F34D57E2-26B4-40E7-B2BD-2F93A6FA2753}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F34D57E2-26B4-40E7-B2BD-2F93A6FA2753}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

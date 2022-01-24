@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<!-- This must be updated for every release -->
+	<PropertyGroup>
+		<Version>1.0.0</Version>
+		<PackageReleaseNotes>Initial release.</PackageReleaseNotes>
+	</PropertyGroup>
+
+	<!-- Core -->
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Company>SquirtingElephant</Company>
+		<Authors>SquirtingElephant</Authors>
+		<Description>Common library.</Description>
+	</PropertyGroup>
+
+	<!-- Package -->
+	<PropertyGroup>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<NeutralLanguage>en</NeutralLanguage>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageProjectUrl>https://github.com/SquirtingElephant/Elephant.NuGets</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/SquirtingElephant/Elephant.NuGets.git</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+	</PropertyGroup>
+
+	<!-- Dependencies -->
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Elephant.Common\Elephant.Common.csproj" />
+		<ProjectReference Include="..\Elephant.Constants.SqlServer\Elephant.Constants.SqlServer.csproj" />
+	</ItemGroup>
+
+	<!-- Package README -->
+	<ItemGroup>
+		<None Update="README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+</Project>
