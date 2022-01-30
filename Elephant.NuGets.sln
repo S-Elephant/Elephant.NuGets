@@ -15,7 +15,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.Common.Tests", "Te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.Testing.Xunit", "Elephant.Testing.Xunit\Elephant.Testing.Xunit.csproj", "{9CA32614-E664-4209-B328-A299DFC6518C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elephant.CodeFirst.SqlServer", "Elephant.CodeFirst.SqlServer\Elephant.CodeFirst.SqlServer.csproj", "{F34D57E2-26B4-40E7-B2BD-2F93A6FA2753}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.CodeFirst.SqlServer", "Elephant.CodeFirst.SqlServer\Elephant.CodeFirst.SqlServer.csproj", "{F34D57E2-26B4-40E7-B2BD-2F93A6FA2753}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.CodeFirst.Sqlite", "Elephant.CodeFirst.Sqlite\Elephant.CodeFirst.Sqlite.csproj", "{101FC552-B898-42F8-AD75-58E97FF5FAD9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.Constants.Sqlite", "Elephant.Constants.Sqlite\Elephant.Constants.Sqlite.csproj", "{C9A0126F-0773-459F-9442-65D45D10BE0D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.Database", "Elephant.Database\Elephant.Database.csproj", "{9AF4A002-300C-4565-BB0D-3486C289C44A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.Lnk", "Elephant.Lnk\Elephant.Lnk.csproj", "{424DD08A-F953-4BD5-8506-23F0CA35D3C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +55,22 @@ Global
 		{F34D57E2-26B4-40E7-B2BD-2F93A6FA2753}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F34D57E2-26B4-40E7-B2BD-2F93A6FA2753}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F34D57E2-26B4-40E7-B2BD-2F93A6FA2753}.Release|Any CPU.Build.0 = Release|Any CPU
+		{101FC552-B898-42F8-AD75-58E97FF5FAD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{101FC552-B898-42F8-AD75-58E97FF5FAD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{101FC552-B898-42F8-AD75-58E97FF5FAD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{101FC552-B898-42F8-AD75-58E97FF5FAD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9A0126F-0773-459F-9442-65D45D10BE0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9A0126F-0773-459F-9442-65D45D10BE0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9A0126F-0773-459F-9442-65D45D10BE0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9A0126F-0773-459F-9442-65D45D10BE0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AF4A002-300C-4565-BB0D-3486C289C44A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AF4A002-300C-4565-BB0D-3486C289C44A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AF4A002-300C-4565-BB0D-3486C289C44A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AF4A002-300C-4565-BB0D-3486C289C44A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{424DD08A-F953-4BD5-8506-23F0CA35D3C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{424DD08A-F953-4BD5-8506-23F0CA35D3C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{424DD08A-F953-4BD5-8506-23F0CA35D3C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{424DD08A-F953-4BD5-8506-23F0CA35D3C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

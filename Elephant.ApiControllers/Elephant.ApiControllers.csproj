@@ -1,9 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.0.0</Version>
-		<PackageReleaseNotes>Initial release.</PackageReleaseNotes>
+		<Version>1.0.1</Version>
+		<PackageReleaseNotes>Refactor.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
@@ -30,7 +30,7 @@
 
 	<!-- Dependencies -->
 	<ItemGroup>
-		<PackageReference Include="Elephant.Common" Version="1.2.3" />
+		<PackageReference Include="Elephant.Common" Version="1.2.4" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
 	</ItemGroup>
 

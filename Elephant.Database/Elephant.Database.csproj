@@ -1,9 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.0.1</Version>
-		<PackageReleaseNotes>New README.</PackageReleaseNotes>
+		<Version>0.1.0</Version>
+		<PackageReleaseNotes>Initial release.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
@@ -13,7 +12,7 @@
 		<Nullable>enable</Nullable>
 		<Company>SquirtingElephant</Company>
 		<Authors>SquirtingElephant</Authors>
-		<Description>SQL Server constants.</Description>
+		<Description>Common EF Core database code.</Description>
 	</PropertyGroup>
 
 	<!-- Package -->
@@ -28,11 +27,17 @@
 		<RepositoryType>git</RepositoryType>
 	</PropertyGroup>
 
+	<!-- Dependencies -->
+	<ItemGroup>
+		<PackageReference Include="Elephant.Common" Version="1.2.4" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.1" />
+	</ItemGroup>
+
 	<!-- Package README -->
 	<ItemGroup>
 		<None Update="README.md">
-			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
+			<Pack>True</Pack>
 		</None>
 	</ItemGroup>
 

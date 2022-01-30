@@ -1,9 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.0.1</Version>
-		<PackageReleaseNotes>New README.</PackageReleaseNotes>
+		<Version>1.0.0</Version>
+		<PackageReleaseNotes>Initial release.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
@@ -13,7 +13,7 @@
 		<Nullable>enable</Nullable>
 		<Company>SquirtingElephant</Company>
 		<Authors>SquirtingElephant</Authors>
-		<Description>SQL Server constants.</Description>
+		<Description>Common Windows shortcut (*.lnk) helper.</Description>
 	</PropertyGroup>
 
 	<!-- Package -->
@@ -28,11 +28,24 @@
 		<RepositoryType>git</RepositoryType>
 	</PropertyGroup>
 
+	<!-- Dependencies -->
+	<ItemGroup>
+		<COMReference Include="IWshRuntimeLibrary">
+			<WrapperTool>tlbimp</WrapperTool>
+			<VersionMinor>0</VersionMinor>
+			<VersionMajor>1</VersionMajor>
+			<Guid>f935dc20-1cf0-11d0-adb9-00c04fd58a0b</Guid>
+			<Lcid>0</Lcid>
+			<Isolated>false</Isolated>
+			<EmbedInteropTypes>true</EmbedInteropTypes>
+		</COMReference>
+	</ItemGroup>
+
 	<!-- Package README -->
 	<ItemGroup>
 		<None Update="README.md">
-			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
+			<Pack>True</Pack>
 		</None>
 	</ItemGroup>
 

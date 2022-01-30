@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.0.1</Version>
-		<PackageReleaseNotes>New README.</PackageReleaseNotes>
+		<Version>1.0.0</Version>
+		<PackageReleaseNotes>Initial release.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
@@ -13,7 +13,7 @@
 		<Nullable>enable</Nullable>
 		<Company>SquirtingElephant</Company>
 		<Authors>SquirtingElephant</Authors>
-		<Description>SQL Server constants.</Description>
+		<Description>SQLite constants.</Description>
 	</PropertyGroup>
 
 	<!-- Package -->
@@ -31,8 +31,8 @@
 	<!-- Package README -->
 	<ItemGroup>
 		<None Update="README.md">
-			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
+			<Pack>True</Pack>
 		</None>
 	</ItemGroup>
 
