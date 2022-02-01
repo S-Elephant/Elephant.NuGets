@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.2.4</Version>
-		<PackageReleaseNotes>More functionality.</PackageReleaseNotes>
+		<Version>1.2.5</Version>
+		<PackageReleaseNotes>None() extension.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
