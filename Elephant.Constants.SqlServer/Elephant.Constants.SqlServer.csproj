@@ -2,18 +2,19 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.0.1</Version>
-		<PackageReleaseNotes>New README.</PackageReleaseNotes>
+		<Version>1.0.2</Version>
+		<PackageReleaseNotes>Compatible with more target frameworks.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
+		<TargetFrameworks>netstandard2.0;netstandard2.1;netcoreapp3.0;netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
+    <ImplicitUsings>disable</ImplicitUsings> <!-- Disabled because of older target frameworks. -->
+		<Nullable>disable</Nullable> <!-- Disabled because of older target frameworks. -->
 		<Company>SquirtingElephant</Company>
 		<Authors>SquirtingElephant</Authors>
 		<Description>SQL Server constants.</Description>
+    <CheckEolTargetFramework>false</CheckEolTargetFramework> <!-- Suppress the warning: warning NETSDK1138: The target framework 'netcoreapp3.0' is out of support and.. -->
 	</PropertyGroup>
 
 	<!-- Package -->
@@ -30,7 +31,7 @@
 
 	<!-- Package README -->
 	<ItemGroup>
-		<None Update="README.md">
+		<None Include="README.md"> <!-- Changed "Update" to "Include" because of an open bug. See: https://github.com/NuGet/Home/issues/11467#issuecomment-1022487996 -->
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>

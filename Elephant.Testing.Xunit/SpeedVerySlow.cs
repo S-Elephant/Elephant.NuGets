@@ -1,4 +1,6 @@
-﻿using Xunit.Abstractions;
+﻿using System;
+using System.Collections.Generic;
+using Xunit.Abstractions;
 using Xunit.Sdk;
 
 namespace Elephant.Testing.Xunit

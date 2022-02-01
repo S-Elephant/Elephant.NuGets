@@ -1,16 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.0.0</Version>
-		<PackageReleaseNotes>Initial release.</PackageReleaseNotes>
+		<Version>1.0.2</Version>
+		<PackageReleaseNotes>Compatible with more target frameworks.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
+    <TargetFrameworks>netstandard2.0;netstandard2.1;netcoreapp3.0;netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
+		<ImplicitUsings>disable</ImplicitUsings> <!-- Disabled because of older target frameworks. -->
+		<Nullable>disable</Nullable> <!-- Disabled because of older target frameworks. -->
 		<Company>SquirtingElephant</Company>
 		<Authors>SquirtingElephant</Authors>
 		<Description>Common library for Xunit tests.</Description>
@@ -33,12 +33,12 @@
 		<PackageReference Include="xunit.extensibility.core" Version="2.4.1" />
 	</ItemGroup>
 
-	<!-- Package README -->
-	<ItemGroup>
-		<None Update="README.md">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
-	</ItemGroup>
+  <!-- Package README -->
+  <ItemGroup>
+    <None Include="README.md"> <!-- Changed "Update" to "Include" because of an open bug. See: https://github.com/NuGet/Home/issues/11467#issuecomment-1022487996 -->
+      <PackagePath>\</PackagePath>
+      <Pack>True</Pack>
+    </None>
+  </ItemGroup>
 
 </Project>
