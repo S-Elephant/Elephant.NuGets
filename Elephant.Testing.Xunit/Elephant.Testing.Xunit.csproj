@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.0.2</Version>
-		<PackageReleaseNotes>Compatible with more target frameworks.</PackageReleaseNotes>
+		<Version>1.0.3</Version>
+		<PackageReleaseNotes>Suppress EolTargetFramework warning.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
@@ -14,6 +14,8 @@
 		<Company>SquirtingElephant</Company>
 		<Authors>SquirtingElephant</Authors>
 		<Description>Common library for Xunit tests.</Description>
+    <!-- Suppress the warning: warning NETSDK1138: The target framework 'netcoreapp3.0' is out of support and.. -->
+    <CheckEolTargetFramework>false</CheckEolTargetFramework>
 	</PropertyGroup>
 
 	<!-- Package -->
