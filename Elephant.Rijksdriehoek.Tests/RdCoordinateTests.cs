@@ -5,8 +5,14 @@ using Xunit;
 
 namespace Elephant.Rijksdriehoek.Tests
 {
+    /// <summary>
+    /// <see cref="RdCoordinate"/> tests.
+    /// </summary>
     public class RdCoordinateTests
     {
+        /// <summary>
+        /// Equal tests.
+        /// </summary>
         [Theory]
         [SpeedVeryFast]
         [InlineData(0f, 0f, 0f, 0f, true)]
@@ -22,6 +28,9 @@ namespace Elephant.Rijksdriehoek.Tests
             Assert.Equal(expected, new RdCoordinate(x1, y1) == new RdCoordinate(x2, y2));
         }
 
+        /// <summary>
+        /// <see cref="Add(RdCoordinate, RdCoordinate, RdCoordinate)"/> test data.
+        /// </summary>
         public static IEnumerable<object[]> DataAdd =>
             new List<object[]>
             {
@@ -30,6 +39,9 @@ namespace Elephant.Rijksdriehoek.Tests
                 new object[] { new RdCoordinate(55000f, 350000f), new RdCoordinate(25000f, 10000f), new RdCoordinate(80000f, 360000f) },
             };
 
+        /// <summary>
+        /// Add tests.
+        /// </summary>
         [Theory]
         [SpeedVeryFast]
         [MemberData(nameof(DataAdd))]
@@ -38,6 +50,9 @@ namespace Elephant.Rijksdriehoek.Tests
             Assert.Equal(expected, a + b);
         }
 
+        /// <summary>
+        /// <see cref="Subtract(RdCoordinate, RdCoordinate, RdCoordinate)"/> test data.
+        /// </summary>
         public static IEnumerable<object[]> DataSubtract =>
             new List<object[]>
             {
@@ -46,6 +61,9 @@ namespace Elephant.Rijksdriehoek.Tests
                 new object[] { new RdCoordinate(55000f, 350000f), new RdCoordinate(25000f, 10000f), new RdCoordinate(30000f, 340000f) },
             };
 
+        /// <summary>
+        /// Subtract tests.
+        /// </summary>
         [Theory]
         [SpeedVeryFast]
         [MemberData(nameof(DataSubtract))]
@@ -54,6 +72,9 @@ namespace Elephant.Rijksdriehoek.Tests
             Assert.Equal(expected, a - b);
         }
 
+        /// <summary>
+        /// <see cref="Multiply(RdCoordinate, RdCoordinate, RdCoordinate)"/> test data.
+        /// </summary>
         public static IEnumerable<object[]> DataMultiply =>
             new List<object[]>
             {
@@ -62,6 +83,12 @@ namespace Elephant.Rijksdriehoek.Tests
                 new object[] { new RdCoordinate(55000f, 350000f), new RdCoordinate(25000f, 10000f), new RdCoordinate(1375000000f, 3500000000f) },
             };
 
+        /// <summary>
+        /// Multiply tests.
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <param name="expected"></param>
         [Theory]
         [SpeedVeryFast]
         [MemberData(nameof(DataMultiply))]
@@ -70,6 +97,9 @@ namespace Elephant.Rijksdriehoek.Tests
             Assert.Equal(expected, a * b);
         }
 
+        /// <summary>
+        /// <see cref="Divide(RdCoordinate, RdCoordinate, RdCoordinate)"/> test data.
+        /// </summary>
         public static IEnumerable<object[]> DataDivide =>
         new List<object[]>
         {
@@ -78,6 +108,9 @@ namespace Elephant.Rijksdriehoek.Tests
             new object[] { new RdCoordinate(55000f, 350000f), new RdCoordinate(25000f, 10000f), new RdCoordinate(2.2f, 35f) },
         };
 
+        /// <summary>
+        /// Divide tests.
+        /// </summary>
         [Theory]
         [SpeedFast]
         [MemberData(nameof(DataDivide))]
@@ -86,6 +119,9 @@ namespace Elephant.Rijksdriehoek.Tests
             Assert.Equal(expected, a / b);
         }
 
+        /// <summary>
+        /// Divide by zero test.
+        /// </summary>
         [Fact]
         [SpeedFast]
         public void DivideByZero()
@@ -95,6 +131,9 @@ namespace Elephant.Rijksdriehoek.Tests
             Assert.Throws<DivideByZeroException>(() => a / b);
         }
 
+        /// <summary>
+        /// <see cref="RdCoordinate.TryParseFromPointString"/> tests.
+        /// </summary>
         [Theory]
         [SpeedFast]
         [InlineData("10.12", "33.44", 10.12f, 33.44f, true)]
