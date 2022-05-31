@@ -1,5 +1,4 @@
 using Elephant.Common.Pagination;
-using Elephant.Testing.Xunit;
 
 namespace Elephant.Common.Tests.Pagination
 {
@@ -9,37 +8,68 @@ namespace Elephant.Common.Tests.Pagination
     public class PaginationHelperTests
     {
         /// <summary>
-        /// Paginate(..) tests.
+        /// <see cref="PaginationHelper.Paginate{TSource}(IQueryable{TSource}, int, int)"/> tests.
         /// </summary>
         [Theory]
         [SpeedNormal]
-        [InlineData(0, -1, -1, 1, 0, 0)]
-        [InlineData(1, 1, 1, 1, 1, 1)]
-        [InlineData(0, -1, -1, 0, 1, 1)]
-        [InlineData(10, 1, 10, 10, 1, 100)]
-        [InlineData(35, 1, 35, 110, 1, 35)]
-        [InlineData(35, 36, 70, 110, 2, 35)]
-        [InlineData(35, 71, 105, 110, 3, 35)]
-        [InlineData(5, 106, 110, 110, 4, 35)]
-        public void Paginate(int expectedCount, int expectedFirstValue, int expectedLastValue, int sourceCount, int pageNumber, int pageSize)
+        [InlineData(0, 1, 0, 0)]
+        [InlineData(1, 1, 1, 1)]
+        [InlineData(0, 0, 1, 1)]
+        [InlineData(10,10, 1, 100)]
+        [InlineData(35, 110, 1, 35)]
+        [InlineData(35, 110, 2, 35)]
+        [InlineData(35, 110, 3, 35)]
+        [InlineData(5, 110, 4, 35)]
+        public void PaginateCountTests(int expectedCount, int sourceCount, int pageNumber, int pageSize)
         {
             List<int> source = Enumerable.Range(1, sourceCount).ToList();
 
             List<int> paginatedResult = PaginationHelper.Paginate(source, pageNumber, pageSize);
 
-            int paginatedItemCount = paginatedResult.Count;
-            Assert.Equal(expectedCount, paginatedItemCount);
-
-            if (paginatedItemCount > 0)
-            {
-                Assert.Equal(expectedFirstValue, paginatedResult.First());
-                Assert.Equal(expectedLastValue, paginatedResult.Last());
-            }
+            Assert.Equal(expectedCount, paginatedResult.Count);
         }
-        
-        
+
         /// <summary>
-        /// LastPageNumber(..) tests.
+        /// <see cref="PaginationHelper.Paginate{TSource}(IQueryable{TSource}, int, int)"/> tests.
+        /// </summary>
+        [Theory]
+        [SpeedNormal]
+        [InlineData(1, 10, 1, 100)]
+        [InlineData(1, 110, 1, 35)]
+        [InlineData(36, 110, 2, 35)]
+        [InlineData(71, 110, 3, 35)]
+        [InlineData(106, 110, 4, 35)]
+        public void PaginateExpectedFirstValueTests(int expectedFirstValue, int sourceCount, int pageNumber, int pageSize)
+        {
+            List<int> source = Enumerable.Range(1, sourceCount).ToList();
+
+            List<int> paginatedResult = PaginationHelper.Paginate(source, pageNumber, pageSize);
+
+            Assert.Equal(expectedFirstValue, paginatedResult.First());
+        }
+
+        /// <summary>
+        /// <see cref="PaginationHelper.Paginate{TSource}(IQueryable{TSource}, int, int)"/> tests.
+        /// </summary>
+        [Theory]
+        [SpeedNormal]
+        [InlineData(1, 1, 1, 1)]
+        [InlineData(10, 10, 1, 100)]
+        [InlineData(35, 110, 1, 35)]
+        [InlineData(70, 110, 2, 35)]
+        [InlineData(105, 110, 3, 35)]
+        [InlineData(110, 110, 4, 35)]
+        public void PaginateExpectedLastValueTests(int expectedLastValue, int sourceCount, int pageNumber, int pageSize)
+        {
+            List<int> source = Enumerable.Range(1, sourceCount).ToList();
+
+            List<int> paginatedResult = PaginationHelper.Paginate(source, pageNumber, pageSize);
+
+            Assert.Equal(expectedLastValue, paginatedResult.Last());
+        }
+
+        /// <summary>
+        /// <see cref="PaginationHelper.LastPageNumber(int, int)"/> tests.
         /// </summary>
         [Theory]
         [SpeedVeryFast]
@@ -55,9 +85,9 @@ namespace Elephant.Common.Tests.Pagination
         {
             Assert.Equal(expected, PaginationHelper.LastPageNumber(sourceCount, pageSize));
         }
-        
+
         /// <summary>
-        /// LastPageNumber(..) tests.
+        /// <see cref="PaginationHelper.IsLastPageNumber(int, int, int)"/> tests.
         /// </summary>
         [Theory]
         [SpeedVeryFast]

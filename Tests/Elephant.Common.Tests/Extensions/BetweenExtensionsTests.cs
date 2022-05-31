@@ -1,5 +1,4 @@
 ﻿using Elephant.Common.Extensions;
-using Elephant.Testing.Xunit;
 
 namespace Elephant.Common.Tests.Extensions
 {

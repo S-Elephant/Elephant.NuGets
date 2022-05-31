@@ -2,8 +2,8 @@
 
   <!-- This must be updated for every release -->
   <PropertyGroup>
-    <Version>1.0.0</Version>
-    <PackageReleaseNotes>Initial release.</PackageReleaseNotes>
+    <Version>2.0.0</Version>
+    <PackageReleaseNotes>Remove attribute.</PackageReleaseNotes>
   </PropertyGroup>
 
   <!-- Core -->

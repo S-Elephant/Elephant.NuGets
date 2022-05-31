@@ -1,5 +1,4 @@
 ﻿using Elephant.Common.Extensions;
-using Elephant.Testing.Xunit;
 
 namespace Elephant.Common.Tests.Extensions
 {
@@ -25,6 +24,7 @@ namespace Elephant.Common.Tests.Extensions
         public void EmptyTest(bool expected, int value)
         {
             List<int> x = new() { -10, 1, 2, 3 };
+            
             Assert.Equal(expected, x.None(x => x == value));
         }
     }
