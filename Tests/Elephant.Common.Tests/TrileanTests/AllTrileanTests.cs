@@ -11,21 +11,41 @@
         [Theory]
         [SpeedVeryFast]
         [MemberData(nameof(TrileanTestData.EqualData), MemberType = typeof(TrileanTestData))]
-        public void TrileanEquals(Trilean a, Trilean b)
+        public void TrileansAreEqualByOperator(Trilean a, Trilean b)
         {
             Assert.True(a == b);
+        }
+
+        /// <summary>
+        /// <see cref="Trilean"/> equal tests.
+        /// </summary>
+        [Theory]
+        [SpeedVeryFast]
+        [MemberData(nameof(TrileanTestData.EqualData), MemberType = typeof(TrileanTestData))]
+        public void TrileansAreEqual(Trilean a, Trilean b)
+        {
             Assert.Equal(a, b);
         }
 
         /// <summary>
-        /// <see cref="Trilean"/> == tests.
+        /// <see cref="Trilean"/> != tests.
         /// </summary>
         [Theory]
         [SpeedVeryFast]
         [MemberData(nameof(TrileanTestData.UnequalData), MemberType = typeof(TrileanTestData))]
-        public void TrileanUnequals(Trilean a, Trilean b)
+        public void TrileansAreUnequalsByOperator(Trilean a, Trilean b)
         {
-            Assert.False(a == b);
+            Assert.True(a != b);
+        }
+
+        /// <summary>
+        /// <see cref="Trilean"/> unequal tests.
+        /// </summary>
+        [Theory]
+        [SpeedVeryFast]
+        [MemberData(nameof(TrileanTestData.UnequalData), MemberType = typeof(TrileanTestData))]
+        public void TrileansAreUnequal(Trilean a, Trilean b)
+        {
             Assert.NotEqual(a, b);
         }
 

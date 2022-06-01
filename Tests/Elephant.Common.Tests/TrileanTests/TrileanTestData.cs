@@ -6,7 +6,8 @@
     public class TrileanTestData
     {
         /// <summary>
-        /// <see cref="AllTrileanTests.TrileanEquals(Trilean, Trilean)"/> test data.
+        /// <see cref="AllTrileanTests.TrileansAreEqual(Trilean, Trilean)"/> and
+        /// <see cref="AllTrileanTests.TrileansAreEqualByOperator(Trilean, Trilean)"/> test data.
         /// </summary>
         public static TheoryData<Trilean, Trilean> EqualData => new()
         {
@@ -17,7 +18,8 @@
         };
 
         /// <summary>
-        /// <see cref="AllTrileanTests.TrileanUnequals(Trilean, Trilean)"/> test data.
+        /// <see cref="AllTrileanTests.TrileansAreUnequal(Trilean, Trilean)"/> and
+        /// <see cref="AllTrileanTests.TrileansAreUnequalsByOperator(Trilean, Trilean)"/> test data.
         /// </summary>
         public static TheoryData<Trilean, Trilean> UnequalData => new()
         {
