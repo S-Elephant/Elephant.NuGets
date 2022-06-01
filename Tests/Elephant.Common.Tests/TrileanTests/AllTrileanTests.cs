@@ -5,60 +5,12 @@
     /// </summary>
     public class AllTrileanTests
     {
-        #region Data
-
-        /// <summary>
-        /// <see cref="TrileanEquals"/> data.
-        /// </summary>
-        public static IEnumerable<object[]> EqualData =>
-            new List<object[]>
-            {
-                new object[] { Trilean.True, Trilean.True },
-                new object[] { Trilean.True, new Trilean(true) },
-                new object[] { Trilean.True, new Trilean(Trilean.Value.True) },
-                new object[] { Trilean.Unknown, Trilean.Unknown },
-            };
-
-        /// <summary>
-        /// <see cref="TrileanUnequals"/> data.
-        /// </summary>
-        public static IEnumerable<object[]> UnequalData =>
-            new List<object[]>
-            {
-                new object[] { Trilean.True, Trilean.False },
-                new object[] { Trilean.True, new Trilean(false) },
-                new object[] { Trilean.True, new Trilean(Trilean.Value.False) },
-                new object[] { Trilean.Unknown, Trilean.True },
-                new object[] { Trilean.Unknown, Trilean.False },
-                new object[] { Trilean.True, Trilean.False },
-            };
-
-        /// <summary>
-        /// <see cref="NotEqual"/> data.
-        /// </summary>
-        public static IEnumerable<object[]> NotEqualData =>
-            new List<object[]>
-            {
-                new object[] { Trilean.True, Trilean.True, true },
-                new object[] { Trilean.True, new Trilean(true), true },
-                new object[] { Trilean.True, new Trilean(Trilean.Value.True), true },
-                new object[] { Trilean.True, Trilean.False, false },
-                new object[] { Trilean.True, new Trilean(false), false },
-                new object[] { Trilean.True, new Trilean(Trilean.Value.False), false },
-                new object[] { Trilean.Unknown, Trilean.Unknown, true },
-                new object[] { Trilean.Unknown, Trilean.True, false },
-                new object[] { Trilean.Unknown, Trilean.False, false },
-                new object[] { Trilean.True, Trilean.False, false },
-            };
-
-        #endregion
-
         /// <summary>
         /// <see cref="Trilean"/> == tests.
         /// </summary>
         [Theory]
         [SpeedVeryFast]
-        [MemberData(nameof(EqualData))]
+        [MemberData(nameof(TrileanTestData.EqualData), MemberType = typeof(TrileanTestData))]
         public void TrileanEquals(Trilean a, Trilean b)
         {
             Assert.True(a == b);
@@ -70,7 +22,7 @@
         /// </summary>
         [Theory]
         [SpeedVeryFast]
-        [MemberData(nameof(UnequalData))]
+        [MemberData(nameof(TrileanTestData.UnequalData), MemberType = typeof(TrileanTestData))]
         public void TrileanUnequals(Trilean a, Trilean b)
         {
             Assert.False(a == b);
@@ -83,7 +35,7 @@
         /// <remarks>The use of an if-else inside a test is not best-practice.</remarks>
         [Theory]
         [SpeedVeryFast]
-        [MemberData(nameof(NotEqualData))]
+        [MemberData(nameof(TrileanTestData.NotEqualData), MemberType = typeof(TrileanTestData))]
         public void NotEqual(Trilean a, Trilean b, bool expectedAreEqual)
         {
             if (expectedAreEqual)
