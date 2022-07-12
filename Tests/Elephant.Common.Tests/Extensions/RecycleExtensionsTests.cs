@@ -13,6 +13,7 @@ namespace Elephant.Common.Tests.Extensions
         [Theory]
         [SpeedVeryFast]
         [InlineData(5, 5, 5, 5)]
+        [InlineData(-534, 0, 11, 0)]
         [InlineData(5, 0, 5, 5)]
         [InlineData(5, -5, 5, 5)]
         [InlineData(5, -5, 4, -4)]
@@ -33,6 +34,7 @@ namespace Elephant.Common.Tests.Extensions
         [Theory]
         [SpeedVeryFast]
         [InlineData(5, 5, 5, 5)]
+        [InlineData(-534, 0, 11, 0)]
         [InlineData(5, 0, 5, 5)]
         [InlineData(5, -5, 5, 5)]
         [InlineData(5, -5, 4, -4)]
@@ -46,6 +48,41 @@ namespace Elephant.Common.Tests.Extensions
         public void RecycleNullableTests(int? value, int min, int max, int? expectedValue)
         {
             Assert.Equal(expectedValue, value.Recycle(max, min));
+        }
+
+        /// <summary>
+        /// <see cref="RecycleExtensions.RecycleOne(int, int)"/> tests.
+        /// </summary>
+        [Theory]
+        [SpeedVeryFast]
+        [InlineData(5, 5, 5)]
+        [InlineData(-534, 11, 1)]
+        [InlineData(5, 4, 2)]
+        [InlineData(5, 3, 3)]
+        [InlineData(5, -1000, 1)]
+        [InlineData(int.MinValue, int.MaxValue, 1)]
+        [InlineData(int.MaxValue, int.MaxValue, int.MaxValue)]
+        public void RecycleOneTests(int value, int max, int expectedValue)
+        {
+            Assert.Equal(expectedValue, value.RecycleOne(max));
+        }
+
+        /// <summary>
+        /// <see cref="RecycleExtensions.RecycleOne(int?, int)"/> (nullable) tests.
+        /// </summary>
+        [Theory]
+        [SpeedVeryFast]
+        [InlineData(5, 5, 5)]
+        [InlineData(-534, 11, 1)]
+        [InlineData(5, 4, 2)]
+        [InlineData(5, 3, 3)]
+        [InlineData(5, -1000, 1)]
+        [InlineData(int.MinValue, int.MaxValue, 1)]
+        [InlineData(int.MaxValue, int.MaxValue, int.MaxValue)]
+        [InlineData(null, int.MaxValue, null)]
+        public void RecycleOneNullableTests(int? value, int max, int? expectedValue)
+        {
+            Assert.Equal(expectedValue, value.RecycleOne(max));
         }
     }
 }

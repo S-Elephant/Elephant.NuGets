@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.4.0</Version>
-		<PackageReleaseNotes>Recycle extensions and namespaces.</PackageReleaseNotes>
+		<Version>1.5.0</Version>
+		<PackageReleaseNotes>New Recycle extensions and bugfix.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
