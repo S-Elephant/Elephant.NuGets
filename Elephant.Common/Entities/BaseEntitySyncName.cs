@@ -1,4 +1,4 @@
-﻿namespace Elephant.Common
+﻿namespace Elephant.Common.Entities
 {
     /// <summary>
     /// Common entity properties for record synching, with a name.

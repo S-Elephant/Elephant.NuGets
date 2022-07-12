@@ -3,6 +3,7 @@
     /// <summary>
     /// Pagination response model.
     /// </summary>
+    [Obsolete("Use ResponseWrappers.PagedResponseWrapper instead.")]
     public class PaginationResponseModel<T> : IPaginationResponseModel<T>
     {
         /// <summary>

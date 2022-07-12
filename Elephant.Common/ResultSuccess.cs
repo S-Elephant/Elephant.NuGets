@@ -3,12 +3,13 @@
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
-    public class ResultSuccess<T> : IResultSuccess<T>
+    [Obsolete("Use ResponseWrappers.ResponseWrapper instead.")]
+    public class ResultSuccess<TData> : IResultSuccess<TData>
 	{
 		/// <summary>
 		/// <inheritdoc/>
 		/// </summary>
-		public T? Value { get; set; }
+		public TData? Value { get; set; }
 
 		/// <summary>
 		/// <inheritdoc/>
@@ -16,27 +17,27 @@
 		public bool IsSuccess { get; set; } = true;
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="ResultSuccess{T}"/> class.
+		/// Initializes a new instance of the <see cref="ResultSuccess{TData}"/> class.
 		/// </summary>
 		public ResultSuccess()
 		{
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="ResultSuccess{T}"/> class.
+		/// Initializes a new instance of the <see cref="ResultSuccess{TData}"/> class.
 		/// </summary>
-		public ResultSuccess(T? value, bool isSuccess)
+		public ResultSuccess(TData? value, bool isSuccess)
 		{
 			Value = value;
 			IsSuccess = isSuccess;
 		}
 
 		/// <summary>
-		/// Creates a new failed <see cref="ResultSuccess{T}"/>..
+		/// Creates a new failed <see cref="ResultSuccess{TData}"/>..
 		/// </summary>
-		public static ResultSuccess<T> CreateFailure()
+		public static ResultSuccess<TData> CreateFailure()
 		{
-			return new ResultSuccess<T>(default, false);
+			return new ResultSuccess<TData>(default, false);
 		}
 	}
 }

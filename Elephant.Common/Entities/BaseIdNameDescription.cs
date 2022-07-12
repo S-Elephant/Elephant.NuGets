@@ -1,4 +1,4 @@
-﻿namespace Elephant.Common
+﻿namespace Elephant.Common.Entities
 {
     /// <summary>
     /// Base class with <see cref="Id"/>, <see cref="Name"/> and <see cref="Description"/> properties.

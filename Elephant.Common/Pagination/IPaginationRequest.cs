@@ -6,7 +6,7 @@
     public interface IPaginationRequest
     {
         /// <summary>
-        /// The current requested page.
+        /// The current requested page. Starts at 1.
         /// </summary>
         int CurrentPage { get; set; }
 

@@ -3,6 +3,7 @@
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
+    [Obsolete("Use ResponseWrappers.ResponseWrapper instead.")]
     public class ResultStatus<T> : ResultSuccess<T>, IResultStatus<T>
     {
         /// <summary>

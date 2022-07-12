@@ -1,5 +1,7 @@
 ﻿namespace Elephant.Common.Pagination
 {
+    // TODO: Also create a regular ResonseModel (IsSuccess, int? errorCode, List<string> errors (must be multiple because of ModelState.AllErrors()), string? Message, T? Data), get rid of ResultStatus and inherit this one from that one.
+
     /// <summary>
     /// Pagination response model.
     /// </summary>
