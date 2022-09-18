@@ -65,5 +65,24 @@ namespace Elephant.Database
         /// <param name="entity">The entity to get the entry for.</param>
         /// <returns>The entry for the given entity.</returns>
         EntityEntry Entry(object entity);
+
+        /// <summary>
+        /// Executes the given SQL against the database and returns the number of rows affected.
+        /// Note that this method does not start a transaction. To use this method with a
+        /// transaction, first call Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.BeginTransaction(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.Data.IsolationLevel)
+        /// or UseTransaction.
+        /// Note that the current Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy
+        /// is not used by this method since the SQL may not be idempotent and does not run
+        /// in a transaction. An Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy
+        /// can be used explicitly, making sure to also use a transaction if the SQL is not
+        /// idempotent.
+        ///      var userSuppliedSearchTerm = ".NET";
+        ///      context.Database.ExecuteSqlRawAsync("UPDATE Blogs SET Rank = 50 WHERE Name
+        /// = {0}", userSuppliedSearchTerm);
+        /// Never pass a concatenated or interpolated string ($"") with non-validated user-provided
+        /// values into this method. Doing so may expose your application to SQL injection
+        /// attacks.
+        /// </summary>
+        Task ExecuteSqlRawAsync(string sql, CancellationToken cancellationToken = default);
     }
 }

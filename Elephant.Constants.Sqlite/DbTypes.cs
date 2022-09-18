@@ -81,7 +81,7 @@
         public const string Float = Primitives.Real;
 
         /// <summary>
-        /// Guid which in Sqlite is a <see cref="Primitives.Text"/>.
+        /// GUID which in Sqlite is a <see cref="Primitives.Text"/>.
         /// </summary>
         public const string Guid = Primitives.Text;
 
@@ -111,7 +111,7 @@
         public const string TextMax = Primitives.Text;
 
         /// <summary>
-        /// Url which in Sqlite is a <see cref="Primitives.Text"/>.
+        /// URL which in Sqlite is a <see cref="Primitives.Text"/>.
         /// </summary>
         public const string Url = Primitives.Text;
     }

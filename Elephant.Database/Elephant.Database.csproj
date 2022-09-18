@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>0.1.1</Version>
-		<PackageReleaseNotes>DbSetExtensions.</PackageReleaseNotes>
+		<Version>0.2.0</Version>
+		<PackageReleaseNotes>QueryTrackingBehavior, includes, remove ResultStatus, readme.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->

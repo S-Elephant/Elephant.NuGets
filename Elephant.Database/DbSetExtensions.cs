@@ -10,8 +10,11 @@ namespace Elephant.Database
 		/// <summary>
 		/// Clear the specified <see cref="DbSet{TEntity}"/>.
 		/// </summary>
-		/// <returns>The <paramref name="dbSet"/>.</returns>
-		/// <remarks>Does not reset the auto increment seed.</remarks>
+		/// <param name="dbSet">Entity to perform it on.</param>
+		/// <returns><paramref name="dbSet"/>.</returns>
+		/// <remarks>Does not reset the auto increment seed and does not
+		/// perform very well for large datasets but is compatible with
+		/// in-memory databases.</remarks>
 		public static DbSet<TEntity> Clear<TEntity>(this DbSet<TEntity> dbSet)
 			where TEntity : class
 		{
@@ -22,5 +25,5 @@ namespace Elephant.Database
 
 			return dbSet;
 		}
-	}
+    }
 }

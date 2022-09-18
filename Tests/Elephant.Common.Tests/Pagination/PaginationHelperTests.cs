@@ -11,7 +11,7 @@ namespace Elephant.Common.Tests.Pagination
         /// <see cref="PaginationHelper.Paginate{TSource}(IQueryable{TSource}, int, int)"/> tests.
         /// </summary>
         [Theory]
-        [SpeedNormal]
+        [SpeedNormal, UnitTest]
         [InlineData(0, 1, 0, 0)]
         [InlineData(1, 1, 1, 1)]
         [InlineData(0, 0, 1, 1)]
@@ -33,7 +33,7 @@ namespace Elephant.Common.Tests.Pagination
         /// <see cref="PaginationHelper.Paginate{TSource}(IQueryable{TSource}, int, int)"/> tests.
         /// </summary>
         [Theory]
-        [SpeedNormal]
+        [SpeedNormal, UnitTest]
         [InlineData(1, 10, 1, 100)]
         [InlineData(1, 110, 1, 35)]
         [InlineData(36, 110, 2, 35)]
@@ -52,7 +52,7 @@ namespace Elephant.Common.Tests.Pagination
         /// <see cref="PaginationHelper.Paginate{TSource}(IQueryable{TSource}, int, int)"/> tests.
         /// </summary>
         [Theory]
-        [SpeedNormal]
+        [SpeedNormal, UnitTest]
         [InlineData(1, 1, 1, 1)]
         [InlineData(10, 10, 1, 100)]
         [InlineData(35, 110, 1, 35)]
@@ -72,7 +72,7 @@ namespace Elephant.Common.Tests.Pagination
         /// <see cref="PaginationHelper.LastPageNumber(int, int)"/> tests.
         /// </summary>
         [Theory]
-        [SpeedVeryFast]
+        [SpeedVeryFast, UnitTest]
         [InlineData(1, -1, -1)]
         [InlineData(1, 0, 0)]
         [InlineData(1, 0, 1)]
@@ -90,7 +90,7 @@ namespace Elephant.Common.Tests.Pagination
         /// <see cref="PaginationHelper.IsLastPageNumber(int, int, int)"/> tests.
         /// </summary>
         [Theory]
-        [SpeedVeryFast]
+        [SpeedVeryFast, UnitTest]
         [InlineData(true, -1, -1, 1)]
         [InlineData(true, 0, 0, 1)]
         [InlineData(true, 0, 1, 1)]

@@ -9,7 +9,7 @@
         /// <see cref="StringOperations.JoinWithLeadingAndTrailing(char, string?[])"/> empty tests.
         /// </summary>
         [Fact]
-        [SpeedVeryFast]
+        [SpeedVeryFast, UnitTest]
         public void TestIfEmptyReturnsTwoSeparators()
         {
             string joinedString = StringOperations.JoinWithLeadingAndTrailing('/');
@@ -21,7 +21,7 @@
         /// <see cref="StringOperations.JoinWithLeadingAndTrailing(char, string?[])"/> separator count tests.
         /// </summary>
         [Theory]
-        [SpeedVeryFast]
+        [SpeedVeryFast, UnitTest]
         [InlineData("A", "B", "C")]
         [InlineData("blue", "Blue", "blue")]
         public void TestIf4StringsHave3SeparatorOccurances(string stringA, string stringB, string stringC)
@@ -35,7 +35,7 @@
         /// <see cref="StringOperations.JoinWithLeadingAndTrailing(char, string?[])"/> separator count tests when the strings contain the separator inside.
         /// </summary>
         [Theory]
-        [SpeedVeryFast]
+        [SpeedVeryFast, UnitTest]
         [InlineData("A/A", "B/B", "C")]
         [InlineData("A", "B/B", "C/C")]
         public void TestIf3StringsHave6SeparatorOccurances(string stringA, string stringB, string stringC)
@@ -49,7 +49,7 @@
         /// <see cref="StringOperations.JoinWithLeadingAndTrailing(char, string?[])"/> separator count tests when the strings contain the separator on the outsides.
         /// </summary>
         [Theory]
-        [SpeedVeryFast]
+        [SpeedVeryFast, UnitTest]
         [InlineData("A/", "/B", "C")]
         [InlineData("A", "/B", "C/")]
         public void TestIf3StringsHave4SeparatorOccurances(string stringA, string stringB, string stringC)
@@ -63,7 +63,7 @@
         /// <see cref="StringOperations.JoinWithLeadingAndTrailing(char, string?[])"/> separator count tests with 1 string input.
         /// </summary>
         [Theory]
-        [SpeedVeryFast]
+        [SpeedVeryFast, UnitTest]
         [InlineData("A")]
         [InlineData("//A//")]
         public void TestIf1StringReturnsTwoSeparators(string stringA)
@@ -77,10 +77,10 @@
         /// <see cref="StringOperations.JoinWithLeadingAndTrailing(char, string?[])"/> 1 null value test.
         /// </summary>
         [Fact]
-        [SpeedVeryFast]
+        [SpeedVeryFast, UnitTest]
         public void TestIf1NullValueReturnsTwoSeparators()
         {
-            string joinedString = StringOperations.JoinWithLeadingAndTrailing('/', null);
+            string joinedString = StringOperations.JoinWithLeadingAndTrailing('/', new string?[] { null });
            
             Assert.Equal(2, joinedString.Count(x => x == '/'));
         }
@@ -89,7 +89,7 @@
         /// <see cref="StringOperations.JoinWithLeadingAndTrailing(char, string?[])"/> 3 null value test.
         /// </summary>
         [Fact]
-        [SpeedVeryFast]
+        [SpeedVeryFast, UnitTest]
         public void TestIf3NullValuesReturnTwoSeparators()
         {
             string joinedString = StringOperations.JoinWithLeadingAndTrailing('/', null, null, null);
@@ -101,7 +101,7 @@
         /// <see cref="StringOperations.JoinWithLeadingAndTrailing(char, string?[])"/> null value combined with non-null values tests.
         /// </summary>
         [Theory]
-        [SpeedVeryFast]
+        [SpeedVeryFast, UnitTest]
         [InlineData("/A/", null, "A", null)]
         [InlineData("/a/", null, "a", null)]
         [InlineData("/a/A/", "a", null, "A")]

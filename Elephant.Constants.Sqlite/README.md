@@ -1,1 +1,3 @@
-README is empty.
+# About
+
+Contains constant Sqlite database types.

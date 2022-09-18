@@ -1,5 +1,5 @@
 # About
-Contains 5 speed attributes for categorizing your tests by performance.
+Contains 5 speed attributes for categorizing your tests by performance: SpeedVerySlow, SpeedSlow, SpeedNormal, SpeedFast, SpeedVeryFast.
 
 # Example usage
 ```c#

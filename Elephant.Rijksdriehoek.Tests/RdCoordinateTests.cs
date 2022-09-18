@@ -2,6 +2,7 @@ using Elephant.Testing.Xunit;
 using System;
 using System.Collections.Generic;
 using Xunit;
+using Xunit.Categories;
 
 namespace Elephant.Rijksdriehoek.Tests
 {
@@ -14,7 +15,7 @@ namespace Elephant.Rijksdriehoek.Tests
         /// Equal tests.
         /// </summary>
         [Theory]
-        [SpeedVeryFast]
+        [SpeedVeryFast, UnitTest]
         [InlineData(0f, 0f, 0f, 0f, true)]
         [InlineData(-0.00001f, 0f, 0f, 0f, false)]
         [InlineData(0.00001f, 0f, 0f, 0f, false)]
@@ -43,7 +44,7 @@ namespace Elephant.Rijksdriehoek.Tests
         /// Add tests.
         /// </summary>
         [Theory]
-        [SpeedVeryFast]
+        [SpeedVeryFast, UnitTest]
         [MemberData(nameof(DataAdd))]
         public void Add(RdCoordinate a, RdCoordinate b, RdCoordinate expected)
         {
@@ -65,7 +66,7 @@ namespace Elephant.Rijksdriehoek.Tests
         /// Subtract tests.
         /// </summary>
         [Theory]
-        [SpeedVeryFast]
+        [SpeedVeryFast, UnitTest]
         [MemberData(nameof(DataSubtract))]
         public void Subtract(RdCoordinate a, RdCoordinate b, RdCoordinate expected)
         {
@@ -86,11 +87,8 @@ namespace Elephant.Rijksdriehoek.Tests
         /// <summary>
         /// Multiply tests.
         /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
-        /// <param name="expected"></param>
         [Theory]
-        [SpeedVeryFast]
+        [SpeedVeryFast, UnitTest]
         [MemberData(nameof(DataMultiply))]
         public void Multiply(RdCoordinate a, RdCoordinate b, RdCoordinate expected)
         {
@@ -112,7 +110,7 @@ namespace Elephant.Rijksdriehoek.Tests
         /// Divide tests.
         /// </summary>
         [Theory]
-        [SpeedFast]
+        [SpeedFast, UnitTest]
         [MemberData(nameof(DataDivide))]
         public void Divide(RdCoordinate a, RdCoordinate b, RdCoordinate expected)
         {
@@ -123,7 +121,7 @@ namespace Elephant.Rijksdriehoek.Tests
         /// Divide by zero test.
         /// </summary>
         [Fact]
-        [SpeedFast]
+        [SpeedFast, UnitTest]
         public void DivideByZero()
         {
             RdCoordinate a = new(1f,1f);
@@ -135,7 +133,7 @@ namespace Elephant.Rijksdriehoek.Tests
         /// <see cref="RdCoordinate.TryParseFromPointString"/> tests.
         /// </summary>
         [Theory]
-        [SpeedFast]
+        [SpeedFast, UnitTest]
         [InlineData("10.12", "33.44", 10.12f, 33.44f, true)]
         [InlineData("0", "0", 0f, 0f, true)]
         [InlineData("500000.000008", "-400000.000002", 500000.000008f, 0f, true)]

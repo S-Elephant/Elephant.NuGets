@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>2.0.0</Version>
-		<PackageReleaseNotes>New Recycle extensions and bugfix.</PackageReleaseNotes>
+		<Version>3.0.0</Version>
+		<PackageReleaseNotes>Split into smaller NuGets.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
@@ -27,6 +27,10 @@
 		<RepositoryUrl>https://github.com/SquirtingElephant/Elephant.NuGets.git</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 	</PropertyGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\Elephant.Extensions\Elephant.Extensions.csproj" />
+	  <ProjectReference Include="..\Elephant.Types\Elephant.Types.csproj" />
+	</ItemGroup>
 
 	<!-- Package README -->
 	<ItemGroup>

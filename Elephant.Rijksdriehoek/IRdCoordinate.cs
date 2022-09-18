@@ -1,4 +1,6 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿#if !NETSTANDARD2_0 && !NETSTANDARD2_1
+using System.Diagnostics.CodeAnalysis;
+#endif
 
 namespace Elephant.Rijksdriehoek
 {
@@ -20,19 +22,19 @@ namespace Elephant.Rijksdriehoek
         TType Y { get; set; }
 
         /// <summary>
-        /// Returns the distance between 2 Rd coordinates.
+        /// Return the distance between 2 Rd coordinates.
         /// </summary>
         /// <param name="otherRdCoordinate">The other coordinate.</param>
         TType Distance(IRdCoordinate<TType> otherRdCoordinate);
 
         /// <summary>
-        /// Returns the distance between 2 Rd coordinates. If <paramref name="otherRdCoordinate"/> is null then it'll return 0f.
+        /// Return the distance between 2 Rd coordinates. If <paramref name="otherRdCoordinate"/> is null then it'll return 0f.
         /// </summary>
         /// <param name="otherRdCoordinate">The other coordinate.</param>
         TType Distance(RdCoordinate? otherRdCoordinate);
         
         /// <summary>
-        /// Indicates whether this instance and the specifiec <paramref name="obj"/> are equal.
+        /// Indicates whether this instance and the specific <paramref name="obj"/> are equal.
         /// </summary>
         /// <param name="obj">The other object.</param>
 #if NETSTANDARD2_0 || NETSTANDARD2_1
@@ -42,7 +44,7 @@ namespace Elephant.Rijksdriehoek
 #endif
 
         /// <summary>
-        /// Returns the hash code for this instance.
+        /// Return the hash code for this instance.
         /// </summary>
         int GetHashCode();
     }

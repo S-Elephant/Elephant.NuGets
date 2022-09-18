@@ -1,7 +1,5 @@
 ﻿namespace Elephant.Common.Pagination
 {
-    // TODO: Also create a regular ResonseModel (IsSuccess, int? errorCode, List<string> errors (must be multiple because of ModelState.AllErrors()), string? Message, T? Data), get rid of ResultStatus and inherit this one from that one.
-
     /// <summary>
     /// Pagination response model.
     /// </summary>
@@ -28,22 +26,22 @@
         int PageSize { get; set; }
 
         /// <summary>
-        /// First page API url suffix.
+        /// First page API URL suffix.
         /// </summary>
         string PageUrlSuffixFirst { get; set; }
 
         /// <summary>
-        /// Last page API url suffix.
+        /// Last page API URL suffix.
         /// </summary>
         string PageUrlSuffixLast { get; set; }
 
         /// <summary>
-        /// Next page API url suffix.
+        /// Next page API URL suffix.
         /// </summary>
         string? PageUrlSuffixNext { get; set; }
 
         /// <summary>
-        /// Previous page API url suffix.
+        /// Previous page API URL suffix.
         /// </summary>
         string? PageUrlSuffixPrevious { get; set; }
 

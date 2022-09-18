@@ -1,13 +1,17 @@
 using Elephant.Testing.Xunit;
 using System.Collections.Generic;
 using Xunit;
+using Xunit.Categories;
 
 namespace Elephant.Rijksdriehoek.Tests
 {
     public class MathRdTests
     {
+        /// <summary>
+        /// <see cref="MathRd.Distance(float, float, float, float)"/> tests.
+        /// </summary>
         [Theory]
-        [SpeedVeryFast]
+        [SpeedVeryFast, UnitTest]
         [InlineData(0f, 0f, 0f, 0f, 0f)]
         [InlineData(10f, 0f, 0f, 0f, 10f)]
         [InlineData(0f, 10f, 0f, 0f, 10f)]
@@ -21,8 +25,11 @@ namespace Elephant.Rijksdriehoek.Tests
             Assert.Equal(expected, MathRd.Distance(x1, y1, x2, y2), 6);
         }
 
+        /// <summary>
+        /// <see cref="MathRd.IsValidRdCoordinate(float, float)"/> tests.
+        /// </summary>
         [Theory]
-        [SpeedVeryFast]
+        [SpeedVeryFast, UnitTest]
         [InlineData(0f, 0f, false)]
         [InlineData(MathRd.RdMaxY, MathRd.RdMaxY, false)]
         [InlineData(-1000f, 0f, false)]
@@ -38,8 +45,11 @@ namespace Elephant.Rijksdriehoek.Tests
             Assert.Equal(expected, MathRd.IsValidRdCoordinate(x, y));
         }
 
+        /// <summary>
+        /// <see cref="MathRd.IsValidRdCoordinate(decimal, decimal)"/> tests.
+        /// </summary>
         [Theory]
-        [SpeedVeryFast]
+        [SpeedVeryFast, UnitTest]
         [InlineData(0, 0, false)]
         [InlineData(MathRd.RdMaxY, MathRd.RdMaxY, false)]
         [InlineData(-1000, 0, false)]
@@ -55,8 +65,11 @@ namespace Elephant.Rijksdriehoek.Tests
             Assert.Equal(expected, MathRd.IsValidRdCoordinate(x, y));
         }
 
+        /// <summary>
+        /// <see cref="MathRd.IsValidRdCoordinate(double, double)"/> tests.
+        /// </summary>
         [Theory]
-        [SpeedVeryFast]
+        [SpeedVeryFast, UnitTest]
         [InlineData(0d, 0d, false)]
         [InlineData(MathRd.RdMaxY, MathRd.RdMaxY, false)]
         [InlineData(-1000d, 0d, false)]
@@ -72,8 +85,11 @@ namespace Elephant.Rijksdriehoek.Tests
             Assert.Equal(expected, MathRd.IsValidRdCoordinate(x, y));
         }
 
+        /// <summary>
+        /// <see cref="MathRd.IsValidRdCoordinate(float, float)"/> tests.
+        /// </summary>
         [Theory]
-        [SpeedVeryFast]
+        [SpeedVeryFast, UnitTest]
         [InlineData(0f, 0f, false)]
         [InlineData(MathRd.RdMaxY, MathRd.RdMaxY, false)]
         [InlineData(-1000f, 0f, false)]
@@ -89,8 +105,11 @@ namespace Elephant.Rijksdriehoek.Tests
             Assert.Equal(expected, MathRd.IsValidRdCoordinate(x, y));
         }
 
+        /// <summary>
+        /// <see cref="MathRd.TryParseFromPointString(string, out float, out float)"/> tests.
+        /// </summary>
         [Theory]
-        [SpeedFast]
+        [SpeedFast, UnitTest]
         [InlineData("10.12", "33.44", 10.12f, 33.44f, true)]
         [InlineData("0", "0", 0f, 0f, true)]
         [InlineData("500000.000008", "-400000.000002", 500000.000008f, 0f, true)]
@@ -106,8 +125,11 @@ namespace Elephant.Rijksdriehoek.Tests
             Assert.Equal(expectedY, resultY, 6);
         }
 
+        /// <summary>
+        /// <see cref="MathRd.ConvertToLatitudeLongitude(double, double)"/> tests.
+        /// </summary>
         [Theory]
-        [SpeedVeryFast]
+        [SpeedVeryFast, UnitTest]
         [InlineData(122202d, 487250d, 52.372143838117d, 4.90559760435224d, 13)]
         public void ConvertToLatitudeLongitude(double rdX, double rdY, double expectedLattitude, double expectedLongitude, int precision)
         {
@@ -116,8 +138,11 @@ namespace Elephant.Rijksdriehoek.Tests
             Assert.Equal(expectedLongitude, longitude, precision);
         }
 
+        /// <summary>
+        /// <see cref="MathRd.ConvertToLatitudeLongitude(float, float)"/> tests.
+        /// </summary>
         [Theory]
-        [SpeedVeryFast]
+        [SpeedVeryFast, UnitTest]
         [InlineData(122202f, 487250f, 52.372143838117f, 4.90559760435224f, 6)]
         public void ConvertToLatitudeLongitudeFloat(float rdX, float rdY, float expectedLattitude, float expectedLongitude, int precision)
         {
@@ -126,8 +151,11 @@ namespace Elephant.Rijksdriehoek.Tests
             Assert.Equal(expectedLongitude, longitude, precision);
         }
 
+        /// <summary>
+        /// <see cref="MathRd.ConvertToRijksdriehoek(double, double)"/> tests.
+        /// </summary>
         [Theory]
-        [SpeedFast]
+        [SpeedFast, UnitTest]
         [InlineData(52.372143838117d, 4.90559760435224d, 122202d, 487250d, 0)]
         public void ConvertToRijksdriehoek(double latitude, double longitude, double expectedRdX, double expectedRdY, int precision)
         {
@@ -136,8 +164,11 @@ namespace Elephant.Rijksdriehoek.Tests
             Assert.Equal(expectedRdY, rdY, precision);
         }
 
+        /// <summary>
+        /// <see cref="MathRd.ConvertToRijksdriehoekFloat(float, float)"/> tests.
+        /// </summary>
         [Theory]
-        [SpeedVeryFast]
+        [SpeedVeryFast, UnitTest]
         [InlineData(52.372143838117f, 4.90559760435224f, 122202f, 487250f, 0)]
         public void ConvertToRijksdriehoekFloat(float latitude, float longitude, float expectedRdX, float expectedRdY, int precision)
         {
@@ -146,6 +177,9 @@ namespace Elephant.Rijksdriehoek.Tests
             Assert.Equal(expectedRdY, rdY, precision);
         }
 
+        /// <summary>
+        /// <see cref="ConvertStringToPolygonRd"/> test data.
+        /// </summary>
         public static IEnumerable<object[]> ConvertStringToPolygonRdData =>
           new List<object[]>
           {
@@ -159,15 +193,18 @@ namespace Elephant.Rijksdriehoek.Tests
            new object[] { "POLYGON ((10.100 400000.100, 20.200 500000.500, 30.300 600000.600))", new List<(float, float)> { (10.100f, 400000.100f), (20.200f, 500000.500f), (30.300f, 600000.600f) } },
           };
 
+        /// <summary>
+        /// <see cref="MathRd.ConvertStringToPolygonRd(string)"/> tests.
+        /// </summary>
         [Theory]
-        [SpeedFast]
+        [SpeedFast, UnitTest]
         [MemberData(nameof(ConvertStringToPolygonRdData))]
         public void ConvertStringToPolygonRd(string polygonString, List<(float x, float y)> expected)
         {
             List<(float x, float y)> result = MathRd.ConvertStringToPolygonRd(polygonString);
             int expectedCount = expected.Count;
 
-            // Ensure that that the length is correct.
+            // Ensure that the length is correct.
             Assert.Equal(result.Count, expectedCount);
 
             // Ensure all coordinates are the same (and in the same order).

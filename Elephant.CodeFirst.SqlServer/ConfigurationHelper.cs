@@ -1,14 +1,14 @@
-﻿using Elephant.Common;
-using Elephant.Constants.SqlServer;
+﻿using Elephant.Constants.SqlServer;
+using Elephant.Types;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Elephant.CodeFirst.SqlServer
 {
-	/// <summary>
-	/// Configuration helper.
-	/// </summary>
-	public static class ConfigurationHelper
+    /// <summary>
+    /// Configuration helper.
+    /// </summary>
+    public static class ConfigurationHelper
 	{
 		/// <summary>
 		/// Creates a table with an auto-incrementing Id field of type int as the primary key.
@@ -36,7 +36,7 @@ namespace Elephant.CodeFirst.SqlServer
 			where T : class, IIdName
 		{
 			builder.Property(p => p.Name)
-				.HasColumnType(DbType.Name)
+				.HasColumnType(DbTypes.Name)
 				.IsRequired();
 		}
 
@@ -47,7 +47,7 @@ namespace Elephant.CodeFirst.SqlServer
 			where T : class, IIdNameDescription
 		{
 			builder.Property(p => p.Description)
-				.HasColumnType(DbType.TextMax)
+				.HasColumnType(DbTypes.NVarCharMax)
 				.IsRequired();
 		}
 
@@ -68,7 +68,7 @@ namespace Elephant.CodeFirst.SqlServer
             where T : class, IIsEnabled
         {
             builder.Property(p => p.IsEnabled)
-                .HasColumnType(DbType.Bool)
+                .HasColumnType(DbTypes.Bool)
                 .HasDefaultValue(defaultValue)
                 .IsRequired();
         }
