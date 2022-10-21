@@ -33,3 +33,14 @@ Wrapper that can hold data, HTTP status code, message and such. Usually used for
 ## PagedResponseWrapper
 
 Paginated version of the [ResponseWrapper](##ResponseWrapper)
+
+# Operator enums
+
+Contains the following operator enums:
+
+- Arithmetics
+- Assignments
+- Bitwises
+- Logicals
+- Relationals
+- Special

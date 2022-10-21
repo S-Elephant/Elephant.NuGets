@@ -41,6 +41,15 @@ namespace Elephant.Database
         public async Task Insert(TEntity obj, CancellationToken cancellationToken) => await Table.AddAsync(obj, cancellationToken);
 
         /// <inheritdoc/>
+        public async Task Insert(ICollection<TEntity> objects, CancellationToken cancellationToken)
+        {
+            foreach (TEntity objectToInsert in objects)
+            {
+                await Insert(objectToInsert, cancellationToken);
+            }
+        }
+
+        /// <inheritdoc/>
         public async Task<IResultStatus<int>> Save(CancellationToken cancellationToken)
         {
             int recordsAffectedCount = await Context.SaveChangesAsync(cancellationToken);
@@ -55,6 +64,15 @@ namespace Elephant.Database
 
             Table.Attach(obj);
             Context.Entry(obj).State = EntityState.Modified;
+        }
+
+        /// <inheritdoc/>
+        public void Update(ICollection<TEntity> objects)
+        {
+            foreach (TEntity objectToUpdate in objects)
+            {
+                Update(objectToUpdate);
+            }
         }
 
         /// <inheritdoc/>

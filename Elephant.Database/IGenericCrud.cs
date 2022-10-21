@@ -42,6 +42,11 @@ namespace Elephant.Database
         Task Insert(TEntity obj, CancellationToken cancellationToken);
 
         /// <summary>
+        /// Insert one or more.
+        /// </summary>
+        Task Insert(ICollection<TEntity> objects, CancellationToken cancellationToken);
+
+        /// <summary>
         /// Insert and save.
         /// </summary>
         Task<IResultStatus<int>> InsertAndSave(TEntity obj, CancellationToken cancellationToken);
@@ -55,6 +60,11 @@ namespace Elephant.Database
         /// Update.
         /// </summary>
         void Update(TEntity obj);
+
+        /// <summary>
+        /// Update one or more.
+        /// </summary>
+        void Update(ICollection<TEntity> objects);
 
         /// <summary>
         /// UpdateAndSave

@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
@@ -30,10 +30,7 @@
 
   <!-- Dependencies -->
 	<ItemGroup>
-		<PackageReference Include="Elephant.Common" Version="1.2.4" />
-		<PackageReference Include="Elephant.Constants.Sqlite" Version="1.0.0" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.1" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
 	</ItemGroup>
 
 	<!-- Package README -->
