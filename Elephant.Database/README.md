@@ -22,11 +22,15 @@ Task<IResultStatus<int>> DeleteAndSave(object id, CancellationToken cancellation
 
 Task Insert(TEntity obj, CancellationToken cancellationToken);
 
+Task Insert(ICollection<TEntity> objects, CancellationToken cancellationToken);
+
 Task<IResultStatus<int>> InsertAndSave(TEntity obj, CancellationToken cancellationToken);
 
 Task<IResultStatus<int>> Save(CancellationToken cancellationToken);
 
 void Update(TEntity obj);
+
+void Update(ICollection<TEntity> objects);
 
 Task<IResultStatus<int>> UpdateAndSave(TEntity obj, CancellationToken cancellationToken);
 
