@@ -49,7 +49,7 @@ namespace Elephant.ApiControllers.Attributes.Tests
         }
 
         /// <summary>
-        /// <see cref="ListMaxAttribute"/> tests.
+        /// <see cref="ListMaxAttribute"/> should return success if the value is null and the size is greater than zero.
         /// </summary>
         [Fact]
         [SpeedVeryFast, UnitTest]
@@ -78,7 +78,7 @@ namespace Elephant.ApiControllers.Attributes.Tests
         }
 
         /// <summary>
-        /// <see cref="ListMaxAttribute"/> tests.
+        /// <see cref="ListMaxAttribute"/> should return valid if the value is null and the size is zero.
         /// </summary>
         [Fact]
         [SpeedVeryFast, UnitTest]
@@ -107,7 +107,7 @@ namespace Elephant.ApiControllers.Attributes.Tests
         }
 
         /// <summary>
-        /// <see cref="GreaterThanZeroAndRequiredAttribute"/> tests.
+        /// <see cref="ListMaxAttribute"/> should be invalid if the base type is wrong.
         /// </summary>
         [Fact]
         [SpeedVeryFast, UnitTest]

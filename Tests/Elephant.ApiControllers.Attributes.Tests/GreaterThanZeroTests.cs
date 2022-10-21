@@ -6,7 +6,7 @@ namespace Elephant.ApiControllers.Attributes.Tests
     public class GreaterThanZeroTests
     {
         /// <summary>
-        /// <see cref="GreaterThanZeroAttribute"/> tests.
+        /// <see cref="GreaterThanZeroAttribute"/> tests (<see cref="int"/>).
         /// </summary>
         [Theory]
         [SpeedVeryFast, UnitTest]
@@ -16,10 +16,10 @@ namespace Elephant.ApiControllers.Attributes.Tests
         [InlineData(1, true)]
         [InlineData(int.MinValue, false)]
         [InlineData(int.MaxValue, true)]
-        public void Validate(int? value, bool expectedIsValid)
+        public void ValidateInt(int? value, bool expectedIsValid)
         {
             // Arrange.
-            ValidationTarget target = new(value);
+            ValidationTargetInt target = new(value);
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
@@ -29,27 +29,154 @@ namespace Elephant.ApiControllers.Attributes.Tests
         }
 
         /// <summary>
-        /// Test class for <see cref="Validate(int?, bool)"/> tests.
+        /// Test class for <see cref="ValidateInt(int?, bool)"/> tests.
         /// </summary>
-        private class ValidationTarget
+        private class ValidationTargetInt
         {
             /// <summary>
-            /// Items to validate.
+            /// Property to validate.
             /// </summary>
             [GreaterThanZero]
-            public int? A { get; set; } = 2;
+            public int? A { get; set; }
 
             /// <summary>
             /// Constructor.
             /// </summary>
-            public ValidationTarget(int? a)
+            public ValidationTargetInt(int? a)
             {
                 A = a;
             }
         }
 
         /// <summary>
-        /// <see cref="GreaterThanZeroAndRequiredAttribute"/> tests.
+        /// <see cref="GreaterThanZeroAttribute"/> tests (<see cref="float"/>).
+        /// </summary>
+        [Theory]
+        [SpeedVeryFast, UnitTest]
+        [InlineData(null, true)]
+        [InlineData(-1f, false)]
+        [InlineData(0f, false)]
+        [InlineData(1f, true)]
+        [InlineData(float.MinValue, false)]
+        [InlineData(float.MaxValue, true)]
+        public void ValidateFloat(float? value, bool expectedIsValid)
+        {
+            // Arrange.
+            ValidationTargetFloat target = new(value);
+
+            // Act.
+            bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
+
+            // Assert.
+            Assert.Equal(expectedIsValid, isValid);
+        }
+
+        /// <summary>
+        /// Test class for <see cref="ValidateFloat(float?, bool)"/> tests.
+        /// </summary>
+        private class ValidationTargetFloat
+        {
+            /// <summary>
+            /// Property to validate.
+            /// </summary>
+            [GreaterThanZero]
+            public float? A { get; set; }
+
+            /// <summary>
+            /// Constructor.
+            /// </summary>
+            public ValidationTargetFloat(float? a)
+            {
+                A = a;
+            }
+        }
+
+        /// <summary>
+        /// <see cref="GreaterThanZeroAttribute"/> tests (<see cref="decimal"/>).
+        /// </summary>
+        [Theory]
+        [SpeedVeryFast, UnitTest]
+        [InlineData(null, true)]
+        [InlineData("-1.00", false)]
+        [InlineData("0.00", false)]
+        [InlineData("1.00", true)]
+        [InlineData("-1000000.00", false)]
+        [InlineData("+1000000.00", true)]
+        public void ValidateDecimal(string? value, bool expectedIsValid)
+        {
+            // Arrange.
+            ValidationTargetDecimal target = new(value == null ? null : Convert.ToDecimal(value));
+
+            // Act.
+            bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
+
+            // Assert.
+            Assert.Equal(expectedIsValid, isValid);
+        }
+
+        /// <summary>
+        /// Test class for <see cref="ValidateDecimal(decimal?, bool)"/> tests.
+        /// </summary>
+        private class ValidationTargetDecimal
+        {
+            /// <summary>
+            /// Property to validate.
+            /// </summary>
+            [GreaterThanZero]
+            public decimal? A { get; set; }
+
+            /// <summary>
+            /// Constructor.
+            /// </summary>
+            public ValidationTargetDecimal(decimal? a)
+            {
+                A = a;
+            }
+        }
+
+        /// <summary>
+        /// <see cref="GreaterThanZeroAttribute"/> tests (<see cref="byte"/>).
+        /// </summary>
+        [Theory]
+        [SpeedVeryFast, UnitTest]
+        [InlineData(null, true)]
+        [InlineData((byte)1, true)]
+        [InlineData(byte.MinValue, false)]
+        [InlineData(byte.MaxValue, true)]
+        public void ValidateByte(byte? value, bool expectedIsValid)
+        {
+            // Arrange.
+            ValidationTargetFloat target = new(value);
+
+            // Act.
+            bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
+
+            // Assert.
+            Assert.Equal(expectedIsValid, isValid);
+        }
+
+        /// <summary>
+        /// Test class for <see cref="ValidateByte(byte?, bool)"/> tests.
+        /// </summary>
+        private class ValidationTargetByte
+        {
+            /// <summary>
+            /// Property to validate.
+            /// </summary>
+            [GreaterThanZero]
+            public byte? A { get; set; }
+
+            /// <summary>
+            /// Constructor.
+            /// </summary>
+            public ValidationTargetByte(byte? a)
+            {
+                A = a;
+            }
+        }
+
+        /// <summary>
+        /// <see cref="GreaterThanZeroAttribute"/> should be invalid if the base type is wrong.
         /// </summary>
         [Fact]
         [SpeedVeryFast, UnitTest]

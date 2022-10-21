@@ -104,7 +104,7 @@ namespace Elephant.ApiControllers.Attributes.Tests
         }
 
         /// <summary>
-        /// <see cref="GreaterThanZeroAndRequiredAttribute"/> tests.
+        /// <see cref="ListNotEmptyAndRequiredAttribute"/> should be invalid if the base type is wrong.
         /// </summary>
         [Fact]
         [SpeedVeryFast, UnitTest]

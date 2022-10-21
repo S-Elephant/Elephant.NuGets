@@ -37,7 +37,7 @@ namespace Elephant.ApiControllers.Attributes.Tests
             /// Items to validate.
             /// </summary>
             [GreaterThanZeroAndRequired]
-            public int? A { get; set; } = 2;
+            public int? A { get; set; }
 
             /// <summary>
             /// Constructor.
@@ -49,7 +49,7 @@ namespace Elephant.ApiControllers.Attributes.Tests
         }
 
         /// <summary>
-        /// <see cref="GreaterThanZeroAndRequiredAttribute"/> tests.
+        /// <see cref="GreaterThanZeroAndRequiredAttribute"/> should be invalid if the base type is wrong.
         /// </summary>
         [Fact]
         [SpeedVeryFast, UnitTest]
