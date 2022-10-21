@@ -1,6 +1,6 @@
 # About
 
-Contains validation attributes commonly used in backend endpoint Controllers.
+Contains validation attributes commonly used in backend endpoint Controllers and view models.
 
 # Attribute list
 
