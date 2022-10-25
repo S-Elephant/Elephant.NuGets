@@ -8,6 +8,11 @@ namespace Elephant.ApiControllers.Attributes.Tests
     /// </summary>
     public class FileSizeMinTests
     {
+        /// <summary>
+        /// Create an <see cref="IFormFile"/> mock.
+        /// </summary>
+        /// <param name="content">String contents to write.</param>
+        /// <returns>Mocked <see cref="IFormFile"/> with the specified contents.</returns>
         private static IFormFile CreateIFormFileMock(string content)
         {
             using MemoryStream stream = new();
