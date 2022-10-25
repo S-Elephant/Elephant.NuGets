@@ -8,6 +8,7 @@ namespace Elephant.ApiControllers.Attributes
     /// <summary>
     /// Validate <see cref="IFormFile"/> file signature.
     /// </summary>
+    [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
     public class FileSignatureAttribute : ValidationAttribute
     {
         /// <summary>
@@ -110,15 +111,9 @@ namespace Elephant.ApiControllers.Attributes
         /// </summary>
         /// <param name="allowedFileExtensions">Allowed file extensions (all-lower-case, with or without the leading dot). Case-insensitive.</param>
         /// <exception cref="ArgumentException">Thrown if an allowed extension isn't defined in <see cref="FileSignatureData"/>.</exception>
-        public FileSignatureAttribute(params string[] allowedFileExtensions)
+        public FileSignatureAttribute(params AllowedFileExtensionType[] allowedFileExtensions)
         {
-            _allowedFileExtensions = allowedFileExtensions.Select(ext =>
-            {
-                if (!ext.StartsWith(DotChar))
-                    return DotString + ext.ToLowerInvariant();
-
-                return ext.ToLowerInvariant();
-            }).ToArray(); ;
+            _allowedFileExtensions = allowedFileExtensions.Select(allowedFileExtension => DotString + allowedFileExtension.ToString().ToLowerInvariant()).ToArray(); ;
 
             foreach (string allowedFileExtension in _allowedFileExtensions)
             {
@@ -186,6 +181,10 @@ namespace Elephant.ApiControllers.Attributes
 
                 if (selectedSignature.ContentType != file.ContentType)
                     return new ValidationResult($"Content type \"{file.ContentType}\" doesn't match the extension \"{extensionLower}\".");
+
+                // If there's no byte data for the extension then always return success.
+                if (!selectedSignature.Signature.Any())
+                    return ValidationResult.Success;
 
                 using (BinaryReader reader = new(file.OpenReadStream()))
                 {

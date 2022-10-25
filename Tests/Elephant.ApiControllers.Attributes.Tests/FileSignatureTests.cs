@@ -8,6 +8,7 @@ namespace Elephant.ApiControllers.Attributes.Tests
     /// </summary>
     public class FileSignatureTests : IDisposable
     {
+        #region .png test data
         /// <summary>
         /// Valid .png data with .png extension.
         /// </summary>
@@ -47,6 +48,30 @@ namespace Elephant.ApiControllers.Attributes.Tests
         {
             {  new byte[] { 0x80, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A }, "image/png", "Test.png", false },
         };
+
+        #endregion
+
+        #region .txt test data
+
+        /// <summary>
+        /// Valid .txt data with .txt extension.
+        /// </summary>
+        public static TheoryData<byte[], string, string, bool> ValidTextDataWithTxtExtension => new()
+        {
+            {  new byte[] { 0x61, 0x62, 0x63, }, "text/plain", "Test.txt", true },
+        };
+
+        /// <summary>
+        /// No data with .txt extension.
+        /// </summary>
+        public static TheoryData<byte[], string, string, bool> NoTextDataWithTxtExtension => new()
+        {
+            {  Array.Empty<byte>(), "text/plain", "Test.txt", true },
+        };
+
+        #endregion
+
+        #region .svg test data
 
         /// <summary>
         /// Valid .svg data with .svg extension.
@@ -103,6 +128,8 @@ namespace Elephant.ApiControllers.Attributes.Tests
                 0x3E, 0x0A, 0x3C, 0x2F, 0x73, 0x76, 0x67, 0x3E }, "image/svg+xml", "Test.svg", true },
         };
 
+        #endregion
+
         /// <inheritdoc cref="_memoryStream"/>
         private MemoryStream? _memoryStream = null;
 
@@ -137,6 +164,8 @@ namespace Elephant.ApiControllers.Attributes.Tests
         [MemberData(nameof(ValidPngDataWithPngExtensionWithBadContentType), MemberType = typeof(FileSignatureTests))]
         [MemberData(nameof(ValidPngDataWithTxtExtension), MemberType = typeof(FileSignatureTests))]
         [MemberData(nameof(InvalidPngDataWithPngExtension), MemberType = typeof(FileSignatureTests))]
+        [MemberData(nameof(ValidTextDataWithTxtExtension), MemberType = typeof(FileSignatureTests))]
+        [MemberData(nameof(NoTextDataWithTxtExtension), MemberType = typeof(FileSignatureTests))]
         public void Validate(byte[] content, string contentType, string fullFilename, bool expectedIsValid)
         {
             // Arrange.
@@ -201,7 +230,7 @@ namespace Elephant.ApiControllers.Attributes.Tests
             /// <summary>
             /// <see cref="IFormFile"/> to validate.
             /// </summary>
-            [FileSignature("txt", ".png")]
+            [FileSignature(AllowedFileExtensionType.Txt, AllowedFileExtensionType.Png)]
             public FormFile? FormFile { get; set; }
 
             /// <summary>
@@ -221,7 +250,7 @@ namespace Elephant.ApiControllers.Attributes.Tests
             /// <summary>
             /// <see cref="IFormFile"/> to validate.
             /// </summary>
-            [FileSignature("svg")]
+            [FileSignature(AllowedFileExtensionType.Svg)]
             public FormFile? FormFile { get; set; }
 
             /// <summary>
