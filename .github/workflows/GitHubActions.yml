@@ -12,6 +12,7 @@ on:
 jobs:
   build:
 
+    #runs-on: windows-latest
     runs-on: ubuntu-latest
 
     steps:
@@ -44,12 +45,12 @@ jobs:
       with:
         dotnet-version: 2.0.x
 
+    # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
+    - name: Setup MSBuild.exe
+      uses: microsoft/setup-msbuild@v1.0.2
+
     - name: Restore dependencies
       run: dotnet restore
-
-    # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
-#    - name: Setup MSBuild.exe
-#      uses: microsoft/setup-msbuild@v1.0.2
 
     - name: Build
       run: dotnet build "Elephant.NuGets.sln" --configuration Release
