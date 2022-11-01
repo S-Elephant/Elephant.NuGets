@@ -29,16 +29,11 @@ namespace Elephant.ApiControllers.Attributes
         /// </summary>
         /// <param name="value">Object to validate.</param>
         /// <param name="validationContext"><see cref="ValidationContext"/></param>
-        /// <returns>True if valid.</returns>
+        /// <returns>True if the file size is at least <see cref="_minFileSize"/> bytes or if it is null.</returns>
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
             if (value == null)
-            {
-                if (_minFileSize == 0)
-                    return ValidationResult.Success;
-
-                return new ValidationResult($"Minimum allowed file size: {_minFileSize} bytes. Actual: NULL.");
-            }
+                return ValidationResult.Success;
 
             if (value is IFormFile formFile)
             {

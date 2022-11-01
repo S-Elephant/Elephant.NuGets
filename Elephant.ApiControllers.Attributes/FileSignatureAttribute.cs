@@ -56,11 +56,6 @@ namespace Elephant.ApiControllers.Attributes
         private const string FullSvgExtension = ".svg";
 
         /// <summary>
-        /// Dot as char.
-        /// </summary>
-        private const char DotChar = '.';
-
-        /// <summary>
         /// Dot as string.
         /// </summary>
         private const string DotString = ".";
@@ -104,18 +99,18 @@ namespace Elephant.ApiControllers.Attributes
         /// <summary>
         /// Contains all (all-lower-case) file extensions that are allowed. Any file that does not have an extension on this list will always fail validation, no matter what.
         /// </summary>
-        private readonly string[] _allowedFileExtensions;
+        protected readonly string[] AllowedFileExtensions;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="allowedFileExtensions">Allowed file extensions (all-lower-case, with or without the leading dot). Case-insensitive.</param>
-        /// <exception cref="ArgumentException">Thrown if an allowed extension isn't defined in <see cref="FileSignatureData"/>.</exception>
+        /// <exception cref="IndexOutOfRangeException">Thrown if an allowed extension isn't defined in <see cref="FileSignatureData"/>.</exception>
         public FileSignatureAttribute(params AllowedFileExtensionType[] allowedFileExtensions)
         {
-            _allowedFileExtensions = allowedFileExtensions.Select(allowedFileExtension => DotString + allowedFileExtension.ToString().ToLowerInvariant()).ToArray(); ;
+            AllowedFileExtensions = allowedFileExtensions.Select(allowedFileExtension => DotString + allowedFileExtension.ToString().ToLowerInvariant()).ToArray(); ;
 
-            foreach (string allowedFileExtension in _allowedFileExtensions)
+            foreach (string allowedFileExtension in AllowedFileExtensions)
             {
                 if (FileSignatureData.All(x => x.Extension != allowedFileExtension))
                     throw new IndexOutOfRangeException($"Requested allowed extension \"{allowedFileExtension}\" is not defined in signature list. Currently accepted extensions: {_acceptedExtensions}.");
@@ -127,14 +122,14 @@ namespace Elephant.ApiControllers.Attributes
         /// </summary>
         /// <param name="value">File to validate.</param>
         /// <param name="validationContext"><see cref="ValidationContext"/></param>
-        /// <returns>True if valid.</returns>
+        /// <returns>True if the file-signature matches the file content and the extension. Also returns true if it is null.</returns>
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
             IFormFile? file = value as IFormFile;
 
             // If there's no data then it must be invalid.
             if (file == null)
-                return new ValidationResult(file == null ? "No data and no filename" : $"{file.FileName} contains no data.");
+                return ValidationResult.Success;
 
             // Get extension.
             string? extensionLower = Path.GetExtension(file.FileName)?.ToLowerInvariant();
@@ -144,7 +139,7 @@ namespace Elephant.ApiControllers.Attributes
                 return new ValidationResult($"Invalid extension or no extension.");
 
             // If we don't have any data about the extension that we have, then we consider it to be invalid.
-            if (!_allowedFileExtensions.Contains(extensionLower))
+            if (!AllowedFileExtensions.Contains(extensionLower))
                 return new ValidationResult($"Unknown extension. Got \"{extensionLower}\".");
 
             if (extensionLower == FullSvgExtension)

@@ -24,6 +24,23 @@ namespace Elephant.ApiControllers.Attributes.Tests
         }
 
         /// <summary>
+        /// <see cref="FileSizeMinAttribute"/> non-required test without data.
+        /// </summary>
+        [Fact]
+        [SpeedVeryFast, UnitTest]
+        public void ShouldReturnSuccessIfDataIsNull()
+        {
+            // Arrange.
+            ValidationTarget target = new(null);
+
+            // Act.
+            bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
+
+            // Assert.
+            Assert.True(isValid);
+        }
+
+        /// <summary>
         /// <see cref="FileSizeMinAttribute"/> tests.
         /// </summary>
         [Theory]
@@ -89,7 +106,7 @@ namespace Elephant.ApiControllers.Attributes.Tests
             /// <summary>
             /// Item to validate.
             /// </summary>
-            [GreaterThanZeroAndRequired]
+            [GreaterThanZeroRequired]
             public AlwaysWrong Item { get; set; } = new();
         }
 

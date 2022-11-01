@@ -6,6 +6,23 @@ namespace Elephant.ApiControllers.Attributes.Tests
     public class GreaterThanZeroTests
     {
         /// <summary>
+        /// <see cref="GreaterThanZeroAttribute"/> non-required test without data.
+        /// </summary>
+        [Fact]
+        [SpeedVeryFast, UnitTest]
+        public void ShouldReturnSuccessIfDataIsNull()
+        {
+            // Arrange.
+            ValidationTargetInt target = new(null);
+
+            // Act.
+            bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
+
+            // Assert.
+            Assert.True(isValid);
+        }
+
+        /// <summary>
         /// <see cref="GreaterThanZeroAttribute"/> tests (<see cref="int"/>).
         /// </summary>
         [Theory]

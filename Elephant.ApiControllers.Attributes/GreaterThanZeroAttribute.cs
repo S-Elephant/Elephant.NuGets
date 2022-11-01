@@ -13,7 +13,7 @@ namespace Elephant.ApiControllers.Attributes
         /// </summary>
         /// <param name="value">Object to validate.</param>
         /// <param name="validationContext"><see cref="ValidationContext"/></param>
-        /// <returns>True if valid.</returns>
+        /// <returns>True if it is greater than zero or if it is null.</returns>
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
             if (value == null)

@@ -1,12 +1,29 @@
 namespace Elephant.ApiControllers.Attributes.Tests
 {
     /// <summary>
-    /// <see cref="GreaterThanZeroAndRequiredAttribute"/> tests.
+    /// <see cref="GreaterThanZeroRequiredAttribute"/> tests.
     /// </summary>
-    public class GreaterThanZeroAndRequiredTests
+    public class GreaterThanZeroRequiredTests
     {
         /// <summary>
-        /// <see cref="GreaterThanZeroAndRequiredAttribute"/> tests.
+        /// <see cref="GreaterThanZeroRequiredAttribute"/> non-required test without data.
+        /// </summary>
+        [Fact]
+        [SpeedVeryFast, UnitTest]
+        public void ShouldReturnFalseIfDataIsNull()
+        {
+            // Arrange.
+            ValidationTarget target = new(null);
+
+            // Act.
+            bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
+
+            // Assert.
+            Assert.False(isValid);
+        }
+
+        /// <summary>
+        /// <see cref="GreaterThanZeroRequiredAttribute"/> tests.
         /// </summary>
         [Theory]
         [SpeedVeryFast, UnitTest]
@@ -36,7 +53,7 @@ namespace Elephant.ApiControllers.Attributes.Tests
             /// <summary>
             /// Items to validate.
             /// </summary>
-            [GreaterThanZeroAndRequired]
+            [GreaterThanZeroRequired]
             public int? A { get; set; }
 
             /// <summary>
@@ -49,7 +66,7 @@ namespace Elephant.ApiControllers.Attributes.Tests
         }
 
         /// <summary>
-        /// <see cref="GreaterThanZeroAndRequiredAttribute"/> should be invalid if the base type is wrong.
+        /// <see cref="GreaterThanZeroRequiredAttribute"/> should be invalid if the base type is wrong.
         /// </summary>
         [Fact]
         [SpeedVeryFast, UnitTest]
@@ -73,7 +90,7 @@ namespace Elephant.ApiControllers.Attributes.Tests
             /// <summary>
             /// Item to validate.
             /// </summary>
-            [GreaterThanZeroAndRequired]
+            [GreaterThanZeroRequired]
             public AlwaysWrong Item { get; set; } = new();
         }
 

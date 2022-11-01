@@ -155,6 +155,23 @@ namespace Elephant.ApiControllers.Attributes.Tests
         }
 
         /// <summary>
+        /// <see cref="FileSignatureAttribute"/> non-required test without data.
+        /// </summary>
+        [Fact]
+        [SpeedVeryFast, UnitTest]
+        public void ShouldReturnSuccessIfDataIsNull()
+        {
+            // Arrange.
+            ValidationTargetTxtAndPng target = new(null);
+
+            // Act.
+            bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
+
+            // Assert.
+            Assert.True(isValid);
+        }
+
+        /// <summary>
         /// <see cref="FileSignatureAttribute"/> tests for .txt and .png extensions.
         /// </summary>
         [Theory]
