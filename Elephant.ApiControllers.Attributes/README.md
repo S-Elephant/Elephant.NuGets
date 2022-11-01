@@ -4,8 +4,8 @@ Contains validation attributes commonly used in backend endpoint Controllers and
 
 # Attribute list
 
-- [**GreaterThanZeroRequired**] *(compatible with all standard numeric types)*
 - [**GreaterThanZero**] *(compatible with all standard numeric types)*
+- [**GreaterThanZeroRequired**] *(compatible with all standard numeric types)*
 - [**FileSignature**(params AllowedFileExtensionType[] allowedFileExtensions)]
 - [**FileSignatureRequired**(params AllowedFileExtensionType[] allowedFileExtensions)]
 - [**FileSizeMax**(int fileSizeMax)]
