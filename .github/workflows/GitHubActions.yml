@@ -34,6 +34,11 @@ jobs:
       with:
         dotnet-version: 3.0.x
 
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@master
+      with:
+        dotnet-version: '3.0.100-rc1-014190'
+
     - name: Restore dependencies
       run: dotnet restore
 
