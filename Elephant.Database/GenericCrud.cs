@@ -1,4 +1,4 @@
-﻿using Elephant.Common;
+﻿using Elephant.Types.ResponseWrappers;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
@@ -50,10 +50,10 @@ namespace Elephant.Database
         }
 
         /// <inheritdoc/>
-        public async Task<IResultStatus<int>> Save(CancellationToken cancellationToken)
+        public async Task<ResponseWrapper<int>> Save(CancellationToken cancellationToken)
         {
             int recordsAffectedCount = await Context.SaveChangesAsync(cancellationToken);
-            return new ResultStatus<int>(recordsAffectedCount);
+            return new ResponseWrapper<int>(recordsAffectedCount);
         }
 
         /// <inheritdoc/>
@@ -70,35 +70,41 @@ namespace Elephant.Database
         public void Update(ICollection<TEntity> objects)
         {
             foreach (TEntity objectToUpdate in objects)
-            {
                 Update(objectToUpdate);
-            }
         }
 
         /// <inheritdoc/>
-        public void Delete(object id)
+        public bool Delete(object id)
         {
             TEntity? existing = Table.Find(id);
-            if (existing != null)
-                Table.Remove(existing);
+            if (existing == null)
+                return false; ;
+                
+            Table.Remove(existing);
+            return true;
         }
 
         /// <inheritdoc/>
-        public async Task<IResultStatus<int>> DeleteAndSave(object id, CancellationToken cancellationToken)
+        public async Task<ResponseWrapper<int>> DeleteAndSave(object id, CancellationToken cancellationToken)
         {
-            Delete(id);
-            return await Save(cancellationToken);
+            bool isDeleted = Delete(id);
+
+            if (isDeleted) 
+                return await Save(cancellationToken);
+
+            return ResponseWrapper<int>.NewNotFound();
         }
 
         /// <inheritdoc/>
-        public async Task<IResultStatus<int>> InsertAndSave(TEntity obj, CancellationToken cancellationToken)
+        public async Task<ResponseWrapper<int>> InsertAndSave(TEntity obj, CancellationToken cancellationToken)
         {
             await Insert(obj, cancellationToken);
-            return await Save(cancellationToken);
+            ResponseWrapper<int> result = await Save(cancellationToken);
+            return (result.Data == 0) ? result.InternalServerError("Nothing to insert.") : result;
         }
 
         /// <inheritdoc/>
-        public async Task<IResultStatus<int>> UpdateAndSave(TEntity obj, CancellationToken cancellationToken)
+        public async Task<ResponseWrapper<int>> UpdateAndSave(TEntity obj, CancellationToken cancellationToken)
         {
             Update(obj);
             return await Save(cancellationToken);

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Elephant.Types.ResponseWrappers
+﻿namespace Elephant.Types.ResponseWrappers
 {
     /// <summary>
     /// A wrapper for returning data along with a message and success status.
@@ -62,5 +60,10 @@ namespace Elephant.Types.ResponseWrappers
         /// Converts this wrapper into a Not Found error result.
         /// </summary>
         ResponseWrapper<TData> NotFound(string? message = null);
+
+        /// <summary>
+        /// Converts this wrapper into an Internal Server error result.
+        /// </summary>
+        ResponseWrapper<TData> InternalServerError(string? message = null);
     }
 }

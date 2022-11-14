@@ -2,13 +2,13 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>2.0.0</Version>
-		<PackageReleaseNotes>Remove statics and update readme.</PackageReleaseNotes>
+		<Version>2.0.1</Version>
+		<PackageReleaseNotes>Add .Net 7.0.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFrameworks>net6.0;net7.0</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<Company>SquirtingElephant</Company>
@@ -43,7 +43,7 @@
 
 	<!-- Package README -->
 	<ItemGroup>
-		<None Update="README.md">
+		<None Include="README.md">
 			<PackagePath>\</PackagePath>
 			<Pack>True</Pack>
 		</None>

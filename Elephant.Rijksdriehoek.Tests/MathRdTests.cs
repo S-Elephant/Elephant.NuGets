@@ -22,7 +22,7 @@ namespace Elephant.Rijksdriehoek.Tests
         [InlineData(0f, 0f, -10f, 0f, 10f)]
         public void Distance(float x1, float y1, float x2, float y2, float expected)
         {
-            Assert.Equal(expected, MathRd.Distance(x1, y1, x2, y2), 6);
+            Assert.Equal(expected, MathRd.Distance(x1, y1, x2, y2), 6f);
         }
 
         /// <summary>
@@ -121,8 +121,8 @@ namespace Elephant.Rijksdriehoek.Tests
             bool success = MathRd.TryParseFromPointString($"POINT({x} {y})", out float resultX, out float resultY);
 
             Assert.Equal(expectedSuccess, success);
-            Assert.Equal(expectedX, resultX, 6);
-            Assert.Equal(expectedY, resultY, 6);
+            Assert.Equal(expectedX, resultX, 6f);
+            Assert.Equal(expectedY, resultY, 6f);
         }
 
         /// <summary>
@@ -143,8 +143,8 @@ namespace Elephant.Rijksdriehoek.Tests
         /// </summary>
         [Theory]
         [SpeedVeryFast, UnitTest]
-        [InlineData(122202f, 487250f, 52.372143838117f, 4.90559760435224f, 6)]
-        public void ConvertToLatitudeLongitudeFloat(float rdX, float rdY, float expectedLattitude, float expectedLongitude, int precision)
+        [InlineData(122202f, 487250f, 52.372143838117f, 4.90559760435224f, 6f)]
+        public void ConvertToLatitudeLongitudeFloat(float rdX, float rdY, float expectedLattitude, float expectedLongitude, float precision)
         {
             (float latitude, float longitude) = MathRd.ConvertToLatitudeLongitude(rdX, rdY);
             Assert.Equal(expectedLattitude, latitude, precision);
@@ -156,8 +156,8 @@ namespace Elephant.Rijksdriehoek.Tests
         /// </summary>
         [Theory]
         [SpeedFast, UnitTest]
-        [InlineData(52.372143838117d, 4.90559760435224d, 122202d, 487250d, 0)]
-        public void ConvertToRijksdriehoek(double latitude, double longitude, double expectedRdX, double expectedRdY, int precision)
+        [InlineData(52.372143838117d, 4.90559760435224d, 122202d, 487250d, 0.9f)]
+        public void ConvertToRijksdriehoek(double latitude, double longitude, double expectedRdX, double expectedRdY, float precision)
         {
             (double rdX, double rdY) = MathRd.ConvertToRijksdriehoek(latitude, longitude);
             Assert.Equal(expectedRdX, rdX, precision);
@@ -169,8 +169,8 @@ namespace Elephant.Rijksdriehoek.Tests
         /// </summary>
         [Theory]
         [SpeedVeryFast, UnitTest]
-        [InlineData(52.372143838117f, 4.90559760435224f, 122202f, 487250f, 0)]
-        public void ConvertToRijksdriehoekFloat(float latitude, float longitude, float expectedRdX, float expectedRdY, int precision)
+        [InlineData(52.372143838117f, 4.90559760435224f, 122202f, 487250f, 0.9f)]
+        public void ConvertToRijksdriehoekFloat(float latitude, float longitude, float expectedRdX, float expectedRdY, float precision)
         {
             (float rdX, float rdY) = MathRd.ConvertToRijksdriehoek(latitude, longitude);
             Assert.Equal(expectedRdX, rdX, precision);
@@ -210,8 +210,8 @@ namespace Elephant.Rijksdriehoek.Tests
             // Ensure all coordinates are the same (and in the same order).
             for (int i = 0; i < expectedCount; i++)
             {
-                Assert.Equal(expected[i].x, result[i].x, 6);
-                Assert.Equal(expected[i].y, result[i].y, 6);
+                Assert.Equal(expected[i].x, result[i].x, 6f);
+                Assert.Equal(expected[i].y, result[i].y, 6f);
             }
         }
     }

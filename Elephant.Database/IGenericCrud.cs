@@ -1,4 +1,4 @@
-﻿using Elephant.Common;
+﻿using Elephant.Types.ResponseWrappers;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
@@ -29,12 +29,13 @@ namespace Elephant.Database
         /// <summary>
         /// Delete by id.
         /// </summary>
-        void Delete(object id);
+        /// <returns>True if found and deleted (note: doesn't save).</returns>
+        bool Delete(object id);
 
         /// <summary>
         /// Delete by id and save.
         /// </summary>
-        Task<IResultStatus<int>> DeleteAndSave(object id, CancellationToken cancellationToken);
+        Task<ResponseWrapper<int>> DeleteAndSave(object id, CancellationToken cancellationToken);
 
         /// <summary>
         /// Insert.
@@ -49,27 +50,29 @@ namespace Elephant.Database
         /// <summary>
         /// Insert and save.
         /// </summary>
-        Task<IResultStatus<int>> InsertAndSave(TEntity obj, CancellationToken cancellationToken);
+        Task<ResponseWrapper<int>> InsertAndSave(TEntity obj, CancellationToken cancellationToken);
 
         /// <summary>
         /// Save.
         /// </summary>
-        Task<IResultStatus<int>> Save(CancellationToken cancellationToken);
+        Task<ResponseWrapper<int>> Save(CancellationToken cancellationToken);
 
         /// <summary>
         /// Update.
         /// </summary>
+        /// <exception cref="ArgumentNullException">Thrown if the <paramref name="obj"/> wasn't found.</exception>
         void Update(TEntity obj);
 
         /// <summary>
         /// Update one or more.
         /// </summary>
+        /// <exception cref="ArgumentNullException">Thrown if any <paramref name="objects"/> wasn't found.</exception>
         void Update(ICollection<TEntity> objects);
 
         /// <summary>
         /// UpdateAndSave
         /// </summary>
-        Task<IResultStatus<int>> UpdateAndSave(TEntity obj, CancellationToken cancellationToken);
+        Task<ResponseWrapper<int>> UpdateAndSave(TEntity obj, CancellationToken cancellationToken);
 
         /// <summary>
 		/// Delete all rows from the table, resets the auto-increment and saves.

@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-
-namespace Elephant.Types.ResponseWrappers
+﻿namespace Elephant.Types.ResponseWrappers
 {
-    /// <inheritdoc/>
+    /// <inheritdoc cref="IResponseWrapper{TData}"/>
     public class ResponseWrapper<TData> : IResponseWrapper<TData> where TData : new()
     {
         /// <summary>
@@ -29,6 +27,11 @@ namespace Elephant.Types.ResponseWrappers
         /// Not found HTTP error status code.
         /// </summary>
         public const int Status404NotFound = 404;
+
+        /// <summary>
+        /// Internal server HTTP error status code.
+        /// </summary>
+        public const int Status500InternalServerError = 500;
 
         /// <inheritdoc/>
         public TData? Data { get; set; } = default;
@@ -127,6 +130,12 @@ namespace Elephant.Types.ResponseWrappers
         public virtual ResponseWrapper<TData> NotFound(string? message = null)
         {
             return Error(Status404NotFound, message);
+        }
+
+        /// <inheritdoc/>
+        public virtual ResponseWrapper<TData> InternalServerError(string? message = null)
+        {
+            return Error(Status500InternalServerError, message);
         }
 
         #endregion

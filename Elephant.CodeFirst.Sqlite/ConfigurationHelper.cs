@@ -1,5 +1,6 @@
 ﻿using Elephant.Common;
 using Elephant.Constants.Sqlite;
+using Elephant.Types;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
