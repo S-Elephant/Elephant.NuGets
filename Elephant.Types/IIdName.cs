@@ -1,13 +1,9 @@
 ﻿namespace Elephant.Types
 {
 	/// <summary>
-	/// Interface with <see cref="Id"/> and <see cref="Name"/> propreties.
+	/// Interface with <see cref="Id"/> and <see cref="Name"/> properties.
 	/// </summary>
-	public interface IIdName : IId
+	public interface IIdName : IId, IName
 	{
-		/// <summary>
-		/// Name.
-		/// </summary>
-		string Name { get; set; }
 	}
 }

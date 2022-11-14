@@ -221,6 +221,11 @@
         /// </summary>
         public const string Url = "VARCHAR(2048)";
 
+        /// <summary>
+        /// <see cref="string"/> with max-length 255.
+        /// </summary>
+        public const string Filename = "NVARCHAR(255)";
+
         #endregion
     }
 }

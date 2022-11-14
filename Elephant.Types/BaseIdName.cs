@@ -5,9 +5,7 @@
     /// </summary>
     public abstract class BaseIdName : BaseId, IIdName
     {
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public string Name { get; set; } = string.Empty;
     }
 }
