@@ -24,6 +24,11 @@
         public const int Status401Unauthorized = 401;
 
         /// <summary>
+        /// Unauthorized HTTP error status code.
+        /// </summary>
+        public const int Status422UnprocessableEntity = 422;
+
+        /// <summary>
         /// Not found HTTP error status code.
         /// </summary>
         public const int Status404NotFound = 404;
@@ -133,7 +138,19 @@
         }
 
         /// <inheritdoc/>
+        public virtual ResponseWrapper<TData> UnprocessableEntity(string? message = null)
+        {
+            return Error(Status422UnprocessableEntity, message);
+        }
+
+        /// <inheritdoc/>
         public virtual ResponseWrapper<TData> InternalServerError(string? message = null)
+        {
+            return Error(Status500InternalServerError, message);
+        }
+
+        /// <inheritdoc/>
+        public virtual ResponseWrapper<TData> NoRecordsAffected(string? message = "No records affected.")
         {
             return Error(Status500InternalServerError, message);
         }
@@ -180,6 +197,22 @@
         public static ResponseWrapper<TData> NewNotFound(string? message = null, TData? data = default)
         {
             return new ResponseWrapper<TData>(data).NotFound(message);
+        }
+
+        /// <summary>
+        /// Create a new <see cref="ResponseWrapper{TData}"/> with the 422 HTTP status code.
+        /// </summary>
+        public static ResponseWrapper<TData> NewUnprocessableEntity(string? message = null, TData? data = default)
+        {
+            return new ResponseWrapper<TData>(data).UnprocessableEntity(message);
+        }
+
+        /// <summary>
+        /// Create a new <see cref="ResponseWrapper{TData}"/> with the 500 HTTP status code.
+        /// </summary>
+        public static ResponseWrapper<TData> NewNoRecordsAffected(string? message = "No records affected.", TData? data = default)
+        {
+            return new ResponseWrapper<TData>(data).NoRecordsAffected(message);
         }
 
         #endregion

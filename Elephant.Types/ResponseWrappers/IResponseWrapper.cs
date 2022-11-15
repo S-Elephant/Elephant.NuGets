@@ -62,8 +62,18 @@
         ResponseWrapper<TData> NotFound(string? message = null);
 
         /// <summary>
+        /// Converts this wrapper into a Not Found error result.
+        /// </summary>
+        ResponseWrapper<TData> UnprocessableEntity(string? message = null);
+
+        /// <summary>
         /// Converts this wrapper into an Internal Server error result.
         /// </summary>
         ResponseWrapper<TData> InternalServerError(string? message = null);
+
+        /// <summary>
+        /// Converts this wrapper into an Internal Server error result.
+        /// </summary>
+        ResponseWrapper<TData> NoRecordsAffected(string? message = "No records affected.");
     }
 }
