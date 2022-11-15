@@ -21,20 +21,23 @@ namespace Elephant.ApiControllers
 				{
 					StatusCodes.Status200OK => Ok(result.Data),
 					StatusCodes.Status201Created => CreatedResult(),
-                    StatusCodes.Status401Unauthorized => Unauthorized(),
-                    StatusCodes.Status404NotFound => NotFound(),
-                    StatusCodes.Status500InternalServerError => StatusCode(result.StatusCode),
+                    StatusCodes.Status401Unauthorized => throw new Exception($"IsSuccess is {result.IsSuccess} and {nameof(result.StatusCode)} is {result.StatusCode}?"),
+                    StatusCodes.Status404NotFound => throw new Exception($"IsSuccess is {result.IsSuccess} and {nameof(result.StatusCode)} is {result.StatusCode}?"),
+                    StatusCodes.Status422UnprocessableEntity => throw new Exception($"IsSuccess is {result.IsSuccess} and {nameof(result.StatusCode)} is {result.StatusCode}?"),
+                    StatusCodes.Status500InternalServerError => throw new Exception($"IsSuccess is {result.IsSuccess} and {nameof(result.StatusCode)} is {result.StatusCode}?"),
                     _ => throw new InvalidEnumArgumentException(nameof(StatusCodes), result.StatusCode, result.StatusCode.GetType()),
 				};
 			}
 
 			return result.StatusCode switch
 			{
-				StatusCodes.Status200OK => throw new Exception($"IsSuccess is {result.IsSuccess} and {nameof(result.StatusCode)} is {StatusCodes.Status200OK}?"),
-				StatusCodes.Status400BadRequest => BadRequest(result.Message),
+				StatusCodes.Status200OK => throw new Exception($"IsSuccess is {result.IsSuccess} and {nameof(result.StatusCode)} is {result.StatusCode}?"),
+                StatusCodes.Status201Created => throw new Exception($"IsSuccess is {result.IsSuccess} and {nameof(result.StatusCode)} is {result.StatusCode}?"),
+                StatusCodes.Status400BadRequest => BadRequest(result.Message),
 				StatusCodes.Status401Unauthorized => Unauthorized(result.Message),
 				StatusCodes.Status404NotFound => NotFound(result.Message),
-				StatusCodes.Status500InternalServerError => StatusCode(500, result.Message),
+                StatusCodes.Status422UnprocessableEntity => UnprocessableEntity(result.Message),
+                StatusCodes.Status500InternalServerError => StatusCode(result.StatusCode, result.Message),
 				_ => throw new InvalidEnumArgumentException(nameof(StatusCodes), result.StatusCode, result.StatusCode.GetType()),
 			};
 		}

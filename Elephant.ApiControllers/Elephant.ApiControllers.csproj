@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>2.0.0</Version>
-		<PackageReleaseNotes>Add .Net 7.0.</PackageReleaseNotes>
+		<Version>2.0.2</Version>
+		<PackageReleaseNotes>HTTP status code 422 now has a message.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
