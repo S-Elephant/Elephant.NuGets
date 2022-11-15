@@ -16,23 +16,31 @@ Task<List<TEntity>> All(QueryTrackingBehavior queryTrackingBehavior = QueryTrack
 
 Task<TEntity?> ById(object id, CancellationToken cancellationToken);
 
+Task<int> Count(CancellationToken cancellationToken);
+
+Task<int> Count(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken);
+
 void Delete(object id);
 
-Task<IResultStatus<int>> DeleteAndSave(object id, CancellationToken cancellationToken);
+Task<ResponseWrapper<int>> DeleteAndSave(object id, CancellationToken cancellationToken);
+
+Task<bool> HasAny(CancellationToken cancellationToken);
+
+Task<bool> HasAny(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken);
 
 Task Insert(TEntity obj, CancellationToken cancellationToken);
 
 Task Insert(ICollection<TEntity> objects, CancellationToken cancellationToken);
 
-Task<IResultStatus<int>> InsertAndSave(TEntity obj, CancellationToken cancellationToken);
+Task<ResponseWrapper<int>> InsertAndSave(TEntity obj, CancellationToken cancellationToken);
 
-Task<IResultStatus<int>> Save(CancellationToken cancellationToken);
+Task<ResponseWrapper<int>> Save(CancellationToken cancellationToken);
 
 void Update(TEntity obj);
 
 void Update(ICollection<TEntity> objects);
 
-Task<IResultStatus<int>> UpdateAndSave(TEntity obj, CancellationToken cancellationToken);
+Task<ResponseWrapper<int>> UpdateAndSave(TEntity obj, CancellationToken cancellationToken);
 
 Task DeleteAllAndResetAutoIncrement(CancellationToken cancellationToken = default, string schema = "dbo");
 ```

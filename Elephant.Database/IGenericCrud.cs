@@ -27,6 +27,21 @@ namespace Elephant.Database
         Task<TEntity?> ById(object id, CancellationToken cancellationToken);
 
         /// <summary>
+        /// Count records in this table.
+        /// </summary>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/></param>
+        /// <returns>Amount of records in this table.</returns>
+        Task<int> Count(CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Count records in this table after filtering.
+        /// </summary>
+        /// <param name="predicate"><paramref name="predicate"/> filter before counting.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/></param>
+        /// <returns>Amount of records in this table that matches the <paramref name="predicate"/> filter</returns>
+        Task<int> Count(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken);
+
+        /// <summary>
         /// Delete by id.
         /// </summary>
         /// <returns>True if found and deleted (note: doesn't save).</returns>
@@ -36,6 +51,19 @@ namespace Elephant.Database
         /// Delete by id and save.
         /// </summary>
         Task<ResponseWrapper<int>> DeleteAndSave(object id, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Returns true if this table contains at least one record.
+        /// </summary>
+        Task<bool> HasAny(CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Returns true if this table contains at least one record after filtering.
+        /// </summary>
+        /// <param name="predicate"><paramref name="predicate"/> filter before counting.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/></param>
+        /// <returns>True if there's at least one record in this table that matches the <paramref name="predicate"/> filter.</returns>
+        Task<bool> HasAny(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken);
 
         /// <summary>
         /// Insert.

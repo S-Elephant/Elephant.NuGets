@@ -38,6 +38,18 @@ namespace Elephant.Database
         }
 
         /// <inheritdoc/>
+        public async Task<int> Count(CancellationToken cancellationToken)
+        {
+            return await Table.CountAsync(cancellationToken);
+        }
+
+        /// <inheritdoc/>
+        public async Task<int> Count(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
+        {
+            return await Table.CountAsync(predicate, cancellationToken);
+        }
+
+        /// <inheritdoc/>
         public async Task Insert(TEntity obj, CancellationToken cancellationToken) => await Table.AddAsync(obj, cancellationToken);
 
         /// <inheritdoc/>
@@ -79,7 +91,7 @@ namespace Elephant.Database
             TEntity? existing = Table.Find(id);
             if (existing == null)
                 return false; ;
-                
+
             Table.Remove(existing);
             return true;
         }
@@ -89,10 +101,22 @@ namespace Elephant.Database
         {
             bool isDeleted = Delete(id);
 
-            if (isDeleted) 
+            if (isDeleted)
                 return await Save(cancellationToken);
 
             return ResponseWrapper<int>.NewNotFound();
+        }
+
+        /// <inheritdoc/>
+        public async Task<bool> HasAny(CancellationToken cancellationToken)
+        {
+            return await Table.AnyAsync(cancellationToken);
+        }
+
+        /// <inheritdoc/>
+        public async Task<bool> HasAny(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
+        {
+            return await Table.AnyAsync(predicate, cancellationToken);
         }
 
         /// <inheritdoc/>

@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>0.2.2</Version>
-		<PackageReleaseNotes>Add .Net 7.0.</PackageReleaseNotes>
+		<Version>0.2.3</Version>
+		<PackageReleaseNotes>More CRUD methods.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
