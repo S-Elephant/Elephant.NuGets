@@ -2,8 +2,8 @@
 
   <!-- This must be updated for every release -->
   <PropertyGroup>
-    <Version>1.0.1</Version>
-    <PackageReleaseNotes>Add .Net 7.0.</PackageReleaseNotes>
+    <Version>1.0.0</Version>
+    <PackageReleaseNotes>Initial release.</PackageReleaseNotes>
   </PropertyGroup>
 
   <!-- Core -->
@@ -13,7 +13,7 @@
     <Nullable>enable</Nullable>
     <Company>SquirtingElephant</Company>
     <Authors>SquirtingElephant</Authors>
-    <Description>Common library.</Description>
+    <Description>I/O library.</Description>
   </PropertyGroup>
 
   <!-- Package -->
