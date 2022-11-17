@@ -17,3 +17,17 @@ IAsyncEnumerable<IEnumerable<FileInfo>> GetFilesAsync(IEnumerable<DirectoryInfo>
 
 IAsyncEnumerable<IEnumerable<FileInfo>> GetFilesAsync(IEnumerable<DirectoryInfo> sourceDirectories, string searchPattern, SearchOption searchOption, IEnumerable<string> extensions, bool ignoreInaccessible = true);
 ```
+
+## Example usage
+
+```c#
+private async Task Foo(List<string> directoryPaths)
+{
+    IFileService fileService = new FileService();
+    await foreach (IEnumerable<FileInfo> files in fileService.GetFilesAsync(directoryPaths.Select(d => new DirectoryInfo(d)), "*.*", SearchOption.AllDirectories, ".mp4"))
+    {
+        foreach (FileInfo file in files)
+            Console.WriteLine(file.Name);
+    }
+}
+```
