@@ -13,7 +13,7 @@
 		<Nullable>enable</Nullable>
 		<Company>SquirtingElephant</Company>
 		<Authors>SquirtingElephant</Authors>
-		<Description>Common Api Controller code.</Description>
+		<Description>Common API Controller code.</Description>
 	</PropertyGroup>
 
 	<!-- Package -->

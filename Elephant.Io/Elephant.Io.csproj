@@ -13,7 +13,7 @@
     <Nullable>enable</Nullable>
     <Company>SquirtingElephant</Company>
     <Authors>SquirtingElephant</Authors>
-    <Description>Extensions library.</Description>
+    <Description>Common library.</Description>
   </PropertyGroup>
 
   <!-- Package -->

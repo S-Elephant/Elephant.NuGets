@@ -15,7 +15,7 @@
     <!-- Disabled because of older target frameworks. -->
     <Company>SquirtingElephant</Company>
     <Authors>SquirtingElephant</Authors>
-    <Description>Common library for Xunit tests.</Description>
+    <Description>Validation library.</Description>
     <!-- Suppress the warning: warning NETSDK1138: The target framework 'netcoreapp3.0' is out of support and.. -->
     <CheckEolTargetFramework>false</CheckEolTargetFramework>
   </PropertyGroup>
