@@ -2,8 +2,8 @@
 
   <!-- This must be updated for every release -->
   <PropertyGroup>
-    <Version>1.0.1</Version>
-    <PackageReleaseNotes>Add .Net 7.0.</PackageReleaseNotes>
+    <Version>1.0.2</Version>
+    <PackageReleaseNotes>Add more extensions.</PackageReleaseNotes>
   </PropertyGroup>
 
   <!-- Core -->

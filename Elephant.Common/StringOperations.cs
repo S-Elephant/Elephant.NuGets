@@ -1,10 +1,38 @@
-﻿namespace Elephant.Common
+﻿using System.Globalization;
+
+namespace Elephant.Common
 {
     /// <summary>
     /// String operations.
     /// </summary>
     public static class StringOperations
     {
+        /// <summary>
+        /// Returns a new string with the first character being capitalized.
+        /// This will not lower everything else and it will not capitalize the first character of every string.
+        /// If <paramref name="stringToCapitalize"/> is an empty string then it will return just that.
+        /// </summary>
+        public static string CapitalizeFirstChar(string stringToCapitalize)
+        {
+            if (stringToCapitalize.Length > 1)
+                return char.ToUpper(stringToCapitalize[0]) + stringToCapitalize.Substring(1);
+
+            return stringToCapitalize.ToUpper();
+        }
+
+        /// <summary>
+        /// Returns a new string with the first character being capitalized.
+        /// This will not lower everything else and it will not capitalize the first character of every string.
+        /// If <paramref name="stringToCapitalize"/> is null or an empty string then it will return just that.
+        /// </summary>
+        public static string? CapitalizeFirstCharNullable(string? stringToCapitalize)
+        {
+            if (stringToCapitalize == null)
+                return null;
+
+            return CapitalizeFirstChar(stringToCapitalize);
+        }
+
         /// <summary>
         /// Join strings together using a separator.
         /// There's no leading and no trailing separator.
@@ -24,7 +52,7 @@
                 if (stringsToCombine[i] != null)
                     strippedStringsToCombine.Add(stringsToCombine[i]!.Trim(separatorChar));
             }
-            
+
             return string.Join(separatorChar, strippedStringsToCombine);
         }
 
@@ -65,6 +93,58 @@
         public static string JoinWithLeadingAndTrailing(char separatorChar, params string?[] stringsToCombine)
         {
             return $"{separatorChar}{Join(separatorChar, stringsToCombine)}{separatorChar}";
+        }
+
+        /// <summary>
+        /// Remove <paramref name="substringToRemove"/> from <paramref name="source"/>.
+        /// Does nothing if <paramref name="source"/> does not contain the <paramref name="substringToRemove"/>.
+        /// Is case-sensitive and removes only the first occurance.
+        /// </summary>
+        public static string RemoveSubstringFromString(string source, string substringToRemove)
+        {
+            int index = source.IndexOf(substringToRemove);
+            
+            return index < 0 ? source : source.Remove(index, substringToRemove.Length);
+        }
+
+        /// <summary>
+        /// Removes all <paramref name="substringsToRemove"/> from <paramref name="source"/>.
+        /// Does nothing if <paramref name="source"/> does not contain the <paramref name="substringToRemove"/>.
+        /// Is case-sensitive and removes only the first occurance for each <paramref name="substringsToRemove"/> item.
+        /// </summary>
+        public static string RemoveSubstringsFromString(string source, IEnumerable<string> substringsToRemove)
+        {
+            foreach (string substringToRemove in substringsToRemove)
+                source = RemoveSubstringFromString(source, substringToRemove);
+            
+            return source;
+        }
+
+        /// <summary>
+        /// Title-cases <paramref name="stringToTitleCase"/>.
+        /// If <paramref name="stringToCapitalize"/> is an empty string then it will return just that.
+        /// </summary>
+        /// <param name="stringToTitleCase">String to title-case.</param>
+        /// <returns>Title-cased string. For example: Turns "the LONG white dog." into "The Long White Dog.".</returns>
+        /// <example>Turns "the long white dog." into "The LONG White Dog.".</example>
+        public static string ToTitleCase(string stringToTitleCase)
+        {
+            return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(stringToTitleCase.ToLower());
+        }
+
+        /// <summary>
+        /// Title-cases <paramref name="stringToTitleCase"/>.
+        /// If <paramref name="stringToCapitalize"/> is null or an empty string then it will return just that.
+        /// </summary>
+        /// <param name="stringToTitleCase">String to title-case.</param>
+        /// <returns>Title-cased string. For example: Turns "the LONG white dog." into "The Long White Dog.". Returns null if <paramref name="stringToTitleCase"/> is null.</returns>
+        /// <example>Turns "the long white dog." into "The LONG White Dog.".</example>
+        public static string? ToTitleCaseNullable(string? stringToTitleCase)
+        {
+            if (stringToTitleCase == null)
+                return null;
+
+            return ToTitleCase(stringToTitleCase);
         }
     }
 }

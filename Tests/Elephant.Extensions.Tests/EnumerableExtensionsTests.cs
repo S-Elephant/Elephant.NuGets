@@ -1,12 +1,60 @@
 ﻿namespace Elephant.Extensions.Tests
 {
     /// <summary>
-    /// <see cref="Common.Extensions.Enumerable"/> test class.
+    /// <see cref="Enumerable"/> tests.
     /// </summary>
     public class EnumerableExtensionsTests
     {
         /// <summary>
-        /// <see cref="Common.Extensions.Enumerable.None{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/> tests.
+        /// <see cref="Enumerable.None{TSource}(IEnumerable{TSource})"/> tests.
+        /// </summary>
+        [Fact]
+        [SpeedFast, UnitTest]
+        public void NoneReturnsTrueIfListIsEmpty()
+        {
+            List<int> list = new();
+
+            Assert.True(list.None());
+        }
+
+        /// <summary>
+        /// <see cref="Enumerable.IsEmpty{TSource}(IEnumerable{TSource})"/> tests.
+        /// </summary>
+        [Fact]
+        [SpeedFast, UnitTest]
+        public void IsEmptyReturnsTrueIfListIsEmpty()
+        {
+            List<int> list = new();
+
+            Assert.True(list.IsEmpty());
+        }
+
+        /// <summary>
+        /// <see cref="Enumerable.None{TSource}(IEnumerable{TSource})"/> tests.
+        /// </summary>
+        [Fact]
+        [SpeedFast, UnitTest]
+        public void NoneReturnsFalseIfListIsNotEmpty()
+        {
+            List<int> list = new() { -10, 1, 2, 3 };
+
+            Assert.False(list.None());
+        }
+
+        /// <summary>
+        /// <see cref="Enumerable.IsEmpty{TSource}(IEnumerable{TSource})"/> tests.
+        /// </summary>
+        [Fact]
+        [SpeedFast, UnitTest]
+        public void IsEmptyReturnsFalseIfListIsNotEmpty()
+        {
+            List<int> list = new() { -10, 1, 2, 3 };
+
+            Assert.False(list.IsEmpty());
+        }
+
+        /// <summary>
+        /// <see cref="Enumerable.None{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/> tests.
         /// </summary>
         [Theory]
         [SpeedFast, UnitTest]
@@ -19,7 +67,7 @@
         [InlineData(false, 2)]
         [InlineData(false, 3)]
         [InlineData(false, -10)]
-        public void EmptyTest(bool expected, int value)
+        public void NoneWithPredicateTest(bool expected, int value)
         {
             List<int> x = new() { -10, 1, 2, 3 };
 

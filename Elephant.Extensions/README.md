@@ -14,6 +14,8 @@ IsBetweenEE<T>(this T value, T min, T max) where T : IComparable<T>
 
 ## Enumerable extensions
 ```c#
+IsEmpty<TSource>(this IEnumerable<TSource> source)
+None<TSource>(this IEnumerable<TSource> source)
 None<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
 ```
 
