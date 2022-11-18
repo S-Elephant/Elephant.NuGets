@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>3.0.2</Version>
-		<PackageReleaseNotes>Add more commons.</PackageReleaseNotes>
+		<Version>3.0.3</Version>
+		<PackageReleaseNotes>Remove Elephant.Extensions dependency.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
@@ -28,7 +28,6 @@
 		<RepositoryType>git</RepositoryType>
 	</PropertyGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\Elephant.Extensions\Elephant.Extensions.csproj" />
 	  <ProjectReference Include="..\Elephant.Types\Elephant.Types.csproj" />
 	</ItemGroup>
 
