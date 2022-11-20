@@ -59,5 +59,21 @@ namespace Elephant.Io
                 yield return files;
             }
         }
+
+        /// <inheritdoc/>
+        public async Task<IEnumerable<FileInfo>> GetFilesAsyncAsIEnumerable(IEnumerable<DirectoryInfo> sourceDirectories, string searchPattern, SearchOption searchOption, bool ignoreInaccessible = true)
+        {
+            List<IEnumerable<FileInfo>> result = await GetFilesAsync(sourceDirectories, searchPattern, searchOption, ignoreInaccessible).ToListAsync();
+
+            return result.Any() ? result[0] : new List<FileInfo>();
+        }
+
+        /// <inheritdoc/>
+        public async Task<IEnumerable<FileInfo>> GetFilesAsyncAsIEnumerable(IEnumerable<DirectoryInfo> sourceDirectories, string searchPattern, SearchOption searchOption, IEnumerable<string> extensions, bool ignoreInaccessible = true)
+        {
+            List<IEnumerable<FileInfo>> result = await GetFilesAsync(sourceDirectories, searchPattern, searchOption, extensions, ignoreInaccessible).ToListAsync();
+
+            return result.Any() ? result[0] : new List<FileInfo>();
+        }
     }
 }
