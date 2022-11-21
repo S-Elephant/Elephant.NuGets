@@ -162,19 +162,19 @@ namespace Elephant.Database
         // Important note: Be sure to use the transactions with a using(..) or a try-catch-finally because otherwise it won't dispose the IDbContextTransaction if it were to crash.
 
         /// <inheritdoc/>
-        public async Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken)
+        public async Task<IDbContextTransaction> BeginTransaction(CancellationToken cancellationToken)
         {
             return await Context.BeginTransaction(cancellationToken);
         }
 
         /// <inheritdoc/>
-        public async Task CommitTransactionAsyncAndDispose(IDbContextTransaction? transaction, CancellationToken cancellationToken)
+        public async Task CommitTransactionAndDispose(IDbContextTransaction? transaction, CancellationToken cancellationToken)
         {
             await Context.CommitTransactionAndDispose(transaction, cancellationToken);
         }
 
         /// <inheritdoc/>
-        public async Task RollbackTransactionAsyncAndDispose(IDbContextTransaction? transaction, CancellationToken cancellationToken)
+        public async Task RollbackTransactionAndDispose(IDbContextTransaction? transaction, CancellationToken cancellationToken)
         {
             await Context.RollbackTransactionAndDispose(transaction, cancellationToken);
         }

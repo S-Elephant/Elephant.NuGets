@@ -112,13 +112,13 @@ namespace Elephant.Database
         #region Transactions
 
         /// <inheritdoc cref="IContext.BeginTransaction(CancellationToken)"/>
-		Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken);
+		Task<IDbContextTransaction> BeginTransaction(CancellationToken cancellationToken);
 
         /// <inheritdoc cref="IContext.CommitTransactionAndDispose(IDbContextTransaction?, CancellationToken)"/>
-        Task CommitTransactionAsyncAndDispose(IDbContextTransaction? transaction, CancellationToken cancellationToken);
+        Task CommitTransactionAndDispose(IDbContextTransaction? transaction, CancellationToken cancellationToken);
 
         /// <inheritdoc cref="IContext.RollbackTransactionAndDispose(IDbContextTransaction?, CancellationToken)"/>
-        Task RollbackTransactionAsyncAndDispose(IDbContextTransaction? transaction, CancellationToken cancellationToken);
+        Task RollbackTransactionAndDispose(IDbContextTransaction? transaction, CancellationToken cancellationToken);
 
         #endregion
     }

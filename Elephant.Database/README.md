@@ -103,10 +103,22 @@ public async Task RollbackTransactionAndDispose(IDbContextTransaction? transacti
 ### Example transaction in your service
 
 ```c#
-using (IDbContextTransaction transaction = await _customerRepository.BeginTransactionAsync(cancellationToken))
+using (IDbContextTransaction transaction = await _customerRepository.BeginTransaction(cancellationToken))
 {
-	// Perform CRUD actions or whatever.
-	return await _customerRepository.Save(cancellationToken);
+    try
+    {
+        // Your code here.
+    }
+    catch (Exception exception)
+    {
+        _logger.LogError($"An error occurred. Rolling back changes. Exception: {exception}".);
+        await _customerRepository.RollbackTransactionAndDispose(transaction, cancellationToken);
+        return;
+    }
+
+    // Perform CRUD actions or whatever.
+	await _customerRepository.Save(cancellationToken);
+	await _customerRepository.CommitTransactionAndDispose(transaction, cancellationToken);
 }
 ```
 
