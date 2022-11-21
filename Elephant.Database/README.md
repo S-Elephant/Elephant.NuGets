@@ -2,9 +2,13 @@
 
 Contains various EF Core related database helpers.
 
+
+
 ## DbSetExtensions
 
 **Clear()**: Remove all entities from that DbSet.
+
+
 
 ## GenericCrud
 
@@ -52,6 +56,61 @@ Task CommitTransactionAsyncAndDispose(IDbContextTransaction? transaction, Cancel
 
 Task RollbackTransactionAsyncAndDispose(IDbContextTransaction? transaction, CancellationToken cancellationToken);
 ```
+
+
+
+### Example IContext transaction implementation
+
+```c#
+// Usings
+using Elephant.Database;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
+
+// Inside your DbContext or IdentityDbContext class:
+
+/// <inheritdoc/>
+public async Task<IDbContextTransaction> BeginTransaction(CancellationToken cancellationToken)
+{
+	return await Database.BeginTransactionAsync(cancellationToken);
+}
+
+/// <inheritdoc/>
+public async Task CommitTransactionAndDispose(IDbContextTransaction? transaction, CancellationToken cancellationToken)
+{
+	if (transaction == null)
+		return;
+
+	await Database.CommitTransactionAsync(cancellationToken);
+	await transaction.DisposeAsync();
+}
+
+/// <inheritdoc/>
+public async Task RollbackTransactionAndDispose(IDbContextTransaction? transaction, CancellationToken cancellationToken)
+{
+	if (transaction == null)
+		return;
+
+	await Database.RollbackTransactionAsync(cancellationToken);
+	await transaction.DisposeAsync();
+}
+
+```
+
+
+
+### Example transaction in your service
+
+```c#
+using (IDbContextTransaction transaction = await _customerRepository.BeginTransactionAsync(cancellationToken))
+{
+	// Perform CRUD actions or whatever.
+	return await _customerRepository.Save(cancellationToken);
+}
+```
+
+
 
 ## QueryableExtensions
 
