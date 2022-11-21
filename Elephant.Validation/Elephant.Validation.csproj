@@ -2,8 +2,8 @@
 
   <!-- This must be updated for every release -->
   <PropertyGroup>
-    <Version>2.0.1</Version>
-    <PackageReleaseNotes>Add .Net 7.0.</PackageReleaseNotes>
+    <Version>2.0.2</Version>
+    <PackageReleaseNotes>Generate documentation file.</PackageReleaseNotes>
   </PropertyGroup>
 
   <!-- Core -->
@@ -18,6 +18,7 @@
     <Description>Validation library.</Description>
     <!-- Suppress the warning: warning NETSDK1138: The target framework 'netcoreapp3.0' is out of support and.. -->
     <CheckEolTargetFramework>false</CheckEolTargetFramework>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
   <!-- Package -->
@@ -30,6 +31,7 @@
     <PackageProjectUrl>https://github.com/SquirtingElephant/Elephant.NuGets</PackageProjectUrl>
     <RepositoryUrl>https://github.com/SquirtingElephant/Elephant.NuGets.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <!-- Package README -->

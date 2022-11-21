@@ -1,5 +1,8 @@
 ﻿namespace Elephant.Extensions
 {
+    /// <summary>
+    /// <see cref="IEnumerable{T}"/> extensions.
+    /// </summary>
     public static class Enumerable
     {
         /// <summary>

@@ -1,7 +1,7 @@
 ﻿namespace Elephant.Types
 {
     /// <summary>
-    /// Base class with <see cref="Id"/> and <see cref="Name"/> propreties.
+    /// Base class with <see cref="BaseId.Id"/> and <see cref="Name"/> propreties.
     /// </summary>
     public abstract class BaseIdName : BaseId, IIdName
     {

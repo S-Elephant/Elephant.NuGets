@@ -1,5 +1,8 @@
 ﻿namespace Elephant.Extensions
 {
+    /// <summary>
+    /// Extensions that 'recycle' (as in, after they overflow below or above their threshold, they will start over again on the other side).
+    /// </summary>
     public static class RecycleExtensions
     {
         /// <summary>
@@ -36,7 +39,7 @@
         /// <param name="max">The maximum value (inclusive).</param>
         /// <returns>
         /// The recycled value.
-        /// If <paramref name="max"/> is <= than 1 then it will always return 1.
+        /// If <paramref name="max"/> is <![CDATA[<]]>= than 1 then it will always return 1.
         /// </returns>
         public static int RecycleOne(this int value, int max)
         {
@@ -90,7 +93,7 @@
         /// <param name="max">The maximum value (inclusive).</param>
         /// <returns>
         /// The recycled value.
-        /// If <paramref name="max"/> is <= 1 then 1 will be returned.
+        /// If <paramref name="max"/> is <![CDATA[<]]>= 1 then 1 will be returned.
         /// If <paramref name="value"/> is null then null will be returned.
         /// </returns>
         public static int? RecycleOne(this int? value, int max)

@@ -13,7 +13,6 @@ namespace Elephant.ApiControllers.Attributes
         /// Constructor.
         /// </summary>
         /// <param name="allowedFileExtensions">Allowed file extensions (all-lower-case, with or without the leading dot). Case-insensitive.</param>
-        /// <exception cref="IndexOutOfRangeException">Thrown if an allowed extension isn't defined in <see cref="FileSignatureData"/>.</exception>
         public FileSignatureRequiredAttribute(params AllowedFileExtensionType[] allowedFileExtensions) :
             base(allowedFileExtensions)
         {

@@ -1,5 +1,6 @@
 ﻿using Elephant.Types.ResponseWrappers;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using System.Linq.Expressions;
 
 namespace Elephant.Database
@@ -107,5 +108,18 @@ namespace Elephant.Database
 		/// </summary>
 		/// <remarks>Works only on relational databases. Does NOT work on an in-memory database.</remarks>
 		Task DeleteAllAndResetAutoIncrement(CancellationToken cancellationToken = default, string schema = "dbo");
+
+        #region Transactions
+
+        /// <inheritdoc cref="IContext.BeginTransaction(CancellationToken)"/>
+		Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken);
+
+        /// <inheritdoc cref="IContext.CommitTransactionAndDispose(IDbContextTransaction?, CancellationToken)"/>
+        Task CommitTransactionAsyncAndDispose(IDbContextTransaction? transaction, CancellationToken cancellationToken);
+
+        /// <inheritdoc cref="IContext.RollbackTransactionAndDispose(IDbContextTransaction?, CancellationToken)"/>
+        Task RollbackTransactionAsyncAndDispose(IDbContextTransaction? transaction, CancellationToken cancellationToken);
+
+        #endregion
     }
 }

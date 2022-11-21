@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>2.0.2</Version>
-		<PackageReleaseNotes>Add Filename constant.</PackageReleaseNotes>
+		<Version>2.0.3</Version>
+		<PackageReleaseNotes>Generate documentation file.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
@@ -15,6 +15,7 @@
 		<Authors>SquirtingElephant</Authors>
 		<Description>SQL Server constants.</Description>
     <CheckEolTargetFramework>false</CheckEolTargetFramework> <!-- Suppress the warning: warning NETSDK1138: The target framework 'netcoreapp3.0' is out of support and.. -->
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 	</PropertyGroup>
 
 	<!-- Package -->
@@ -27,6 +28,7 @@
 		<PackageProjectUrl>https://github.com/SquirtingElephant/Elephant.NuGets</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/SquirtingElephant/Elephant.NuGets.git</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
 	</PropertyGroup>
 
 	<!-- Package README -->

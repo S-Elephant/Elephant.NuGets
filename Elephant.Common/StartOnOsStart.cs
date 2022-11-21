@@ -15,7 +15,7 @@ namespace Elephant.Common
         public static string WindowsSubKeyName { get; set; } = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";
 
         /// <summary>
-        /// Returns whether or not the specified <see cref="applicationName"/> exists in the startup registry section as specified in <see cref="WindowsSubKeyName"/>.
+        /// Returns whether or not the specified <paramref name="applicationName"/> exists in the startup registry section as specified in <see cref="WindowsSubKeyName"/>.
         /// </summary>
         [SupportedOSPlatform(OsWindows)]
         public static bool IsRegisteredInStartup(string applicationName)
@@ -36,7 +36,7 @@ namespace Elephant.Common
         }
 
         /// <summary>
-        /// Attempts to register the <see cref="applicationName"/> in the startup registry section as specified in <see cref="WindowsSubKeyName"/>.
+        /// Attempts to register the <paramref name="applicationName"/> in the startup registry section as specified in <see cref="WindowsSubKeyName"/>.
         /// </summary>
         [SupportedOSPlatform(OsWindows)]
         public static bool RegisterInStartup(string applicationName, string fullPathToExecutable)
@@ -57,7 +57,7 @@ namespace Elephant.Common
         }
 
         /// <summary>
-        /// Attempts to de-register the <see cref="applicationName"/> in the startup registry section as specified in <see cref="WindowsSubKeyName"/>.
+        /// Attempts to de-register the <paramref name="applicationName"/> in the startup registry section as specified in <see cref="WindowsSubKeyName"/>.
         /// </summary>
         [SupportedOSPlatform(OsWindows)]
         public static bool DeregisterFromStartup(string applicationName)

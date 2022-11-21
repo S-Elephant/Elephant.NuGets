@@ -1,5 +1,8 @@
 ﻿namespace Elephant.Types.Operators
 {
+    /// <summary>
+    /// Special operators.
+    /// </summary>
     public enum Special
     {
         /// <summary>
@@ -18,7 +21,7 @@
         TypeOf,
 
         /// <summary>
-        /// &. Address of a variable.
+        /// <![CDATA[&]]>. Address of a variable.
         /// </summary>
         Address,
 

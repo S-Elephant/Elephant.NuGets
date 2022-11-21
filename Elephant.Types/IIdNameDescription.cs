@@ -1,7 +1,7 @@
 ﻿namespace Elephant.Types
 {
 	/// <summary>
-	/// Interface with <see cref="Id"/>, <see cref="Name"/> and <see cref="Description"/> propreties.
+	/// Interface with <see cref="IId.Id"/>, <see cref="IName.Name"/> and <see cref="Description"/> properties.
 	/// </summary>
 	public interface IIdNameDescription : IIdName
 	{

@@ -5,12 +5,16 @@ using System.Diagnostics.CodeAnalysis;
 namespace Elephant.Rijksdriehoek
 {
     /// <summary>
-    /// A struct for Rijksdriehoekscoördinaten using <see cref="TType"/>.
+    /// A struct for Rijksdriehoekscoördinaten using <typeparamref name="TType"/>.
     /// For more info see: https://nl.wikipedia.org/wiki/Rijksdriehoeksco%C3%B6rdinaten.
     /// </summary>
     public interface IRdCoordinate<TType>
     {
+        /// <summary>
+        /// Return true if this Rijksdriehoek coordinate is valid.
+        /// </summary>
         bool IsValid { get; }
+        
         /// <summary>
         /// X Rd coordinate.
         /// </summary>

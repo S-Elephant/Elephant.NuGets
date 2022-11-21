@@ -1,5 +1,8 @@
 ﻿namespace Elephant.Types
 {
+    /// <summary>
+    /// Interface with an <see cref="IsEnabled"/> property.
+    /// </summary>
     public interface IIsEnabled
     {
         /// <summary>

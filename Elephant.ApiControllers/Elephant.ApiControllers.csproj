@@ -1,47 +1,49 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<!-- This must be updated for every release -->
-	<PropertyGroup>
-		<Version>2.0.2</Version>
-		<PackageReleaseNotes>HTTP status code 422 now has a message.</PackageReleaseNotes>
-	</PropertyGroup>
+  <!-- This must be updated for every release -->
+  <PropertyGroup>
+    <Version>2.0.3</Version>
+    <PackageReleaseNotes>Generate documentation file.</PackageReleaseNotes>
+  </PropertyGroup>
 
-	<!-- Core -->
-	<PropertyGroup>
-		<TargetFrameworks>net6.0;net7.0</TargetFrameworks>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-		<Company>SquirtingElephant</Company>
-		<Authors>SquirtingElephant</Authors>
-		<Description>Common API Controller code.</Description>
-	</PropertyGroup>
+  <!-- Core -->
+  <PropertyGroup>
+    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Company>SquirtingElephant</Company>
+    <Authors>SquirtingElephant</Authors>
+    <Description>Common API Controller code.</Description>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
 
-	<!-- Package -->
-	<PropertyGroup>
-		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-		<NeutralLanguage>en</NeutralLanguage>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<PackageProjectUrl>https://github.com/SquirtingElephant/Elephant.NuGets</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/SquirtingElephant/Elephant.NuGets.git</RepositoryUrl>
-		<RepositoryType>git</RepositoryType>
-	</PropertyGroup>
+  <!-- Package -->
+  <PropertyGroup>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://github.com/SquirtingElephant/Elephant.NuGets</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/SquirtingElephant/Elephant.NuGets.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+  </PropertyGroup>
 
-	<!-- Dependencies -->
-	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
-	</ItemGroup>
+  <!-- Dependencies -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+  </ItemGroup>
 
-	<!-- Package README -->
-	<ItemGroup>
-		<None Include="README.md">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
-	</ItemGroup>
-	<ItemGroup>
-	  <ProjectReference Include="..\Elephant.Common\Elephant.Common.csproj" />
-	</ItemGroup>
+  <!-- Package README -->
+  <ItemGroup>
+    <None Include="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Elephant.Common\Elephant.Common.csproj" />
+  </ItemGroup>
 
 </Project>

@@ -196,7 +196,7 @@
 
         /// <summary>
         /// A GUID should never be longer than 68 characters because the hexadecimal version is at most 68 characters.
-        /// If you use the string version then you should probably use <see cref="GuidString"/> instead.
+        /// If you use the string version then you should probably use <see cref="Guid"/> instead.
         /// </summary>
         public const string GuidHex = "VARCHAR(68)";
 

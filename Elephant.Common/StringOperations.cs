@@ -109,7 +109,7 @@ namespace Elephant.Common
 
         /// <summary>
         /// Removes all <paramref name="substringsToRemove"/> from <paramref name="source"/>.
-        /// Does nothing if <paramref name="source"/> does not contain the <paramref name="substringToRemove"/>.
+        /// Does nothing if <paramref name="source"/> does not contain the <paramref name="substringsToRemove"/>.
         /// Is case-sensitive and removes only the first occurance for each <paramref name="substringsToRemove"/> item.
         /// </summary>
         public static string RemoveSubstringsFromString(string source, IEnumerable<string> substringsToRemove)
@@ -122,7 +122,7 @@ namespace Elephant.Common
 
         /// <summary>
         /// Title-cases <paramref name="stringToTitleCase"/>.
-        /// If <paramref name="stringToCapitalize"/> is an empty string then it will return just that.
+        /// If <paramref name="stringToTitleCase"/> is an empty string then it will return just that.
         /// </summary>
         /// <param name="stringToTitleCase">String to title-case.</param>
         /// <returns>Title-cased string. For example: Turns "the LONG white dog." into "The Long White Dog.".</returns>
@@ -134,7 +134,7 @@ namespace Elephant.Common
 
         /// <summary>
         /// Title-cases <paramref name="stringToTitleCase"/>.
-        /// If <paramref name="stringToCapitalize"/> is null or an empty string then it will return just that.
+        /// If <paramref name="stringToTitleCase"/> is null or an empty string then it will return just that.
         /// </summary>
         /// <param name="stringToTitleCase">String to title-case.</param>
         /// <returns>Title-cased string. For example: Turns "the LONG white dog." into "The Long White Dog.". Returns null if <paramref name="stringToTitleCase"/> is null.</returns>

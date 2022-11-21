@@ -1,8 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Elephant.Database
 {
+    /// <summary>
+    /// Custom <see cref="DbContext"/> with transactions and interfaceable.
+    /// </summary>
     public interface IContext
     {
         /// <summary>
@@ -84,5 +88,18 @@ namespace Elephant.Database
         /// attacks.
         /// </summary>
         Task ExecuteSqlRawAsync(string sql, CancellationToken cancellationToken = default);
+
+        #region Transactions
+
+        /// <inheritdoc cref="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.BeginTransactionAsync(CancellationToken)"/>
+        Task<IDbContextTransaction> BeginTransaction(CancellationToken cancellationToken);
+
+        /// <inheritdoc cref="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.CommitTransactionAsync(CancellationToken)"/>
+        Task CommitTransactionAndDispose(IDbContextTransaction? transaction, CancellationToken cancellationToken);
+
+        /// <inheritdoc cref="Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.RollbackTransactionAsync(CancellationToken)"/>
+        Task RollbackTransactionAndDispose(IDbContextTransaction? transaction, CancellationToken cancellationToken);
+
+        #endregion
     }
 }

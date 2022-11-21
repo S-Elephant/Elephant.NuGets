@@ -43,7 +43,7 @@ namespace Elephant.CodeFirst.SqlServer
         }
 
         /// <summary>
-        /// Adds a <see cref="IIdName.Name"/> field to the table.
+        /// Adds a <see cref="IName.Name"/> field to the table.
         /// </summary>
         public static void AddName<T>(ref EntityTypeBuilder<T> builder)
             where T : class, IIdName
@@ -65,7 +65,7 @@ namespace Elephant.CodeFirst.SqlServer
         }
 
         /// <summary>
-        /// Adds both a <see cref="IIdName.Name"/> and <see cref="IIdNameDescription.Description"/> fields to the table.
+        /// Adds both a <see cref="IName.Name"/> and a <see cref="IIdNameDescription.Description"/> fields to the table.
         /// </summary>
         public static void AddNameAndDescription<T>(ref EntityTypeBuilder<T> builder)
             where T : class, IIdNameDescription

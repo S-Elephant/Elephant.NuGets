@@ -1,5 +1,8 @@
 ﻿namespace Elephant.Types.Operators
 {
+    /// <summary>
+    /// Relational operators.
+    /// </summary>
     public enum Relationals
     {
         /// <summary>
@@ -23,7 +26,7 @@
         GreaterThan,
 
         /// <summary>
-        /// <.
+        /// <![CDATA[<]]>.
         /// </summary>
         SmallerThan,
 
@@ -33,7 +36,7 @@
         GreaterOrEqual,
 
         /// <summary>
-        /// <=.
+        /// <![CDATA[<=]]>.
         /// </summary>
         SmallerOrEqual,
     }

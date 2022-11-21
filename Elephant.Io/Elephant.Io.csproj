@@ -2,8 +2,8 @@
 
   <!-- This must be updated for every release -->
   <PropertyGroup>
-    <Version>1.0.1</Version>
-    <PackageReleaseNotes>Add two wrapper methods.</PackageReleaseNotes>
+    <Version>1.0.2</Version>
+    <PackageReleaseNotes>Generate documentation file.</PackageReleaseNotes>
   </PropertyGroup>
 
   <!-- Core -->
@@ -14,6 +14,7 @@
     <Company>SquirtingElephant</Company>
     <Authors>SquirtingElephant</Authors>
     <Description>I/O library.</Description>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
   <!-- Package -->
@@ -26,6 +27,7 @@
     <PackageProjectUrl>https://github.com/SquirtingElephant/Elephant.NuGets</PackageProjectUrl>
     <RepositoryUrl>https://github.com/SquirtingElephant/Elephant.NuGets.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <!-- Package README -->

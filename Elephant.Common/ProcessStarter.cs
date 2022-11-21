@@ -66,10 +66,12 @@ namespace Elephant.Common
         }
 
         /// <summary>
-        /// Starts the specified <see cref="fullPath"/>, optionally with the specified <see cref="arguments"/>.
+        /// Starts the specified <paramref name="fullPath"/>, optionally with the specified <paramref name="arguments"/>.
         /// </summary>
-        /// <param name="fullPath"></param>
-        /// <param name="arguments"></param>
+        /// <param name="fullPath">Full path, including filename and extension. If its null then no process will be started and an error <see cref="ProcessStartResult"/> will be returned.</param>
+        /// <param name="arguments">Optional start arguments.</param>
+        /// <param name="workingDirectory">Optional process working directory.</param>
+        /// <param name="useShellExecute">Indicates whether or not to use <see cref="ProcessStartInfo.UseShellExecute"/>.</param>
         public static IProcessStartResult StartProcess(string? fullPath, string? arguments = null, string? workingDirectory = null, bool useShellExecute = false)
         {
             if (fullPath == null)

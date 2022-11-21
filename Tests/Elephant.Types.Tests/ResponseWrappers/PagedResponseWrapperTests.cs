@@ -100,7 +100,7 @@ namespace Elephant.Types.Tests.ResponseWrappers
             sut.Created();
 
             // Assert.
-            Assert.Equal(sut.StatusCode, PagedResponseWrapper<int>.Status201Created);
+            Assert.Equal(PagedResponseWrapper<int>.Status201Created, sut.StatusCode);
         }
     }
 }

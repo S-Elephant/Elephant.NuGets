@@ -20,11 +20,11 @@ namespace Elephant.ApiControllers.Attributes
 
         /// <summary>
         /// Validate that the <see cref="IList"/> contains at least the specified amount of items.
-        /// If the value is null and the <see cref="_minLength"/> is 0, then the validation also passes.
+        /// If the value is null and the MinLength is 0, then the validation also passes.
         /// </summary>
         /// <param name="value">Object to validate.</param>
         /// <param name="validationContext"><see cref="ValidationContext"/></param>
-        /// <returns>True if the minimum length is at least <see cref="_minLength"/> and if its not null.</returns>
+        /// <returns>True if the minimum length is at least MinLength and if its not null.</returns>
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
             if (value == null)

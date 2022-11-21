@@ -4,6 +4,9 @@ using System.Globalization;
 
 namespace Elephant.Rijksdriehoek
 {
+    /// <summary>
+    /// Rijksdriehoek math library.
+    /// </summary>
     public static class MathRd
     {
         #region Min and max valid coordinate values

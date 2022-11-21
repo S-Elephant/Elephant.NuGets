@@ -42,7 +42,7 @@
         /// <param name="searchPattern">Search pattern. The asterisk * can be used as a wildcard.</param>
         /// <param name="searchOption">Specifies whether to search the current directory, or the current directory and all subdirectories.</param>
         /// <param name="extensions">File extensions (case-insensitive) to match. They must start with a dot and then the extension. Example: ".png".</param>
-        /// <param name="ignoreInaccessible">If true, currently inaccessible files will not be included in the return values.</param>/// <param name="ignoreInaccessible"></param>
+        /// <param name="ignoreInaccessible">If true, currently inaccessible files will not be included in the return values.</param>
         /// <returns>Matching found files.</returns>
         IAsyncEnumerable<IEnumerable<FileInfo>> GetFilesAsync(IEnumerable<DirectoryInfo> sourceDirectories, string searchPattern, SearchOption searchOption, IEnumerable<string> extensions, bool ignoreInaccessible = true);
 
@@ -63,7 +63,7 @@
         /// <param name="searchPattern">Search pattern. The asterisk * can be used as a wildcard.</param>
         /// <param name="searchOption">Specifies whether to search the current directory, or the current directory and all subdirectories.</param>
         /// <param name="extensions">File extensions (case-insensitive) to match. They must start with a dot and then the extension. Example: ".png".</param>
-        /// <param name="ignoreInaccessible">If true, currently inaccessible files will not be included in the return values.</param>/// <param name="ignoreInaccessible"></param>
+        /// <param name="ignoreInaccessible">If true, currently inaccessible files will not be included in the return values.</param>
         /// <returns>Matching found files.</returns>
         Task<IEnumerable<FileInfo>> GetFilesAsyncAsIEnumerable(IEnumerable<DirectoryInfo> sourceDirectories, string searchPattern, SearchOption searchOption, IEnumerable<string> extensions, bool ignoreInaccessible = true);
     }

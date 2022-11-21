@@ -1,5 +1,6 @@
 ﻿using Elephant.Types.ResponseWrappers;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using System.Linq.Expressions;
 
 namespace Elephant.Database
@@ -22,7 +23,7 @@ namespace Elephant.Database
         protected DbSet<TEntity> Table { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GenericCrudRepository{T}"/> class.
+        /// Constructor.
         /// </summary>
         public GenericCrudRepository(TContext mainContext)
         {
@@ -155,5 +156,29 @@ namespace Elephant.Database
             string sql = $"DELETE FROM [{schema}].[{tableName}];DBCC CHECKIDENT ([{schema}.{tableName}], RESEED, 0)";
             await Context.ExecuteSqlRawAsync(sql, cancellationToken);
         }
+
+        #region Transactions
+
+        // Important note: Be sure to use the transactions with a using(..) or a try-catch-finally because otherwise it won't dispose the IDbContextTransaction if it were to crash.
+
+        /// <inheritdoc/>
+        public async Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken)
+        {
+            return await Context.BeginTransaction(cancellationToken);
+        }
+
+        /// <inheritdoc/>
+        public async Task CommitTransactionAsyncAndDispose(IDbContextTransaction? transaction, CancellationToken cancellationToken)
+        {
+            await Context.CommitTransactionAndDispose(transaction, cancellationToken);
+        }
+
+        /// <inheritdoc/>
+        public async Task RollbackTransactionAsyncAndDispose(IDbContextTransaction? transaction, CancellationToken cancellationToken)
+        {
+            await Context.RollbackTransactionAndDispose(transaction, cancellationToken);
+        }
+
+        #endregion
     }
 }

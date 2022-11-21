@@ -43,6 +43,14 @@ void Update(ICollection<TEntity> objects);
 Task<ResponseWrapper<int>> UpdateAndSave(TEntity obj, CancellationToken cancellationToken);
 
 Task DeleteAllAndResetAutoIncrement(CancellationToken cancellationToken = default, string schema = "dbo");
+
+// Transactions:
+
+Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken);
+
+Task CommitTransactionAsyncAndDispose(IDbContextTransaction? transaction, CancellationToken cancellationToken);
+
+Task RollbackTransactionAsyncAndDispose(IDbContextTransaction? transaction, CancellationToken cancellationToken);
 ```
 
 ## QueryableExtensions

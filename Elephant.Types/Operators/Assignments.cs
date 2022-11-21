@@ -1,5 +1,8 @@
 ﻿namespace Elephant.Types.Operators
 {
+    /// <summary>
+    /// Basic operators.
+    /// </summary>
     public enum Operators
     {
         /// <summary>
