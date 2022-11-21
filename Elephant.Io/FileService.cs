@@ -65,7 +65,8 @@ namespace Elephant.Io
         {
             List<IEnumerable<FileInfo>> result = await GetFilesAsync(sourceDirectories, searchPattern, searchOption, ignoreInaccessible).ToListAsync();
 
-            return result.Any() ? result[0] : new List<FileInfo>();
+            // result.SelectMany(x => x) joins the list of lists together into one big list.
+            return result.Any() ? result.SelectMany(x => x) : new List<FileInfo>();
         }
 
         /// <inheritdoc/>
@@ -73,7 +74,8 @@ namespace Elephant.Io
         {
             List<IEnumerable<FileInfo>> result = await GetFilesAsync(sourceDirectories, searchPattern, searchOption, extensions, ignoreInaccessible).ToListAsync();
 
-            return result.Any() ? result[0] : new List<FileInfo>();
+            // result.SelectMany(x => x) joins the list of lists together into one big list.
+            return result.Any() ? result.SelectMany(x => x) : new List<FileInfo>();
         }
     }
 }
