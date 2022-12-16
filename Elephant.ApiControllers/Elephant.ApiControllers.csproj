@@ -2,8 +2,8 @@
 
   <!-- This must be updated for every release -->
   <PropertyGroup>
-    <Version>2.0.3</Version>
-    <PackageReleaseNotes>Generate documentation file.</PackageReleaseNotes>
+    <Version>2.0.4</Version>
+    <PackageReleaseNotes>Add two extensions and fill README.</PackageReleaseNotes>
   </PropertyGroup>
 
   <!-- Core -->
