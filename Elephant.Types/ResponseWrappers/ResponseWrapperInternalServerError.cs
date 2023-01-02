@@ -1,4 +1,6 @@
-﻿namespace Elephant.Types.ResponseWrappers
+﻿using System;
+
+namespace Elephant.Types.ResponseWrappers
 {
 	/// <summary>
 	/// Error (HTTP response code 500) <see cref="ResponseWrapper{TData}"/>.
@@ -21,6 +23,14 @@
 		/// </summary>
 		public ResponseWrapperInternalServerError(string message) :
 			base(default, StatusCodeInternalServerError, message)
+		{
+		}
+
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		public ResponseWrapperInternalServerError(Exception exception) :
+			base(default, StatusCodeInternalServerError, exception.ToString())
 		{
 		}
 	}

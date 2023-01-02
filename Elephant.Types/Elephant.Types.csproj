@@ -2,8 +2,8 @@
 
   <!-- This must be updated for every release -->
   <PropertyGroup>
-    <Version>2.0.4</Version>
-    <PackageReleaseNotes>Update comments.</PackageReleaseNotes>
+    <Version>2.0.5</Version>
+    <PackageReleaseNotes>Add ResponseWrapperInternalServerError constructor overload.</PackageReleaseNotes>
   </PropertyGroup>
 
   <!-- Core -->
