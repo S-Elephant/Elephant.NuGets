@@ -3,7 +3,7 @@
 namespace Elephant.Types.Tests.ResponseWrappers
 {
     /// <summary>
-    /// <see cref="PagedResponseWrapper{T}"/> == tests.
+    /// <see cref="PagedResponseWrapper{T}"/> tests.
     /// </summary>
     public class PagedResponseWrapperTests
     {
@@ -62,7 +62,7 @@ namespace Elephant.Types.Tests.ResponseWrappers
             sut.BadRequest();
 
             // Assert.
-            Assert.Equal(PagedResponseWrapper<int>.Status400BadRequest, sut.StatusCode);
+            Assert.Equal(400, sut.StatusCode);
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace Elephant.Types.Tests.ResponseWrappers
             sut.Created();
 
             // Assert.
-            Assert.Equal(PagedResponseWrapper<int>.Status201Created, sut.StatusCode);
+            Assert.Equal(201, sut.StatusCode);
         }
     }
 }

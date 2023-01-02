@@ -30,6 +30,26 @@ Interface with a boolean **IsEnabled** property.
 
 Wrapper that can hold data, HTTP status code, message and such. Usually used for returning data from service layer &rarr; controller/API layer.
 
+The following wrappers are included:
+
+- ResponseWrapper and IResponseWrapper (for custom status codes)
+- ResponseWrapperBadRequest : ResponseWrapper 
+- ResponseWrapperCreated : ResponseWrapper 
+- ResponseWrapperInternalServerError : ResponseWrapper 
+- ResponseWrapperNoContent : ResponseWrapper 
+- ResponseWrapperNoRecordsAffected : ResponseWrapper 
+- ResponseWrapperNotFound : ResponseWrapper 
+- ResponseWrapperOk : ResponseWrapper 
+- ResponseWrapperUnauthorized : ResponseWrapper 
+- ResponseWrapperUnprocessableEntity : ResponseWrapper 
+
+And a paged response wrapper:
+
+- IPagedResponseWrapper
+
+
+
+
 ## PagedResponseWrapper
 
 Paginated version of the [ResponseWrapper](##ResponseWrapper)

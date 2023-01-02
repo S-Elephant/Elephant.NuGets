@@ -96,7 +96,7 @@ namespace Elephant.Types.ResponseWrappers
         public PagedResponseWrapper(List<TData>? data, bool isSuccess, int statusCode, string? message,
             int pageNumber, int pageSize, int totalPageCount, bool isFirstPage, bool isLastPage,
             int totalRecords, string? pageUrlFirst = null, string? pageUrlLast = null, string? pageUrlPrevious = null, string? pageUrlNext = null)
-            : base(default, isSuccess, statusCode, message)
+            : base(default, statusCode, message)
         {
             Data = data ?? new List<TData>();
             Offset = pageNumber;

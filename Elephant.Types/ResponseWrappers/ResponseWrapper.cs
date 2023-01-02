@@ -1,51 +1,58 @@
 ﻿namespace Elephant.Types.ResponseWrappers
 {
     /// <inheritdoc cref="IResponseWrapper{TData}"/>
-    public class ResponseWrapper<TData> : IResponseWrapper<TData> where TData : new()
+    public class ResponseWrapper<TData> : IResponseWrapper<TData>
+        where TData : new()
     {
         /// <summary>
         /// Generic success HTTP success status code.
         /// </summary>
-        public const int Status200OK = 200;
+        private const int Status200OK = 200;
 
         /// <summary>
         /// Created HTTP success status code.
         /// </summary>
-        public const int Status201Created = 201;
+        private const int Status201Created = 201;
 
         /// <summary>
         /// Bad request HTTP error status code.
         /// </summary>
-        public const int Status400BadRequest = 400;
+        private const int Status400BadRequest = 400;
 
         /// <summary>
         /// Unauthorized HTTP error status code.
         /// </summary>
-        public const int Status401Unauthorized = 401;
+        private const int Status401Unauthorized = 401;
 
         /// <summary>
         /// Unauthorized HTTP error status code.
         /// </summary>
-        public const int Status422UnprocessableEntity = 422;
+        private const int Status422UnprocessableEntity = 422;
 
         /// <summary>
         /// Not found HTTP error status code.
         /// </summary>
-        public const int Status404NotFound = 404;
+        private const int Status404NotFound = 404;
 
         /// <summary>
         /// Internal server HTTP error status code.
         /// </summary>
-        public const int Status500InternalServerError = 500;
+        private const int Status500InternalServerError = 500;
 
         /// <inheritdoc/>
-        public TData? Data { get; set; } = default;
+        public TData? Data { get; private set; } = default;
 
         /// <inheritdoc/>
-        public bool IsSuccess { get; set; } = true;
+        public bool IsSuccess { get { return IsSuccessStatusCode(StatusCode); } }
 
         /// <inheritdoc/>
-        public int StatusCode { get; set; } = Status200OK;
+        public bool IsError { get { return IsErrorStatusCode(StatusCode); } }
+
+        /// <inheritdoc/>
+        public bool IsInformativeRedirectionOrCustom { get { return IsInformativeRedirectionOrCustomStatusCode(StatusCode); } }
+
+        /// <inheritdoc/>
+        public int StatusCode { get; private set; } = Status200OK;
 
         /// <inheritdoc/>
         public string? Message { get; set; } = null;
@@ -68,10 +75,9 @@
         /// <summary>
         /// Constructor with initializers.
         /// </summary>
-        public ResponseWrapper(TData? data, bool isSuccess, int statusCode, string? message = null)
+        public ResponseWrapper(TData? data, int statusCode, string? message = null)
         {
             Data = data;
-            IsSuccess = isSuccess;
             StatusCode = statusCode;
             Message = message;
         }
@@ -82,6 +88,22 @@
         private bool IsSuccessStatusCode(int statusCode)
         {
             return statusCode >= 200 && statusCode < 300;
+        }
+
+        /// <summary>
+        /// Returns true if the specified <paramref name="statusCode"/> is an error status code.
+        /// </summary>
+        private bool IsErrorStatusCode(int statusCode)
+        {
+            return statusCode >= 400 && statusCode <= 599;
+        }
+
+        /// <summary>
+        /// Indicates if the operations were neither successful nor unsuccessful (thus, is informative, redirectional or custom).
+        /// </summary>
+        private bool IsInformativeRedirectionOrCustomStatusCode(int statusCode)
+        {
+            return !IsSuccessStatusCode(statusCode) && !IsErrorStatusCode(statusCode);
         }
 
         /// <inheritdoc/>
@@ -97,10 +119,9 @@
         /// <inheritdoc/>
         public virtual ResponseWrapper<TData> Error(int statusCode, string? message = null, TData? data = default)
         {
-            Data = data;
-            Message = message;
             StatusCode = statusCode;
-            IsSuccess = IsSuccessStatusCode(statusCode);
+            Message = message;
+            Data = data;
 
             return this;
         }
@@ -151,6 +172,12 @@
 
         /// <inheritdoc/>
         public virtual ResponseWrapper<TData> NoRecordsAffected(string? message = "No records affected.")
+        {
+            return Error(Status500InternalServerError, message);
+        }
+
+        /// <inheritdoc/>
+        public virtual ResponseWrapper<TData> NoContent(string? message = "No content.")
         {
             return Error(Status500InternalServerError, message);
         }
@@ -213,6 +240,14 @@
         public static ResponseWrapper<TData> NewNoRecordsAffected(string? message = "No records affected.", TData? data = default)
         {
             return new ResponseWrapper<TData>(data).NoRecordsAffected(message);
+        }
+
+        /// <summary>
+        /// Create a new <see cref="ResponseWrapper{TData}"/> with the 204 HTTP status code.
+        /// </summary>
+        public static ResponseWrapper<TData> NewNoContent(string? message = "No content.", TData? data = default)
+        {
+            return new ResponseWrapper<TData>(data).NoContent(message);
         }
 
         #endregion
