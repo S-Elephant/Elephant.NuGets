@@ -49,5 +49,13 @@ namespace Elephant.Types.ResponseWrappers
 			base(StatusCodeInternalServerError, message)
 		{
 		}
+
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		public ResponseWrapperInternalServerError(Exception exception) :
+			base(StatusCodeInternalServerError, exception.ToString())
+		{
+		}
 	}
 }
