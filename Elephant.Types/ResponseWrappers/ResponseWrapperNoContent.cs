@@ -29,9 +29,9 @@
     }
 
 	/// <summary>
-	/// Success (HTTP response code 204) <see cref="ResponseWrapper{TData}"/> without data.
+	/// Success (HTTP response code 204) <see cref="ResponseWrapper"/>.
 	/// </summary>
-	public class ResponseWrapperNoContent : ResponseWrapper<bool>
+	public class ResponseWrapperNoContent : ResponseWrapper
 	{
 		/// <summary>
 		/// No content success HTTP status code.
@@ -42,7 +42,7 @@
 		/// Constructor.
 		/// </summary>
 		public ResponseWrapperNoContent(string message = "No content.")
-			: base(false, StatusCodeNoContent, message)
+			: base( StatusCodeNoContent, message)
 		{
 		}
 	}

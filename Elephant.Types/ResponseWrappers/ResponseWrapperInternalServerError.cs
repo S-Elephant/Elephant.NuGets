@@ -26,9 +26,9 @@
 	}
 
 	/// <summary>
-	/// Error (HTTP response code 500) <see cref="ResponseWrapper{TData}"/>.
+	/// Error (HTTP response code 500) <see cref="ResponseWrapper"/>.
 	/// </summary>
-	public class ResponseWrapperInternalServerError : ResponseWrapper<bool>
+	public class ResponseWrapperInternalServerError : ResponseWrapper
 	{
 		private const int StatusCodeInternalServerError = 500;
 
@@ -36,7 +36,7 @@
 		/// Constructor.
 		/// </summary>
 		public ResponseWrapperInternalServerError(string message = "Internal server error.") :
-			base(false, StatusCodeInternalServerError, message)
+			base(StatusCodeInternalServerError, message)
 		{
 		}
 	}

@@ -26,9 +26,9 @@
     }
 
 	/// <summary>
-	/// Error (HTTP response code 500) <see cref="ResponseWrapper{TData}"/>.
+	/// Error (HTTP response code 500) <see cref="ResponseWrapper"/>.
 	/// </summary>
-	public class ResponseWrapperNoRecordsAffected : ResponseWrapper<bool>
+	public class ResponseWrapperNoRecordsAffected : ResponseWrapper
 	{
 		private const int StatusCodeInternalServerError = 500;
 
@@ -36,7 +36,7 @@
 		/// Constructor.
 		/// </summary>
 		public ResponseWrapperNoRecordsAffected(string message = "No records affected.") :
-			base(false, StatusCodeInternalServerError, message)
+			base(StatusCodeInternalServerError, message)
 		{
 		}
 	}

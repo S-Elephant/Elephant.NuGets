@@ -26,9 +26,9 @@
     }
 
 	/// <summary>
-	/// Error (HTTP response code 422) <see cref="ResponseWrapper{TData}"/> without data.
+	/// Error (HTTP response code 422) <see cref="ResponseWrapper"/>
 	/// </summary>
-	public class ResponseWrapperUnprocessableEntity : ResponseWrapper<bool>
+	public class ResponseWrapperUnprocessableEntity : ResponseWrapper
 	{
 		private const int StatusCodeUnprocessableEntity = 422;
 
@@ -36,7 +36,7 @@
 		/// Constructor.
 		/// </summary>
 		public ResponseWrapperUnprocessableEntity(string message = "Unprocessable entity.") :
-			base(false, StatusCodeUnprocessableEntity, message)
+			base(StatusCodeUnprocessableEntity, message)
 		{
 		}
 	}

@@ -2,8 +2,8 @@
 
   <!-- This must be updated for every release -->
   <PropertyGroup>
-    <Version>2.0.1</Version>
-    <PackageReleaseNotes>Add NoContent Response wrapper.</PackageReleaseNotes>
+    <Version>2.0.4</Version>
+    <PackageReleaseNotes>Update comments.</PackageReleaseNotes>
   </PropertyGroup>
 
   <!-- Core -->

@@ -26,9 +26,9 @@
     }
 
 	/// <summary>
-	/// Error (HTTP response code 404) <see cref="ResponseWrapper{TData}"/> without data.
+	/// Error (HTTP response code 404) <see cref="ResponseWrapper"/>.
 	/// </summary>
-	public class ResponseWrapperNotFound : ResponseWrapper<bool>
+	public class ResponseWrapperNotFound : ResponseWrapper
 	{
 		private const int StatusCodeNotFound = 404;
 
@@ -36,7 +36,7 @@
 		/// Constructor.
 		/// </summary>
 		public ResponseWrapperNotFound(string message = "Not found.") :
-			base(false, StatusCodeNotFound, message)
+			base(StatusCodeNotFound, message)
 		{
 		}
 	}

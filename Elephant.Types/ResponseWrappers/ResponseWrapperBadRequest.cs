@@ -26,9 +26,9 @@
 	}
 
 	/// <summary>
-	/// Error (HTTP response code 400) <see cref="ResponseWrapper{TData}"/> without data.
+	/// Error (HTTP response code 400) <see cref="ResponseWrapper"/>.
 	/// </summary>
-	public class ResponseWrapperBadRequest : ResponseWrapper<bool>
+	public class ResponseWrapperBadRequest : ResponseWrapper
 	{
 		private const int StatusCodeBadRequest = 400;
 
@@ -36,7 +36,7 @@
 		/// Constructor.
 		/// </summary>
 		public ResponseWrapperBadRequest(string message = "Bad request.") :
-			base(false, StatusCodeBadRequest, message)
+			base(StatusCodeBadRequest, message)
 		{
 		}
 	}

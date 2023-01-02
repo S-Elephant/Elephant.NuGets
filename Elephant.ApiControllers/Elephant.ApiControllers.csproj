@@ -2,8 +2,8 @@
 
   <!-- This must be updated for every release -->
   <PropertyGroup>
-    <Version>2.0.4</Version>
-    <PackageReleaseNotes>Add two extensions and fill README.</PackageReleaseNotes>
+    <Version>2.0.5</Version>
+    <PackageReleaseNotes>Add optional parameter to ToApiResult method.</PackageReleaseNotes>
   </PropertyGroup>
 
   <!-- Core -->

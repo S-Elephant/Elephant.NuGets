@@ -44,10 +44,15 @@
         /// </summary>
         int StatusCode { get; }
 
-        /// <summary>
-        /// Converts this wrapper into a BadRequest error result.
-        /// </summary>
-        ResponseWrapper<TData> BadRequest(string? message = null);
+		/// <summary>
+		/// If true then this Response Wrapper may use have useful <see cref="Data"/>. If false, it will NEVER have any useful <see cref="Data"/> and <see cref="Data"/> should be ignored.
+		/// </summary>
+		bool UsesData { get; }
+
+		/// <summary>
+		/// Converts this wrapper into a BadRequest error result.
+		/// </summary>
+		ResponseWrapper<TData> BadRequest(string? message = null);
 
         /// <summary>
         /// Converts this wrapper into a generic success result.

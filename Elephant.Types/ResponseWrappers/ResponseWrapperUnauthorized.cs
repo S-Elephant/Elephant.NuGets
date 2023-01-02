@@ -26,9 +26,9 @@
     }
 
 	/// <summary>
-	/// Error (HTTP response code 401) <see cref="ResponseWrapper{TData}"/> without data.
+	/// Error (HTTP response code 401) <see cref="ResponseWrapper"/>.
 	/// </summary>
-	public class ResponseWrapperUnauthorized : ResponseWrapper<bool>
+	public class ResponseWrapperUnauthorized : ResponseWrapper
 	{
 		private const int StatusCodeUnauthorized = 401;
 
@@ -36,7 +36,7 @@
 		/// Constructor.
 		/// </summary>
 		public ResponseWrapperUnauthorized(string message = "Unauthorized.") :
-			base(false, StatusCodeUnauthorized, message)
+			base(StatusCodeUnauthorized, message)
 		{
 		}
 	}

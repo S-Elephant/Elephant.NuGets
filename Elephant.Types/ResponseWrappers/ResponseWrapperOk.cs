@@ -16,15 +16,15 @@
     }
 
 	/// <summary>
-	/// Success (HTTP response code 200) <see cref="ResponseWrapper{TData}"/> without data.
+	/// Success (HTTP response code 200) <see cref="ResponseWrapper"/>.
 	/// </summary>
-	public class ResponseWrapperOk : ResponseWrapper<bool>
+	public class ResponseWrapperOk : ResponseWrapper
 	{
 		/// <summary>
 		/// Constructor.
 		/// </summary>
 		public ResponseWrapperOk(string message = "Success.") :
-			base(false, 200, message)
+			base(200, message)
 		{
 		}
 	}

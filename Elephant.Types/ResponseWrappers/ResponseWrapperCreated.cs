@@ -16,15 +16,15 @@
     }
 
 	/// <summary>
-	/// Success (HTTP response code 201) <see cref="ResponseWrapper{TData}"/> without data.
+	/// Success (HTTP response code 201) <see cref="ResponseWrapper"/>.
 	/// </summary>
-	public class ResponseWrapperCreated : ResponseWrapper<bool>
+	public class ResponseWrapperCreated : ResponseWrapper
 	{
 		/// <summary>
 		/// Constructor.
 		/// </summary>
 		public ResponseWrapperCreated(string message = "Created.") :
-			base(false, 201, message)
+			base(201, message)
 		{
 		}
 	}
