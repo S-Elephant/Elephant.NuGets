@@ -261,7 +261,7 @@ namespace Elephant.Types.ResponseWrappers
 	/// <summary>
 	/// <see cref="ResponseWrapper{TData}"/> without data.
 	/// </summary>
-	public class ResponseWrapper : ResponseWrapper<bool>
+	public class ResponseWrapper : ResponseWrapper<bool>, IResponseWrapper
 	{
 		/// <summary>
 		/// Constructor with initializers.
