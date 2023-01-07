@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>0.5.2</Version>
-		<PackageReleaseNotes>Improve performance.</PackageReleaseNotes>
+		<Version>0.5.3</Version>
+		<PackageReleaseNotes>Make all public repository methods virtual.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->

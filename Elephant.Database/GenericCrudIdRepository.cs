@@ -19,7 +19,7 @@ namespace Elephant.Database
         }
 
         /// <inheritdoc/>
-        public async Task<TEntity?> ById(int id, QueryTrackingBehavior queryTrackingBehavior = QueryTrackingBehavior.TrackAll, CancellationToken cancellationToken = default, params Expression<Func<TEntity, object>>[] includes)
+        public virtual async Task<TEntity?> ById(int id, QueryTrackingBehavior queryTrackingBehavior = QueryTrackingBehavior.TrackAll, CancellationToken cancellationToken = default, params Expression<Func<TEntity, object>>[] includes)
         {
             return await includes
                 .Aggregate(Table.AsQueryable(), (current, include) => current.Include(include))
@@ -28,7 +28,7 @@ namespace Elephant.Database
         }
 
         /// <inheritdoc/>
-        public async Task<int> HighestId(CancellationToken cancellationToken)
+        public virtual async Task<int> HighestId(CancellationToken cancellationToken)
         {
             int? highestId = await Table
                 .AsNoTracking()
@@ -40,7 +40,7 @@ namespace Elephant.Database
         }
 
         /// <inheritdoc/>
-        public async Task<int> LowestId(CancellationToken cancellationToken)
+        public virtual async Task<int> LowestId(CancellationToken cancellationToken)
         {
             int? highestId = await Table
                 .AsNoTracking()

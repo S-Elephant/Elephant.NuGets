@@ -13,48 +13,48 @@ Contains various EF Core related database helpers.
 ## GenericCrudRepository
 
 ```c#
-Task<List<TEntity>> All(CancellationToken cancellationToken);
+virtual Task<List<TEntity>> All(CancellationToken cancellationToken);
 
 // Example usage: await myRepository.All(1, QueryTrackingBehavior.NoTracking, CancellationToken.None, x => x.CustomersCrossOrders, x => x.CustomersCrossAddresses);
-Task<List<TEntity>> All(QueryTrackingBehavior queryTrackingBehavior = QueryTrackingBehavior.TrackAll, CancellationToken cancellationToken = default, params Expression<Func<TEntity, object>>[] includes);
+virtual Task<List<TEntity>> All(QueryTrackingBehavior queryTrackingBehavior = QueryTrackingBehavior.TrackAll, CancellationToken cancellationToken = default, params Expression<Func<TEntity, object>>[] includes);
 
-Task<TEntity?> ById(object id, CancellationToken cancellationToken);
+virtual Task<TEntity?> ById(object id, CancellationToken cancellationToken);
 
-Task<int> Count(CancellationToken cancellationToken);
+virtual Task<int> Count(CancellationToken cancellationToken);
 
-Task<int> Count(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken);
+virtual Task<int> Count(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken);
 
-void Delete(object id);
+virtual void Delete(object id);
 
-Task<ResponseWrapper<int>> DeleteAndSave(object id, CancellationToken cancellationToken);
+virtual Task<ResponseWrapper<int>> DeleteAndSave(object id, CancellationToken cancellationToken);
 
-Task<bool> HasAny(CancellationToken cancellationToken);
+virtual Task<bool> HasAny(CancellationToken cancellationToken);
 
-Task<bool> HasAny(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken);
+virtual Task<bool> HasAny(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken);
 
-Task Insert(TEntity obj, CancellationToken cancellationToken);
+virtual Task Insert(TEntity obj, CancellationToken cancellationToken);
 
-Task Insert(ICollection<TEntity> objects, CancellationToken cancellationToken);
+virtual Task Insert(ICollection<TEntity> objects, CancellationToken cancellationToken);
 
-Task<ResponseWrapper<int>> InsertAndSave(TEntity obj, CancellationToken cancellationToken);
+virtual Task<ResponseWrapper<int>> InsertAndSave(TEntity obj, CancellationToken cancellationToken);
 
-Task<ResponseWrapper<int>> Save(CancellationToken cancellationToken);
+virtual Task<ResponseWrapper<int>> Save(CancellationToken cancellationToken);
 
-void Update(TEntity obj);
+virtual void Update(TEntity obj);
 
-void Update(ICollection<TEntity> objects);
+virtual void Update(ICollection<TEntity> objects);
 
-Task<ResponseWrapper<int>> UpdateAndSave(TEntity obj, CancellationToken cancellationToken);
+virtual Task<ResponseWrapper<int>> UpdateAndSave(TEntity obj, CancellationToken cancellationToken);
 
-Task DeleteAllAndResetAutoIncrement(CancellationToken cancellationToken = default, string schema = "dbo");
+virtual Task DeleteAllAndResetAutoIncrement(CancellationToken cancellationToken = default, string schema = "dbo");
 
 // Transactions:
 
-Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken);
+virtual Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken);
 
-Task CommitTransactionAsyncAndDispose(IDbContextTransaction? transaction, CancellationToken cancellationToken);
+virtual Task CommitTransactionAsyncAndDispose(IDbContextTransaction? transaction, CancellationToken cancellationToken);
 
-Task RollbackTransactionAsyncAndDispose(IDbContextTransaction? transaction, CancellationToken cancellationToken);
+virtual Task RollbackTransactionAsyncAndDispose(IDbContextTransaction? transaction, CancellationToken cancellationToken);
 ```
 
 ### Example IContext transaction implementation
@@ -127,11 +127,11 @@ using (IDbContextTransaction transaction = await _customerRepository.BeginTransa
 All methods as listed in [GenericCrudRepository](##GenericCrudRepository) plus:
 
 ```c#
-Task<T?> ById(int id, QueryTrackingBehavior queryTrackingBehavior = QueryTrackingBehavior.TrackAll, CancellationToken cancellationToken = default, params Expression<Func<T, object>>[] includes);
+virtual Task<T?> ById(int id, QueryTrackingBehavior queryTrackingBehavior = QueryTrackingBehavior.TrackAll, CancellationToken cancellationToken = default, params Expression<Func<T, object>>[] includes);
 
-Task<int> HighestId(CancellationToken cancellationToken);
+virtual Task<int> HighestId(CancellationToken cancellationToken);
 
-Task<int> LowestId(CancellationToken cancellationToken);
+virtual Task<int> LowestId(CancellationToken cancellationToken);
 ```
 
 
