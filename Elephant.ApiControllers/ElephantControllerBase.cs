@@ -1,4 +1,5 @@
-﻿using Elephant.Types.ResponseWrappers;
+﻿using Elephant.Types.Interfaces.ResponseWrappers;
+using Elephant.Types.ResponseWrappers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel;
@@ -15,7 +16,7 @@ namespace Elephant.ApiControllers
 		/// </summary>
 		/// <param name="result"><see cref="ResponseWrapper{TData}"/></param>
 		/// <param name="useData">If true, <see cref="ResponseWrapper{TData}.Data"/> will be returned if applicable and possible; Otherwise, <see cref="ResponseWrapper{TData}.Data"/> will never be returned.</param>
-		protected IActionResult ToApiResult<TData>(ResponseWrapper<TData> result, bool useData = true)
+		protected IActionResult ToApiResult<TData>(IResponseWrapper<TData> result, bool useData = true)
 			where TData : new()
 		{
 			if (result.IsSuccess)
@@ -48,7 +49,7 @@ namespace Elephant.ApiControllers
 		/// <summary>
 		/// Converts to <see cref="IActionResult"/>.
 		/// </summary>
-		protected IActionResult ToApiResult(ResponseWrapper result)
+		protected IActionResult ToApiResult(IResponseWrapper result)
 		{
 			return ToApiResult(result, false);
 		}

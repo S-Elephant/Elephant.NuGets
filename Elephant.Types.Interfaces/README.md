@@ -13,4 +13,5 @@ Contains shared/common/generic type interfaces.
 # Response wrapper interfaces
 
 - IPagedResponseWrapper<TData>
+- IResponseWrapper
 - IResponseWrapper<TData>
