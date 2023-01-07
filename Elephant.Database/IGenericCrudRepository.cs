@@ -51,7 +51,7 @@ namespace Elephant.Database
         /// <summary>
         /// Delete by id and save.
         /// </summary>
-        Task<ResponseWrapper<int>> DeleteAndSave(object id, CancellationToken cancellationToken);
+        Task<IResponseWrapper<int>> DeleteAndSave(object id, CancellationToken cancellationToken);
 
         /// <summary>
         /// Returns true if this table contains at least one record.
@@ -79,12 +79,12 @@ namespace Elephant.Database
         /// <summary>
         /// Insert and save.
         /// </summary>
-        Task<ResponseWrapper<int>> InsertAndSave(TEntity obj, CancellationToken cancellationToken);
+        Task<IResponseWrapper<int>> InsertAndSave(TEntity obj, CancellationToken cancellationToken);
 
         /// <summary>
         /// Save.
         /// </summary>
-        Task<ResponseWrapper<int>> Save(CancellationToken cancellationToken);
+        Task<IResponseWrapper<int>> Save(CancellationToken cancellationToken);
 
         /// <summary>
         /// Update.
@@ -101,7 +101,7 @@ namespace Elephant.Database
         /// <summary>
         /// UpdateAndSave
         /// </summary>
-        Task<ResponseWrapper<int>> UpdateAndSave(TEntity obj, CancellationToken cancellationToken);
+        Task<IResponseWrapper<int>> UpdateAndSave(TEntity obj, CancellationToken cancellationToken);
 
         /// <summary>
 		/// Delete all rows from the table, resets the auto-increment and saves.

@@ -61,7 +61,7 @@ namespace Elephant.Database
         }
 
         /// <inheritdoc/>
-        public virtual async Task<ResponseWrapper<int>> Save(CancellationToken cancellationToken)
+        public virtual async Task<IResponseWrapper<int>> Save(CancellationToken cancellationToken)
         {
             int recordsAffectedCount = await Context.SaveChangesAsync(cancellationToken);
             return new ResponseWrapper<int>(recordsAffectedCount);
@@ -96,7 +96,7 @@ namespace Elephant.Database
         }
 
         /// <inheritdoc/>
-        public virtual async Task<ResponseWrapper<int>> DeleteAndSave(object id, CancellationToken cancellationToken)
+        public virtual async Task<IResponseWrapper<int>> DeleteAndSave(object id, CancellationToken cancellationToken)
         {
             bool isDeleted = Delete(id);
 
@@ -119,15 +119,15 @@ namespace Elephant.Database
         }
 
         /// <inheritdoc/>
-        public virtual async Task<ResponseWrapper<int>> InsertAndSave(TEntity obj, CancellationToken cancellationToken)
+        public virtual async Task<IResponseWrapper<int>> InsertAndSave(TEntity obj, CancellationToken cancellationToken)
         {
             await Insert(obj, cancellationToken);
-            ResponseWrapper<int> result = await Save(cancellationToken);
+            IResponseWrapper<int> result = await Save(cancellationToken);
             return (result.Data == 0) ? result.InternalServerError("Nothing to insert.") : result;
         }
 
         /// <inheritdoc/>
-        public virtual async Task<ResponseWrapper<int>> UpdateAndSave(TEntity obj, CancellationToken cancellationToken)
+        public virtual async Task<IResponseWrapper<int>> UpdateAndSave(TEntity obj, CancellationToken cancellationToken)
         {
             Update(obj);
             return await Save(cancellationToken);
