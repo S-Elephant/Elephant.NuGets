@@ -1,5 +1,5 @@
 ﻿using Elephant.Constants.SqlServer;
-using Elephant.Types;
+using Elephant.Types.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

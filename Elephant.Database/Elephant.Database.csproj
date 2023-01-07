@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>0.3.2</Version>
-		<PackageReleaseNotes>Update README.md and transaction rename.</PackageReleaseNotes>
+		<Version>0.4.0</Version>
+		<PackageReleaseNotes>Add GenericCrudIdRepository.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
@@ -42,6 +42,9 @@
 			<PackagePath>\</PackagePath>
 			<Pack>True</Pack>
 		</None>
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\Elephant.Types.Interfaces\Elephant.Types.Interfaces.csproj" />
 	</ItemGroup>
 
 </Project>

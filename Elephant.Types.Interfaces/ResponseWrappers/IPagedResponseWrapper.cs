@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Elephant.Types.ResponseWrappers
+namespace Elephant.Types.Interfaces.ResponseWrappers
 {
     /// <summary>
     /// A wrapper for returning paginated data (for 1 page) along with a message and success status.
@@ -31,7 +31,7 @@ namespace Elephant.Types.ResponseWrappers
         /// The offset (=page number) that this <see cref="Data"/> is taken from. Starts at 0 and defaults to 0.
         /// </summary>
         int Offset { get; set; }
-        
+
         /// <summary>
         /// Maximum amount of items per page. If this value is set to a value smaller than 1 then the value <see cref="int.MaxValue"/> will be assigned instead.
         /// Defaults to <see cref="int.MaxValue"/>.

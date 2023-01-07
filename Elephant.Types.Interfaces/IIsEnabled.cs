@@ -1,4 +1,4 @@
-﻿namespace Elephant.Types
+﻿namespace Elephant.Types.Interfaces
 {
     /// <summary>
     /// Interface with an <see cref="IsEnabled"/> property.

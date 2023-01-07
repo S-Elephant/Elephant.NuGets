@@ -1,4 +1,4 @@
-﻿namespace Elephant.Types.ResponseWrappers
+﻿namespace Elephant.Types.Interfaces.ResponseWrappers
 {
     /// <summary>
     /// A wrapper for returning data along with a message and success status.
@@ -44,64 +44,64 @@
         /// </summary>
         int StatusCode { get; }
 
-		/// <summary>
-		/// If true then this Response Wrapper may use have useful <see cref="Data"/>. If false, it will NEVER have any useful <see cref="Data"/> and <see cref="Data"/> should be ignored.
-		/// </summary>
-		bool UsesData { get; }
+        /// <summary>
+        /// If true then this Response Wrapper may use have useful <see cref="Data"/>. If false, it will NEVER have any useful <see cref="Data"/> and <see cref="Data"/> should be ignored.
+        /// </summary>
+        bool UsesData { get; }
 
-		/// <summary>
-		/// Converts this wrapper into a BadRequest error result.
-		/// </summary>
-		ResponseWrapper<TData> BadRequest(string? message = null);
+        /// <summary>
+        /// Converts this wrapper into a BadRequest error result.
+        /// </summary>
+        IResponseWrapper<TData> BadRequest(string? message = null);
 
         /// <summary>
         /// Converts this wrapper into a generic success result.
         /// </summary>
-        ResponseWrapper<TData> Success(int statusCode, string message = "Success.", TData? data = default);
+        IResponseWrapper<TData> Success(int statusCode, string? message = "Success.", TData? data = default);
 
         /// <summary>
         /// Converts this wrapper into a specific HTTP status error result.
         /// </summary>
-        ResponseWrapper<TData> Error(int statusCode, string? message = null, TData? data = default);
+        IResponseWrapper<TData> Error(int statusCode, string? message = null, TData? data = default);
 
         /// <summary>
         /// Converts this wrapper into an OK success result.
         /// </summary>
-        ResponseWrapper<TData> Ok(string message = "Success.");
+        IResponseWrapper<TData> Ok(string message = "Success.");
 
         /// <summary>
         /// Converts this wrapper into a Created success result.
         /// </summary>
-        ResponseWrapper<TData> Created(string message = "Creation success.");
+        IResponseWrapper<TData> Created(string message = "Creation success.");
 
         /// <summary>
         /// Converts this wrapper into an Unauthorized error result.
         /// </summary>
-        ResponseWrapper<TData> Unauthorized(string? message = null);
+        IResponseWrapper<TData> Unauthorized(string? message = null);
 
         /// <summary>
         /// Converts this wrapper into a Not Found error result.
         /// </summary>
-        ResponseWrapper<TData> NotFound(string? message = null);
+        IResponseWrapper<TData> NotFound(string? message = null);
 
         /// <summary>
         /// Converts this wrapper into a Not Found error result.
         /// </summary>
-        ResponseWrapper<TData> UnprocessableEntity(string? message = null);
+        IResponseWrapper<TData> UnprocessableEntity(string? message = null);
 
         /// <summary>
         /// Converts this wrapper into an Internal Server error result.
         /// </summary>
-        ResponseWrapper<TData> InternalServerError(string? message = null);
+        IResponseWrapper<TData> InternalServerError(string? message = null);
 
         /// <summary>
         /// Converts this wrapper into an Internal Server error result.
         /// </summary>
-        ResponseWrapper<TData> NoRecordsAffected(string? message = "No records affected.");
+        IResponseWrapper<TData> NoRecordsAffected(string? message = "No records affected.");
 
         /// <summary>
         /// Converts this wrapper into a no content success result.
         /// </summary>
-        ResponseWrapper<TData> NoContent(string? message = "No content.");
+        IResponseWrapper<TData> NoContent(string? message = "No content.");
     }
 }

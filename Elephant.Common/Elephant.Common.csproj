@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>3.0.4</Version>
-		<PackageReleaseNotes>Generate documentation file.</PackageReleaseNotes>
+		<Version>3.0.5</Version>
+		<PackageReleaseNotes>Update dependency.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
@@ -30,6 +30,7 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
 	</PropertyGroup>
 	<ItemGroup>
+	  <ProjectReference Include="..\Elephant.Types.Interfaces\Elephant.Types.Interfaces.csproj" />
 	  <ProjectReference Include="..\Elephant.Types\Elephant.Types.csproj" />
 	</ItemGroup>
 

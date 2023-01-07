@@ -1,4 +1,4 @@
-﻿using System.Xml.Linq;
+﻿using Elephant.Types.Interfaces.ResponseWrappers;
 
 namespace Elephant.Types.ResponseWrappers
 {
@@ -112,7 +112,7 @@ namespace Elephant.Types.ResponseWrappers
 		}
 
 		/// <inheritdoc/>
-		public virtual ResponseWrapper<TData> Success(int statusCode, string message = "Success.", TData? data = default)
+		public virtual IResponseWrapper<TData> Success(int statusCode, string? message = "Success.", TData? data = default)
 		{
 			StatusCode = statusCode;
 			Message = message;
@@ -122,7 +122,7 @@ namespace Elephant.Types.ResponseWrappers
 		}
 
 		/// <inheritdoc/>
-		public virtual ResponseWrapper<TData> Error(int statusCode, string? message = null, TData? data = default)
+		public virtual IResponseWrapper<TData> Error(int statusCode, string? message = null, TData? data = default)
 		{
 			StatusCode = statusCode;
 			Message = message;
@@ -131,58 +131,58 @@ namespace Elephant.Types.ResponseWrappers
 			return this;
 		}
 
-		#region Assign status
+        #region Assign status
 
-		/// <inheritdoc/>
-		public virtual ResponseWrapper<TData> Ok(string message = "Success.")
+        /// <inheritdoc/>
+        public virtual IResponseWrapper<TData> Ok(string? message = "Success.")
 		{
 			return Success(Status200OK, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual ResponseWrapper<TData> Created(string message = "Creation success.")
+		public virtual IResponseWrapper<TData> Created(string? message = "Creation success.")
 		{
 			return Success(Status201Created, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual ResponseWrapper<TData> BadRequest(string? message = null)
+		public virtual IResponseWrapper<TData> BadRequest(string? message = null)
 		{
 			return Error(Status400BadRequest, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual ResponseWrapper<TData> Unauthorized(string? message = null)
+		public virtual IResponseWrapper<TData> Unauthorized(string? message = null)
 		{
 			return Error(Status401Unauthorized, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual ResponseWrapper<TData> NotFound(string? message = null)
+		public virtual IResponseWrapper<TData> NotFound(string? message = null)
 		{
 			return Error(Status404NotFound, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual ResponseWrapper<TData> UnprocessableEntity(string? message = null)
+		public virtual IResponseWrapper<TData> UnprocessableEntity(string? message = null)
 		{
 			return Error(Status422UnprocessableEntity, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual ResponseWrapper<TData> InternalServerError(string? message = null)
+		public virtual IResponseWrapper<TData> InternalServerError(string? message = null)
 		{
 			return Error(Status500InternalServerError, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual ResponseWrapper<TData> NoRecordsAffected(string? message = "No records affected.")
+		public virtual IResponseWrapper<TData> NoRecordsAffected(string? message = "No records affected.")
 		{
 			return Error(Status500InternalServerError, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual ResponseWrapper<TData> NoContent(string? message = "No content.")
+		public virtual IResponseWrapper<TData> NoContent(string? message = "No content.")
 		{
 			return Error(Status500InternalServerError, message);
 		}
@@ -194,7 +194,7 @@ namespace Elephant.Types.ResponseWrappers
 		/// <summary>
 		/// Create a new <see cref="ResponseWrapper{TData}"/> with the 200 HTTP status code.
 		/// </summary>
-		public static ResponseWrapper<TData> NewOk(TData? data = default, string message = "Success.")
+		public static IResponseWrapper<TData> NewOk(TData? data = default, string message = "Success.")
 		{
 			return new ResponseWrapper<TData>(data).Ok(message);
 		}
@@ -202,7 +202,7 @@ namespace Elephant.Types.ResponseWrappers
 		/// <summary>
 		/// Create a new <see cref="ResponseWrapper{TData}"/> with the 201 HTTP status code.
 		/// </summary>
-		public static ResponseWrapper<TData> NewCreated(TData? data = default, string message = "Creation success.")
+		public static IResponseWrapper<TData> NewCreated(TData? data = default, string message = "Creation success.")
 		{
 			return new ResponseWrapper<TData>(data).Created(message);
 		}
@@ -210,7 +210,7 @@ namespace Elephant.Types.ResponseWrappers
 		/// <summary>
 		/// Create a new <see cref="ResponseWrapper{TData}"/> with the 400 HTTP status code.
 		/// </summary>
-		public static ResponseWrapper<TData> NewBadRequest(string? message = null, TData? data = default)
+		public static IResponseWrapper<TData> NewBadRequest(string? message = null, TData? data = default)
 		{
 			return new ResponseWrapper<TData>(data).BadRequest(message);
 		}
@@ -218,7 +218,7 @@ namespace Elephant.Types.ResponseWrappers
 		/// <summary>
 		/// Create a new <see cref="ResponseWrapper{TData}"/> with the 401 HTTP status code.
 		/// </summary>
-		public static ResponseWrapper<TData> NewUnauthorized(string? message = null, TData? data = default)
+		public static IResponseWrapper<TData> NewUnauthorized(string? message = null, TData? data = default)
 		{
 			return new ResponseWrapper<TData>(data).Unauthorized(message);
 		}
@@ -226,7 +226,7 @@ namespace Elephant.Types.ResponseWrappers
 		/// <summary>
 		/// Create a new <see cref="ResponseWrapper{TData}"/> with the 404 HTTP status code.
 		/// </summary>
-		public static ResponseWrapper<TData> NewNotFound(string? message = null, TData? data = default)
+		public static IResponseWrapper<TData> NewNotFound(string? message = null, TData? data = default)
 		{
 			return new ResponseWrapper<TData>(data).NotFound(message);
 		}
@@ -234,7 +234,7 @@ namespace Elephant.Types.ResponseWrappers
 		/// <summary>
 		/// Create a new <see cref="ResponseWrapper{TData}"/> with the 422 HTTP status code.
 		/// </summary>
-		public static ResponseWrapper<TData> NewUnprocessableEntity(string? message = null, TData? data = default)
+		public static IResponseWrapper<TData> NewUnprocessableEntity(string? message = null, TData? data = default)
 		{
 			return new ResponseWrapper<TData>(data).UnprocessableEntity(message);
 		}
@@ -242,7 +242,7 @@ namespace Elephant.Types.ResponseWrappers
 		/// <summary>
 		/// Create a new <see cref="ResponseWrapper{TData}"/> with the 500 HTTP status code.
 		/// </summary>
-		public static ResponseWrapper<TData> NewNoRecordsAffected(string? message = "No records affected.", TData? data = default)
+		public static IResponseWrapper<TData> NewNoRecordsAffected(string? message = "No records affected.", TData? data = default)
 		{
 			return new ResponseWrapper<TData>(data).NoRecordsAffected(message);
 		}
@@ -250,13 +250,13 @@ namespace Elephant.Types.ResponseWrappers
 		/// <summary>
 		/// Create a new <see cref="ResponseWrapper{TData}"/> with the 204 HTTP status code.
 		/// </summary>
-		public static ResponseWrapper<TData> NewNoContent(string? message = "No content.", TData? data = default)
+		public static IResponseWrapper<TData> NewNoContent(string? message = "No content.", TData? data = default)
 		{
 			return new ResponseWrapper<TData>(data).NoContent(message);
 		}
 
-		#endregion
-	}
+        #endregion
+    }
 
 	/// <summary>
 	/// <see cref="ResponseWrapper{TData}"/> without data.

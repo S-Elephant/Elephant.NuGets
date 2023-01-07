@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using Elephant.Types.Interfaces.ResponseWrappers;
+using System.Collections.Generic;
 
 namespace Elephant.Types.ResponseWrappers
 {
     /// <inheritdoc/>
-    public class PagedResponseWrapper<TData> : ResponseWrapper<TData>, IPagedResponseWrapper<TData> where TData : new()
+    public class PagedResponseWrapper<TData> : ResponseWrapper<TData>, IPagedResponseWrapper<TData>
+        where TData : new()
     {
         /// <summary>
         /// Default <see cref="Offset"/> value.

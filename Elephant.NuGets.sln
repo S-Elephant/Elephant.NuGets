@@ -45,7 +45,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.ApiControllers.Att
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.Io", "Elephant.Io\Elephant.Io.csproj", "{8ED1AAB5-902E-4E06-8471-30B7CFC618C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elephant.ApiControllers.Tests", "Tests\Elephant.ApiControllers.Tests\Elephant.ApiControllers.Tests.csproj", "{7E25B7EE-F924-471D-A2EB-44ADC995ABCC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.ApiControllers.Tests", "Tests\Elephant.ApiControllers.Tests\Elephant.ApiControllers.Tests.csproj", "{7E25B7EE-F924-471D-A2EB-44ADC995ABCC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elephant.Types.Interfaces", "Elephant.Types.Interfaces\Elephant.Types.Interfaces.csproj", "{87384658-0AFA-416C-ADF0-E9C14E6EC5D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -137,6 +139,10 @@ Global
 		{7E25B7EE-F924-471D-A2EB-44ADC995ABCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E25B7EE-F924-471D-A2EB-44ADC995ABCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E25B7EE-F924-471D-A2EB-44ADC995ABCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87384658-0AFA-416C-ADF0-E9C14E6EC5D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87384658-0AFA-416C-ADF0-E9C14E6EC5D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87384658-0AFA-416C-ADF0-E9C14E6EC5D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87384658-0AFA-416C-ADF0-E9C14E6EC5D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

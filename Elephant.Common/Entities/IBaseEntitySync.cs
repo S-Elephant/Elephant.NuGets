@@ -1,4 +1,4 @@
-﻿using Elephant.Types;
+﻿using Elephant.Types.Interfaces;
 
 namespace Elephant.Common.Entities
 {

@@ -1,9 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <!-- This must be updated for every release -->
   <PropertyGroup>
-    <Version>3.0.0</Version>
-    <PackageReleaseNotes>Split interfaces into a separate project.</PackageReleaseNotes>
+    <Version>1.0.0</Version>
+    <PackageReleaseNotes>Initial release.</PackageReleaseNotes>
   </PropertyGroup>
 
   <!-- Core -->
@@ -40,9 +40,6 @@
       <PackagePath>\</PackagePath>
       <Pack>True</Pack>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Elephant.Types.Interfaces\Elephant.Types.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

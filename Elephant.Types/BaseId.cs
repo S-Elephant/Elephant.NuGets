@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Elephant.Types.Interfaces;
+using System.Collections.Generic;
 
 namespace Elephant.Types
 {
