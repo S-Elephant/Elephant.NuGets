@@ -14,5 +14,17 @@ namespace Elephant.Database
         /// Retrieves <typeparamref name="TEntity"/> by id.
         /// </summary>
         Task<TEntity?> ById(int id, QueryTrackingBehavior queryTrackingBehavior = QueryTrackingBehavior.TrackAll, CancellationToken cancellationToken = default, params Expression<Func<TEntity, object>>[] includes);
+
+        /// <summary>
+		/// Return the highest id that exists in the table.
+		/// Returns -1 if there are no records.
+		/// </summary>
+		Task<int> HighestId(CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Return the highest id that exists in the table.
+        /// Returns -1 if there are no records.
+        /// </summary>
+        Task<int> LowestId(CancellationToken cancellationToken);
     }
 }

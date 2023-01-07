@@ -26,5 +26,29 @@ namespace Elephant.Database
                 .AsTracking(queryTrackingBehavior)
                 .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
         }
+
+        /// <inheritdoc/>
+        public async Task<int> HighestId(CancellationToken cancellationToken)
+        {
+            int? highestId = await Table
+                .AsNoTracking()
+                .OrderByDescending(x => x.Id)
+                .Select(x => x.Id)
+                .FirstOrDefaultAsync(cancellationToken);
+
+            return highestId ?? -1;
+        }
+
+        /// <inheritdoc/>
+        public async Task<int> LowestId(CancellationToken cancellationToken)
+        {
+            int? highestId = await Table
+                .AsNoTracking()
+                .OrderBy(x => x.Id)
+                .Select(x => x.Id)
+                .FirstOrDefaultAsync(cancellationToken);
+
+            return highestId ?? -1;
+        }
     }
 }

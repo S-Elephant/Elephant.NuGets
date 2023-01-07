@@ -128,6 +128,10 @@ All methods as listed in [GenericCrudRepository](##GenericCrudRepository) plus:
 
 ```c#
 Task<T?> ById(int id, QueryTrackingBehavior queryTrackingBehavior = QueryTrackingBehavior.TrackAll, CancellationToken cancellationToken = default, params Expression<Func<T, object>>[] includes);
+
+Task<int> HighestId(CancellationToken cancellationToken);
+
+Task<int> LowestId(CancellationToken cancellationToken);
 ```
 
 
