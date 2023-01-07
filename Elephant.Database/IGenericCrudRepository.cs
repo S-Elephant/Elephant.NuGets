@@ -1,4 +1,4 @@
-﻿using Elephant.Types.ResponseWrappers;
+﻿using Elephant.Types.Interfaces.ResponseWrappers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Linq.Expressions;
