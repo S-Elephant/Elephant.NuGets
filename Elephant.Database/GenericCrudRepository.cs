@@ -5,9 +5,7 @@ using System.Linq.Expressions;
 
 namespace Elephant.Database
 {
-    /// <summary>
-    /// Generic CRUD repository base class that also includes retrieving an entity by id.
-    /// </summary>
+    /// <inheritdoc cref="IGenericCrudRepository{TEntity}"/>
     public abstract class GenericCrudRepository<TEntity, TContext> : IGenericCrudRepository<TEntity>
         where TEntity : class
         where TContext : IContext

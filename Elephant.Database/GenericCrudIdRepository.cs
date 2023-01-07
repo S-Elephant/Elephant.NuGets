@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Elephant.Database
 {
-    /// <inheritdoc cref="IGenericCrudRepository{T}"/>
-    public abstract class GenericCrudIdRepository<T, TContext> : GenericCrudRepository<T, TContext>, IGenericCrudIdRepository<T, TContext>
-        where T : class, IId
+    /// <inheritdoc cref="IGenericCrudIdRepository{TEntity}"/>
+    public abstract class GenericCrudIdRepository<TEntity, TContext> : GenericCrudRepository<TEntity, TContext>, IGenericCrudIdRepository<TEntity>
+        where TEntity : class, IId
         where TContext : IContext
     {
         /// <summary>
@@ -19,7 +19,7 @@ namespace Elephant.Database
         }
 
         /// <inheritdoc/>
-        public async Task<T?> ById(int id, QueryTrackingBehavior queryTrackingBehavior = QueryTrackingBehavior.TrackAll, CancellationToken cancellationToken = default, params Expression<Func<T, object>>[] includes)
+        public async Task<TEntity?> ById(int id, QueryTrackingBehavior queryTrackingBehavior = QueryTrackingBehavior.TrackAll, CancellationToken cancellationToken = default, params Expression<Func<TEntity, object>>[] includes)
         {
             return await includes
                 .Aggregate(Table.AsQueryable(), (current, include) => current.Include(include))
