@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.0.5</Version>
-		<PackageReleaseNotes>Update dependency.</PackageReleaseNotes>
+		<Version>1.0.6</Version>
+		<PackageReleaseNotes>Update dependencies.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
@@ -33,8 +33,8 @@
 	<!-- Dependencies -->
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.1" />
 		<ProjectReference Include="..\Elephant.Common\Elephant.Common.csproj" />
 		<ProjectReference Include="..\Elephant.Constants.SqlServer\Elephant.Constants.SqlServer.csproj" />
 		<ProjectReference Include="..\Elephant.Types.Interfaces\Elephant.Types.Interfaces.csproj" />

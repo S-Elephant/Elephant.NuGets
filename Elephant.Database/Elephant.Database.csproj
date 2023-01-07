@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>0.6.0</Version>
-		<PackageReleaseNotes>Use ResponseWrapper interfaces.</PackageReleaseNotes>
+		<Version>0.6.1</Version>
+		<PackageReleaseNotes>Update dependencies.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
@@ -33,7 +33,7 @@
 	<ItemGroup>
 		<PackageReference Include="Elephant.Types" Version="1.1.1" />
 		<PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.1" />
 	</ItemGroup>
 
 	<!-- Package README -->
