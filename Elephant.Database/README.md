@@ -57,14 +57,6 @@ Task CommitTransactionAsyncAndDispose(IDbContextTransaction? transaction, Cancel
 Task RollbackTransactionAsyncAndDispose(IDbContextTransaction? transaction, CancellationToken cancellationToken);
 ```
 
-## GenericCrudIdRepository
-
-All methods as listed in [GenericCrudRepository](##GenericCrudRepository) plus:
-
-```c#
-Task<T?> ById(int id, QueryTrackingBehavior queryTrackingBehavior = QueryTrackingBehavior.TrackAll, CancellationToken cancellationToken = default, params Expression<Func<T, object>>[] includes);
-```
-
 ### Example IContext transaction implementation
 
 ```c#
@@ -126,6 +118,16 @@ using (IDbContextTransaction transaction = await _customerRepository.BeginTransa
 	await _customerRepository.Save(cancellationToken);
 	await _customerRepository.CommitTransactionAndDispose(transaction, cancellationToken);
 }
+```
+
+
+
+## GenericCrudIdRepository
+
+All methods as listed in [GenericCrudRepository](##GenericCrudRepository) plus:
+
+```c#
+Task<T?> ById(int id, QueryTrackingBehavior queryTrackingBehavior = QueryTrackingBehavior.TrackAll, CancellationToken cancellationToken = default, params Expression<Func<T, object>>[] includes);
 ```
 
 
