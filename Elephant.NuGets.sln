@@ -47,7 +47,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.Io", "Elephant.Io\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.ApiControllers.Tests", "Tests\Elephant.ApiControllers.Tests\Elephant.ApiControllers.Tests.csproj", "{7E25B7EE-F924-471D-A2EB-44ADC995ABCC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elephant.Types.Interfaces", "Elephant.Types.Interfaces\Elephant.Types.Interfaces.csproj", "{87384658-0AFA-416C-ADF0-E9C14E6EC5D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.Types.Interfaces", "Elephant.Types.Interfaces\Elephant.Types.Interfaces.csproj", "{87384658-0AFA-416C-ADF0-E9C14E6EC5D2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.Database.Utilities.Tests", "Tests\Elephant.Database.Tests\Elephant.Database.Utilities.Tests.csproj", "{0125814D-8A02-4CE6-B531-F4D4D0EEEACA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.Database.Utilities", "Elephant.Database.Utilities\Elephant.Database.Utilities.csproj", "{75AFC19D-0396-4166-BA41-7F057BE391E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -143,6 +147,14 @@ Global
 		{87384658-0AFA-416C-ADF0-E9C14E6EC5D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87384658-0AFA-416C-ADF0-E9C14E6EC5D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87384658-0AFA-416C-ADF0-E9C14E6EC5D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0125814D-8A02-4CE6-B531-F4D4D0EEEACA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0125814D-8A02-4CE6-B531-F4D4D0EEEACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0125814D-8A02-4CE6-B531-F4D4D0EEEACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0125814D-8A02-4CE6-B531-F4D4D0EEEACA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75AFC19D-0396-4166-BA41-7F057BE391E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75AFC19D-0396-4166-BA41-7F057BE391E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75AFC19D-0396-4166-BA41-7F057BE391E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75AFC19D-0396-4166-BA41-7F057BE391E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -154,6 +166,7 @@ Global
 		{4B1D20FE-8272-44D0-80C2-B2D21E1D753B} = {4F5D45E5-E7E9-4D89-8261-0B52F71DD917}
 		{78EF93B3-F0DC-483F-B9FC-EC06DBCA5F6D} = {4F5D45E5-E7E9-4D89-8261-0B52F71DD917}
 		{7E25B7EE-F924-471D-A2EB-44ADC995ABCC} = {4F5D45E5-E7E9-4D89-8261-0B52F71DD917}
+		{0125814D-8A02-4CE6-B531-F4D4D0EEEACA} = {4F5D45E5-E7E9-4D89-8261-0B52F71DD917}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6DB47403-D8D8-4EEB-9D37-8E73C2E536E4}
