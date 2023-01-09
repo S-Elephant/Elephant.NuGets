@@ -1,4 +1,4 @@
-﻿namespace Elephant.ApiControllers.Attributes
+﻿namespace Elephant.DataAnnotations
 {
     /// <summary>
     /// All <see cref="FileSignatureAttribute"/> allowed file extensions.

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.ComponentModel.DataAnnotations;
 
-namespace Elephant.ApiControllers.Attributes
+namespace Elephant.DataAnnotations
 {
     /// <summary>
     /// Validation attribute to check the <see cref="IList"/> is null or contains no more than the specified amount of items.
@@ -39,7 +39,7 @@ namespace Elephant.ApiControllers.Attributes
             {
                 if (list.Count > _maxLength)
                     return new ValidationResult($"List must contain no more than {_maxLength} items. Actual: {list.Count}.");
-         
+
                 return ValidationResult.Success;
             }
 

@@ -1,34 +1,18 @@
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Internal;
+using Elephant.DataAnnotations;
 
-namespace Elephant.ApiControllers.Attributes.Tests
+namespace Elephant.DataAnnotations.Tests
 {
     /// <summary>
-    /// <see cref="FileSizeMaxAttribute"/> tests.
+    /// <see cref="GreaterThanZeroRequiredAttribute"/> tests.
     /// </summary>
-    public class FileSizeMaxTests
+    public class GreaterThanZeroRequiredTests
     {
         /// <summary>
-        /// Create an <see cref="IFormFile"/> mock.
-        /// </summary>
-        /// <param name="content">String contents to write.</param>
-        /// <returns>Mocked <see cref="IFormFile"/> with the specified contents.</returns>
-        private static IFormFile CreateIFormFileMock(string content)
-        {
-            using MemoryStream stream = new();
-            using StreamWriter writer = new(stream);
-            writer.Write(content);
-            writer.Flush();
-            stream.Position = 0;
-            return new FormFile(stream, 0, stream.Length, "name", "Mock.txt");
-        }
-
-        /// <summary>
-        /// <see cref="FileSizeMaxAttribute"/> non-required test without data.
+        /// <see cref="GreaterThanZeroRequiredAttribute"/> non-required test without data.
         /// </summary>
         [Fact]
         [SpeedVeryFast, UnitTest]
-        public void ShouldReturnSuccessIfDataIsNull()
+        public void ShouldReturnFalseIfDataIsNull()
         {
             // Arrange.
             ValidationTarget target = new(null);
@@ -37,22 +21,24 @@ namespace Elephant.ApiControllers.Attributes.Tests
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
 
             // Assert.
-            Assert.True(isValid);
+            Assert.False(isValid);
         }
 
         /// <summary>
-        /// <see cref="FileSizeMaxAttribute"/> tests.
+        /// <see cref="GreaterThanZeroRequiredAttribute"/> tests.
         /// </summary>
         [Theory]
         [SpeedVeryFast, UnitTest]
-        [InlineData(null, true)]
-        [InlineData("", true)]
-        [InlineData("A", true)]
-        [InlineData("Some random string in here as the data.", false)]
-        public void Validate(string content, bool expectedIsValid)
+        [InlineData(null, false)]
+        [InlineData(-1, false)]
+        [InlineData(0, false)]
+        [InlineData(1, true)]
+        [InlineData(int.MinValue, false)]
+        [InlineData(int.MaxValue, true)]
+        public void Validate(int? value, bool expectedIsValid)
         {
             // Arrange.
-            ValidationTarget target = new(CreateIFormFileMock(content));
+            ValidationTarget target = new(value);
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
@@ -62,27 +48,27 @@ namespace Elephant.ApiControllers.Attributes.Tests
         }
 
         /// <summary>
-        /// Test class for <see cref="Validate(string, bool)"/> tests.
+        /// Test class for <see cref="Validate(int?, bool)"/> tests.
         /// </summary>
         private class ValidationTarget
         {
             /// <summary>
-            /// <see cref="IFormFile"/> to validate.
+            /// Items to validate.
             /// </summary>
-            [FileSizeMax(5)]
-            public IFormFile? FormFile { get; set; }
+            [GreaterThanZeroRequired]
+            public int? A { get; set; }
 
             /// <summary>
             /// Constructor.
             /// </summary>
-            public ValidationTarget(IFormFile? formFile)
+            public ValidationTarget(int? a)
             {
-                FormFile = formFile;
+                A = a;
             }
         }
 
         /// <summary>
-        /// <see cref="FileSizeMaxAttribute"/> should be invalid if the base type is wrong.
+        /// <see cref="GreaterThanZeroRequiredAttribute"/> should be invalid if the base type is wrong.
         /// </summary>
         [Fact]
         [SpeedVeryFast, UnitTest]

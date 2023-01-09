@@ -8,15 +8,15 @@
 
 	<!-- Core -->
 	<PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1;netcoreapp3.0;netcoreapp3.1;net5.0;net6.0;net7.0</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;netstandard2.1;netcoreapp3.0;netcoreapp3.1;net5.0;net6.0;net7.0</TargetFrameworks>
+		<LangVersion>latest</LangVersion>
 		<ImplicitUsings>disable</ImplicitUsings> <!-- Disabled because of older target frameworks. -->
 		<Nullable>disable</Nullable> <!-- Disabled because of older target frameworks. -->
 		<Company>SquirtingElephant</Company>
 		<Authors>SquirtingElephant</Authors>
-		<Description>Common library for Xunit tests.</Description>
-    <!-- Suppress the warning: warning NETSDK1138: The target framework 'netcoreapp3.0' is out of support and.. -->
-    <CheckEolTargetFramework>false</CheckEolTargetFramework>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<Description>Common library for Xunit tests.</Description>		
+		<CheckEolTargetFramework>false</CheckEolTargetFramework> <!-- Suppress the warning: warning NETSDK1138: The target framework 'netcoreapp3.0' is out of support and.. -->
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 	</PropertyGroup>
 
 	<!-- Package -->

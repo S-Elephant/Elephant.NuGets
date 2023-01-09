@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
-namespace Elephant.ApiControllers.Attributes
+namespace Elephant.DataAnnotations
 {
     /// <summary>
     /// Validation attribute to check the maximum file size of a IFormFile object.

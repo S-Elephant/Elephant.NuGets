@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.ComponentModel.DataAnnotations;
 
-namespace Elephant.ApiControllers.Attributes
+namespace Elephant.DataAnnotations
 {
     /// <summary>
     /// Validation attribute to check the <see cref="IList"/> contains at least the specified amount of items.

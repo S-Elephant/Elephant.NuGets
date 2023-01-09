@@ -8,6 +8,7 @@
 	<!-- Core -->
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.0;netstandard2.1;netcoreapp3.0;netcoreapp3.1;net5.0;net6.0;net7.0</TargetFrameworks>
+		<LangVersion>latest</LangVersion>
 		<ImplicitUsings>disable</ImplicitUsings>
 		<!--<Nullable>enable</Nullable>--> <!-- Is not supported in netstandard2.0. -->
 		<Company>SquirtingElephant</Company>

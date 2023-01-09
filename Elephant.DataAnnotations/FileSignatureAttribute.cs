@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Xml;
 using Microsoft.AspNetCore.Http;
 
-namespace Elephant.ApiControllers.Attributes
+namespace Elephant.DataAnnotations
 {
     /// <summary>
     /// Validate <see cref="IFormFile"/> file signature.

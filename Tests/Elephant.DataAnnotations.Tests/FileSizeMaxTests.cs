@@ -1,12 +1,13 @@
+using Elephant.DataAnnotations;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
 
-namespace Elephant.ApiControllers.Attributes.Tests
+namespace Elephant.DataAnnotations.Tests
 {
     /// <summary>
-    /// <see cref="FileSizeMinAttribute"/> tests.
+    /// <see cref="FileSizeMaxAttribute"/> tests.
     /// </summary>
-    public class FileSizeMinTests
+    public class FileSizeMaxTests
     {
         /// <summary>
         /// Create an <see cref="IFormFile"/> mock.
@@ -24,7 +25,7 @@ namespace Elephant.ApiControllers.Attributes.Tests
         }
 
         /// <summary>
-        /// <see cref="FileSizeMinAttribute"/> non-required test without data.
+        /// <see cref="FileSizeMaxAttribute"/> non-required test without data.
         /// </summary>
         [Fact]
         [SpeedVeryFast, UnitTest]
@@ -41,14 +42,14 @@ namespace Elephant.ApiControllers.Attributes.Tests
         }
 
         /// <summary>
-        /// <see cref="FileSizeMinAttribute"/> tests.
+        /// <see cref="FileSizeMaxAttribute"/> tests.
         /// </summary>
         [Theory]
         [SpeedVeryFast, UnitTest]
-        [InlineData(null, false)]
-        [InlineData("", false)]
-        [InlineData("A", false)]
-        [InlineData("Some random string in here as the data.", true)]
+        [InlineData(null, true)]
+        [InlineData("", true)]
+        [InlineData("A", true)]
+        [InlineData("Some random string in here as the data.", false)]
         public void Validate(string content, bool expectedIsValid)
         {
             // Arrange.
@@ -69,7 +70,7 @@ namespace Elephant.ApiControllers.Attributes.Tests
             /// <summary>
             /// <see cref="IFormFile"/> to validate.
             /// </summary>
-            [FileSizeMin(5)]
+            [FileSizeMax(5)]
             public IFormFile? FormFile { get; set; }
 
             /// <summary>
@@ -82,7 +83,7 @@ namespace Elephant.ApiControllers.Attributes.Tests
         }
 
         /// <summary>
-        /// <see cref="FileSizeMinAttribute"/> should be invalid if the base type is wrong.
+        /// <see cref="FileSizeMaxAttribute"/> should be invalid if the base type is wrong.
         /// </summary>
         [Fact]
         [SpeedVeryFast, UnitTest]

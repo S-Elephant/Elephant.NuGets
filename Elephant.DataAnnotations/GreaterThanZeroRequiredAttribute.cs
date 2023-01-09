@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Elephant.ApiControllers.Attributes
+namespace Elephant.DataAnnotations
 {
     /// <summary>
     /// Validation attribute to check the value is numeric and not null and greater than zero.

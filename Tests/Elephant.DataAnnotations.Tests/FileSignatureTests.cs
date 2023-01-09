@@ -1,7 +1,8 @@
+using Elephant.DataAnnotations;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
 
-namespace Elephant.ApiControllers.Attributes.Tests
+namespace Elephant.DataAnnotations.Tests
 {
     /// <summary>
     /// <see cref="FileSignatureAttribute"/> tests.

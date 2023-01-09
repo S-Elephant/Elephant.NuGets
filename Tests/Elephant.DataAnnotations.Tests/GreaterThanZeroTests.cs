@@ -1,4 +1,6 @@
-namespace Elephant.ApiControllers.Attributes.Tests
+using Elephant.DataAnnotations;
+
+namespace Elephant.DataAnnotations.Tests
 {
     /// <summary>
     /// <see cref="GreaterThanZeroAttribute"/> tests.
