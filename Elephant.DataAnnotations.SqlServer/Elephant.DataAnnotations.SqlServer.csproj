@@ -14,7 +14,7 @@
 		<Nullable>disable</Nullable>
 		<Company>SquirtingElephant</Company>
 		<Authors>SquirtingElephant</Authors>
-		<Description>SQL Server constants.</Description>
+		<Description>SQL Server data annotations.</Description>
 		<CheckEolTargetFramework>false</CheckEolTargetFramework> <!-- Suppress the warning: warning NETSDK1138: The target framework 'netcoreapp3.0' is out of support and.. -->
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 	</PropertyGroup>
