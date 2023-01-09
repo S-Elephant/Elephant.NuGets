@@ -17,7 +17,7 @@ namespace Elephant.DataAnnotations
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
             if (value == null)
-                return new ValidationResult("Value is required.");
+                return new ValidationResult(DataAnnotationConstants.ValidationNullErrorMessage);
 
             return base.IsValid(value, validationContext);
         }

@@ -30,7 +30,7 @@ namespace Elephant.DataAnnotations
 
             // If there's no data then it must be invalid.
             if (file == null)
-                return new ValidationResult($"Data is NULL. Expected one of these extensions: {string.Join(',', AllowedFileExtensions)}.");
+                return new ValidationResult($"{DataAnnotationConstants.ValidationNullErrorMessage} Expected one of these extensions: {string.Join(',', AllowedFileExtensions)}.");
 
             return base.IsValid(value, validationContext);
         }
