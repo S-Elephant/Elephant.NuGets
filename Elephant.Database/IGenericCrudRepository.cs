@@ -99,7 +99,8 @@ namespace Elephant.Database
         void Update(ICollection<TEntity> objects);
 
         /// <summary>
-        /// UpdateAndSave
+        /// Update entity and save.
+        /// Does not check if the <paramref name="obj"/> already exists.
         /// </summary>
         Task<IResponseWrapper<int>> UpdateAndSave(TEntity obj, CancellationToken cancellationToken);
 

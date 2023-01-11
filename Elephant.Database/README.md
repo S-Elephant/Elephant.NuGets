@@ -129,6 +129,8 @@ All methods as listed in [GenericCrudRepository](##GenericCrudRepository) plus:
 ```c#
 virtual Task<T?> ById(int id, QueryTrackingBehavior queryTrackingBehavior = QueryTrackingBehavior.TrackAll, CancellationToken cancellationToken = default, params Expression<Func<T, object>>[] includes);
 
+virtual Task<bool> HasId(int id, CancellationToken cancellationToken);
+
 virtual Task<int> HighestId(CancellationToken cancellationToken);
 
 virtual Task<int> LowestId(CancellationToken cancellationToken);

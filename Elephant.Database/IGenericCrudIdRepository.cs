@@ -16,6 +16,11 @@ namespace Elephant.Database
         Task<TEntity?> ById(int id, QueryTrackingBehavior queryTrackingBehavior = QueryTrackingBehavior.TrackAll, CancellationToken cancellationToken = default, params Expression<Func<TEntity, object>>[] includes);
 
         /// <summary>
+        /// Return true if any record with <paramref name="id"/> exists.
+        /// </summary>
+        Task<bool> HasId(int id, CancellationToken cancellationToken);
+
+        /// <summary>
 		/// Return the highest id that exists in the table.
 		/// Returns -1 if there are no records.
 		/// </summary>

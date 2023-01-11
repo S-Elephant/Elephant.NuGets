@@ -1,6 +1,8 @@
 ﻿using System.Linq.Expressions;
 using Elephant.Database;
 using Elephant.Types.Interfaces;
+using Elephant.Types.Interfaces.ResponseWrappers;
+using Elephant.Types.ResponseWrappers;
 using Microsoft.EntityFrameworkCore;
 
 namespace Elephant.Database
@@ -28,6 +30,12 @@ namespace Elephant.Database
         }
 
         /// <inheritdoc/>
+        public async Task<bool> HasId(int id, CancellationToken cancellationToken)
+        {
+            return await Table.AnyAsync(x => x.Id == id, cancellationToken);
+        }
+
+        /// <inheritdoc/>
         public virtual async Task<int> HighestId(CancellationToken cancellationToken)
         {
             int? highestId = await Table
@@ -49,6 +57,19 @@ namespace Elephant.Database
                 .FirstOrDefaultAsync(cancellationToken);
 
             return highestId ?? -1;
+        }
+
+        /// <summary>
+        /// Update and save.
+        /// Checks if the <paramref name="obj"/> already exists and if not, returns a <see cref="ResponseWrapperNotFound{TData}"/>.
+        /// </summary>
+        public override async Task<IResponseWrapper<int>> UpdateAndSave(TEntity obj, CancellationToken cancellationToken)
+        {
+            bool hasId = await HasId(obj.Id, cancellationToken);
+            if (hasId)
+                return await base.UpdateAndSave(obj, cancellationToken);
+            else
+                return new ResponseWrapperNotFound<int>($"Entity with Id {obj.Id} was not found. No insert and no save were performed.");
         }
     }
 }
