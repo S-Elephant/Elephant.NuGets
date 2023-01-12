@@ -70,5 +70,29 @@ namespace Elephant.Database.Utilities
         {
             return id >= FirstInsertId;
         }
+
+        /// <inheritdoc/>
+        public bool IsIdNotInsert(int id)
+        {
+            return id != InsertId;
+        }
+
+        /// <inheritdoc/>
+        public bool IsIdNotUpdate(int id)
+        {
+            return id < FirstInsertId;
+        }
+
+        /// <inheritdoc/>
+        public bool IsInvalid(int id)
+        {
+            return id < InsertId;
+        }
+
+        /// <inheritdoc/>
+        public bool IsValid(int id)
+        {
+            return id >= InsertId;
+        }
     }
 }

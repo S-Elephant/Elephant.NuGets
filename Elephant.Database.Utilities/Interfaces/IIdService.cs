@@ -31,5 +31,23 @@ namespace Elephant.Database.Utilities.Interfaces
         /// Return true if <paramref name="id"/> is an update id.
         /// </summary>
         bool IsIdUpdate(int id);
+
+        /// Return true if <paramref name="id"/> is not an insert id.
+        bool IsIdNotInsert(int id);
+
+        /// <summary>
+        /// Return true if <paramref name="id"/> is not an update id.
+        /// </summary>
+        bool IsIdNotUpdate(int id);
+
+        /// <summary>
+        /// Return true if the <paramref name="id"/> is smaller than the <see cref="FirstInsertId"/>.
+        /// </summary>
+        bool IsInvalid(int id);
+
+        /// <summary>
+        /// Return true if the <paramref name="id"/> is equal or greater than the <see cref="FirstInsertId"/>.
+        /// </summary>
+        bool IsValid(int id);
     }
 }
