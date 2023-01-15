@@ -15,7 +15,7 @@ namespace Elephant.Common.Tests.Pagination
         [InlineData(0, 1, 0, 0)]
         [InlineData(1, 1, 1, 1)]
         [InlineData(0, 0, 1, 1)]
-        [InlineData(10,10, 1, 100)]
+        [InlineData(10, 10, 1, 100)]
         [InlineData(35, 110, 1, 35)]
         [InlineData(35, 110, 2, 35)]
         [InlineData(35, 110, 3, 35)]

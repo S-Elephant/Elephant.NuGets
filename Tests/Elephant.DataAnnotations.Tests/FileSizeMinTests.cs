@@ -16,8 +16,8 @@ namespace Elephant.DataAnnotations.Tests
         /// <returns>Mocked <see cref="IFormFile"/> with the specified contents.</returns>
         private static IFormFile CreateIFormFileMock(string content)
         {
-            using MemoryStream stream = new();
-            using StreamWriter writer = new(stream);
+            using MemoryStream stream = new ();
+            using StreamWriter writer = new (stream);
             writer.Write(content);
             writer.Flush();
             stream.Position = 0;
@@ -32,7 +32,7 @@ namespace Elephant.DataAnnotations.Tests
         public void ShouldReturnSuccessIfDataIsNull()
         {
             // Arrange.
-            ValidationTarget target = new(null);
+            ValidationTarget target = new (null);
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
@@ -53,7 +53,7 @@ namespace Elephant.DataAnnotations.Tests
         public void Validate(string content, bool expectedIsValid)
         {
             // Arrange.
-            ValidationTarget target = new(CreateIFormFileMock(content));
+            ValidationTarget target = new (CreateIFormFileMock(content));
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
@@ -90,7 +90,7 @@ namespace Elephant.DataAnnotations.Tests
         public void IsInvalidIfWrongType()
         {
             // Arrange.
-            WrongType target = new();
+            WrongType target = new ();
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
@@ -108,7 +108,7 @@ namespace Elephant.DataAnnotations.Tests
             /// Item to validate.
             /// </summary>
             [GreaterThanZeroRequired]
-            public AlwaysWrong Item { get; set; } = new();
+            public AlwaysWrong Item { get; set; } = new ();
         }
 
         /// <summary>

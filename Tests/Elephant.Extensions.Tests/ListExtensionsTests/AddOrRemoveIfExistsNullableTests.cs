@@ -12,7 +12,7 @@
         [SpeedFast, UnitTest]
         public void ValueIsRemoved1()
         {
-            List<int> list = new() { -10, 1, 2, 3 };
+            List<int> list = new () { -10, 1, 2, 3 };
 
             list.AddOrRemoveIfExists(1);
 
@@ -26,7 +26,7 @@
         [SpeedFast, UnitTest]
         public void ValueIsRemovedminus10()
         {
-            List<int> list = new() { -10, 1, 2, 3 };
+            List<int> list = new () { -10, 1, 2, 3 };
 
             list.AddOrRemoveIfExists(-10);
 
@@ -40,7 +40,7 @@
         [SpeedFast, UnitTest]
         public void ValueIsAdded4()
         {
-            List<int> list = new() { -10, 1, 2, 3 };
+            List<int> list = new () { -10, 1, 2, 3 };
 
             list.AddOrRemoveIfExists(4);
 
@@ -54,7 +54,7 @@
         [SpeedFast, UnitTest]
         public void ValueIsAddedMinus2()
         {
-            List<int> list = new() { -10, 1, 2, 3 };
+            List<int> list = new () { -10, 1, 2, 3 };
 
             list.AddOrRemoveIfExists(-2);
 
@@ -68,7 +68,7 @@
         [SpeedFast, UnitTest]
         public void ValueIsAddedToEmptyList()
         {
-            List<int> list = new();
+            List<int> list = new ();
 
             list.AddOrRemoveIfExists(0);
 

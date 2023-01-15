@@ -42,7 +42,7 @@ namespace Elephant.Common
             /// <inheritdoc cref="HasError"/>
             /// </summary>
             public bool HasError { get => ErrorMessage != null; }
-            
+
             /// <summary>
             /// <inheritdoc cref="IProcessStartResult.Process"/>
             /// </summary>
@@ -77,7 +77,7 @@ namespace Elephant.Common
             if (fullPath == null)
                 return new ProcessStartResult("No path."); // Error, no path.
 
-            ProcessStartInfo info = new()
+            ProcessStartInfo info = new ()
             {
                 FileName = fullPath,
                 UseShellExecute = useShellExecute,

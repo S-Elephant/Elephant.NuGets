@@ -10,12 +10,12 @@ namespace Elephant.Constants.SqlServer
         #region Numeric data types
 
         /// <summary>
-        /// <see cref="Decimal"/> 12,4.
+        /// <see cref="decimal"/> 12,4.
         /// </summary>
         public const int DecimalPrecision = 12;
 
         /// <summary>
-        /// <see cref="Decimal"/> 12,4.
+        /// <see cref="decimal"/> 12,4.
         /// </summary>
         public const int DecimalScale = 4;
 

@@ -77,17 +77,17 @@ namespace Elephant.Rijksdriehoek
         /// <summary>
         /// Creates and returns a new <see cref="RdCoordinate"/> that is the result of a + b.
         /// </summary>
-        public static RdCoordinate operator +(RdCoordinate a, RdCoordinate b) => new(a.X + b.X, a.Y + b.Y);
+        public static RdCoordinate operator +(RdCoordinate a, RdCoordinate b) => new (a.X + b.X, a.Y + b.Y);
 
         /// <summary>
         /// Creates and returns a new <see cref="RdCoordinate"/> that is the result of a - b.
         /// </summary>
-        public static RdCoordinate operator -(RdCoordinate a, RdCoordinate b) => new(a.X - b.X, a.Y - b.Y);
+        public static RdCoordinate operator -(RdCoordinate a, RdCoordinate b) => new (a.X - b.X, a.Y - b.Y);
 
         /// <summary>
         /// Creates and returns a new <see cref="RdCoordinate"/> that is the result of a * b.
         /// </summary>
-        public static RdCoordinate operator *(RdCoordinate a, RdCoordinate b) => new(a.X * b.X, a.Y * b.Y);
+        public static RdCoordinate operator *(RdCoordinate a, RdCoordinate b) => new (a.X * b.X, a.Y * b.Y);
 
         /// <summary>
         /// Creates and returns a new <see cref="RdCoordinate"/> that is the result of a / b.
@@ -97,7 +97,7 @@ namespace Elephant.Rijksdriehoek
             if (b.X == 0f || b.Y == 0f)
                 throw new DivideByZeroException($"Cannot divide {a} by {b}. Both b.X and b.Y cannot be zero.");
 
-            return new(a.X / b.X, a.Y / b.Y);
+            return new (a.X / b.X, a.Y / b.Y);
         }
 
         /// <summary>

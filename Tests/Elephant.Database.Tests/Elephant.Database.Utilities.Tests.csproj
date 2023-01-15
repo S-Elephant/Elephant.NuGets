@@ -6,6 +6,7 @@
 		<Nullable>enable</Nullable>
 		<IsPackable>false</IsPackable>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -25,6 +26,14 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\Elephant.Database.Utilities\Elephant.Database.Utilities.csproj" />
 		<ProjectReference Include="..\..\Elephant.Testing.Xunit\Elephant.Testing.Xunit.csproj" />
+	</ItemGroup>
+
+	<!-- StyleCop (only in Debug configuration) -->
+	<ItemGroup Condition="'$(Configuration)' == 'Debug'">
+		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 	</ItemGroup>
 
 </Project>

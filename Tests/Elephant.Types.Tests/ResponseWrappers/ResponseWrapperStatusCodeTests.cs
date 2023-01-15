@@ -18,7 +18,7 @@ namespace Elephant.Types.Tests.ResponseWrappers
         public void IsSuccessCodeSuccess(int httpResponseCode)
         {
             // Arrange and act.
-            ResponseWrapper<int> sut = new(5, httpResponseCode);
+            ResponseWrapper<int> sut = new (5, httpResponseCode);
 
             // Assert.
             Assert.True(sut.IsSuccess);
@@ -35,7 +35,7 @@ namespace Elephant.Types.Tests.ResponseWrappers
         public void IsSuccessCodeNotAnError(int httpResponseCode)
         {
             // Arrange and act.
-            ResponseWrapper<int> sut = new(5, httpResponseCode);
+            ResponseWrapper<int> sut = new (5, httpResponseCode);
 
             // Assert.
             Assert.False(sut.IsError);
@@ -52,7 +52,7 @@ namespace Elephant.Types.Tests.ResponseWrappers
         public void IsSuccessCodeNotInformativeRedirectionOrCustom(int httpResponseCode)
         {
             // Arrange and act.
-            ResponseWrapper<int> sut = new(5, httpResponseCode);
+            ResponseWrapper<int> sut = new (5, httpResponseCode);
 
             // Assert.
             Assert.False(sut.IsInformativeRedirectionOrCustom);
@@ -71,7 +71,7 @@ namespace Elephant.Types.Tests.ResponseWrappers
         public void IsErrorCodeError(int httpResponseCode)
         {
             // Arrange and act.
-            ResponseWrapper<int> sut = new(5, httpResponseCode);
+            ResponseWrapper<int> sut = new (5, httpResponseCode);
 
             // Assert.
             Assert.True(sut.IsError);
@@ -90,7 +90,7 @@ namespace Elephant.Types.Tests.ResponseWrappers
         public void IsErrorCodeIsNotSuccess(int httpResponseCode)
         {
             // Arrange and act.
-            ResponseWrapper<int> sut = new(5, httpResponseCode);
+            ResponseWrapper<int> sut = new (5, httpResponseCode);
 
             // Assert.
             Assert.False(sut.IsSuccess);
@@ -109,7 +109,7 @@ namespace Elephant.Types.Tests.ResponseWrappers
         public void IsErrorCodeNotInformativeRedirectionOrCustom(int httpResponseCode)
         {
             // Arrange and act.
-            ResponseWrapper<int> sut = new(5, httpResponseCode);
+            ResponseWrapper<int> sut = new (5, httpResponseCode);
 
             // Assert.
             Assert.False(sut.IsInformativeRedirectionOrCustom);
@@ -127,7 +127,7 @@ namespace Elephant.Types.Tests.ResponseWrappers
         public void IsInformativeRedirectionOrCustomCodeInformativeRedirectionOrCustom(int httpResponseCode)
         {
             // Arrange and act.
-            ResponseWrapper<int> sut = new(5, httpResponseCode);
+            ResponseWrapper<int> sut = new (5, httpResponseCode);
 
             // Assert.
             Assert.True(sut.IsInformativeRedirectionOrCustom);
@@ -145,7 +145,7 @@ namespace Elephant.Types.Tests.ResponseWrappers
         public void IsInformativeRedirectionOrCustomCodeNotAnError(int httpResponseCode)
         {
             // Arrange and act.
-            ResponseWrapper<int> sut = new(5, httpResponseCode);
+            ResponseWrapper<int> sut = new (5, httpResponseCode);
 
             // Assert.
             Assert.False(sut.IsError);
@@ -163,7 +163,7 @@ namespace Elephant.Types.Tests.ResponseWrappers
         public void IsInformativeRedirectionOrCustomCodeNotSuccess(int httpResponseCode)
         {
             // Arrange and act.
-            ResponseWrapper<int> sut = new(5, httpResponseCode);
+            ResponseWrapper<int> sut = new (5, httpResponseCode);
 
             // Assert.
             Assert.False(sut.IsSuccess);
@@ -181,7 +181,7 @@ namespace Elephant.Types.Tests.ResponseWrappers
         public void IsStatusCodePreserved(int httpResponseCode)
         {
             // Arrange and act.
-            ResponseWrapper<int> sut = new(5, httpResponseCode);
+            ResponseWrapper<int> sut = new (5, httpResponseCode);
 
             // Assert.
             Assert.Equal(sut.StatusCode, httpResponseCode);

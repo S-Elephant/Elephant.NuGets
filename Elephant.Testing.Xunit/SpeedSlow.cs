@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Xunit.Abstractions;
 using Xunit.Sdk;
 
@@ -14,9 +15,10 @@ namespace Elephant.Testing.Xunit
     {
     }
 
-    /// <summary>
-    /// <see cref="SpeedSlow"/> <see cref="ITraitDiscoverer"/>.
-    /// </summary>
+	/// <summary>
+	/// <see cref="SpeedSlow"/> <see cref="ITraitDiscoverer"/>.
+	/// </summary>
+    [SuppressMessage("Microsoft.StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleType", Justification = "Group related items for clarity.")]
     public class SpeedSlowDiscoverer : ITraitDiscoverer
     {
         private const string Key = "Speed";

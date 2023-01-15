@@ -1,6 +1,6 @@
-﻿using Elephant.Types.Interfaces;
+﻿using System.Linq.Expressions;
+using Elephant.Types.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
 
 namespace Elephant.Database
 {
@@ -24,7 +24,7 @@ namespace Elephant.Database
 		/// Return the highest id that exists in the table.
 		/// Returns -1 if there are no records.
 		/// </summary>
-		Task<int> HighestId(CancellationToken cancellationToken);
+        Task<int> HighestId(CancellationToken cancellationToken);
 
         /// <summary>
         /// Return the highest id that exists in the table.

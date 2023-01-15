@@ -9,7 +9,7 @@
         /// Copy file.
         /// </summary>
         void Copy(string sourceFileName, string destFileName, bool overwrite = false);
-        
+
         /// <summary>
         /// Return whether or not a file exists.
         /// </summary>

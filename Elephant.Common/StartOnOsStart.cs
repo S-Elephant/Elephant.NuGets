@@ -8,7 +8,7 @@ namespace Elephant.Common
     public static class StartOnOsStart
     {
         private const string OsWindows = "windows";
-        
+
         /// <summary>
         /// The registry sub key name for the Windows operating system.
         /// </summary>
@@ -25,7 +25,7 @@ namespace Elephant.Common
                 Microsoft.Win32.RegistryKey? registryKey = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(WindowsSubKeyName, true);
                 if (registryKey == null)
                     return false;
-                
+
                 object? value = registryKey.GetValue(applicationName);
                 return value != null && (bool)value;
             }

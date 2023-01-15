@@ -39,8 +39,8 @@ namespace Elephant.ApiControllers
         /// <returns><paramref name="byteArray"/> as an <see cref="IFormFile"/>.</returns>
         public static IFormFile ToIFormFile(this byte[] byteArray, string name = "", string filename = "", string contentType = "")
         {
-            MemoryStream stream = new(byteArray); // DON'T dispose this stream because we return the FormFile at the end of this method.
-            FormFile result = new(stream, 0, byteArray.Length, name, filename)
+            MemoryStream stream = new (byteArray); // DON'T dispose this stream because we return the FormFile at the end of this method.
+            FormFile result = new (stream, 0, byteArray.Length, name, filename)
             {
                 Headers = new HeaderDictionary(),
             };

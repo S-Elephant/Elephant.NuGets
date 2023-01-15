@@ -166,7 +166,7 @@ namespace Elephant.Types
             if (obj is bool)
             {
                 bool objAsBool = (bool)obj;
-                return _value == Value.True && objAsBool || _value == Value.False && !objAsBool;
+                return (_value == Value.True && objAsBool) || (_value == Value.False && !objAsBool);
             }
 
             Trilean? other = obj as Trilean?;
@@ -195,13 +195,17 @@ namespace Elephant.Types
             return _value.ToString();
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+		/// Equals.
+		/// </summary>
         public static bool operator ==(Trilean left, Trilean right)
         {
             return left.Equals(right);
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+		/// Not equal.
+		/// </summary>
         public static bool operator !=(Trilean left, Trilean right)
         {
             return !(left == right);
@@ -210,16 +214,16 @@ namespace Elephant.Types
         /// <summary>
         /// Returns a new <see cref="Trilean"/> with a <see cref="Value.Unknown"/> value.
         /// </summary>
-        public static Trilean Unknown => new(Value.Unknown);
+        public static Trilean Unknown => new (Value.Unknown);
 
         /// <summary>
         /// Returns a new <see cref="Trilean"/> with a <see cref="Value.False"/> value.
         /// </summary>
-        public static Trilean False => new(Value.False);
+        public static Trilean False => new (Value.False);
 
         /// <summary>
         /// Returns a new <see cref="Trilean"/> with a <see cref="Value.True"/> value.
         /// </summary>
-        public static Trilean True => new(Value.True);
+        public static Trilean True => new (Value.True);
     }
 }

@@ -15,7 +15,7 @@ namespace Elephant.Types.Tests.ResponseWrappers
         public void OkIsSuccess()
         {
             // Arrange and act.
-            ResponseWrapperOk sut = new("Foo");
+            ResponseWrapperOk sut = new ("Foo");
 
             // Assert.
             Assert.True(sut.IsSuccess);
@@ -29,7 +29,7 @@ namespace Elephant.Types.Tests.ResponseWrappers
         public void CreatedIsSuccess()
         {
             // Arrange and act.
-            ResponseWrapperCreated sut = new("Foo");
+            ResponseWrapperCreated sut = new ("Foo");
 
             // Assert.
             Assert.True(sut.IsSuccess);
@@ -43,7 +43,7 @@ namespace Elephant.Types.Tests.ResponseWrappers
         public void BadRequestIsError()
         {
             // Arrange and act.
-            ResponseWrapperBadRequest sut = new("Foo");
+            ResponseWrapperBadRequest sut = new ("Foo");
 
             // Assert.
             Assert.True(sut.IsError);
@@ -57,7 +57,7 @@ namespace Elephant.Types.Tests.ResponseWrappers
         public void InternalServerErrorIsError()
         {
             // Arrange and act.
-            ResponseWrapperInternalServerError sut = new("Foo");
+            ResponseWrapperInternalServerError sut = new ("Foo");
 
             // Assert.
             Assert.True(sut.IsError);
@@ -71,7 +71,7 @@ namespace Elephant.Types.Tests.ResponseWrappers
         public void NotFoundIsError()
         {
             // Arrange and act.
-            ResponseWrapperNotFound sut = new("Foo");
+            ResponseWrapperNotFound sut = new ("Foo");
 
             // Assert.
             Assert.True(sut.IsError);
@@ -85,7 +85,7 @@ namespace Elephant.Types.Tests.ResponseWrappers
         public void UnprocessableEntityIsError()
         {
             // Arrange and act.
-            ResponseWrapperUnprocessableEntity sut = new("Foo");
+            ResponseWrapperUnprocessableEntity sut = new ("Foo");
 
             // Assert.
             Assert.True(sut.IsError);
@@ -99,7 +99,7 @@ namespace Elephant.Types.Tests.ResponseWrappers
         public void UnauthorizedIsError()
         {
             // Arrange and act.
-            ResponseWrapperUnauthorized sut = new("Foo");
+            ResponseWrapperUnauthorized sut = new ("Foo");
 
             // Assert.
             Assert.True(sut.IsError);
@@ -113,7 +113,7 @@ namespace Elephant.Types.Tests.ResponseWrappers
         public void NoRecordsAffectedIsError()
         {
             // Arrange and act.
-            ResponseWrapperUnauthorized sut = new("Foo");
+            ResponseWrapperUnauthorized sut = new ("Foo");
 
             // Assert.
             Assert.True(sut.IsError);
@@ -127,7 +127,7 @@ namespace Elephant.Types.Tests.ResponseWrappers
         public void NoContentIsSuccess()
         {
             // Arrange and act.
-            ResponseWrapperNoContent sut = new();
+            ResponseWrapperNoContent sut = new ();
 
             // Assert.
             Assert.True(sut.IsSuccess);

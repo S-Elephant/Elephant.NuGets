@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 
 namespace Elephant.Database
 {

@@ -63,18 +63,18 @@ namespace Elephant.CodeFirst.Sqlite
 			AddDescription(ref builder);
 		}
 
-        /// <summary>
-        /// Adds an <see cref="IIsEnabled.IsEnabled"/> field to the table.
-        /// </summary>
-        public static void AddIsEnabled<T>(ref EntityTypeBuilder<T> builder, bool defaultValue = true)
-            where T : class, IIsEnabled
-        {
-            builder.Property(p => p.IsEnabled)
-                .HasColumnType(DbType.Bool)
-                .HasDefaultValue(defaultValue)
-                .IsRequired();
-        }
+		/// <summary>
+		/// Adds an <see cref="IIsEnabled.IsEnabled"/> field to the table.
+		/// </summary>
+		public static void AddIsEnabled<T>(ref EntityTypeBuilder<T> builder, bool defaultValue = true)
+			where T : class, IIsEnabled
+		{
+			builder.Property(p => p.IsEnabled)
+				.HasColumnType(DbType.Bool)
+				.HasDefaultValue(defaultValue)
+				.IsRequired();
+		}
 
-        private static string ToTableName<T>(string? tableName) => tableName ?? typeof(T).Name;
+		private static string ToTableName<T>(string? tableName) => tableName ?? typeof(T).Name;
 	}
 }

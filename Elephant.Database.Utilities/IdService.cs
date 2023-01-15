@@ -1,5 +1,5 @@
-﻿using Elephant.Database.Utilities.Interfaces;
-using System;
+﻿using System;
+using Elephant.Database.Utilities.Interfaces;
 
 namespace Elephant.Database.Utilities
 {

@@ -37,7 +37,7 @@ namespace Elephant.DataAnnotations.Tests
         public void ShouldReturnFalseIfDataIsNull()
         {
             // Arrange.
-            ValidationTargetTxtAndPng target = new(null);
+            ValidationTargetTxtAndPng target = new (null);
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);

@@ -36,6 +36,14 @@
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.1" />
 	</ItemGroup>
 
+	<!-- StyleCop (only in Debug configuration) -->
+	<ItemGroup Condition="'$(Configuration)' == 'Debug'">
+		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
 	<!-- Package README -->
 	<ItemGroup>
 		<None Include="README.md">

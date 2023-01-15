@@ -15,7 +15,7 @@ namespace Elephant.Types.Tests.ResponseWrappers
         public void TestIfAddingReturnsExpectedValues()
         {
             // Arrange.
-            PagedResponseWrapper<int> sut = new();
+            PagedResponseWrapper<int> sut = new ();
 
             // Act.
             sut.Data!.Add(5);
@@ -36,10 +36,10 @@ namespace Elephant.Types.Tests.ResponseWrappers
         public void TestIfAddingReturnsExpectedValuesUsingConstructorOverload()
         {
             // Arrange.
-            List<int> data = new() { 5, 15, 25 };
+            List<int> data = new () { 5, 15, 25 };
 
             // Act.
-            PagedResponseWrapper<int> sut = new(data, true, 200, "Success.", 1, 2, 2, true, false, data.Count, string.Empty, string.Empty);
+            PagedResponseWrapper<int> sut = new (data, true, 200, "Success.", 1, 2, 2, true, false, data.Count, string.Empty, string.Empty);
 
             // Assert.
             Assert.Equal(5, sut.Data![0]);
@@ -55,8 +55,8 @@ namespace Elephant.Types.Tests.ResponseWrappers
         public void TestIfBadRequestReturns400()
         {
             // Arrange
-            List<int> data = new() { 5, 15, 25 };
-            PagedResponseWrapper<int> sut = new(data, true, 200, "Success.", 1, 2, 2, true, false, data.Count, string.Empty, string.Empty);
+            List<int> data = new () { 5, 15, 25 };
+            PagedResponseWrapper<int> sut = new (data, true, 200, "Success.", 1, 2, 2, true, false, data.Count, string.Empty, string.Empty);
 
             // Act.
             sut.BadRequest();
@@ -66,15 +66,15 @@ namespace Elephant.Types.Tests.ResponseWrappers
         }
 
         /// <summary>
-        /// <see cref="PagedResponseWrapper{T}.BadRequest(List{string}?, string?)"/> tests.
+        /// Test if a <see cref="PagedResponseWrapper{TData}"/> BadRequest variant returns any data.
         /// </summary>
         [Fact]
         [SpeedVeryFast, UnitTest]
         public void TestIfBadRequestReturnsAnyData()
         {
             // Arrange
-            List<int> data = new() { 5, 15, 25 };
-            PagedResponseWrapper<int> sut = new(data, true, 200, "Success.", 1, 2, 2, true, false, data.Count, string.Empty, string.Empty);
+            List<int> data = new () { 5, 15, 25 };
+            PagedResponseWrapper<int> sut = new (data, true, 200, "Success.", 1, 2, 2, true, false, data.Count, string.Empty, string.Empty);
 
             // Act.
             sut.BadRequest();
@@ -91,8 +91,8 @@ namespace Elephant.Types.Tests.ResponseWrappers
         public void TestSwitchingResponsesReturnsLastOne()
         {
             // Arrange
-            List<int> data = new() { 5, 15, 25 };
-            PagedResponseWrapper<int> sut = new(data, true, 200, "Success.", 1, 2, 2, true, false, data.Count, string.Empty, string.Empty);
+            List<int> data = new () { 5, 15, 25 };
+            PagedResponseWrapper<int> sut = new (data, true, 200, "Success.", 1, 2, 2, true, false, data.Count, string.Empty, string.Empty);
 
             // Act.
             sut.BadRequest();

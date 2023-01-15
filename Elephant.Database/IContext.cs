@@ -13,7 +13,6 @@ namespace Elephant.Database
         /// Creates a <see cref="DbSet{TEntity}" /> that can be used to query and save instances of <typeparamref name="TEntity" />.
         /// </summary>
         /// <typeparam name="TEntity">The type of entity for which a set should be returned.</typeparam>
-        /// <returns></returns>
         DbSet<TEntity> Set<TEntity>()
             where TEntity : class;
 
@@ -51,7 +50,7 @@ namespace Elephant.Database
         /// </exception>
         /// <exception cref="OperationCanceledException">If the <see cref="CancellationToken" /> is canceled.</exception>
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
-        
+
         /// <summary>
         ///     <para>
         ///         Gets an <see cref="EntityEntry" /> for the given entity. The entry provides

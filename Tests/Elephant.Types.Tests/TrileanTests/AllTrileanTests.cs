@@ -71,7 +71,7 @@
         [SpeedVeryFast, UnitTest]
         public void TestIfTrileanIsUnknownIfNull()
         {
-            Trilean trilean = new(null);
+            Trilean trilean = new (null);
 
             Assert.True(trilean.IsUnknown);
         }
@@ -83,7 +83,7 @@
         [SpeedVeryFast, UnitTest]
         public void TestIfTrileanIsUnknownIfUnknown()
         {
-            Trilean trilean = new(Trilean.Value.Unknown);
+            Trilean trilean = new (Trilean.Value.Unknown);
 
             Assert.True(trilean.IsUnknown);
         }
@@ -95,7 +95,7 @@
         [SpeedVeryFast, UnitTest]
         public void TestIfTrileanIsUnknownIfUnknownThroughMethod()
         {
-            Trilean trilean = new();
+            Trilean trilean = new ();
             trilean.AssignUnknown();
 
             Assert.True(trilean.IsUnknown);
@@ -108,7 +108,7 @@
         [SpeedVeryFast, UnitTest]
         public void TestIfTrileanGetValueIsUnknownIfUnknown()
         {
-            Trilean trilean = new();
+            Trilean trilean = new ();
             trilean.AssignUnknown();
 
             Assert.Equal(Trilean.Value.Unknown, trilean.GetValue);
@@ -121,7 +121,7 @@
         [SpeedVeryFast, UnitTest]
         public void TestIfTrileanIsNeitherTrueNorFalseIfUnknown()
         {
-            Trilean trilean = new();
+            Trilean trilean = new ();
             trilean.AssignUnknown();
 
             Assert.False(trilean.IsFalse || trilean.IsTrue);
@@ -134,7 +134,7 @@
         [SpeedVeryFast, UnitTest]
         public void TestIsFalseIfAssignFalse()
         {
-            Trilean trilean = new(false);
+            Trilean trilean = new (false);
 
             Assert.True(trilean.IsFalse);
         }
@@ -146,7 +146,7 @@
         [SpeedVeryFast, UnitTest]
         public void TestIsFalseIfAssignFalseEnum()
         {
-            Trilean trilean = new(Trilean.Value.False);
+            Trilean trilean = new (Trilean.Value.False);
 
             Assert.True(trilean.IsFalse);
         }
@@ -158,7 +158,7 @@
         [SpeedVeryFast, UnitTest]
         public void TestIsFalseIfAssignFalseByMethod()
         {
-            Trilean trilean = new();
+            Trilean trilean = new ();
             trilean.AssignFalse();
 
             Assert.True(trilean.IsFalse);
@@ -171,7 +171,7 @@
         [SpeedVeryFast, UnitTest]
         public void TestIsFalseEnumIfAssignFalseByMethod()
         {
-            Trilean trilean = new();
+            Trilean trilean = new ();
             trilean.AssignFalse();
 
             Assert.Equal(Trilean.Value.False, trilean.GetValue);
@@ -184,7 +184,7 @@
         [SpeedVeryFast, UnitTest]
         public void TestIsNotUnknownAndNotTrueIfAssignFalse()
         {
-            Trilean trilean = new();
+            Trilean trilean = new ();
             trilean.AssignFalse();
 
             Assert.False(trilean.IsUnknown || trilean.IsTrue);
@@ -197,7 +197,7 @@
         [SpeedVeryFast, UnitTest]
         public void TestIsTrueIfAssignTrue()
         {
-            Trilean trilean = new(true);
+            Trilean trilean = new (true);
 
             Assert.True(trilean.IsTrue);
         }
@@ -209,7 +209,7 @@
         [SpeedVeryFast, UnitTest]
         public void TestIsTrueIfAssignTrueEnum()
         {
-            Trilean trilean = new(Trilean.Value.True);
+            Trilean trilean = new (Trilean.Value.True);
 
             Assert.True(trilean.IsTrue);
         }
@@ -221,7 +221,7 @@
         [SpeedVeryFast, UnitTest]
         public void TestIsTrueIfAssignTrueByMethod()
         {
-            Trilean trilean = new();
+            Trilean trilean = new ();
             trilean.AssignTrue();
 
             Assert.True(trilean.IsTrue);
@@ -234,7 +234,7 @@
         [SpeedVeryFast, UnitTest]
         public void TestIsNotUnknownAndNotFalseIfAssignTrue()
         {
-            Trilean trilean = new(true);
+            Trilean trilean = new (true);
 
             Assert.False(trilean.IsUnknown || trilean.IsFalse);
         }

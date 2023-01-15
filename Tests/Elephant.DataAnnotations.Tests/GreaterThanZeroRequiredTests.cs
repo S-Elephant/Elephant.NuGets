@@ -15,7 +15,7 @@ namespace Elephant.DataAnnotations.Tests
         public void ShouldReturnFalseIfDataIsNull()
         {
             // Arrange.
-            ValidationTarget target = new(null);
+            ValidationTarget target = new (null);
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
@@ -38,7 +38,7 @@ namespace Elephant.DataAnnotations.Tests
         public void Validate(int? value, bool expectedIsValid)
         {
             // Arrange.
-            ValidationTarget target = new(value);
+            ValidationTarget target = new (value);
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
@@ -75,7 +75,7 @@ namespace Elephant.DataAnnotations.Tests
         public void IsInvalidIfWrongType()
         {
             // Arrange.
-            WrongType target = new();
+            WrongType target = new ();
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
@@ -93,7 +93,7 @@ namespace Elephant.DataAnnotations.Tests
             /// Item to validate.
             /// </summary>
             [GreaterThanZeroRequired]
-            public AlwaysWrong Item { get; set; } = new();
+            public AlwaysWrong Item { get; set; } = new ();
         }
 
         /// <summary>

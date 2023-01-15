@@ -64,11 +64,13 @@ namespace Elephant.Lnk
             if (string.IsNullOrWhiteSpace(fullLnkPath) || !System.IO.File.Exists(fullLnkPath))
                 return null;
 
-            WshShell shell = new();
+            WshShell shell = new ();
             return (IWshShortcut)shell.CreateShortcut(fullLnkPath);
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+		/// Return null if <paramref name="value"/> is not empty; otherwise, returns <paramref name="value"/>.
+		/// </summary>
         private static string? ConvertoToNullIfEmpty(string value)
         {
             return value == string.Empty ? null : value;

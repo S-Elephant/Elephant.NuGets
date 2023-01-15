@@ -1,9 +1,12 @@
-﻿namespace Elephant.Types.ResponseWrappers
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Elephant.Types.ResponseWrappers
 {
-    /// <summary>
-    /// Success (HTTP response code 204) <see cref="ResponseWrapper{TData}"/>.
-    /// </summary>
-    public class ResponseWrapperNoContent<TData> : ResponseWrapper<TData>
+	/// <summary>
+	/// Success (HTTP response code 204) <see cref="ResponseWrapper{TData}"/>.
+	/// </summary>
+	[SuppressMessage("Microsoft.StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleType", Justification = "Generic and non-generic version belong together.")]
+	public class ResponseWrapperNoContent<TData> : ResponseWrapper<TData>
         where TData : new()
     {
         /// <summary>
@@ -42,7 +45,7 @@
 		/// Constructor.
 		/// </summary>
 		public ResponseWrapperNoContent(string message = "No content.")
-			: base( StatusCodeNoContent, message)
+			: base(StatusCodeNoContent, message)
 		{
 		}
 	}

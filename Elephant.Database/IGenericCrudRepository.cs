@@ -1,7 +1,7 @@
-﻿using Elephant.Types.Interfaces.ResponseWrappers;
+﻿using System.Linq.Expressions;
+using Elephant.Types.Interfaces.ResponseWrappers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using System.Linq.Expressions;
 
 namespace Elephant.Database
 {
@@ -108,12 +108,12 @@ namespace Elephant.Database
 		/// Delete all rows from the table, resets the auto-increment and saves.
 		/// </summary>
 		/// <remarks>Works only on relational databases. Does NOT work on an in-memory database.</remarks>
-		Task DeleteAllAndResetAutoIncrement(CancellationToken cancellationToken = default, string schema = "dbo");
+        Task DeleteAllAndResetAutoIncrement(CancellationToken cancellationToken = default, string schema = "dbo");
 
         #region Transactions
 
         /// <inheritdoc cref="IContext.BeginTransaction(CancellationToken)"/>
-		Task<IDbContextTransaction> BeginTransaction(CancellationToken cancellationToken);
+        Task<IDbContextTransaction> BeginTransaction(CancellationToken cancellationToken);
 
         /// <inheritdoc cref="IContext.CommitTransactionAndDispose(IDbContextTransaction?, CancellationToken)"/>
         Task CommitTransactionAndDispose(IDbContextTransaction? transaction, CancellationToken cancellationToken);

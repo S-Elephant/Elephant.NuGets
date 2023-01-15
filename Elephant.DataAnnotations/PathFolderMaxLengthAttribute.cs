@@ -12,7 +12,7 @@ namespace Elephant.DataAnnotations
         /// <summary>
         /// Minimum length.
         /// </summary>
-        protected readonly int MinLength;
+        protected int MinLength { get; private set; }
 
         /// <summary>
         /// Constructor.

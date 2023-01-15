@@ -66,7 +66,6 @@
 		/// </summary>
 		public PaginationDto()
 		{
-
 		}
 
 		/// <summary>

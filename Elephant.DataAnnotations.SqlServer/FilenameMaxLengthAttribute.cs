@@ -1,5 +1,5 @@
-﻿using Elephant.Constants.SqlServer;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using Elephant.Constants.SqlServer;
 
 namespace Elephant.DataAnnotations.SqlServer
 {
@@ -12,7 +12,7 @@ namespace Elephant.DataAnnotations.SqlServer
         /// <summary>
         /// Minimum length.
         /// </summary>
-        protected readonly int MinLength;
+        protected int MinLength { get; private set; }
 
         /// <summary>
         /// Constructor.

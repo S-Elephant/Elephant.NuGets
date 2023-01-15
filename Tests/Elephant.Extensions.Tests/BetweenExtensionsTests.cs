@@ -20,7 +20,7 @@
         }
 
         /// <summary>
-        /// <see cref="BetweenExtensions.IsBetweenIETests{T}(T, T, T)"/> tests.
+        /// <see cref="BetweenExtensions.IsBetweenIE{T}(T, T, T)"/> tests.
         /// </summary>
         [Theory]
         [SpeedVeryFast]

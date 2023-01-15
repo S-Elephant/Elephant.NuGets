@@ -13,8 +13,8 @@ namespace Elephant.DataAnnotations
         /// Constructor.
         /// </summary>
         /// <param name="allowedFileExtensions">Allowed file extensions (all-lower-case, with or without the leading dot). Case-insensitive.</param>
-        public FileSignatureRequiredAttribute(params AllowedFileExtensionType[] allowedFileExtensions) :
-            base(allowedFileExtensions)
+        public FileSignatureRequiredAttribute(params AllowedFileExtensionType[] allowedFileExtensions)
+            : base(allowedFileExtensions)
         {
         }
 

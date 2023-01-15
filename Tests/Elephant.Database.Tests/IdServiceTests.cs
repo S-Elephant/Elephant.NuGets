@@ -25,7 +25,7 @@ namespace Elephant.Database.Utilities.Tests
         [SpeedVeryFast, UnitTest]
         public void IsIdInsertTests(int insertId, int firstInsertId, int idToTest, bool expectedIsInsertId)
         {
-            IdService systemUnderTest = new(insertId, firstInsertId);
+            IdService systemUnderTest = new (insertId, firstInsertId);
 
             bool isIdInsert = systemUnderTest.IsIdInsert(idToTest);
 
@@ -51,7 +51,7 @@ namespace Elephant.Database.Utilities.Tests
         [SpeedVeryFast, UnitTest]
         public void IsIdUpdateTests(int insertId, int firstInsertId, int idToTest, bool expectedIsUpdateId)
         {
-            IdService systemUnderTest = new(insertId, firstInsertId);
+            IdService systemUnderTest = new (insertId, firstInsertId);
 
             bool isIdInsert = systemUnderTest.IsIdUpdate(idToTest);
 
@@ -76,7 +76,7 @@ namespace Elephant.Database.Utilities.Tests
         [SpeedVeryFast, UnitTest]
         public void IsIdNotInsertTests(int insertId, int firstInsertId, int idToTest, bool expectedIsInsertId)
         {
-            IdService systemUnderTest = new(insertId, firstInsertId);
+            IdService systemUnderTest = new (insertId, firstInsertId);
 
             bool isIdInsert = systemUnderTest.IsIdNotInsert(idToTest);
 
@@ -102,7 +102,7 @@ namespace Elephant.Database.Utilities.Tests
         [SpeedVeryFast, UnitTest]
         public void IsIdNotUpdateTests(int insertId, int firstInsertId, int idToTest, bool expectedIsUpdateId)
         {
-            IdService systemUnderTest = new(insertId, firstInsertId);
+            IdService systemUnderTest = new (insertId, firstInsertId);
 
             bool isIdInsert = systemUnderTest.IsIdNotUpdate(idToTest);
 
@@ -138,7 +138,7 @@ namespace Elephant.Database.Utilities.Tests
         [SpeedVeryFast, UnitTest]
         public void ValidIdShouldreturnTrue(int id)
         {
-            IdService idService = new(0, 1);
+            IdService idService = new (0, 1);
 
             bool isValid = idService.IsValid(id);
 
@@ -156,7 +156,7 @@ namespace Elephant.Database.Utilities.Tests
         [SpeedVeryFast, UnitTest]
         public void InvalidIdShouldreturnTrue(int id)
         {
-            IdService idService = new(0, 1);
+            IdService idService = new (0, 1);
 
             bool isInvalid = idService.IsInvalid(id);
 

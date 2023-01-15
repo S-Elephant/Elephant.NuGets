@@ -14,7 +14,7 @@ namespace Elephant.Rijksdriehoek
         /// Return true if this Rijksdriehoek coordinate is valid.
         /// </summary>
         bool IsValid { get; }
-        
+
         /// <summary>
         /// X Rd coordinate.
         /// </summary>
@@ -36,7 +36,7 @@ namespace Elephant.Rijksdriehoek
         /// </summary>
         /// <param name="otherRdCoordinate">The other coordinate.</param>
         TType Distance(RdCoordinate? otherRdCoordinate);
-        
+
         /// <summary>
         /// Indicates whether this instance and the specific <paramref name="obj"/> are equal.
         /// </summary>

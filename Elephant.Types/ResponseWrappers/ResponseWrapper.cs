@@ -1,8 +1,10 @@
-﻿using Elephant.Types.Interfaces.ResponseWrappers;
+﻿using System.Diagnostics.CodeAnalysis;
+using Elephant.Types.Interfaces.ResponseWrappers;
 
 namespace Elephant.Types.ResponseWrappers
 {
 	/// <inheritdoc cref="IResponseWrapper{TData}"/>
+	[SuppressMessage("Microsoft.StyleCop.CSharp.OrderingRules", "SA1402:FileMayOnlyContainASingleType", Justification = "Generic and non-generic version belong together.")]
 	public class ResponseWrapper<TData> : IResponseWrapper<TData>
 		where TData : new()
 	{
@@ -45,13 +47,22 @@ namespace Elephant.Types.ResponseWrappers
 		public TData? Data { get; protected set; } = default;
 
 		/// <inheritdoc/>
-		public bool IsSuccess { get { return IsSuccessStatusCode(StatusCode); } }
+		public bool IsSuccess
+        {
+            get { return IsSuccessStatusCode(StatusCode); }
+        }
 
 		/// <inheritdoc/>
-		public bool IsError { get { return IsErrorStatusCode(StatusCode); } }
+		public bool IsError
+        {
+            get { return IsErrorStatusCode(StatusCode); }
+        }
 
 		/// <inheritdoc/>
-		public bool IsInformativeRedirectionOrCustom { get { return IsInformativeRedirectionOrCustomStatusCode(StatusCode); } }
+		public bool IsInformativeRedirectionOrCustom
+        {
+            get { return IsInformativeRedirectionOrCustomStatusCode(StatusCode); }
+        }
 
 		/// <inheritdoc/>
 		public int StatusCode { get; protected set; } = Status200OK;
@@ -134,7 +145,7 @@ namespace Elephant.Types.ResponseWrappers
         #region Assign status
 
         /// <inheritdoc/>
-        public virtual IResponseWrapper<TData> Ok(string? message = "Success.")
+		public virtual IResponseWrapper<TData> Ok(string? message = "Success.")
 		{
 			return Success(Status200OK, message);
 		}

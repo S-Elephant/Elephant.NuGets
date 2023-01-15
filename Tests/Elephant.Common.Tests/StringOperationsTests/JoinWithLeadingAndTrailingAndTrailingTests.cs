@@ -13,7 +13,7 @@
         public void TestIfEmptyReturnsTwoSeparators()
         {
             string joinedString = StringOperations.JoinWithLeadingAndTrailing('/');
-         
+
             Assert.Equal("//", joinedString);
         }
 
@@ -27,7 +27,7 @@
         public void TestIf4StringsHave3SeparatorOccurances(string stringA, string stringB, string stringC)
         {
             string joinedString = StringOperations.JoinWithLeadingAndTrailing('/', stringA, stringB, stringC);
-         
+
             Assert.Equal(4, joinedString.Count(x => x == '/'));
         }
 
@@ -41,7 +41,7 @@
         public void TestIf3StringsHave6SeparatorOccurances(string stringA, string stringB, string stringC)
         {
             string joinedString = StringOperations.JoinWithLeadingAndTrailing('/', stringA, stringB, stringC);
-            
+
             Assert.Equal(6, joinedString.Count(x => x == '/'));
         }
 
@@ -55,7 +55,7 @@
         public void TestIf3StringsHave4SeparatorOccurances(string stringA, string stringB, string stringC)
         {
             string joinedString = StringOperations.JoinWithLeadingAndTrailing('/', stringA, stringB, stringC);
-           
+
             Assert.Equal(4, joinedString.Count(x => x == '/'));
         }
 
@@ -69,7 +69,7 @@
         public void TestIf1StringReturnsTwoSeparators(string stringA)
         {
             string joinedString = StringOperations.JoinWithLeadingAndTrailing('/', stringA);
-           
+
             Assert.Equal(2, joinedString.Count(x => x == '/'));
         }
 
@@ -81,7 +81,7 @@
         public void TestIf1NullValueReturnsTwoSeparators()
         {
             string joinedString = StringOperations.JoinWithLeadingAndTrailing('/', new string?[] { null });
-           
+
             Assert.Equal(2, joinedString.Count(x => x == '/'));
         }
 
@@ -93,7 +93,7 @@
         public void TestIf3NullValuesReturnTwoSeparators()
         {
             string joinedString = StringOperations.JoinWithLeadingAndTrailing('/', null, null, null);
-            
+
             Assert.Equal(2, joinedString.Count(x => x == '/'));
         }
 
@@ -110,7 +110,7 @@
         public void TestIfNullWithNonNullValuesIgnoresNullValues(string expected, string stringA, string stringB, string stringC)
         {
             string joinedString = StringOperations.JoinWithLeadingAndTrailing('/', stringA, stringB, stringC);
-            
+
             Assert.Equal(expected, joinedString);
         }
     }

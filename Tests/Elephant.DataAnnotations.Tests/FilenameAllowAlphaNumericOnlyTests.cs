@@ -27,10 +27,30 @@ namespace Elephant.DataAnnotations.Tests
             }
         }
 
-        /// <summary>
-        /// Test class.
-        /// </summary>
-        private class ValidationTargetFloat
+		/// <summary>
+		/// Test class.
+		/// </summary>
+		private class ValidationTargetStringAllowDot
+		{
+			/// <summary>
+			/// Property to validate.
+			/// </summary>
+			[FilenameAllowAlphaNumericOnly(true)]
+			public string? Value { get; set; }
+
+			/// <summary>
+			/// Constructor.
+			/// </summary>
+			public ValidationTargetStringAllowDot(string? value)
+			{
+				Value = value;
+			}
+		}
+
+		/// <summary>
+		/// Test class.
+		/// </summary>
+		private class ValidationTargetFloat
         {
             /// <summary>
             /// Property to validate.
@@ -79,7 +99,7 @@ namespace Elephant.DataAnnotations.Tests
         public void IsValidIfValueIsAlphanumericOnly(string value)
         {
             // Arrange.
-            ValidationTargetString target = new(value);
+            ValidationTargetString target = new (value);
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
@@ -102,11 +122,12 @@ namespace Elephant.DataAnnotations.Tests
         [InlineData(@"a\")]
         [InlineData("^^test")]
         [InlineData("Ë")]
-        [SpeedVeryFast, UnitTest]
+		[InlineData("test.png")]
+		[SpeedVeryFast, UnitTest]
         public void IsInvalidIfValueIsAlphanumericOnly(string value)
         {
             // Arrange.
-            ValidationTargetString target = new(value);
+            ValidationTargetString target = new (value);
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
@@ -115,10 +136,31 @@ namespace Elephant.DataAnnotations.Tests
             Assert.False(isValid);
         }
 
-        /// <summary>
-        /// Is valid if is numeric only and zero or positive.
-        /// </summary>
-        [Theory]
+		/// <summary>
+		/// Is valid if string contains alphanumerics, including a dot.
+		/// </summary>
+		[Theory]
+		[InlineData("test.png")]
+		[InlineData(".")]
+		[InlineData("...")]
+		[InlineData(".a.")]
+		[SpeedVeryFast, UnitTest]
+		public void IsValidIfValueIsAlphanumericWithDot(string value)
+		{
+			// Arrange.
+			ValidationTargetStringAllowDot target = new(value);
+
+			// Act.
+			bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
+
+			// Assert.
+			Assert.True(isValid);
+		}
+
+		/// <summary>
+		/// Is valid if is numeric only and zero or positive.
+		/// </summary>
+		[Theory]
         [InlineData(0)]
         [InlineData(1)]
         [InlineData(54389325)]
@@ -126,7 +168,7 @@ namespace Elephant.DataAnnotations.Tests
         public void IsValidIfValueIsNumericOnly(int value)
         {
             // Arrange.
-            ValidationTargetInt target = new(value);
+            ValidationTargetInt target = new (value);
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
@@ -146,7 +188,7 @@ namespace Elephant.DataAnnotations.Tests
         public void IsInvalidIfValueIsNumericOnlyButLessThanZero(int value)
         {
             // Arrange.
-            ValidationTargetInt target = new(value);
+            ValidationTargetInt target = new (value);
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
@@ -163,7 +205,7 @@ namespace Elephant.DataAnnotations.Tests
         public void IsInvalidIfUsedOnUnsupportedType()
         {
             // Arrange.
-            ValidationTargetFloat target = new(1);
+            ValidationTargetFloat target = new (1);
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);

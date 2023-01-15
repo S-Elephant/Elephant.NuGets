@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.0.1</Version>
-		<PackageReleaseNotes>Add filename data annotations.</PackageReleaseNotes>
+		<Version>1.0.2</Version>
+		<PackageReleaseNotes>Add optional dot parameter to FilenameAllowAlphaNumeric.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
@@ -17,6 +17,7 @@
 		<Company>SquirtingElephant</Company>
 		<Description>Common data annotations.</Description>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<CheckEolTargetFramework>false</CheckEolTargetFramework> <!-- Suppress the warning: warning NETSDK1138: The target framework 'netcoreapp3.0' is out of support and.. -->
 	</PropertyGroup>
 
 	<!-- Package -->
@@ -35,6 +36,14 @@
 	<!-- Dependencies -->
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
+	</ItemGroup>
+
+	<!-- StyleCop (only in Debug configuration) -->
+	<ItemGroup Condition="'$(Configuration)' == 'Debug'">
+		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 	</ItemGroup>
 
 	<!-- Package README -->

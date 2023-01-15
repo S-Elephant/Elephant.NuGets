@@ -31,7 +31,7 @@
         [SpeedVeryFast, UnitTest]
         public void RemoveSubstringsFromStringTestCaseSensitivity()
         {
-            string result = StringOperations.RemoveSubstringsFromString("The big white dog.", new[] { "the", "white" } );
+            string result = StringOperations.RemoveSubstringsFromString("The big white dog.", new[] { "the", "white" });
 
             Assert.Equal("The big  dog.", result);
         }

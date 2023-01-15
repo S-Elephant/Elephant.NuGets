@@ -15,7 +15,7 @@ namespace Elephant.DataAnnotations.Tests
         public void ShouldReturnSuccessIfDataIsNull()
         {
             // Arrange.
-            ValidationTargetInt target = new(null);
+            ValidationTargetInt target = new (null);
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
@@ -38,7 +38,7 @@ namespace Elephant.DataAnnotations.Tests
         public void ValidateInt(int? value, bool expectedIsValid)
         {
             // Arrange.
-            ValidationTargetInt target = new(value);
+            ValidationTargetInt target = new (value);
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
@@ -81,7 +81,7 @@ namespace Elephant.DataAnnotations.Tests
         public void ValidateFloat(float? value, bool expectedIsValid)
         {
             // Arrange.
-            ValidationTargetFloat target = new(value);
+            ValidationTargetFloat target = new (value);
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
@@ -124,7 +124,7 @@ namespace Elephant.DataAnnotations.Tests
         public void ValidateDecimal(string? value, bool expectedIsValid)
         {
             // Arrange.
-            ValidationTargetDecimal target = new(value == null ? null : Convert.ToDecimal(value));
+            ValidationTargetDecimal target = new (value == null ? null : Convert.ToDecimal(value));
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
@@ -134,7 +134,7 @@ namespace Elephant.DataAnnotations.Tests
         }
 
         /// <summary>
-        /// Test class for <see cref="ValidateDecimal(decimal?, bool)"/> tests.
+        /// Test class for <see cref="ValidateDecimal(string?, bool)"/> tests.
         /// </summary>
         private class ValidationTargetDecimal
         {
@@ -165,7 +165,7 @@ namespace Elephant.DataAnnotations.Tests
         public void ValidateByte(byte? value, bool expectedIsValid)
         {
             // Arrange.
-            ValidationTargetFloat target = new(value);
+            ValidationTargetFloat target = new (value);
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
@@ -202,7 +202,7 @@ namespace Elephant.DataAnnotations.Tests
         public void IsInvalidIfWrongType()
         {
             // Arrange.
-            WrongType target = new();
+            WrongType target = new ();
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
@@ -220,7 +220,7 @@ namespace Elephant.DataAnnotations.Tests
             /// Item to validate.
             /// </summary>
             [GreaterThanZero]
-            public AlwaysWrong Item { get; set; } = new();
+            public AlwaysWrong Item { get; set; } = new ();
         }
 
         /// <summary>

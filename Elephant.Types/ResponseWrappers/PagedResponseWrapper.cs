@@ -1,5 +1,5 @@
-﻿using Elephant.Types.Interfaces.ResponseWrappers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Elephant.Types.Interfaces.ResponseWrappers;
 
 namespace Elephant.Types.ResponseWrappers
 {

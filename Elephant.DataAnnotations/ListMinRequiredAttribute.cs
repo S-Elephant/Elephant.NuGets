@@ -13,8 +13,8 @@ namespace Elephant.DataAnnotations
         /// Constructor.
         /// </summary>
         /// <param name="minLength">Minimum length. Must be equal or greater than 0.</param>
-        public ListMinRequiredAttribute(int minLength) :
-            base(minLength)
+        public ListMinRequiredAttribute(int minLength)
+            : base(minLength)
         {
         }
 

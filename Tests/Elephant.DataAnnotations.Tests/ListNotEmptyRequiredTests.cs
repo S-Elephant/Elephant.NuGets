@@ -15,7 +15,7 @@ namespace Elephant.DataAnnotations.Tests
         public void IsInvalidIfIsNull()
         {
             // Arrange.
-            ValidationTargetNull target = new();
+            ValidationTargetNull target = new ();
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
@@ -44,7 +44,7 @@ namespace Elephant.DataAnnotations.Tests
         public void IsInvalidIfHasZeroItems()
         {
             // Arrange.
-            ValidationTargetZeroItems target = new();
+            ValidationTargetZeroItems target = new ();
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
@@ -62,7 +62,7 @@ namespace Elephant.DataAnnotations.Tests
             /// Items to validate.
             /// </summary>
             [ListNotEmptyRequired]
-            public List<int>? Items { get; set; } = new();
+            public List<int>? Items { get; set; } = new ();
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace Elephant.DataAnnotations.Tests
         public void IsValidIfHasAtLeastOneItem(int listSize)
         {
             // Arrange.
-            ValidationTargetWithItems target = new(listSize);
+            ValidationTargetWithItems target = new (listSize);
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
@@ -94,7 +94,7 @@ namespace Elephant.DataAnnotations.Tests
             /// Items to validate.
             /// </summary>
             [ListNotEmptyRequired]
-            public List<int>? Items { get; set; } = new();
+            public List<int>? Items { get; set; } = new ();
 
             /// <summary>
             /// Constructor.
@@ -113,7 +113,7 @@ namespace Elephant.DataAnnotations.Tests
         public void IsInvalidIfWrongType()
         {
             // Arrange.
-            WrongType target = new();
+            WrongType target = new ();
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
@@ -131,7 +131,7 @@ namespace Elephant.DataAnnotations.Tests
             /// Item to validate.
             /// </summary>
             [ListNotEmptyRequired]
-            public AlwaysWrong Item { get; set; } = new();
+            public AlwaysWrong Item { get; set; } = new ();
         }
 
         /// <summary>

@@ -1,16 +1,19 @@
-﻿namespace Elephant.Types.ResponseWrappers
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Elephant.Types.ResponseWrappers
 {
-    /// <summary>
-    /// Success (HTTP response code 200) <see cref="ResponseWrapper{TData}"/>.
-    /// </summary>
-    public class ResponseWrapperOk<TData> : ResponseWrapper<TData>
+	/// <summary>
+	/// Success (HTTP response code 200) <see cref="ResponseWrapper{TData}"/>.
+	/// </summary>
+	[SuppressMessage("Microsoft.StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleType", Justification = "Generic and non-generic version belong together.")]
+	public class ResponseWrapperOk<TData> : ResponseWrapper<TData>
         where TData : new()
     {
         /// <summary>
         /// Constructor.
         /// </summary>
-        public ResponseWrapperOk(TData? data = default, string message = "Success.") :
-            base(data, 200, message)
+        public ResponseWrapperOk(TData? data = default, string message = "Success.")
+            : base(data, 200, message)
         {
         }
     }
@@ -23,8 +26,8 @@
 		/// <summary>
 		/// Constructor.
 		/// </summary>
-		public ResponseWrapperOk(string message = "Success.") :
-			base(200, message)
+		public ResponseWrapperOk(string message = "Success.")
+            : base(200, message)
 		{
 		}
 	}

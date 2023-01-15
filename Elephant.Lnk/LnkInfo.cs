@@ -14,7 +14,7 @@
         /// Name.
         /// </summary>
         public string? Name { get; set; } = null;
-        
+
         /// <summary>
         /// Arguments as one single <see cref="string"/>.
         /// </summary>

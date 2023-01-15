@@ -14,7 +14,7 @@
 		<Nullable>disable</Nullable> <!-- Disabled because of older target frameworks. -->
 		<Company>SquirtingElephant</Company>
 		<Authors>SquirtingElephant</Authors>
-		<Description>Common library for Xunit tests.</Description>		
+		<Description>Common library for Xunit tests.</Description>
 		<CheckEolTargetFramework>false</CheckEolTargetFramework> <!-- Suppress the warning: warning NETSDK1138: The target framework 'netcoreapp3.0' is out of support and.. -->
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 	</PropertyGroup>
@@ -29,7 +29,7 @@
 		<PackageProjectUrl>https://github.com/SquirtingElephant/Elephant.NuGets</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/SquirtingElephant/Elephant.NuGets.git</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 	</PropertyGroup>
 
 	<!-- Dependencies -->
@@ -37,12 +37,21 @@
 		<PackageReference Include="xunit.extensibility.core" Version="2.4.2" />
 	</ItemGroup>
 
-  <!-- Package README -->
-  <ItemGroup>
-    <None Include="README.md"> <!-- Changed "Update" to "Include" because of an open bug. See: https://github.com/NuGet/Home/issues/11467#issuecomment-1022487996 -->
-      <PackagePath>\</PackagePath>
-      <Pack>True</Pack>
-    </None>
-  </ItemGroup>
+	<!-- StyleCop (only in Debug configuration) -->
+	<ItemGroup Condition="'$(Configuration)' == 'Debug'">
+		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<!-- Package README -->
+	<ItemGroup>
+		<None Include="README.md">
+			<!-- Changed "Update" to "Include" because of an open bug. See: https://github.com/NuGet/Home/issues/11467#issuecomment-1022487996 -->
+			<PackagePath>\</PackagePath>
+			<Pack>True</Pack>
+		</None>
+	</ItemGroup>
 
 </Project>

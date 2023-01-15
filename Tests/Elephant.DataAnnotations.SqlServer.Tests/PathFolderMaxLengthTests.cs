@@ -33,7 +33,7 @@ namespace Elephant.DataAnnotations.SqlServer.Tests
         public void ShouldReturnTrueIfDataIsNull()
         {
             // Arrange.
-            ValidationTarget target = new(null);
+            ValidationTarget target = new (null);
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
@@ -53,7 +53,7 @@ namespace Elephant.DataAnnotations.SqlServer.Tests
         public void ShouldReturnTrueIfDataDataIsWithinBoundaries(string data)
         {
             // Arrange.
-            ValidationTarget target = new(data);
+            ValidationTarget target = new (data);
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
@@ -72,7 +72,7 @@ namespace Elephant.DataAnnotations.SqlServer.Tests
         public void ShouldReturnFalseIfDataDataIsTooShort(string data)
         {
             // Arrange.
-            ValidationTarget target = new(data);
+            ValidationTarget target = new (data);
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
@@ -89,7 +89,7 @@ namespace Elephant.DataAnnotations.SqlServer.Tests
         public void ShouldReturnFalseIfDataDataIsTooLong()
         {
             // Arrange.
-            ValidationTarget target = new(@"C:\Lorem ipsum dolor sit amet\consectetur adipiscing elit\Aenean dapibus metus vel metus tincidunt molestie\Vivamus velit elit\placerat in iaculis ac\commodo sit amet tortor\Fusce vestibulum pulvinar ullamcorper\Praesent dignissim dui eget posuere venenatis\Etiam volutpat malesuada condimentum\Mauris ultricies arcu vitae tortor tempus.jpg");
+            ValidationTarget target = new (@"C:\Lorem ipsum dolor sit amet\consectetur adipiscing elit\Aenean dapibus metus vel metus tincidunt molestie\Vivamus velit elit\placerat in iaculis ac\commodo sit amet tortor\Fusce vestibulum pulvinar ullamcorper\Praesent dignissim dui eget posuere venenatis\Etiam volutpat malesuada condimentum\Mauris ultricies arcu vitae tortor tempus.jpg");
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);

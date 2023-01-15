@@ -1,5 +1,5 @@
-﻿using Elephant.Constants.SqlServer;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using Elephant.Constants.SqlServer;
 
 namespace Elephant.DataAnnotations.SqlServer
 {

@@ -12,7 +12,7 @@
         [SpeedFast, UnitTest]
         public void NoneReturnsTrueIfListIsEmpty()
         {
-            List<int> list = new();
+            List<int> list = new ();
 
             Assert.True(list.None());
         }
@@ -24,7 +24,7 @@
         [SpeedFast, UnitTest]
         public void IsEmptyReturnsTrueIfListIsEmpty()
         {
-            List<int> list = new();
+            List<int> list = new ();
 
             Assert.True(list.IsEmpty());
         }
@@ -36,7 +36,7 @@
         [SpeedFast, UnitTest]
         public void NoneReturnsFalseIfListIsNotEmpty()
         {
-            List<int> list = new() { -10, 1, 2, 3 };
+            List<int> list = new () { -10, 1, 2, 3 };
 
             Assert.False(list.None());
         }
@@ -48,7 +48,7 @@
         [SpeedFast, UnitTest]
         public void IsEmptyReturnsFalseIfListIsNotEmpty()
         {
-            List<int> list = new() { -10, 1, 2, 3 };
+            List<int> list = new () { -10, 1, 2, 3 };
 
             Assert.False(list.IsEmpty());
         }
@@ -69,7 +69,7 @@
         [InlineData(false, -10)]
         public void NoneWithPredicateTest(bool expected, int value)
         {
-            List<int> x = new() { -10, 1, 2, 3 };
+            List<int> x = new () { -10, 1, 2, 3 };
 
             Assert.Equal(expected, x.None(x => x == value));
         }

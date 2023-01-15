@@ -4,8 +4,8 @@ Contains validation attributes commonly used in backend endpoint Controllers and
 
 # Attribute list
 
-- [**FilenameAllowAlphaNumericOnly**] *(compatible with string, byte, sbyte, int, long, short)*
-- [**FilenameAllowAlphaNumericOnlyRequired**] *(compatible with string, byte, sbyte, int, long, short)*
+- [**FilenameAllowAlphaNumericOnly**(bool allowDot)] *(compatible with string, byte, sbyte, int, long, short)*
+- [**FilenameAllowAlphaNumericOnlyRequired**(bool allowDot)] *(compatible with string, byte, sbyte, int, long, short)*
 - [**FileSignature**(params AllowedFileExtensionType[] allowedFileExtensions)]
 - [**FileSignatureRequired**(params AllowedFileExtensionType[] allowedFileExtensions)]
 - [**FileSizeMax**(int fileSizeMax)]

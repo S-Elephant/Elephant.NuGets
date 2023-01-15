@@ -21,7 +21,7 @@ namespace Elephant.DataAnnotations.Tests
         public void Validate(int listSize, bool expectedIsValid)
         {
             // Arrange.
-            ValidationTargetSized target = new(listSize);
+            ValidationTargetSized target = new (listSize);
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
@@ -58,7 +58,7 @@ namespace Elephant.DataAnnotations.Tests
         public void IsValidIfNullAndSizeGreaterThanZero()
         {
             // Arrange.
-            ValidationTargetNullWithSize10 target = new();
+            ValidationTargetNullWithSize10 target = new ();
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
@@ -87,7 +87,7 @@ namespace Elephant.DataAnnotations.Tests
         public void IsValidIfNullAndSizeIsZero()
         {
             // Arrange.
-            ValidationTargetNullWithSize0 target = new();
+            ValidationTargetNullWithSize0 target = new ();
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
@@ -116,7 +116,7 @@ namespace Elephant.DataAnnotations.Tests
         public void IsInvalidIfWrongType()
         {
             // Arrange.
-            WrongType target = new();
+            WrongType target = new ();
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
@@ -134,7 +134,7 @@ namespace Elephant.DataAnnotations.Tests
             /// Item to validate.
             /// </summary>
             [ListMax(10)]
-            public AlwaysWrong Item { get; set; } = new();
+            public AlwaysWrong Item { get; set; } = new ();
         }
 
         /// <summary>

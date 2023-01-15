@@ -1,5 +1,6 @@
-﻿using Elephant.Types.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using Elephant.Types.Interfaces;
 
 namespace Elephant.Types
 {
@@ -15,6 +16,7 @@ namespace Elephant.Types
 	/// </summary>
 	/// <example>Distinct example on a table called "BaseIds".
 	/// var result = await Context.BaseIds.Distinct(new IdComparer()).ToListAsync(cancellationToken);</example>
+	[SuppressMessage("Microsoft.StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleType", Justification = "Group related items for clarity.")]
 	public class IdComparer : IEqualityComparer<BaseId>
 	{
 		/// <inheritdoc cref="IEqualityComparer{T}.Equals(T, T)"/>

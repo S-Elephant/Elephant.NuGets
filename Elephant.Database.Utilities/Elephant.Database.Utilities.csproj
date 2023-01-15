@@ -10,11 +10,13 @@
 		<TargetFrameworks>netstandard2.0;netstandard2.1;netcoreapp3.0;netcoreapp3.1;net5.0;net6.0;net7.0</TargetFrameworks>
 		<LangVersion>latest</LangVersion>
 		<ImplicitUsings>disable</ImplicitUsings>
-		<!--<Nullable>enable</Nullable>--> <!-- Is not supported in netstandard2.0. -->
+		<!--<Nullable>enable</Nullable>-->
+		<!-- Is not supported in netstandard2.0. -->
 		<Company>SquirtingElephant</Company>
 		<Authors>SquirtingElephant</Authors>
 		<Description>Utility database code without database dependencies.</Description>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<CheckEolTargetFramework>false</CheckEolTargetFramework> <!-- Suppress the warning: warning NETSDK1138: The target framework 'netcoreapp3.0' is out of support and.. -->
 	</PropertyGroup>
 
 	<!-- Package -->
@@ -29,6 +31,14 @@
 		<RepositoryType>git</RepositoryType>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 	</PropertyGroup>
+
+	<!-- StyleCop (only in Debug configuration) -->
+	<ItemGroup Condition="'$(Configuration)' == 'Debug'">
+		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
 
 	<!-- Package README -->
 	<ItemGroup>

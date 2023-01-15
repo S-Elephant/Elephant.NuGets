@@ -24,7 +24,7 @@ namespace Elephant.Io
         /// <inheritdoc/>
         public async IAsyncEnumerable<IEnumerable<FileInfo>> GetFilesAsync(IEnumerable<DirectoryInfo> sourceDirectories, string searchPattern, SearchOption searchOption, bool ignoreInaccessible = true)
         {
-            EnumerationOptions options = new() { IgnoreInaccessible = ignoreInaccessible };
+            EnumerationOptions options = new () { IgnoreInaccessible = ignoreInaccessible };
 
             if (searchOption == SearchOption.AllDirectories)
                 options.RecurseSubdirectories = true;
@@ -43,7 +43,7 @@ namespace Elephant.Io
         /// <inheritdoc/>
         public async IAsyncEnumerable<IEnumerable<FileInfo>> GetFilesAsync(IEnumerable<DirectoryInfo> sourceDirectories, string searchPattern, SearchOption searchOption, IEnumerable<string> extensions, bool ignoreInaccessible = true)
         {
-            EnumerationOptions options = new() { IgnoreInaccessible = ignoreInaccessible };
+            EnumerationOptions options = new () { IgnoreInaccessible = ignoreInaccessible };
 
             if (searchOption == SearchOption.AllDirectories)
                 options.RecurseSubdirectories = true;
