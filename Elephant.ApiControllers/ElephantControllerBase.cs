@@ -12,7 +12,7 @@ namespace Elephant.ApiControllers
 	public class ElephantControllerBase : ControllerBase
 	{
 		/// <summary>
-		/// Converts to <see cref="IActionResult"/>.
+		/// Convert to <see cref="IActionResult"/>.
 		/// </summary>
 		/// <param name="result"><see cref="ResponseWrapper{TData}"/></param>
 		/// <param name="useData">If true, <see cref="ResponseWrapper{TData}.Data"/> will be returned if applicable and possible; Otherwise, <see cref="ResponseWrapper{TData}.Data"/> will never be returned.</param>
@@ -24,7 +24,7 @@ namespace Elephant.ApiControllers
 				return result.StatusCode switch
 				{
 					StatusCodes.Status200OK => result.UsesData && useData ? Ok(result.Data) : Ok(),
-					StatusCodes.Status201Created => CreatedResult(),
+					StatusCodes.Status201Created => result.UsesData && useData ? CreatedResult(result.Data) : CreatedResult(),
                     StatusCodes.Status401Unauthorized => throw new Exception($"IsSuccess is {result.IsSuccess} and {nameof(result.StatusCode)} is {result.StatusCode}?"),
                     StatusCodes.Status404NotFound => throw new Exception($"IsSuccess is {result.IsSuccess} and {nameof(result.StatusCode)} is {result.StatusCode}?"),
                     StatusCodes.Status422UnprocessableEntity => throw new Exception($"IsSuccess is {result.IsSuccess} and {nameof(result.StatusCode)} is {result.StatusCode}?"),
@@ -47,7 +47,7 @@ namespace Elephant.ApiControllers
 		}
 
 		/// <summary>
-		/// Converts to <see cref="IActionResult"/>.
+		/// Convert to <see cref="IActionResult"/>.
 		/// </summary>
 		protected IActionResult ToApiResult(IResponseWrapper result)
 		{
@@ -55,11 +55,14 @@ namespace Elephant.ApiControllers
 		}
 
 		/// <summary>
-		/// Returns an <see cref="IActionResult"/> <see cref="StatusCodes.Status201Created"/>.
+		/// Return an <see cref="IActionResult"/> <see cref="StatusCodes.Status201Created"/>.
 		/// </summary>
-		protected IActionResult CreatedResult()
+		protected IActionResult CreatedResult(object? value = null)
 		{
-			return StatusCode(StatusCodes.Status201Created);
+			if (value == null)
+				return StatusCode(StatusCodes.Status201Created);
+
+			return StatusCode(StatusCodes.Status201Created, value);
 		}
 	}
 }
