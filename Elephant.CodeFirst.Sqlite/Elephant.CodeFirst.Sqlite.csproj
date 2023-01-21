@@ -2,7 +2,7 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.0.3</Version>
+		<Version>1.0.4</Version>
 		<PackageReleaseNotes>Update dependencies.</PackageReleaseNotes>
 	</PropertyGroup>
 
@@ -34,8 +34,6 @@
 
 	<!-- Dependencies -->
 	<ItemGroup>
-		<PackageReference Include="Elephant.Common" Version="3.0.0" />
-		<PackageReference Include="Elephant.Constants.Sqlite" Version="1.0.1" />
 		<PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.1" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.1" />
@@ -55,6 +53,10 @@
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\Elephant.Constants.Sqlite\Elephant.Constants.Sqlite.csproj" />
+	  <ProjectReference Include="..\Elephant.Types.Interfaces\Elephant.Types.Interfaces.csproj" />
 	</ItemGroup>
 
 </Project>

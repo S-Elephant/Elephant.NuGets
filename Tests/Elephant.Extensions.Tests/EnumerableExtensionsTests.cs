@@ -73,5 +73,109 @@
 
             Assert.Equal(expected, x.None(x => x == value));
         }
-    }
+
+		/// <summary>
+		/// <see cref="Enumerable.ContainsAll{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/> test.
+		/// </summary>
+		[Fact]
+		[SpeedVeryFast, UnitTest]
+		public void ContainsAllReturnsTrueIfAllContained()
+		{
+			List<int> source = new() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, };
+			List<int> values = new() { 1, 5, 10, };
+
+			Assert.True(source.ContainsAll(values));
+		}
+
+		/// <summary>
+		/// <see cref="Enumerable.ContainsAll{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/> test.
+		/// </summary>
+		[Fact]
+		[SpeedVeryFast, UnitTest]
+		public void ContainsAllReturnsFalseIfNotAllContained()
+		{
+			List<int> source = new() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, };
+			List<int> values = new() { 1, 5, 10, 0, };
+
+			Assert.False(source.ContainsAll(values));
+		}
+
+		/// <summary>
+		/// <see cref="Enumerable.ContainsAll{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/> test.
+		/// </summary>
+		[Fact]
+		[SpeedVeryFast, UnitTest]
+		public void ContainsAllReturnsFalseIfSourceIsEmpty()
+		{
+			List<int> source = new();
+			List<int> values = new() { 0, };
+
+			Assert.False(source.ContainsAll(values));
+		}
+
+		/// <summary>
+		/// <see cref="Enumerable.ContainsAll{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/> test.
+		/// </summary>
+		[Fact]
+		[SpeedVeryFast, UnitTest]
+		public void ContainsAllReturnsTrueIfValuesIsEmpty()
+		{
+			List<int> source = new() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, };
+			List<int> values = new();
+
+			Assert.True(source.ContainsAll(values));
+		}
+		
+		/// <summary>
+		/// <see cref="Enumerable.ContainsNone{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/> test.
+		/// </summary>
+		[Fact]
+		[SpeedVeryFast, UnitTest]
+		public void ContainsNoneReturnsFalseIfSourceContainsAll()
+		{
+			List<int> source = new() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, };
+			List<int> values = new() { 1, 5, 10, };
+
+			Assert.False(source.ContainsNone(values));
+		}
+
+		/// <summary>
+		/// <see cref="Enumerable.ContainsNone{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/> test.
+		/// </summary>
+		[Fact]
+		[SpeedVeryFast, UnitTest]
+		public void ContainsNoneReturnsFalseIfSourceContainsAny()
+		{
+			List<int> source = new() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, };
+			List<int> values = new() { -1, 5, 100, };
+
+			Assert.False(source.ContainsNone(values));
+		}
+
+		/// <summary>
+		/// <see cref="Enumerable.ContainsNone{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/> test.
+		/// </summary>
+		[Fact]
+		[SpeedVeryFast, UnitTest]
+		public void ContainsNoneReturnsTrueIfSourceIsEmpty()
+		{
+			List<int> source = new();
+			List<int> values = new() { 0, };
+
+			Assert.True(source.ContainsNone(values));
+		}
+
+		/// <summary>
+		/// <see cref="Enumerable.ContainsNone{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/> test.
+		/// </summary>
+		[Fact]
+		[SpeedVeryFast, UnitTest]
+		public void ContainsNoneReturnsTrueIfValuesIsEmpty()
+		{
+			List<int> source = new() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, };
+			List<int> values = new();
+
+			Assert.True(source.ContainsNone(values));
+		}
+	}
 }

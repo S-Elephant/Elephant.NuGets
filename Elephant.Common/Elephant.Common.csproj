@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>3.0.5</Version>
-		<PackageReleaseNotes>Update dependency.</PackageReleaseNotes>
+		<Version>4.0.2</Version>
+		<PackageReleaseNotes>Improve pagination.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->

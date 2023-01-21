@@ -1,9 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>4.0.0</Version>
-		<PackageReleaseNotes>Pagination overhaul.</PackageReleaseNotes>
+		<Version>1.0.0</Version>
+		<PackageReleaseNotes>Initial release.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
@@ -15,7 +15,8 @@
 		<Company>SquirtingElephant</Company>
 		<Authors>SquirtingElephant</Authors>
 		<Description>Shared types library.</Description>
-		<CheckEolTargetFramework>false</CheckEolTargetFramework> <!-- Suppress the warning: warning NETSDK1138: The target framework 'netcoreapp3.0' is out of support and.. -->
+		<CheckEolTargetFramework>false</CheckEolTargetFramework>
+		<!-- Suppress the warning: warning NETSDK1138: The target framework 'netcoreapp3.0' is out of support and.. -->
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 	</PropertyGroup>
 
@@ -50,6 +51,9 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Elephant.Types.Interfaces\Elephant.Types.Interfaces.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
 	</ItemGroup>
 
 </Project>

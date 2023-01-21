@@ -12,7 +12,7 @@ namespace Elephant.DataAnnotations
 	[AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
 	public class FilenameAllowAlphaNumericOnly : ValidationAttribute
 	{
-		private Regex _regex = new (@"[^a-zA-Z0-9]");
+		private Regex _regex = new(@"[^a-zA-Z0-9]");
 
 		/// <summary>
 		/// Constructor.

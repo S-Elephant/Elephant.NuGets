@@ -72,7 +72,7 @@ namespace Elephant.DataAnnotations
 		/// Note that some bytes in <see cref="FileSignatureData"/> are shorter than shown on WikiPedia. This is because some editors use different bytes at the end
 		/// and it would cause this <see cref="FileSignatureAttribute"/> to wrongly invalidate those files.
 		/// </remarks>
-		private static readonly List<Data> FileSignatureData = new ()
+		private static readonly List<Data> FileSignatureData = new()
 		{
 			new (".doc", "application/msword", new () { new byte[] { 0xD0, 0xCF, 0x11, 0xE0, 0xA1, 0xB1, 0x1A, 0xE1 } }),
 			new (".docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", new () { new byte[] { 0x50, 0x4B, 0x03, 0x04 } }),
@@ -181,7 +181,7 @@ namespace Elephant.DataAnnotations
 				if (!selectedSignature.Signature.Any())
 					return ValidationResult.Success;
 
-				using (BinaryReader reader = new (file.OpenReadStream()))
+				using (BinaryReader reader = new(file.OpenReadStream()))
 				{
 					byte[] headerBytes = reader.ReadBytes(selectedSignature.Signature.Max(x => x.Length));
 

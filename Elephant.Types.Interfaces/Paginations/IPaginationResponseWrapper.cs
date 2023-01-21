@@ -1,21 +1,16 @@
-﻿using System.Collections.Generic;
-
-namespace Elephant.Types.Interfaces.ResponseWrappers
+﻿namespace Elephant.Types.Interfaces.Paginations
 {
 	/// <summary>
-	/// A wrapper for returning paginated data (for 1 page) along with a message and success status.
-	/// The <see cref="Offset"/> starts at 1.
+	/// Pagination request model.
 	/// </summary>
-	/// <remarks>This class does not paginate, it only contains paginated data (or it contains nothing).</remarks>
-	/// <typeparam name="TData">Your data type.</typeparam>
-	public interface IPagedResponseWrapper<TData>
-		: IResponseWrapper<TData>
+	/// <example><![CDATA[public async Task<IActionResult> All([FromQuery] PaginationRequestModel pagination, CancellationToken cancellationToken)]]></example>
+	public interface IPaginationResponseWrapper<TData>
 		where TData : new()
 	{
 		/// <summary>
-		/// The data items.
+		/// Wrapped data.
 		/// </summary>
-		new List<TData>? Data { get; set; }
+		TData? Data { get; set; }
 
 		/// <summary>
 		/// Indicates if this is the first page.
@@ -59,18 +54,13 @@ namespace Elephant.Types.Interfaces.ResponseWrappers
 		string? PageUrlPrevious { get; set; }
 
 		/// <summary>
-		/// The total page count given the current <see cref="Limit"/>.
-		/// </summary>
-		int TotalPageCount { get; set; }
-
-		/// <summary>
 		/// The total item count in the storage (= usually the database).
 		/// </summary>
 		int TotalItems { get; set; }
 
 		/// <summary>
-		/// Reset.
+		/// The total page count given the current <see cref="Limit"/>.
 		/// </summary>
-		void Reset();
+		int TotalPageCount { get; set; }
 	}
 }
