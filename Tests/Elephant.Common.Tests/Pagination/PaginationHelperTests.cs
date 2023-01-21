@@ -20,6 +20,7 @@ namespace Elephant.Common.Tests.Pagination
 		[InlineData(35, 110, 1, 35)]
 		[InlineData(35, 110, 2, 35)]
 		[InlineData(5, 110, 3, 35)]
+		[InlineData(3, 103, 999, 10)]
 		public void PaginateCountTests(int expectedCount, int sourceCount, int offset, int limit)
 		{
 			List<int> source = Enumerable.Range(1, sourceCount).ToList();

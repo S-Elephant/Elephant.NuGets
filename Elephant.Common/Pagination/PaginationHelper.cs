@@ -11,6 +11,7 @@ namespace Elephant.Common.Pagination
 		/// <summary>
 		/// Returns the paginated <paramref name="source"/>.
 		/// If <paramref name="limit"/> is smaller or equal to 0 them an empty List will be returned.
+		/// <paramref name="offset"/> is capped to the maximum possible value.
 		/// </summary>
 		/// <param name="source">The unpaginated elements.</param>
 		/// <param name="offset">Starts at 0.</param>
@@ -23,12 +24,18 @@ namespace Elephant.Common.Pagination
 				return source.ToList();
 			}
 
+			// Max offset.
+			int totalPageCount = TotalPageCount(source.Count(), limit);
+			if (offset > totalPageCount)
+				offset = totalPageCount - 1;
+
 			return source.Skip(offset * limit).Take(limit).ToList();
 		}
 
 		/// <summary>
 		/// Use this overload for database Linq queries. Returns the paginated <paramref name="source"/>.
 		/// If <paramref name="limit"/> is smaller or equal to 0 them an empty IQueryable will be returned.
+		/// <paramref name="offset"/> is capped to the maximum possible value.
 		/// </summary>
 		/// <param name="source">The unpaginated elements.</param>
 		/// <param name="offset">Starts at 0.</param>
@@ -40,6 +47,11 @@ namespace Elephant.Common.Pagination
 				Enumerable.Empty<TSource>().AsQueryable();
 				return source;
 			}
+
+			// Max offset.
+			int totalPageCount = TotalPageCount(source.Count(), limit);
+			if (offset > totalPageCount)
+				offset = totalPageCount - 1;
 
 			return source.Skip(offset * limit).Take(limit);
 		}
