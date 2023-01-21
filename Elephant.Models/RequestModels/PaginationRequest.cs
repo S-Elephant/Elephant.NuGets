@@ -1,4 +1,5 @@
 ﻿using Elephant.Types.Interfaces.Paginations;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Elephant.Models.RequestModels
@@ -12,12 +13,14 @@ namespace Elephant.Models.RequestModels
 		/// <summary>
 		/// The offset (=page number). Cannot be smaller than 0. Defaults to 0.
 		/// </summary>
+		[DefaultValue(0)]
 		[Range(0, int.MaxValue)]
 		public int Offset { get; set; } = 0;
 
 		/// <summary>
 		/// Maximum amount of results per page. Cannot be smaller than 1. Defaults to <see cref="int.MaxValue"/>.
 		/// </summary>
+		[DefaultValue(int.MaxValue)]
 		[Range(0, int.MaxValue)]
 		public int Limit { get; set; } = int.MaxValue;
 

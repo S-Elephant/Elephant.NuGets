@@ -31,7 +31,7 @@ namespace Elephant.Models.RequestModels
 			get => _offset;
 			set
 			{
-				_offset = value < 0 ? 0 : _offset;
+				_offset = value < 0 ? 0 : value;
 			}
 		}
 
@@ -44,7 +44,7 @@ namespace Elephant.Models.RequestModels
 			get => _limit;
 			set
 			{
-				_limit = value < 1 ? int.MaxValue : _limit;
+				_limit = value < 1 ? int.MaxValue : value;
 			}
 		}
 
