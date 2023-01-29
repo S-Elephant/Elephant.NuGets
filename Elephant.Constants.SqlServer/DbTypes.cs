@@ -206,14 +206,20 @@ namespace Elephant.Constants.SqlServer
 		#region Other
 
 		/// <summary>
+		/// An actual GUID. If you need a string GUID instead then you should probably use either <see cref="GuidHex"/> or <see cref="GuidString"/> instead.
+		/// This type of GUID has much better performance compared to string GUID's.
+		/// </summary>
+		public static readonly string Guid = $"UNIQUEIDENTIFIER";
+
+		/// <summary>
 		/// A string GUID should never be longer than 36 characters. If you need more then you should
 		/// probably use <see cref="GuidHex"/> instead.
 		/// </summary>
-		public static readonly string Guid = $"VARCHAR({DbLengths.Guid})";
+		public static readonly string GuidString = $"VARCHAR({DbLengths.Guid})";
 
 		/// <summary>
 		/// A GUID should never be longer than 68 characters because the hexadecimal version is at most 68 characters.
-		/// If you use the string version then you should probably use <see cref="Guid"/> instead.
+		/// If you use the string version then you should probably use <see cref="GuidString"/> instead.
 		/// </summary>
 		public static readonly string GuidHex = $"VARCHAR({DbLengths.GuidHex})";
 

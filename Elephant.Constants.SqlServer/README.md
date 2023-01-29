@@ -28,6 +28,12 @@ Contains constant Microsoft SQL Server database types plus a few extras.
 - Time
 - Timestamp
 
+### Guid
+
+- Guid
+- GuidString
+- GuidHex
+
 ### String
 
 - NVarCharMax
@@ -47,8 +53,6 @@ Contains constant Microsoft SQL Server database types plus a few extras.
 
 ### Other
 
-- Guid
-- GuidHex
 - Email
 - Enum
 - Name
@@ -85,3 +89,9 @@ Contains constant Microsoft SQL Server database types plus a few extras.
 - Name
 - Password
 - Url
+
+# Upgrade instructions
+
+## 2.0.4 &rarr; 3.0.0
+
+- Replace your **DbTypes.Guid** with **DbTypes.GuidString**.
