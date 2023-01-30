@@ -15,6 +15,10 @@ indent_size = 4
 # For more info see: https://github.com/DotNetAnalyzers/StyleCopAnalyzers/tree/master/documentation
 #########################################################################################################################################
 
+# A violation of this rule occurs when the spacing around a keyword is incorrect.
+# Supressed because it caused problems with the new() keyword without a space between new and ().
+dotnet_diagnostic.SA1000.severity = none
+
 # A single-line comment within a C# code file does not begin with a single space.
 dotnet_diagnostic.SA1005.severity = none
 
