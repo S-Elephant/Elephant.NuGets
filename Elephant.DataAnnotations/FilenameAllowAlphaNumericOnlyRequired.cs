@@ -13,8 +13,8 @@ namespace Elephant.DataAnnotations
 		/// <summary>
 		/// Constructor.
 		/// </summary>
-		public FilenameAllowAlphaNumericOnlyRequired(bool allowDot = false)
-			: base(allowDot)
+		public FilenameAllowAlphaNumericOnlyRequired(bool allowDot = false, bool allowUnderscore = false)
+			: base(allowDot, allowUnderscore)
 		{
 		}
 

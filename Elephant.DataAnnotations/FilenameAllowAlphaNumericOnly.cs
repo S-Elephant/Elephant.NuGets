@@ -5,23 +5,32 @@ namespace Elephant.DataAnnotations
 {
 	/// <summary>
 	/// Validation attribute to check if the <see cref="string"/> or <see cref="int"/> or <see cref="sbyte"/>
-	/// or <see cref="short"/> or <see cref="long"/> or <see cref="byte"/>.
+	/// or <see cref="short"/> or <see cref="long"/> or <see cref="byte"/>
 	/// is either null or only contains alphanumeric (= the numbers 0-9 and letters A-Z (both uppercase and lowercase)) characters
 	/// and the numeric value (if any) must be equal or greater than zero.
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
 	public class FilenameAllowAlphaNumericOnly : ValidationAttribute
 	{
-		private Regex _regex = new(@"[^a-zA-Z0-9]");
+		private const string _baseRegex = @"[^a-zA-Z0-9]";
+		private Regex _regex = new (_baseRegex);
 
 		/// <summary>
 		/// Constructor.
 		/// </summary>
 		/// <param name="allowDot">If true, then dots "." are also allowed. Defaults to false.</param>
-		public FilenameAllowAlphaNumericOnly(bool allowDot = false)
+		/// <param name="allowUnderscore">If true, then underscores "_" are also allowed. Defaults to false.</param>
+		public FilenameAllowAlphaNumericOnly(bool allowDot = false, bool allowUnderscore = false)
 		{
+			string finalRegex = _baseRegex;
+
 			if (allowDot)
-				_regex = new(@"[^a-zA-Z0-9.]");
+				finalRegex = finalRegex.Insert(_baseRegex.Length - 1, ".");
+
+			if (allowUnderscore)
+				finalRegex = finalRegex.Insert(_baseRegex.Length - 1, "_");
+
+			_regex = new Regex(finalRegex);
 		}
 
 		/// <summary>

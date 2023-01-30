@@ -1,6 +1,6 @@
-﻿using Elephant.Types.Interfaces.Paginations;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using Elephant.Types.Interfaces.Paginations;
 
 namespace Elephant.Models.RequestModels
 {

@@ -14,7 +14,7 @@ namespace Elephant.Models.Tests.ResponseModelTests
 		[SpeedVeryFast]
 		public void IsConstructorOffsetCorrectlyAssigned()
 		{
-			PaginationResponseWrapper<bool> sut = new(true, 33, 100);
+			PaginationResponseWrapper<bool> sut = new (true, 33, 100);
 
 			Assert.Equal(33, sut.Offset);
 		}
@@ -26,7 +26,7 @@ namespace Elephant.Models.Tests.ResponseModelTests
 		[SpeedVeryFast]
 		public void IsConstructorLimitCorrectlyAssigned()
 		{
-			PaginationResponseWrapper<bool> sut = new(true, 33, 100);
+			PaginationResponseWrapper<bool> sut = new (true, 33, 100);
 
 			Assert.Equal(100, sut.Limit);
 		}

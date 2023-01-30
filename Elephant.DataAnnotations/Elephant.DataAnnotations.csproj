@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.0.2</Version>
-		<PackageReleaseNotes>Add optional dot parameter to FilenameAllowAlphaNumeric.</PackageReleaseNotes>
+		<Version>1.0.3</Version>
+		<PackageReleaseNotes>Add optional underscore parameter to FilenameAllowAlphaNumeric.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->

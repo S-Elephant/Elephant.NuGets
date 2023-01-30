@@ -2,30 +2,30 @@ using Elephant.DataAnnotations;
 
 namespace Elephant.DataAnnotations.Tests
 {
-    /// <summary>
-    /// <see cref="FilenameAllowAlphaNumericOnly"/> tests.
-    /// </summary>
-    public class FilenameAllowAlphaNumericOnlyTests
-    {
-        /// <summary>
-        /// Test class.
-        /// </summary>
-        private class ValidationTargetString
-        {
-            /// <summary>
-            /// Property to validate.
-            /// </summary>
-            [FilenameAllowAlphaNumericOnly]
-            public string? Value { get; set; }
+	/// <summary>
+	/// <see cref="FilenameAllowAlphaNumericOnly"/> tests.
+	/// </summary>
+	public class FilenameAllowAlphaNumericOnlyTests
+	{
+		/// <summary>
+		/// Test class.
+		/// </summary>
+		private class ValidationTargetString
+		{
+			/// <summary>
+			/// Property to validate.
+			/// </summary>
+			[FilenameAllowAlphaNumericOnly]
+			public string? Value { get; set; }
 
-            /// <summary>
-            /// Constructor.
-            /// </summary>
-            public ValidationTargetString(string? value)
-            {
-                Value = value;
-            }
-        }
+			/// <summary>
+			/// Constructor.
+			/// </summary>
+			public ValidationTargetString(string? value)
+			{
+				Value = value;
+			}
+		}
 
 		/// <summary>
 		/// Test class.
@@ -50,91 +50,113 @@ namespace Elephant.DataAnnotations.Tests
 		/// <summary>
 		/// Test class.
 		/// </summary>
+		private class ValidationTargetStringAllowDotAndUnderscore
+		{
+			/// <summary>
+			/// Property to validate.
+			/// </summary>
+			[FilenameAllowAlphaNumericOnly(true, true)]
+			public string? Value { get; set; }
+
+			/// <summary>
+			/// Constructor.
+			/// </summary>
+			public ValidationTargetStringAllowDotAndUnderscore(string? value)
+			{
+				Value = value;
+			}
+		}
+
+		/// <summary>
+		/// Test class.
+		/// </summary>
 		private class ValidationTargetFloat
-        {
-            /// <summary>
-            /// Property to validate.
-            /// </summary>
-            [FilenameAllowAlphaNumericOnly]
-            public float? Value { get; set; }
+		{
+			/// <summary>
+			/// Property to validate.
+			/// </summary>
+			[FilenameAllowAlphaNumericOnly]
+			public float? Value { get; set; }
 
-            /// <summary>
-            /// Constructor.
-            /// </summary>
-            public ValidationTargetFloat(float? value)
-            {
-                Value = value;
-            }
-        }
+			/// <summary>
+			/// Constructor.
+			/// </summary>
+			public ValidationTargetFloat(float? value)
+			{
+				Value = value;
+			}
+		}
 
-        /// <summary>
-        /// Test class.
-        /// </summary>
-        private class ValidationTargetInt
-        {
-            /// <summary>
-            /// Property to validate.
-            /// </summary>
-            [FilenameAllowAlphaNumericOnly]
-            public int? Value { get; set; }
+		/// <summary>
+		/// Test class.
+		/// </summary>
+		private class ValidationTargetInt
+		{
+			/// <summary>
+			/// Property to validate.
+			/// </summary>
+			[FilenameAllowAlphaNumericOnly]
+			public int? Value { get; set; }
 
-            /// <summary>
-            /// Constructor.
-            /// </summary>
-            public ValidationTargetInt(int? value)
-            {
-                Value = value;
-            }
-        }
+			/// <summary>
+			/// Constructor.
+			/// </summary>
+			public ValidationTargetInt(int? value)
+			{
+				Value = value;
+			}
+		}
 
-        /// <summary>
-        /// Is valid if string contains only alphanumerics.
-        /// </summary>
-        [Theory]
-        [InlineData("abc")]
-        [InlineData("0")]
-        [InlineData("54389325723553444")]
-        [InlineData("0jiogfrewGREGR4235562300Eb")]
-        [SpeedVeryFast, UnitTest]
-        public void IsValidIfValueIsAlphanumericOnly(string value)
-        {
-            // Arrange.
-            ValidationTargetString target = new (value);
+		/// <summary>
+		/// Is valid if string contains only alphanumerics.
+		/// </summary>
+		[Theory]
+		[InlineData("abc")]
+		[InlineData("0")]
+		[InlineData("54389325723553444")]
+		[InlineData("0jiogfrewGREGR4235562300Eb")]
+		[SpeedVeryFast, UnitTest]
+		public void IsValidIfValueIsAlphanumericOnly(string value)
+		{
+			// Arrange.
+			ValidationTargetString target = new(value);
 
-            // Act.
-            bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
+			// Act.
+			bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
 
-            // Assert.
-            Assert.True(isValid);
-        }
+			// Assert.
+			Assert.True(isValid);
+		}
 
-        /// <summary>
-        /// Is invalid if string contains not just alphanumerics.
-        /// </summary>
-        [Theory]
-        [InlineData("abc!")]
-        [InlineData("-0")]
-        [InlineData("-1")]
-        [InlineData("54389325723553444 greger")]
-        [InlineData("^")]
-        [InlineData(@"\")]
-        [InlineData(@"\a")]
-        [InlineData(@"a\")]
-        [InlineData("^^test")]
-        [InlineData("Ë")]
+		/// <summary>
+		/// Is invalid if string contains not just alphanumerics.
+		/// </summary>
+		[Theory]
+		[InlineData("a.png")]
+		[InlineData("a_a")]
+		[InlineData("abc!")]
+		[InlineData("-0")]
+		[InlineData("-1")]
+		[InlineData("54389325723553444 greger")]
+		[InlineData("^")]
+		[InlineData(@"\")]
+		[InlineData(@"\a")]
+		[InlineData(@"a\")]
+		[InlineData("^^test")]
+		[InlineData("Ë")]
 		[InlineData("test.png")]
 		[SpeedVeryFast, UnitTest]
-        public void IsInvalidIfValueIsAlphanumericOnly(string value)
-        {
-            // Arrange.
-            ValidationTargetString target = new (value);
+		public void IsInvalidIfValueIsAlphanumericOnly(string value)
+		{
+			// Arrange.
+			ValidationTargetString target = new(value);
 
-            // Act.
-            bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
+			// Act.
+			bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
 
-            // Assert.
-            Assert.False(isValid);
-        }
+			// Assert.
+			Assert.False(isValid);
+		}
 
 		/// <summary>
 		/// Is valid if string contains alphanumerics, including a dot.
@@ -158,60 +180,104 @@ namespace Elephant.DataAnnotations.Tests
 		}
 
 		/// <summary>
+		/// Is invalid if string contains alphanumerics, including a dot and underscore.
+		/// </summary>
+		[Theory]
+		[InlineData("test_a.png")]
+		[InlineData("_")]
+		[InlineData("_._")]
+		[InlineData("___")]
+		[InlineData("_a_")]
+		[SpeedVeryFast, UnitTest]
+		public void IsInvalidIfValueIsAlphanumericWithDotAndUnderscore(string value)
+		{
+			// Arrange.
+			ValidationTargetStringAllowDot target = new(value);
+
+			// Act.
+			bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
+
+			// Assert.
+			Assert.False(isValid);
+		}
+
+		/// <summary>
+		/// Is valid if string contains alphanumerics, including a dot and underscore.
+		/// </summary>
+		[Theory]
+		[InlineData("test_a.png")]
+		[InlineData("_")]
+		[InlineData("_._")]
+		[InlineData("___")]
+		[InlineData("_a_")]
+		[SpeedVeryFast, UnitTest]
+		public void IsValidIfValueIsAlphanumericWithDotAndUnderscore(string value)
+		{
+			// Arrange.
+			ValidationTargetStringAllowDotAndUnderscore target = new(value);
+
+			// Act.
+			bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
+
+			// Assert.
+			Assert.True(isValid);
+		}
+
+		/// <summary>
 		/// Is valid if is numeric only and zero or positive.
 		/// </summary>
 		[Theory]
-        [InlineData(0)]
-        [InlineData(1)]
-        [InlineData(54389325)]
-        [SpeedVeryFast, UnitTest]
-        public void IsValidIfValueIsNumericOnly(int value)
-        {
-            // Arrange.
-            ValidationTargetInt target = new (value);
+		[InlineData(0)]
+		[InlineData(1)]
+		[InlineData(54389325)]
+		[SpeedVeryFast, UnitTest]
+		public void IsValidIfValueIsNumericOnly(int value)
+		{
+			// Arrange.
+			ValidationTargetInt target = new(value);
 
-            // Act.
-            bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
+			// Act.
+			bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
 
-            // Assert.
-            Assert.True(isValid);
-        }
+			// Assert.
+			Assert.True(isValid);
+		}
 
-        /// <summary>
-        /// Is valid if is numeric only but smaller than zero.
-        /// </summary>
-        [Theory]
-        [InlineData(-1)]
-        [InlineData(-1543)]
-        [InlineData(-1000000)]
-        [SpeedVeryFast, UnitTest]
-        public void IsInvalidIfValueIsNumericOnlyButLessThanZero(int value)
-        {
-            // Arrange.
-            ValidationTargetInt target = new (value);
+		/// <summary>
+		/// Is valid if is numeric only but smaller than zero.
+		/// </summary>
+		[Theory]
+		[InlineData(-1)]
+		[InlineData(-1543)]
+		[InlineData(-1000000)]
+		[SpeedVeryFast, UnitTest]
+		public void IsInvalidIfValueIsNumericOnlyButLessThanZero(int value)
+		{
+			// Arrange.
+			ValidationTargetInt target = new(value);
 
-            // Act.
-            bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
+			// Act.
+			bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
 
-            // Assert.
-            Assert.False(isValid);
-        }
+			// Assert.
+			Assert.False(isValid);
+		}
 
-        /// <summary>
-        /// Is invalid if used on an unsupported type.
-        /// </summary>
-        [Fact]
-        [SpeedVeryFast, UnitTest]
-        public void IsInvalidIfUsedOnUnsupportedType()
-        {
-            // Arrange.
-            ValidationTargetFloat target = new (1);
+		/// <summary>
+		/// Is invalid if used on an unsupported type.
+		/// </summary>
+		[Fact]
+		[SpeedVeryFast, UnitTest]
+		public void IsInvalidIfUsedOnUnsupportedType()
+		{
+			// Arrange.
+			ValidationTargetFloat target = new(1);
 
-            // Act.
-            bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
+			// Act.
+			bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
 
-            // Assert.
-            Assert.False(isValid);
-        }
-    }
+			// Assert.
+			Assert.False(isValid);
+		}
+	}
 }
