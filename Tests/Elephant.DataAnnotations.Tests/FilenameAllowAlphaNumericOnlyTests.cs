@@ -108,6 +108,27 @@ namespace Elephant.DataAnnotations.Tests
 		}
 
 		/// <summary>
+		/// Test class.
+		/// Extra characters: \/[]{}+-
+		/// </summary>
+		private class ValidationTargetStringWithExtraCharacters
+		{
+			/// <summary>
+			/// Property to validate.
+			/// </summary>
+			[FilenameAllowAlphaNumericOnly(extraAllowedCharacters: @"\/][{}+-")]
+			public string? Value { get; set; }
+
+			/// <summary>
+			/// Constructor.
+			/// </summary>
+			public ValidationTargetStringWithExtraCharacters(string? value)
+			{
+				Value = value;
+			}
+		}
+
+		/// <summary>
 		/// Is valid if string contains only alphanumerics.
 		/// </summary>
 		[Theory]
@@ -272,6 +293,49 @@ namespace Elephant.DataAnnotations.Tests
 		{
 			// Arrange.
 			ValidationTargetFloat target = new(1);
+
+			// Act.
+			bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
+
+			// Assert.
+			Assert.False(isValid);
+		}
+
+		/// <summary>
+		/// Is valid if string contains alphanumerics and/or characters included in the <see cref="FilenameAllowAlphaNumericOnly"/> extraCharacters parameter.
+		/// </summary>
+		[Theory]
+		[InlineData("1+2-3")]
+		[InlineData("[a]")]
+		[InlineData("--")]
+		[InlineData(@"Home/page1/page2")]
+		[InlineData(@"Directory\directory\File")]
+		[SpeedVeryFast, UnitTest]
+		public void IsValidIfValueIsWithinExtraCharacters(string value)
+		{
+			// Arrange.
+			ValidationTargetStringWithExtraCharacters target = new(value);
+
+			// Act.
+			bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
+
+			// Assert.
+			Assert.True(isValid);
+		}
+
+		/// <summary>
+		/// Is invalid if string contains characters not included in the <see cref="FilenameAllowAlphaNumericOnly"/> extraCharacters parameter.
+		/// </summary>
+		[Theory]
+		[InlineData("a&a")]
+		[InlineData("^b&%$")]
+		[InlineData("|f")]
+		[InlineData(@"_")]
+		[SpeedVeryFast, UnitTest]
+		public void IsInvalidIfValueIsWithinExtraCharacters(string value)
+		{
+			// Arrange.
+			ValidationTargetStringWithExtraCharacters target = new(value);
 
 			// Act.
 			bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);

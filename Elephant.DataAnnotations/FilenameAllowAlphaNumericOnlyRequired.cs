@@ -13,8 +13,11 @@ namespace Elephant.DataAnnotations
 		/// <summary>
 		/// Constructor.
 		/// </summary>
-		public FilenameAllowAlphaNumericOnlyRequired(bool allowDot = false, bool allowUnderscore = false)
-			: base(allowDot, allowUnderscore)
+		/// <param name="allowDot">If true, then dots "." are also allowed. Defaults to false.</param>
+		/// <param name="allowUnderscore">If true, then underscores "_" are also allowed. Defaults to false.</param>
+		/// <param name="extraAllowedCharacters">If not empty, then any character (case-sensitive) in this string will be allowed as well.</param>
+		public FilenameAllowAlphaNumericOnlyRequired(bool allowDot = false, bool allowUnderscore = false, string extraAllowedCharacters = "")
+			: base(allowDot, allowUnderscore, extraAllowedCharacters)
 		{
 		}
 

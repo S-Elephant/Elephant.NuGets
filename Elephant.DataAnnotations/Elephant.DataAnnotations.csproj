@@ -1,9 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.0.3</Version>
-		<PackageReleaseNotes>Add optional underscore parameter to FilenameAllowAlphaNumeric.</PackageReleaseNotes>
+		<Version>1.0.4</Version>
+		<PackageReleaseNotes>Add optional extraCharacters parameter to FilenameAllowAlphaNumeric.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Elephant.DataAnnotations
@@ -13,16 +14,19 @@ namespace Elephant.DataAnnotations
 	public class FilenameAllowAlphaNumericOnly : ValidationAttribute
 	{
 		private const string _baseRegex = @"[^a-zA-Z0-9]";
-		private Regex _regex = new (_baseRegex);
+		private Regex _regex = new(_baseRegex);
 
 		/// <summary>
 		/// Constructor.
 		/// </summary>
 		/// <param name="allowDot">If true, then dots "." are also allowed. Defaults to false.</param>
 		/// <param name="allowUnderscore">If true, then underscores "_" are also allowed. Defaults to false.</param>
-		public FilenameAllowAlphaNumericOnly(bool allowDot = false, bool allowUnderscore = false)
+		/// <param name="extraAllowedCharacters">If not empty, then any character (case-sensitive) in this string will be allowed as well.</param>
+		public FilenameAllowAlphaNumericOnly(bool allowDot = false, bool allowUnderscore = false, string extraAllowedCharacters = "")
 		{
-			string finalRegex = _baseRegex;
+			////_regex = new Regex(@"[^a-zA-Z0-9\\/\[\]\+-]*$");
+
+			StringBuilder finalRegex = new(_baseRegex);
 
 			if (allowDot)
 				finalRegex = finalRegex.Insert(_baseRegex.Length - 1, ".");
@@ -30,7 +34,26 @@ namespace Elephant.DataAnnotations
 			if (allowUnderscore)
 				finalRegex = finalRegex.Insert(_baseRegex.Length - 1, "_");
 
-			_regex = new Regex(finalRegex);
+			if (extraAllowedCharacters != string.Empty)
+			{
+				/* Yeah... This must be escapped manually because Regex.Escape(..) does not escape certain cases like "{}" for example and
+				 * because this goes between the brackets [], this must be escaped...
+				 * For more info see: https://learn.microsoft.com/en-us/dotnet/api/system.text.regularexpressions.regex.escape?redirectedfrom=MSDN&view=net-7.0#System_Text_RegularExpressions_Regex_Escape_System_String_
+				 * Quote:
+				 * "While the Escape method escapes the straight opening bracket ([) and opening brace ({) characters, it does not escape their corresponding
+				 * closing characters (] and }). In most cases, escaping these is not necessary. If a closing bracket or brace is not preceded by its
+				 * corresponding opening character, the regular expression engine interprets it literally. If an opening bracket or brace is interpreted
+				 * as a metacharacter, the regular expression engine interprets the first corresponding closing character as a metacharacter. If this is not
+				 * the desired behavior, the closing bracket or brace should be escaped by explicitly prepending the backslash (\) character."
+				 */
+				StringBuilder escapedExtraAllowedCharacters = new();
+				foreach (char extraAllowedCharacter in extraAllowedCharacters)
+					escapedExtraAllowedCharacters.Append($"\\{extraAllowedCharacter}");
+
+				finalRegex = finalRegex.Insert(_baseRegex.Length - 1, escapedExtraAllowedCharacters);
+			}
+
+			_regex = new Regex(finalRegex.ToString());
 		}
 
 		/// <summary>
