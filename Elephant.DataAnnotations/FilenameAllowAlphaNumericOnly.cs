@@ -24,8 +24,6 @@ namespace Elephant.DataAnnotations
 		/// <param name="extraAllowedCharacters">If not empty, then any character (case-sensitive) in this string will be allowed as well.</param>
 		public FilenameAllowAlphaNumericOnly(bool allowDot = false, bool allowUnderscore = false, string extraAllowedCharacters = "")
 		{
-			////_regex = new Regex(@"[^a-zA-Z0-9\\/\[\]\+-]*$");
-
 			StringBuilder finalRegex = new(_baseRegex);
 
 			if (allowDot)
