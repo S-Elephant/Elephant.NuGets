@@ -25,7 +25,8 @@ namespace Elephant.ApiControllers
 				{
 					StatusCodes.Status200OK => result.UsesData && useData ? Ok(result.Data) : Ok(),
 					StatusCodes.Status201Created => result.UsesData && useData ? CreatedResult(result.Data) : CreatedResult(),
-                    StatusCodes.Status401Unauthorized => throw new Exception($"IsSuccess is {result.IsSuccess} and {nameof(result.StatusCode)} is {result.StatusCode}?"),
+					StatusCodes.Status204NoContent => NoContent(),
+					StatusCodes.Status401Unauthorized => throw new Exception($"IsSuccess is {result.IsSuccess} and {nameof(result.StatusCode)} is {result.StatusCode}?"),
                     StatusCodes.Status404NotFound => throw new Exception($"IsSuccess is {result.IsSuccess} and {nameof(result.StatusCode)} is {result.StatusCode}?"),
                     StatusCodes.Status422UnprocessableEntity => throw new Exception($"IsSuccess is {result.IsSuccess} and {nameof(result.StatusCode)} is {result.StatusCode}?"),
                     StatusCodes.Status500InternalServerError => throw new Exception($"IsSuccess is {result.IsSuccess} and {nameof(result.StatusCode)} is {result.StatusCode}?"),
@@ -37,7 +38,8 @@ namespace Elephant.ApiControllers
 			{
 				StatusCodes.Status200OK => throw new Exception($"IsSuccess is {result.IsSuccess} and {nameof(result.StatusCode)} is {result.StatusCode}?"),
                 StatusCodes.Status201Created => throw new Exception($"IsSuccess is {result.IsSuccess} and {nameof(result.StatusCode)} is {result.StatusCode}?"),
-                StatusCodes.Status400BadRequest => BadRequest(result.Message),
+				StatusCodes.Status204NoContent => throw new Exception($"IsSuccess is {result.IsSuccess} and {nameof(result.StatusCode)} is {result.StatusCode}?"),
+				StatusCodes.Status400BadRequest => BadRequest(result.Message),
 				StatusCodes.Status401Unauthorized => Unauthorized(result.Message),
 				StatusCodes.Status404NotFound => NotFound(result.Message),
                 StatusCodes.Status422UnprocessableEntity => UnprocessableEntity(result.Message),
