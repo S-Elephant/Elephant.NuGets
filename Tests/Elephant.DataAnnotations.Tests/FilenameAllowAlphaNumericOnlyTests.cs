@@ -1,5 +1,3 @@
-using Elephant.DataAnnotations;
-
 namespace Elephant.DataAnnotations.Tests
 {
 	/// <summary>
