@@ -4,6 +4,8 @@ Contains validation attributes commonly used in backend endpoint Controllers and
 
 # Attribute list
 
+- [**EqualsAnotherPropertyStringAttribute**(string otherPropertyName)]
+- [**EqualsAnotherPropertyStringRequiredAttribute**(string otherPropertyName)]
 - [**FilenameAllowAlphaNumericOnly**(bool allowDot, bool allowUnderscore, string extraAllowedCharacters)] *(compatible with string, byte, sbyte, int, long, short)*
 - [**FilenameAllowAlphaNumericOnlyRequired**(bool allowDot, bool allowUnderscore, string extraAllowedCharacters)] *(compatible with string, byte, sbyte, int, long, short)*
 - [**FileSignature**(params AllowedFileExtensionType[] allowedFileExtensions)]
