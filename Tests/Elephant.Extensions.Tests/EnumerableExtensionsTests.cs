@@ -300,6 +300,28 @@
 			Assert.False(source.IsLast(first));
 		}
 
+		/// <summary>
+		/// <see cref="Enumerable.IsLast{TSource}"/> test with a simple class and a null value.
+		/// </summary>
+		[Fact]
+		[SpeedVeryFast, UnitTest]
+		public void IsLastSimpleClassReturnsFalseIfNull()
+		{
+			// Arrange.
+			List<SimpleClass> source = new()
+			{
+				new SimpleClass(),
+				new SimpleClass(),
+				new SimpleClass(),
+			};
+
+			SimpleClass? itemToCompare = null;
+
+			// Act and assert.
+			Assert.False(source.IsLast(itemToCompare));
+		}
+
+
 		private class SimpleClass
 		{
 			/// <summary>
