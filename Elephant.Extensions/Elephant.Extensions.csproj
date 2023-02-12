@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.0.5</Version>
-		<PackageReleaseNotes>Add extension ContainsNone.</PackageReleaseNotes>
+		<Version>1.0.6</Version>
+		<PackageReleaseNotes>Add IsFirst() and IsLast() extensions.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
