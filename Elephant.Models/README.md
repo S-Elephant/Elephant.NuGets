@@ -24,15 +24,16 @@ public class PaginationRequest : IPaginationRequest
 
 # Response models
 
-## PaginationResponseWrapper
+## PaginationResponseWrapper and PaginationResponseModel
 
 ```c#
-PaginationResponseWrapper<TData> : IPaginationResponseWrapper<TData> where TData : new()
+PaginationResponseModel : IPaginationResponseModel
+PaginationResponseWrapper<TData> : PaginationResponseModel, IPaginationResponseWrapper<TData> where TData : new()
 ```
 
 ### Properties
 
-- TData? Data
+- TData? Data *(wrapper only)*
 - bool IsFirstPage
 - bool IsLastPage
 - int Offset
@@ -43,3 +44,9 @@ PaginationResponseWrapper<TData> : IPaginationResponseWrapper<TData> where TData
 - string? PageUrlPrevious
 - int TotalItems
 - int TotalPageCount
+
+# Upgrade instructions
+
+## 1.0.2 &rarr; 2.0.0
+
+- Add/Replace your **Elephant.Models.RequestModels** with **Elephant.Models.ResponseModels** if you used the PaginationResponseWrapper<TData>.

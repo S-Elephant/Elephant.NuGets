@@ -1,17 +1,13 @@
 ﻿namespace Elephant.Types.Interfaces.Paginations
 {
 	/// <summary>
-	/// Pagination request model.
+	/// Pagination response model.
 	/// </summary>
-	/// <example><![CDATA[public async Task<IActionResult> All([FromQuery] PaginationRequestModel pagination, CancellationToken cancellationToken)]]></example>
-	public interface IPaginationResponseWrapper<TData>
-		where TData : new()
+	/// <remarks>
+	/// May be used as a base class.
+	/// </remarks>
+	public interface IPaginationResponseModel
 	{
-		/// <summary>
-		/// Wrapped data.
-		/// </summary>
-		TData? Data { get; set; }
-
 		/// <summary>
 		/// Indicates if this is the first page.
 		/// </summary>
@@ -23,7 +19,7 @@
 		bool IsLastPage { get; set; }
 
 		/// <summary>
-		/// The offset (=page number - 1) that this <see cref="Data"/> is taken from.
+		/// The offset (=page number - 1).
 		/// Starts at 0 and defaults to 0.
 		/// Can't be smaller than 0.
 		/// </summary>
