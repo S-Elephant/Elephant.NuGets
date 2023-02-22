@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>2.0.0</Version>
-		<PackageReleaseNotes>Change namespace and URL into URI, new pagination.</PackageReleaseNotes>
+		<Version>2.0.1</Version>
+		<PackageReleaseNotes>Rename URL parameters into URIs instead.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->

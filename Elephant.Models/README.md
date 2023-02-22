@@ -38,10 +38,10 @@ PaginationResponseWrapper<TData> : PaginationResponseModel, IPaginationResponseW
 - bool IsLastPage
 - int Offset
 - int Limit
-- string? PageUrlFirst
-- string? PageUrlLast
-- string? PageUrlNext
-- string? PageUrlPrevious
+- string? PageUriFirst
+- string? PageUriLast
+- string? PageUriNext
+- string? PageUriPrevious
 - int TotalItems
 - int TotalPageCount
 

@@ -36,9 +36,9 @@ namespace Elephant.Models.ResponseModels
 		/// Constructor with initializers.
 		/// </summary>
 		public PaginationResponseWrapper(TData? data, int offset, int limit, int totalItems,
-			int totalPageCount, bool isFirstPage, bool isLastPage, string? pageUrlFirst = null,
-			string? pageUrlLast = null, string? pageUrlPrevious = null, string? pageUrlNext = null)
-		: base(offset, limit, totalItems, totalPageCount, isFirstPage, isLastPage, pageUrlFirst, pageUrlLast, pageUrlPrevious, pageUrlNext)
+			int totalPageCount, bool isFirstPage, bool isLastPage, string? pageUriFirst = null,
+			string? pageUriLast = null, string? pageUriPrevious = null, string? pageUriNext = null)
+		: base(offset, limit, totalItems, totalPageCount, isFirstPage, isLastPage, pageUriFirst, pageUriLast, pageUriPrevious, pageUriNext)
 		{
 			Data = data;
 		}

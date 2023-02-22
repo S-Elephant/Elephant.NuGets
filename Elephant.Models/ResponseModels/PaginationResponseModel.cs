@@ -91,8 +91,8 @@ namespace Elephant.Models.ResponseModels
 		/// Constructor with initializers.
 		/// </summary>
 		public PaginationResponseModel(int offset, int limit, int totalItems,
-			int totalPageCount, bool isFirstPage, bool isLastPage, string? pageUrlFirst = null,
-			string? pageUrlLast = null, string? pageUrlPrevious = null, string? pageUrlNext = null)
+			int totalPageCount, bool isFirstPage, bool isLastPage, string? pageUriFirst = null,
+			string? pageUriLast = null, string? pageUriPrevious = null, string? pageUriNext = null)
 		{
 			Offset = offset;
 			Limit = limit;
@@ -101,10 +101,10 @@ namespace Elephant.Models.ResponseModels
 			TotalPageCount = totalPageCount;
 			IsFirstPage = isFirstPage;
 			IsLastPage = isLastPage;
-			PageUriFirst = pageUrlFirst;
-			PageUriLast = pageUrlLast;
-			PageUriPrevious = pageUrlPrevious;
-			PageUriNext = pageUrlNext;
+			PageUriFirst = pageUriFirst;
+			PageUriLast = pageUriLast;
+			PageUriPrevious = pageUriPrevious;
+			PageUriNext = pageUriNext;
 		}
 	}
 }
