@@ -321,13 +321,12 @@
 			Assert.False(source.IsLast(itemToCompare));
 		}
 
-
 		private class SimpleClass
 		{
 			/// <summary>
 			/// Test value.
 			/// </summary>
-			public string A = "a";
+			public string A { get; set; } = "a";
 		}
 	}
 }
