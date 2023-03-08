@@ -2,6 +2,8 @@
 
 This project contains all (public) NuGet packages. Each project contains its own README.md
 
+These NuGets can be downloaded from [NuGet.org](https://www.nuget.org/profiles/SquirtingElephant) or from the "Manage NuGet Packages" in your IDE.
+
 # Troubleshooting
 
 ## Reset your local NuGet service package(s)
