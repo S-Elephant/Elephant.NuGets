@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 
-namespace Elephant.MyHome.Pviewer.Front4.Shared
+namespace Elephant.Types
 {
 	/// <summary>
 	/// <see cref="CancellationTokenSource"/> wrapper to prevent exceptions.

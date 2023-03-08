@@ -1,10 +1,7 @@
-﻿using Elephant.MyHome.Pviewer.Front4.Shared;
-using Elephant.Types.ResponseWrappers;
-
-namespace Elephant.Types.Tests
+﻿namespace Elephant.Types.Tests
 {
 	/// <summary>
-	/// <see cref="ResponseWrapper{T}"/> child tests.
+	/// <see cref="ElephantCancellationTokenSource"/> tests.
 	/// </summary>
 	public class ElephantCancellationTokenSourceTests : IDisposable
 	{

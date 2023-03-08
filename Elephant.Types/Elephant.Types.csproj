@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>4.0.1</Version>
-		<PackageReleaseNotes>Add CancellationTokenSource wrapper.</PackageReleaseNotes>
+		<Version>4.0.2</Version>
+		<PackageReleaseNotes>Use proper namespace.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
