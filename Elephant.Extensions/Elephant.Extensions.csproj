@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.0.6</Version>
-		<PackageReleaseNotes>Add IsFirst() and IsLast() extensions.</PackageReleaseNotes>
+		<Version>1.0.8</Version>
+		<PackageReleaseNotes>Add Stream extension.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->

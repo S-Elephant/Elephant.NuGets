@@ -30,3 +30,8 @@ RecycleOne(this int value, int max)
 Recycle(this int? value, int max, int min = 0)
 RecycleOne(this int? value, int max)
 ```
+
+## Stream extensions
+```c#
+byte[] ToByteArray(this Stream? stream)
+```
