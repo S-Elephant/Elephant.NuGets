@@ -23,7 +23,16 @@ None<TSource>(this IEnumerable<TSource> source)
 None<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
 ```
 
+## List extensions
+
+```c#
+AddIfNotExists<T>(this List<T> list, T itemToAdd)
+AddOrRemoveIfExists<TSource>(this IList<TSource> list, TSource item)
+AddOrRemoveIfExistsNullable<TSource>(this IList<TSource>? list, TSource item)
+```
+
 ## Recycle extensions
+
 ```c#
 Recycle(this int value, int max, int min = 0)
 RecycleOne(this int value, int max)

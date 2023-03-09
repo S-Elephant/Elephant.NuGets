@@ -2,16 +2,28 @@
 
 Generic and shared common code library.
 
+## ConvertFrom
+
+```c#
+ConvertFrom.NewLineStringToStringList(string? newLineValues, StringSplitOptions stringSplitOptions = StringSplitOptions.RemoveEmptyEntries)
+ConvertFrom.SemiColonStringToStringList(string? semiColonValues, StringSplitOptions stringSplitOptions = StringSplitOptions.RemoveEmptyEntries)
+ConvertFrom.StringListToNewLineString(IList<string>? list)
+ConvertFrom.StringListToSemiColonString(IList<string>? list)
+```
+
 ## String Operations
+
 ```c#
 StringOperations.CapitalizeFirstChar(string stringToCapitalize)
-StringOperations.CapitalizeFirstCharNullable(string? stringToCapitalize); 
+StringOperations.CapitalizeFirstCharNullable(string? stringToCapitalize)
+StringOperations.EncloseByIfNotAlready(string value, char encloser)
 StringOperations.Join(char separatorChar, params string?[] stringsToCombine)
 StringOperations.JoinWithLeading(char separatorChar, params string?[] stringsToCombine)
 StringOperations.JoinWithTrailing(char separatorChar, params string?[] stringsToCombine)
 StringOperations.JoinWithLeadingAndTrailing(char separatorChar, params string?[] stringsToCombine)
 StringOperations.RemoveSubstringFromString(string source, string substringToRemove)
 StringOperations.RemoveSubstringsFromString(string source, IEnumerable<string> substringsToRemove)
+StringOperations.SplitByNewLine(string value, StringSplitOptions stringSplitOptions = StringSplitOptions.None)
 StringOperations.ToTitleCase(string stringToTitleCase)
 StringOperations.ToTitleCaseNullable(string? stringToTitleCase)
 ```

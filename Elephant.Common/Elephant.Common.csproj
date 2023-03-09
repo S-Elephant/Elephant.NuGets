@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>4.0.3</Version>
-		<PackageReleaseNotes>Improve pagination.</PackageReleaseNotes>
+		<Version>4.0.4</Version>
+		<PackageReleaseNotes>New string operations and ConvertFrom.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->

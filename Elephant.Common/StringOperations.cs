@@ -34,6 +34,24 @@ namespace Elephant.Common
 		}
 
 		/// <summary>
+		/// Encloses <paramref name="value"/> with <paramref name="encloser"/>. Will do nothing if its already encased in <paramref name="encloser"/>.
+		/// </summary>
+		public static string EncloseByIfNotAlready(string value, char encloser)
+		{
+			if (value[0] != encloser)
+			{
+				if (value.Last() != encloser)
+					return $"{encloser}{value}{encloser}";
+				return encloser + value;
+			}
+
+			if (value.Last() != encloser)
+				return value + encloser;
+
+			return value;
+		}
+
+		/// <summary>
 		/// Join strings together using a separator.
 		/// There's no leading and no trailing separator.
 		/// When joining, it will prevent double adjoining separators at the join-spots.
@@ -46,7 +64,7 @@ namespace Elephant.Common
 			if (stringsToCombine == null)
 				return string.Empty;
 
-			List<string> strippedStringsToCombine = new ();
+			List<string> strippedStringsToCombine = new();
 			for (int i = 0; i < stringsToCombine.Length; i++)
 			{
 				if (stringsToCombine[i] != null)
@@ -120,6 +138,22 @@ namespace Elephant.Common
 				source = RemoveSubstringFromString(source, substringToRemove);
 
 			return source;
+		}
+
+		/// <summary>
+		/// All new line delimiters.
+		/// </summary>
+		private static readonly string[] NewLineDelimiters = { "\r\n", "\n", "\r" };
+
+		/// <summary>
+		/// Split by new line.
+		/// </summary>
+		/// <param name="value">The value to split.</param>
+		/// <param name="stringSplitOptions"><see cref="StringSplitOptions"/></param>
+		/// <returns><paramref name="value"/> split by new lines using <paramref name="stringSplitOptions"/>.</returns>
+		public static IEnumerable<string> SplitByNewLine(string value, StringSplitOptions stringSplitOptions = StringSplitOptions.None)
+		{
+			return value.Split(NewLineDelimiters, stringSplitOptions);
 		}
 
 		/// <summary>

@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.0.8</Version>
-		<PackageReleaseNotes>Add Stream extension.</PackageReleaseNotes>
+		<Version>1.0.9</Version>
+		<PackageReleaseNotes>Add new extensions.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
