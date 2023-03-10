@@ -146,3 +146,19 @@ IQueryable<T> AsTracking<T>(this IQueryable<T> source, bool isTracked) { .. }
 IQueryable<T> OrderByColumn<T>(this IQueryable<T> source, string columnName, ListSortDirection sortDirection = ListSortDirection.Ascending) { .. }
 
 IQueryable<T> OrderByColumn<T>(this IQueryable<T> source, string columnName, bool isAscending = true) { .. }
+```
+
+# Upgrade instructions
+
+## 0.6.3 &rarr; 0.7.0
+
+Implement ExecuteSqlAsync(..) in your DbContext. Example implementation in your DbContext that inherits from IContext:
+
+```c#
+/// <inheritdoc/>
+public async Task<int> ExecuteSqlAsync(FormattableString sql, CancellationToken cancellationToken = default)
+{
+	return await Database.ExecuteSqlAsync(sql, cancellationToken);
+}
+```
+
