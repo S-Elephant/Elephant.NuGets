@@ -246,6 +246,25 @@ namespace Elephant.Constants.SqlServer
 		public static readonly string Password = $"NVARCHAR({DbLengths.Password})";
 
 		/// <summary>
+		/// Supports all international phone numbers.
+		/// Includes space for country code.
+		/// Does NOT include space for: plus, dash, parenthesis, spaces, 00 country code prefix.
+		/// </summary>
+		/// <remarks>For more info see: https://stackoverflow.com/questions/723587/whats-the-longest-possible-worldwide-phone-number-i-should-consider-in-sql-varc.</remarks>
+		[SuppressMessage("Microsoft.StyleCop.CSharp.OrderingRules", "SA1203:ConstantsShouldAppearBeforeFields", Justification = "Group related items for clarity.")]
+		public const string PhoneNumberInternational = "VARCHAR(15)";
+
+		/// <summary>
+		/// Supports all Dutch phone numbers.
+		/// Includes space for country code.
+		/// Does NOT include space for: plus, dash, parenthesis, spaces, 00 country code prefix.
+		/// </summary>
+		/// <remarks>For more info see: https://stackoverflow.com/questions/723587/whats-the-longest-possible-worldwide-phone-number-i-should-consider-in-sql-varc.</remarks>
+		/// <example>06-12345678 using the country code +31, can be stored as: 31612345678</example>
+		[SuppressMessage("Microsoft.StyleCop.CSharp.OrderingRules", "SA1203:ConstantsShouldAppearBeforeFields", Justification = "Group related items for clarity.")]
+		public const string PhoneNumberNetherlands = "VARCHAR(11)";
+
+		/// <summary>
 		/// <see cref="string"/> with max-length 2048.
 		/// </summary>
 		[SuppressMessage("Microsoft.StyleCop.CSharp.OrderingRules", "SA1203:ConstantsShouldAppearBeforeFields", Justification = "Group related items for clarity.")]
