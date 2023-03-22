@@ -49,6 +49,13 @@ jobs:
       with:
         dotnet-version: 2.0.x
 
+    - name: Install .NET MAUI
+      run: |
+        dotnet nuget locals all --clear 
+        dotnet workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
+        dotnet workload install maui --source https://aka.ms/dotnet7/nuget/index.json --source https://api.nuget.org/v3/index.json
+        dotnet workload install android ios maccatalyst macos maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
+
 #      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
 #        uses: actions/setup-dotnet@v3
 #        with:
