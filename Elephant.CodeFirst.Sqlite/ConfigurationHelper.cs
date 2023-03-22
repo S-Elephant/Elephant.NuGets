@@ -1,5 +1,5 @@
-﻿using Elephant.Common;
-using Elephant.Constants.Sqlite;
+﻿using Elephant.Constants.Sqlite;
+using Elephant.Types.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -31,7 +31,7 @@ namespace Elephant.CodeFirst.Sqlite
 		}
 
 		/// <summary>
-		/// Adds a <see cref="IIdName.Name"/> field to the table.
+		/// Adds a <see cref="IIdName"/>.Name field to the table.
 		/// </summary>
 		public static void AddName<T>(ref EntityTypeBuilder<T> builder)
 			where T : class, IIdName
@@ -42,7 +42,7 @@ namespace Elephant.CodeFirst.Sqlite
 		}
 
 		/// <summary>
-		/// Adds a <see cref="IIdNameDescription.Description"/> field to the table.
+		/// Adds a <see cref="IIdNameDescription"/>.Description field to the table.
 		/// </summary>
 		public static void AddDescription<T>(ref EntityTypeBuilder<T> builder)
 			where T : class, IIdNameDescription
@@ -53,7 +53,7 @@ namespace Elephant.CodeFirst.Sqlite
 		}
 
 		/// <summary>
-		/// Adds both a <see cref="IIdName.Name"/> and <see cref="IIdNameDescription.Description"/> fields to the table.
+		/// Adds both a <see cref="IIdName"/>.Name and <see cref="IIdNameDescription"/>.Description fields to the table.
 		/// </summary>
 		public static void AddNameAndDescription<T>(ref EntityTypeBuilder<T> builder)
 			where T : class, IIdNameDescription
@@ -62,18 +62,18 @@ namespace Elephant.CodeFirst.Sqlite
 			AddDescription(ref builder);
 		}
 
-        /// <summary>
-        /// Adds an <see cref="IIsEnabled.IsEnabled"/> field to the table.
-        /// </summary>
-        public static void AddIsEnabled<T>(ref EntityTypeBuilder<T> builder, bool defaultValue = true)
-            where T : class, IIsEnabled
-        {
-            builder.Property(p => p.IsEnabled)
-                .HasColumnType(DbType.Bool)
-                .HasDefaultValue(defaultValue)
-                .IsRequired();
-        }
+		/// <summary>
+		/// Adds an <see cref="IIsEnabled"/>.IsEnabled field to the table.
+		/// </summary>
+		public static void AddIsEnabled<T>(ref EntityTypeBuilder<T> builder, bool defaultValue = true)
+			where T : class, IIsEnabled
+		{
+			builder.Property(p => p.IsEnabled)
+				.HasColumnType(DbType.Bool)
+				.HasDefaultValue(defaultValue)
+				.IsRequired();
+		}
 
-        private static string ToTableName<T>(string? tableName) => tableName ?? typeof(T).Name;
+		private static string ToTableName<T>(string? tableName) => tableName ?? typeof(T).Name;
 	}
 }

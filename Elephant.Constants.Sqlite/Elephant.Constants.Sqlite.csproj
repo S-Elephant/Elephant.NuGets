@@ -2,19 +2,21 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.0.2</Version>
-    <PackageReleaseNotes>Typos.</PackageReleaseNotes>
+		<Version>1.0.4</Version>
+		<PackageReleaseNotes>Generate documentation file.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
 	<PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1;netcoreapp3.0;netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
-    <ImplicitUsings>disable</ImplicitUsings> <!-- Disabled because of older target frameworks. -->
-    <Nullable>disable</Nullable> <!-- Disabled because of older target frameworks. -->
+		<TargetFrameworks>netstandard2.0;netstandard2.1;netcoreapp3.0;netcoreapp3.1;net5.0;net6.0;net7.0</TargetFrameworks>
+		<LangVersion>latest</LangVersion>
+		<ImplicitUsings>disable</ImplicitUsings> <!-- Disabled because of older target frameworks. -->
+		<Nullable>disable</Nullable> <!-- Disabled because of older target frameworks. -->
 		<Company>SquirtingElephant</Company>
 		<Authors>SquirtingElephant</Authors>
 		<Description>SQLite constants.</Description>
 		<CheckEolTargetFramework>false</CheckEolTargetFramework> <!-- Suppress the warning: warning NETSDK1138: The target framework 'netcoreapp3.0' is out of support and.. -->
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 	</PropertyGroup>
 
 	<!-- Package -->
@@ -27,11 +29,21 @@
 		<PackageProjectUrl>https://github.com/SquirtingElephant/Elephant.NuGets</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/SquirtingElephant/Elephant.NuGets.git</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 	</PropertyGroup>
+
+	<!-- StyleCop (only in Debug configuration) -->
+	<ItemGroup Condition="'$(Configuration)' == 'Debug'">
+		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
 
 	<!-- Package README -->
 	<ItemGroup>
-    <None Include="README.md"> <!-- Changed "Update" to "Include" because of an open bug. See: https://github.com/NuGet/Home/issues/11467#issuecomment-1022487996 -->
+		<None Include="README.md">
+			<!-- Changed "Update" to "Include" because of an open bug. See: https://github.com/NuGet/Home/issues/11467#issuecomment-1022487996 -->
 			<PackagePath>\</PackagePath>
 			<Pack>True</Pack>
 		</None>

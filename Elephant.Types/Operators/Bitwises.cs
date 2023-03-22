@@ -1,5 +1,8 @@
 ﻿namespace Elephant.Types.Operators
 {
+    /// <summary>
+    /// Bitwise operators.
+    /// </summary>
     public enum Bitwises
     {
         /// <summary>
@@ -8,7 +11,7 @@
         None,
 
         /// <summary>
-        /// &. Copies a bit to the result if it exists in both operands.
+        /// <![CDATA[&]]>. Copies a bit to the result if it exists in both operands.
         /// </summary>
         And,
 
@@ -28,7 +31,7 @@
         Complement,
 
         /// <summary>
-        /// <<. The left operands value is moved left by the number of bits specified by the right operand.
+        /// <![CDATA[<<]]>. The left operands value is moved left by the number of bits specified by the right operand.
         /// </summary>
         ShiftLeft,
 

@@ -13,7 +13,7 @@
         public void TestIfEmptyReturnsEmpty()
         {
             string joinedString = StringOperations.Join('/');
-            
+
             Assert.Equal(string.Empty, joinedString);
         }
 
@@ -27,7 +27,7 @@
         public void TestIf3StringsReturn2Separators(string stringA, string stringB, string stringC)
         {
             string joinedString = StringOperations.Join('/', stringA, stringB, stringC);
-            
+
             Assert.Equal(2, joinedString.Count(x => x == '/'));
         }
 
@@ -41,7 +41,7 @@
         public void TestIf3StringsReturns4InsideSeparators(string stringA, string stringB, string stringC)
         {
             string joinedString = StringOperations.Join('/', stringA, stringB, stringC);
-           
+
             Assert.Equal(4, joinedString.Count(x => x == '/'));
         }
 
@@ -55,7 +55,7 @@
         public void TestIf3StringsReturn2OutsideSeparators(string stringA, string stringB, string stringC)
         {
             string joinedString = StringOperations.Join('/', stringA, stringB, stringC);
-           
+
             Assert.Equal(2, joinedString.Count(x => x == '/'));
         }
 
@@ -69,7 +69,7 @@
         public void TestIf1StringReturnsNoSeparators(string stringA)
         {
             string joinedString = StringOperations.Join('/', stringA);
-           
+
             Assert.Equal(0, joinedString.Count(x => x == '/'));
         }
 
@@ -81,7 +81,7 @@
         public void TestIf1NullValueReturnEmpty()
         {
             string joinedString = StringOperations.Join('/', new string?[] { null });
-          
+
             Assert.Equal(0, joinedString.Count(x => x == '/'));
         }
 
@@ -93,7 +93,7 @@
         public void TestIf3NullValuesReturnEmpty()
         {
             string joinedString = StringOperations.Join('/', null, null, null);
-           
+
             Assert.Equal(0, joinedString.Count(x => x == '/'));
         }
 
@@ -109,7 +109,7 @@
         public void TestIfNullWithNonNullValuesIgnoresNullValues(string expected, string stringA, string stringB, string stringC)
         {
             string joinedString = StringOperations.Join('/', stringA, stringB, stringC);
-            
+
             Assert.Equal(expected, joinedString);
         }
     }

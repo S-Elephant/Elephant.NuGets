@@ -16,7 +16,7 @@ namespace Elephant.Lnk
         /// Returns the shortcut (*.lnk file) its <see cref="IWshShortcut.Arguments"/> as a string or null if something went wrong or if it has no <see cref="IWshShortcut.Arguments"/>.
         /// </summary>
         string? GetArgumentsAsString(string? fullLnkPath);
-        
+
         /// <summary>
         /// Returns the shortcut (*.lnk file) its <see cref="IWshShortcut.TargetPath"/> or null if something went wrong or if it has no <see cref="IWshShortcut.TargetPath"/>.
         /// </summary>

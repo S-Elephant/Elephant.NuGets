@@ -1,0 +1,57 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<!-- This must be updated for every release -->
+	<PropertyGroup>
+		<Version>1.0.5</Version>
+		<PackageReleaseNotes>Add two new attributes.</PackageReleaseNotes>
+	</PropertyGroup>
+
+	<!-- Core -->
+	<PropertyGroup>
+		<TargetFrameworks>netcoreapp3.0;netcoreapp3.1;net5.0;net6.0;net7.0</TargetFrameworks>
+		<LangVersion>latest</LangVersion>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Authors>SquirtingElephant</Authors>
+		<Company>SquirtingElephant</Company>
+		<Description>Common data annotations.</Description>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<CheckEolTargetFramework>false</CheckEolTargetFramework> <!-- Suppress the warning: warning NETSDK1138: The target framework 'netcoreapp3.0' is out of support and.. -->
+	</PropertyGroup>
+
+	<!-- Package -->
+	<PropertyGroup>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<NeutralLanguage>en</NeutralLanguage>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageProjectUrl>https://github.com/SquirtingElephant/Elephant.NuGets</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/SquirtingElephant/Elephant.NuGets.git</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+	</PropertyGroup>
+
+	<!-- Dependencies -->
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
+	</ItemGroup>
+
+	<!-- StyleCop (only in Debug configuration) -->
+	<ItemGroup Condition="'$(Configuration)' == 'Debug'">
+		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<!-- Package README -->
+	<ItemGroup>
+		<None Include="README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+</Project>

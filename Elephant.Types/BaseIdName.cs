@@ -1,13 +1,13 @@
-﻿namespace Elephant.Types
+﻿using Elephant.Types.Interfaces;
+
+namespace Elephant.Types
 {
     /// <summary>
-    /// Base class with <see cref="Id"/> and <see cref="Name"/> propreties.
+    /// Base class with <see cref="BaseId.Id"/> and <see cref="Name"/> properties.
     /// </summary>
     public abstract class BaseIdName : BaseId, IIdName
     {
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public string Name { get; set; } = string.Empty;
     }
 }

@@ -2,46 +2,61 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.0.0</Version>
-		<PackageReleaseNotes>Initial release.</PackageReleaseNotes>
+		<Version>1.0.4</Version>
+		<PackageReleaseNotes>Update dependencies.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+		<LangVersion>latest</LangVersion>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Authors>SquirtingElephant</Authors>
 		<Company>SquirtingElephant</Company>
+		<Description>Sqlite helpers.</Description>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 	</PropertyGroup>
 
-  <!-- Package -->
-  <PropertyGroup>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <NeutralLanguage>en</NeutralLanguage>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageProjectUrl>https://github.com/SquirtingElephant/Elephant.NuGets</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/SquirtingElephant/Elephant.NuGets.git</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-  </PropertyGroup>
+	<!-- Package -->
+	<PropertyGroup>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<NeutralLanguage>en</NeutralLanguage>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageProjectUrl>https://github.com/SquirtingElephant/Elephant.NuGets</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/SquirtingElephant/Elephant.NuGets.git</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+	</PropertyGroup>
 
-  <!-- Dependencies -->
+	<!-- Dependencies -->
 	<ItemGroup>
-		<PackageReference Include="Elephant.Common" Version="1.2.4" />
-		<PackageReference Include="Elephant.Constants.Sqlite" Version="1.0.0" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.1" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.1" />
+	</ItemGroup>
+
+	<!-- StyleCop (only in Debug configuration) -->
+	<ItemGroup Condition="'$(Configuration)' == 'Debug'">
+		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 	</ItemGroup>
 
 	<!-- Package README -->
 	<ItemGroup>
-		<None Update="README.md">
+		<None Include="README.md">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\Elephant.Constants.Sqlite\Elephant.Constants.Sqlite.csproj" />
+	  <ProjectReference Include="..\Elephant.Types.Interfaces\Elephant.Types.Interfaces.csproj" />
 	</ItemGroup>
 
 </Project>

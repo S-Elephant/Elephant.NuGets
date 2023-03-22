@@ -1,6 +1,6 @@
-using Elephant.Testing.Xunit;
 using System;
 using System.Collections.Generic;
+using Elephant.Testing.Xunit;
 using Xunit;
 using Xunit.Categories;
 
@@ -124,8 +124,8 @@ namespace Elephant.Rijksdriehoek.Tests
         [SpeedFast, UnitTest]
         public void DivideByZero()
         {
-            RdCoordinate a = new(1f,1f);
-            RdCoordinate b = new(0f, 0f);
+            RdCoordinate a = new (1f, 1f);
+            RdCoordinate b = new (0f, 0f);
             Assert.Throws<DivideByZeroException>(() => a / b);
         }
 
@@ -147,8 +147,8 @@ namespace Elephant.Rijksdriehoek.Tests
             if (expectedSuccess)
             {
                 Assert.NotNull(rdCoordinate);
-                Assert.Equal(expectedX, rdCoordinate!.Value.X, 6);
-                Assert.Equal(expectedY, rdCoordinate!.Value.Y, 6);
+                Assert.Equal(expectedX, rdCoordinate!.Value.X, 6f);
+                Assert.Equal(expectedY, rdCoordinate!.Value.Y, 6f);
             }
             else
             {

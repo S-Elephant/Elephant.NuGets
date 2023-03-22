@@ -13,7 +13,7 @@
         public void TestIfEmptyReturnsSeparator()
         {
             string joinedString = StringOperations.JoinWithLeading('/');
-         
+
             Assert.Equal("/", joinedString);
         }
 
@@ -27,7 +27,7 @@
         public void TestIf3StringsReturn3Separators(string stringA, string stringB, string stringC)
         {
             string joinedString = StringOperations.JoinWithLeading('/', stringA, stringB, stringC);
-         
+
             Assert.Equal(3, joinedString.Count(x => x == '/'));
         }
 
@@ -41,7 +41,7 @@
         public void TestIf3StringsReturn5Separators(string stringA, string stringB, string stringC)
         {
             string joinedString = StringOperations.JoinWithLeading('/', stringA, stringB, stringC);
-            
+
             Assert.Equal(5, joinedString.Count(x => x == '/'));
         }
 
@@ -55,7 +55,7 @@
         public void TestIf3StringsWithSeparatorsReturn3Separators(string stringA, string stringB, string stringC)
         {
             string joinedString = StringOperations.JoinWithLeading('/', stringA, stringB, stringC);
-           
+
             Assert.Equal(3, joinedString.Count(x => x == '/'));
         }
 
@@ -69,7 +69,7 @@
         public void TestIf1StringHasOneSeparatorOccurance(string stringA)
         {
             string joinedString = StringOperations.JoinWithLeading('/', stringA);
-           
+
             Assert.Equal(1, joinedString.Count(x => x == '/'));
         }
 
@@ -81,7 +81,7 @@
         public void TestIf1NullValueReturnsOneSeparator()
         {
             string joinedString = StringOperations.JoinWithLeading('/', new string?[] { null });
-           
+
             Assert.Equal(1, joinedString.Count(x => x == '/'));
         }
 
@@ -93,7 +93,7 @@
         public void TestIf3NullValuesReturnOneSeparator()
         {
             string joinedString = StringOperations.JoinWithLeading('/', null, null, null);
-            
+
             Assert.Equal(1, joinedString.Count(x => x == '/'));
         }
 
@@ -109,7 +109,7 @@
         public void TestIfNullWithNonNullValuesIgnoresNullValues(string expected, string stringA, string stringB, string stringC)
         {
             string joinedString = StringOperations.JoinWithLeading('/', stringA, stringB, stringC);
-            
+
             Assert.Equal(expected, joinedString);
         }
     }

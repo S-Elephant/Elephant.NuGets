@@ -1,5 +1,8 @@
 ﻿namespace Elephant.Types.Operators
 {
+    /// <summary>
+    /// Logical operators.
+    /// </summary>
     public enum Logicals
     {
         /// <summary>
@@ -8,7 +11,7 @@
         None,
 
         /// <summary>
-        /// &&.
+        /// <![CDATA[&&]]>.
         /// </summary>
         And,
 

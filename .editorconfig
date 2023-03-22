@@ -1,0 +1,158 @@
+# Common suppressions for copy-paste:
+# [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1649:FileNameMustMatchTypeName", Justification = "Local interface.")]
+# [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1649:FileNameMustMatchTypeName", Justification = "Grouped models.")]
+# [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleType", Justification = "Grouped models.")]
+
+#########################################################################################################################################
+# Code files
+#########################################################################################################################################
+[*.{cs,vb}]
+indent_style = tab
+indent_size = 4
+
+#########################################################################################################################################
+# Below are the StyleCop rules that aren't enforced.
+# For more info see: https://github.com/DotNetAnalyzers/StyleCopAnalyzers/tree/master/documentation
+#########################################################################################################################################
+
+# A violation of this rule occurs when the spacing around a keyword is incorrect.
+# Supressed because it caused problems with the new() keyword without a space between new and ().
+dotnet_diagnostic.SA1000.severity = none
+
+# A single-line comment within a C# code file does not begin with a single space.
+dotnet_diagnostic.SA1005.severity = none
+
+# The code contains a tab or space character which is not consistent with the current project settings.
+dotnet_diagnostic.SA1027.severity = none
+
+# A call to an instance member of the local class or a base class is not prefixed with 'this.', within a C# code file.
+dotnet_diagnostic.SA1101.severity = none
+
+# The parameters to a C# method or indexer call or declaration span across multiple lines, but the first parameter does not start on the line after the opening bracket.
+dotnet_diagnostic.SA1116.severity = none
+
+# The parameters to a C# method or indexer call or declaration are not all on the same line or each on a separate line.
+dotnet_diagnostic.SA1117.severity = none
+
+# A C# statement contains parenthesis which are unnecessary and should be removed.
+dotnet_diagnostic.SA1119.severity = none
+
+# The C# comment does not contain any comment text.
+dotnet_diagnostic.SA1120.severity = none
+
+# The C# code includes an empty string, written as "".
+dotnet_diagnostic.SA1122.severity = none
+
+# The C# code contains a region within the body of a code element.
+dotnet_diagnostic.SA1123.severity = none
+
+# The C# code contains a region.
+dotnet_diagnostic.SA1124.severity = none
+
+# A violation of this rule occurs two or more attributes are placed within the same set of square brackets.
+dotnet_diagnostic.SA1133.severity = none
+
+# A violation of this rule occurs when two more more attributes are placed on the same line of code, or an attribute is placed on the same line of code as another element.
+dotnet_diagnostic.SA1134.severity = none
+
+# A C# using directive is placed outside of a namespace element.
+dotnet_diagnostic.SA1200.severity = none
+
+# An element within a C# code file is out of order in relation to the other elements in the code.
+dotnet_diagnostic.SA1201.severity = none
+
+# An element within a C# code file is out of order within regard to access level, in relation to other elements in the code.
+dotnet_diagnostic.SA1202.severity = none
+
+# A static element is positioned beneath an instance element of the same type.
+dotnet_diagnostic.SA1204.severity = none
+
+# A field name in C# is prefixed with m_ or s_.
+#dotnet_diagnostic.SA1308.severity = none
+
+# A violation of this rule occurs when a field name begins with an underscore.
+dotnet_diagnostic.SA1309.severity = none
+
+# The name of a variable in C# does not begin with a lower-case letter.
+dotnet_diagnostic.SA1312.severity = none
+
+# The name of a parameter in C# does not begin with a lower-case letter.
+dotnet_diagnostic.SA1313.severity = none
+
+# A call to Debug.Assert in C# code does not include a descriptive message.
+dotnet_diagnostic.SA1405.severity = none
+
+# A C# statement contains a complex arithmetic expression which omits parenthesis around operators.
+dotnet_diagnostic.SA1407.severity = none
+
+# The opening and closing braces for a C# statement have been omitted.
+dotnet_diagnostic.SA1503.severity = none
+
+# The C# code contains multiple blank lines in a row.
+dotnet_diagnostic.SA1507.severity = none
+
+# A single-line comment within C# code is followed by a blank line.
+dotnet_diagnostic.SA1512.severity = none
+
+# A closing brace within a C# element, statement, or expression is not followed by a blank line.
+dotnet_diagnostic.SA1513.severity = none
+
+# A single-line comment within C# code is not preceded by a blank line.
+dotnet_diagnostic.SA1515.severity = none
+
+# The opening and closing braces for a multi-line C# statement have been omitted.
+dotnet_diagnostic.SA1519.severity = none
+
+# The opening and closing braces of a chained if/else if/else construct were included for some clauses, but omitted for others.
+dotnet_diagnostic.SA1520.severity = none
+
+# An item within a C# enumeration is missing an Xml documentation header.
+dotnet_diagnostic.SA1602.severity = none
+
+# The Xml header documentation for a C# property does not contain a <value> tag.
+dotnet_diagnostic.SA1609.severity = none
+
+# A C# method, constructor, delegate or indexer element is missing documentation for one or more of its parameters.
+dotnet_diagnostic.SA1611.severity = none
+
+# A C# element is missing documentation for its return value.
+dotnet_diagnostic.SA1615.severity = none
+
+# A generic C# element is missing documentation for one or more of its generic type parameters.
+dotnet_diagnostic.SA1618.severity = none
+
+# A generic, partial C# element is missing documentation for one or more of its generic type parameters, and the documentation for the element contains a <summary> tag.
+dotnet_diagnostic.SA1619.severity = none
+
+# The documentation text within a C# property's <summary> tag does not match the accessors within the property.
+dotnet_diagnostic.SA1623.severity = none
+
+# A section of the Xml header documentation for a C# element does not end with a period (also known as a full stop).
+dotnet_diagnostic.SA1629.severity = none
+
+# A section of the Xml header documentation for a C# element does not contain any whitespace between words.
+dotnet_diagnostic.SA1630.severity = none
+
+# A section of the Xml header documentation for a C# element does not contain enough alphabetic characters.
+dotnet_diagnostic.SA1631.severity = none
+
+# A section of the Xml header documentation for a C# element is too short.
+dotnet_diagnostic.SA1632.severity = none
+
+# A C# code file is missing a standard file header.
+dotnet_diagnostic.SA1633.severity = none
+
+# The file header at the top of a C# code file is missing a copyright tag.
+dotnet_diagnostic.SA1634.severity = none
+
+# The XML documentation header for a C# constructor does not contain the appropriate summary text.
+dotnet_diagnostic.SA1642.severity = none
+
+# The Xml documentation header for a C# finalizer does not contain the appropriate summary text.
+dotnet_diagnostic.SA1643.severity = none
+
+
+# Don't analyze any database migrations
+[**/Migrations/*.cs]
+generated_code = true
+dotnet_diagnostic.CS1591.severity = none

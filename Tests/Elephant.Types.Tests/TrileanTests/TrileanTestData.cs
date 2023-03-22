@@ -9,7 +9,7 @@
         /// <see cref="AllTrileanTests.TrileansAreEqual(Trilean, Trilean)"/> and
         /// <see cref="AllTrileanTests.TrileansAreEqualByOperator(Trilean, Trilean)"/> test data.
         /// </summary>
-        public static TheoryData<Trilean, Trilean> EqualData => new()
+        public static TheoryData<Trilean, Trilean> EqualData => new ()
         {
             { Trilean.True, Trilean.True },
             { Trilean.True, new Trilean(true) },
@@ -21,7 +21,7 @@
         /// <see cref="AllTrileanTests.TrileansAreUnequal(Trilean, Trilean)"/> and
         /// <see cref="AllTrileanTests.TrileansAreUnequalsByOperator(Trilean, Trilean)"/> test data.
         /// </summary>
-        public static TheoryData<Trilean, Trilean> UnequalData => new()
+        public static TheoryData<Trilean, Trilean> UnequalData => new ()
         {
             { Trilean.True, Trilean.False },
             { Trilean.True, new Trilean(false) },
@@ -34,7 +34,7 @@
         /// <summary>
         /// <see cref="AllTrileanTests.NotEqual(Trilean, Trilean, bool)"/> test data.
         /// </summary>
-        public static TheoryData<Trilean, Trilean, bool> NotEqualData => new()
+        public static TheoryData<Trilean, Trilean, bool> NotEqualData => new ()
         {
             { Trilean.True, Trilean.True, true },
             { Trilean.True, new Trilean(true), true },
