@@ -130,7 +130,7 @@ jobs:
     name: Test Release
     needs: build-release
     runs-on: windows-latest # Note: ubuntu-latest doesn't work because of MAUI.
-    steps:      
+    steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -146,6 +146,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # Restore dependencies.
+      - name: Restore dependencies
+        run: dotnet restore ./Elephant.NuGets.sln
+
       # pack app
       - name: pack application
         run: dotnet pack ./Elephant.NuGets.sln --no-build --configuration Release --nologo
@@ -154,10 +158,7 @@ jobs:
     name: Publish NuGets
     needs:  [build-debug, pack-release]
     runs-on: windows-latest # Note: ubuntu-latest doesn't work because of MAUI.
-
-    # List of steps to run in build-debug & release
     steps:
-      
       - name: Checkout code
         uses: actions/checkout@v3
 
