@@ -151,7 +151,7 @@ jobs:
 
       # test release
       - name: Test release
-        run: dotnet test --configuration Release --verbosity normal
+        run: dotnet test ./Elephant.NuGets.sln --configuration Release --verbosity normal
 
   pack-release:
     name: Pack Release
@@ -166,7 +166,7 @@ jobs:
       
       # pack app
       - name: pack application
-        run: dotnet pack --no-build --configuration Release
+        run: dotnet pack ./Elephant.NuGets.sln --no-build --configuration Release
 
   publish-to-nuget-org:
     name: Publish NuGets
