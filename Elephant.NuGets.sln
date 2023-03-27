@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.Constants.Sqlite",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.Database", "Elephant.Database\Elephant.Database.csproj", "{9AF4A002-300C-4565-BB0D-3486C289C44A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.Lnk", "Elephant.Lnk\Elephant.Lnk.csproj", "{424DD08A-F953-4BD5-8506-23F0CA35D3C8}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.Rijksdriehoek", "Elephant.Rijksdriehoek\Elephant.Rijksdriehoek.csproj", "{DFCE6093-ACDC-4FA7-B9AB-3F30A44EB6FD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.Rijksdriehoek.Tests", "Elephant.Rijksdriehoek.Tests\Elephant.Rijksdriehoek.Tests.csproj", "{DD843B41-AD0C-47B2-850C-17ED2D5B94D2}"

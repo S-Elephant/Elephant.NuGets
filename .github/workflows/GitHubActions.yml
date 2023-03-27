@@ -94,7 +94,7 @@ jobs:
 
       # build with debug
       - name: Build Debug
-        run: dotnet build --configuration Debug --no-restore
+        run: dotnet build -exclude-source "Elephant.Lnk\Elephant.Lnk.csproj" --configuration Debug --no-restore
 
   build-release:
     name: Build Release
@@ -123,7 +123,7 @@ jobs:
 
       # build release
       - name: Build Release
-        run: dotnet build --configuration Release
+        run: dotnet build -exclude-source "Elephant.Lnk\Elephant.Lnk.csproj" --configuration Release
 
       # test release
       #- name: Test release
