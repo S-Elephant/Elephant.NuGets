@@ -94,6 +94,9 @@ jobs:
 
       # build with debug
       - name: Build Debug
+        projects: |
+          **/*.csproj
+          !**/*Elephant.Lnk.csproj
         run: dotnet build -exclude-source "Elephant.Lnk\Elephant.Lnk.csproj" --configuration Debug --no-restore
 
   build-release:
