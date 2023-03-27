@@ -1,3 +1,7 @@
+# .NET CI.
+# Can't contain any projects with COM references.
+# Uses a windows OS because at this time, MAUI can run on Linux but it cannot be build on a Linux OS.
+#
 # For more info see:
 # - https://docs.github.com/en/actions/using-workflows/about-workflows
 # - https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-build
@@ -7,7 +11,7 @@
 ############
 # Workflow #
 ############
-name: .net CI [Build and Release] # Name of the workflow
+name: .NET CI
 
 ############
 # Triggers #
@@ -15,8 +19,8 @@ name: .net CI [Build and Release] # Name of the workflow
 on:
   push:
     branches:
-      - ci
       - master # Trigger the workflow on a push to the master branch.
+      # - other-branch-here
   pull_request:
     branches:
       - master # Trigger the workflow on a Pull Request to the master branch.
@@ -51,7 +55,7 @@ jobs:
         run: dotnet build ./Elephant.NuGets.sln --configuration Debug --no-restore --nologo --verbosity normal
 
   build-release:
-    name: Build, Test, Pack, Push Release
+    name: Build, Test, Pack, Push [Release]
     runs-on: windows-latest # Note: ubuntu-latest doesn't work because of MAUI.
     steps:
       - name: Checkout code
