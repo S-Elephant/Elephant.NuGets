@@ -21,21 +21,19 @@ on:
 #  Jobs  #
 ##########
 jobs:
-  checkout-code: # the "Setup-net-frameworks" job step
+  checkout-code:
     name: Checkout
     runs-on: ubuntu-latest
-
-    # List .net frameworks required
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-  setup-net-frameworks: # the "Setup-net-frameworks" job step
+  setup-net-frameworks:
     name: Setup .NET Frameworks
     needs: checkout-code
     runs-on: ubuntu-latest
 
-    # List .net frameworks required
+    # Setup required .NET frameworks.
     steps:
       - name: Setup .NET 2.0
         uses: actions/setup-dotnet@v3
@@ -76,43 +74,37 @@ jobs:
     name: Build Debug
     needs: setup-net-frameworks
     runs-on: windows-latest # Note: ubuntu-latest doesn't work because of MAUI.
-
-    # List of steps to run in build-debug & release
     steps:
-
       - name: Checkout code
         uses: actions/checkout@v3
       
-      # maui tizen install steps
-      - name: maui-tizen install
+      # Setup MAUI Tizen.
+      - name: maui-tizen install 1/3
         run: dotnet nuget locals all --clear
 
-      - name: maui-tizen install
+      - name: maui-tizen install 2/2
         run: dotnet workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
 
-      - name: maui-tizen install
+      - name: maui-tizen install 3/3
         run: dotnet workload install android ios maccatalyst macos maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
 
-      # restore dependencies step
+      # Restore dependencies.
       - name: Restore dependencies
         run: dotnet restore ./Elephant.NuGets.sln
 
-      # build with debug
-      - name: Build Debug
+      # Build in Debug configuration
+      - name: Build [Debug]
         run: dotnet build ./Elephant.NuGets.sln --configuration Debug --no-restore --nologo
 
   build-release:
     name: Build Release
     needs: setup-net-frameworks
     runs-on: windows-latest # Note: ubuntu-latest doesn't work because of MAUI.
-
-    # List of steps to run in build-debug & release
     steps:
-
       - name: Checkout code
         uses: actions/checkout@v3
       
-      # maui tizen install steps
+      # Setup MAUI Tizen.
       - name: maui-tizen install
         run: dotnet nuget locals all --clear
 
@@ -122,34 +114,23 @@ jobs:
       - name: maui-tizen install
         run: dotnet workload install android ios maccatalyst macos maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
 
-      # restore dependencies step
+      # Restore dependencies.
       - name: Restore dependencies
         run: dotnet restore ./Elephant.NuGets.sln
 
-      # build release
-      - name: Build Release
-        run: dotnet build ./Elephant.NuGets.sln --configuration Release --nologo
-
-      # test release
-      #- name: Test release
-      #  run: dotnet test --configuration Release --verbosity normal
-
-      # pack app
-      #- name: pack application
-      #  run: dotnet pack --no-build --configuration Release
+      # Build in Release configuration.
+      - name: Build [Release]
+        run: dotnet build ./Elephant.NuGets.sln --configuration Release --no-restore --nologo
 
   test-release:
     name: Test Release
     needs: build-release
     runs-on: windows-latest # Note: ubuntu-latest doesn't work because of MAUI.
-
-    # List of steps to run in build-debug & release
-    steps:
-      
+    steps:      
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # test release
+      # Run tests in Release configuration.
       - name: Test release
         run: dotnet test ./Elephant.NuGets.sln --configuration Release --verbosity normal
 
@@ -157,13 +138,10 @@ jobs:
     name: Pack Release
     needs: test-release
     runs-on: windows-latest # Note: ubuntu-latest doesn't work because of MAUI.
-
-    # List of steps to run in build-debug & release
     steps:
-      
       - name: Checkout code
         uses: actions/checkout@v3
-      
+
       # pack app
       - name: pack application
         run: dotnet pack ./Elephant.NuGets.sln --no-build --configuration Release
@@ -181,5 +159,4 @@ jobs:
 
       - name: Publish
         #if: startsWith(github.ref, 'refs/heads/release')
-        #run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_ORG}} --skip-duplicate
         run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_ORG}}
