@@ -12,9 +12,9 @@ on:
     branches:
       - master
 
-########
-# Jobs #
-########
+##########
+#  Jobs  #
+##########
 jobs:
   checkout-code: # the "Setup-net-frameworks" job step
     name: Checkout
