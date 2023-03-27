@@ -94,10 +94,7 @@ jobs:
 
       # build with debug
       - name: Build Debug
-        projects: |
-          **/*.csproj
-          !**/*Elephant.Lnk.csproj
-        run: dotnet build -exclude-source "Elephant.Lnk\Elephant.Lnk.csproj" --configuration Debug --no-restore
+        run: dotnet build -exclude-source "Elephant.Lnk\Elephant.Lnk.csproj" --configuration Debug --no-restore --no-logo
 
   build-release:
     name: Build Release
@@ -126,7 +123,7 @@ jobs:
 
       # build release
       - name: Build Release
-        run: dotnet build -exclude-source "Elephant.Lnk\Elephant.Lnk.csproj" --configuration Release
+        run: dotnet build -exclude-source "Elephant.Lnk\Elephant.Lnk.csproj" --configuration Release --no-logo
 
       # test release
       #- name: Test release
