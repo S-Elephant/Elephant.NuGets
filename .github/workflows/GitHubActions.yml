@@ -95,7 +95,7 @@ jobs:
 
       # restore dependencies step
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore ./Elephant.NuGets.sln
 
       # build with debug
       - name: Build Debug
@@ -124,7 +124,7 @@ jobs:
 
       # restore dependencies step
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore ./Elephant.NuGets.sln
 
       # build release
       - name: Build Release
