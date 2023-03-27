@@ -1,28 +1,180 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+name: .net CI [Build and Release] # Name of the workflow
 
-name: .NET
-
+############
+# Triggers #
+############
 on:
-  push:
-    branches: [ "master" ]
+  push: # Trigger the workflow on a push to the ci branch
+    branches:
+      - ci
+      - master
   pull_request:
-    branches: [ "master" ]
+    branches:
+      - master
 
+########
+# Jobs #
+########
 jobs:
-  build:
-
+  checkout-code: # the "Setup-net-frameworks" job step
+    name: Checkout
     runs-on: ubuntu-latest
 
+    # List .net frameworks required
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 6.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+  setup-net-frameworks: # the "Setup-net-frameworks" job step
+    name: Setup .NET Frameworks
+    needs: checkout-code
+    runs-on: ubuntu-latest
+
+    # List .net frameworks required
+    steps:
+      - name: Setup .NET 2.0
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 2.0
+
+      - name: Setup .NET 2.1
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 2.1
+
+      - name: Setup .NET 3.0
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 3.0
+
+      - name: Setup .NET 3.1
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 3.1
+
+      - name: Setup .NET 5.0
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 5.0
+
+      - name: Setup .NET 6.0.x
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
+
+      - name: Setup .NET 7.0.x
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 7.0.x
+
+  build-debug:
+    name: Build Debug
+    needs: setup-net-frameworks
+    runs-on: windows-latest # Note: ubuntu-latest doesn't work because of MAUI.
+
+    # List of steps to run in build-debug & release
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      # maui tizen install steps
+      - name: maui-tizen install
+        run: dotnet nuget locals all --clear
+
+      - name: maui-tizen install
+        run: dotnet workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
+
+      - name: maui-tizen install
+        run: dotnet workload install android ios maccatalyst macos maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
+
+      # restore dependencies step
+      - name: Restore dependencies
+        run: dotnet restore
+
+      # build with debug
+      - name: Build Debug
+        run: dotnet build --configuration Debug --no-restore
+
+  build-release:
+    name: Build Release
+    needs: setup-net-frameworks
+    runs-on: windows-latest # Note: ubuntu-latest doesn't work because of MAUI.
+
+    # List of steps to run in build-debug & release
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      # maui tizen install steps
+      - name: maui-tizen install
+        run: dotnet nuget locals all --clear
+
+      - name: maui-tizen install
+        run: dotnet workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
+
+      - name: maui-tizen install
+        run: dotnet workload install android ios maccatalyst macos maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
+
+      # restore dependencies step
+      - name: Restore dependencies
+        run: dotnet restore
+
+      # build release
+      - name: Build Release
+        run: dotnet build --configuration Release
+
+      # test release
+      #- name: Test release
+      #  run: dotnet test --configuration Release --verbosity normal
+
+      # pack app
+      #- name: pack application
+      #  run: dotnet pack --no-build --configuration Release
+
+  test-release:
+    name: Test Release
+    needs: build-release
+    runs-on: windows-latest # Note: ubuntu-latest doesn't work because of MAUI.
+
+    # List of steps to run in build-debug & release
+    steps:
+      
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # test release
+      - name: Test release
+        run: dotnet test --configuration Release --verbosity normal
+
+  pack-release:
+    name: Pack Release
+    needs: test-release
+    runs-on: windows-latest # Note: ubuntu-latest doesn't work because of MAUI.
+
+    # List of steps to run in build-debug & release
+    steps:
+      
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      # pack app
+      - name: pack application
+        run: dotnet pack --no-build --configuration Release
+
+  publish-to-nuget-org:
+    name: Publish NuGets
+    needs: pack-release
+    runs-on: windows-latest # Note: ubuntu-latest doesn't work because of MAUI.
+
+    # List of steps to run in build-debug & release
+    steps:
+      
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Publish
+        #if: startsWith(github.ref, 'refs/heads/release')
+        #run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_ORG}} --skip-duplicate
+        run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_ORG}}
