@@ -1,28 +1,97 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+# .NET CI.
+# Can't contain any projects with COM references.
+# Uses a windows OS because at this time, MAUI can run on Linux but it cannot be build on a Linux OS.
+#
+# For more info see:
+# - https://docs.github.com/en/actions/using-workflows/about-workflows
+# - https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-build
+# - https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-pack
+# - https://learn.microsoft.com/en-us/nuget/reference/cli-reference/cli-ref-push
 
-name: .NET
+############
+# Workflow #
+############
+name: .NET CI
 
+############
+# Triggers #
+############
 on:
   push:
-    branches: [ "master" ]
+    branches:
+      - master # Trigger the workflow on a push to the master branch.
+      # - other-branch-here
   pull_request:
-    branches: [ "master" ]
+    branches:
+      - master # Trigger the workflow on a Pull Request to the master branch.
 
+##########
+#  Jobs  #
+##########
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
+  build-debug:
+    name: Build [Debug]
+    runs-on: windows-latest # Note: ubuntu-latest doesn't work because of MAUI.
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 6.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      # Setup MAUI Tizen.
+      - name: maui-tizen install 1/3
+        run: dotnet nuget locals all --clear
+
+      - name: maui-tizen install 2/2
+        run: dotnet workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
+
+      - name: maui-tizen install 3/3
+        run: dotnet workload install android ios maccatalyst macos maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
+
+      # Restore dependencies.
+      - name: Restore dependencies
+        run: dotnet restore ./Elephant.NuGets.sln
+
+      # Build in Debug configuration
+      - name: Build [Debug]
+        run: dotnet build ./Elephant.NuGets.sln --configuration Debug --no-restore --nologo --verbosity normal
+
+  build-release:
+    name: Build, Test, Pack, Push [Release]
+    runs-on: windows-latest # Note: ubuntu-latest doesn't work because of MAUI.
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      # Setup MAUI Tizen.
+      - name: maui-tizen install
+        run: dotnet nuget locals all --clear
+
+      - name: maui-tizen install
+        run: dotnet workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
+
+      - name: maui-tizen install
+        run: dotnet workload install android ios maccatalyst macos maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
+
+      # Restore dependencies.
+      - name: Restore dependencies
+        run: dotnet restore ./Elephant.NuGets.sln
+
+      # Build in Release configuration.
+      - name: Build [Release]
+        run: dotnet build ./Elephant.NuGets.sln --configuration Release --no-restore --nologo --verbosity normal
+
+      # Run tests in Release configuration.
+      - name: Test release
+        run: dotnet test ./Elephant.NuGets.sln --configuration Release --verbosity normal
+
+      # Restore dependencies.
+      - name: Restore dependencies
+        run: dotnet restore ./Elephant.NuGets.sln
+
+      # Pack. The dotnet pack command builds the project and creates NuGet packages. The result of this command is a NuGet package (that is, a .nupkg file).
+      - name: pack application
+        run: dotnet pack ./Elephant.NuGets.sln --no-build --configuration Release --nologo
+
+      # Requires a GitHub secret called NUGET_ORG.
+      - name: Publish
+        #if: startsWith(github.ref, 'refs/heads/release')
+        run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_ORG}} -SkipDuplicate
