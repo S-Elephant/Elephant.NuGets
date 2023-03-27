@@ -76,7 +76,7 @@ jobs:
 
   build-debug:
     name: Build Debug
-    needs: setup-net-frameworks
+    # needs: setup-net-frameworks
     runs-on: windows-latest # Note: ubuntu-latest doesn't work because of MAUI.
     steps:
       - name: Checkout code
@@ -102,7 +102,7 @@ jobs:
 
   build-release:
     name: Build Release
-    needs: setup-net-frameworks
+    # needs: setup-net-frameworks
     runs-on: windows-latest # Note: ubuntu-latest doesn't work because of MAUI.
     steps:
       - name: Checkout code
