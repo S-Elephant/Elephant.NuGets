@@ -99,7 +99,7 @@ jobs:
 
       # build with debug
       - name: Build Debug
-        run: dotnet build Elephant.NuGets.sln --configuration Debug --no-restore --no-logo
+        run: dotnet build ./Elephant.NuGets.sln --configuration Debug --no-restore --no-logo
 
   build-release:
     name: Build Release
@@ -128,7 +128,7 @@ jobs:
 
       # build release
       - name: Build Release
-        run: dotnet build Elephant.NuGets.sln --configuration Release --no-logo
+        run: dotnet build ./Elephant.NuGets.sln --configuration Release --no-logo
 
       # test release
       #- name: Test release
