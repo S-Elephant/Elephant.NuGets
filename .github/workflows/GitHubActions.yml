@@ -1,4 +1,8 @@
-# For more info see: https://docs.github.com/en/actions/using-workflows/about-workflows
+# For more info see:
+# - https://docs.github.com/en/actions/using-workflows/about-workflows
+# - https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-build
+# - https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-pack
+# - https://learn.microsoft.com/en-us/nuget/reference/cli-reference/cli-ref-push
 
 ############
 # Workflow #
@@ -94,7 +98,7 @@ jobs:
 
       # Build in Debug configuration
       - name: Build [Debug]
-        run: dotnet build ./Elephant.NuGets.sln --configuration Debug --no-restore --nologo
+        run: dotnet build ./Elephant.NuGets.sln --configuration Debug --no-restore --nologo --verbosity normal
 
   build-release:
     name: Build Release
@@ -120,7 +124,7 @@ jobs:
 
       # Build in Release configuration.
       - name: Build [Release]
-        run: dotnet build ./Elephant.NuGets.sln --configuration Release --no-restore --nologo
+        run: dotnet build ./Elephant.NuGets.sln --configuration Release --no-restore --nologo --verbosity normal
 
   test-release:
     name: Test Release
@@ -144,7 +148,7 @@ jobs:
 
       # pack app
       - name: pack application
-        run: dotnet pack ./Elephant.NuGets.sln --no-build --configuration Release
+        run: dotnet pack ./Elephant.NuGets.sln --no-build --configuration Release --nologo
 
   publish-to-nuget-org:
     name: Publish NuGets
@@ -159,4 +163,4 @@ jobs:
 
       - name: Publish
         #if: startsWith(github.ref, 'refs/heads/release')
-        run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_ORG}}
+        run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_ORG}} -SkipDuplicate
