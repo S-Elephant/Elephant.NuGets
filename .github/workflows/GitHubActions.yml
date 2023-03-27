@@ -13,70 +13,20 @@ name: .net CI [Build and Release] # Name of the workflow
 # Triggers #
 ############
 on:
-  push: # Trigger the workflow on a push to the ci branch
+  push:
     branches:
       - ci
-      - master
+      - master # Trigger the workflow on a push to the master branch.
   pull_request:
     branches:
-      - master
+      - master # Trigger the workflow on a Pull Request to the master branch.
 
 ##########
 #  Jobs  #
 ##########
 jobs:
-  # checkout-code:
-    # name: Checkout
-    # runs-on: ubuntu-latest
-    # steps:
-      # - name: Checkout code
-        # uses: actions/checkout@v3
-
-  # setup-net-frameworks:
-    # name: Setup .NET Frameworks
-    # needs: checkout-code
-    # runs-on: ubuntu-latest
-
-    # # Setup required .NET frameworks.
-    # steps:
-      # - name: Setup .NET 2.0
-        # uses: actions/setup-dotnet@v3
-        # with:
-          # dotnet-version: 2.0
-
-      # - name: Setup .NET 2.1
-        # uses: actions/setup-dotnet@v3
-        # with:
-          # dotnet-version: 2.1
-
-      # - name: Setup .NET 3.0
-        # uses: actions/setup-dotnet@v3
-        # with:
-          # dotnet-version: 3.0
-
-      # - name: Setup .NET 3.1
-        # uses: actions/setup-dotnet@v3
-        # with:
-          # dotnet-version: 3.1
-
-      # - name: Setup .NET 5.0
-        # uses: actions/setup-dotnet@v3
-        # with:
-          # dotnet-version: 5.0
-
-      # - name: Setup .NET 6.0.x
-        # uses: actions/setup-dotnet@v3
-        # with:
-          # dotnet-version: 6.0.x
-
-      # - name: Setup .NET 7.0.x
-        # uses: actions/setup-dotnet@v3
-        # with:
-          # dotnet-version: 7.0.x
-
   build-debug:
-    name: Build Debug
-    # needs: setup-net-frameworks
+    name: Build [Debug]
     runs-on: windows-latest # Note: ubuntu-latest doesn't work because of MAUI.
     steps:
       - name: Checkout code
@@ -101,8 +51,7 @@ jobs:
         run: dotnet build ./Elephant.NuGets.sln --configuration Debug --no-restore --nologo --verbosity normal
 
   build-release:
-    name: Build Release
-    # needs: setup-net-frameworks
+    name: Build, Test, Pack, Push Release
     runs-on: windows-latest # Note: ubuntu-latest doesn't work because of MAUI.
     steps:
       - name: Checkout code
@@ -126,42 +75,19 @@ jobs:
       - name: Build [Release]
         run: dotnet build ./Elephant.NuGets.sln --configuration Release --no-restore --nologo --verbosity normal
 
-  # test-release:
-    # name: Test Release
-    # needs: build-release
-    # runs-on: windows-latest # Note: ubuntu-latest doesn't work because of MAUI.
-    # steps:
-      # - name: Checkout code
-        # uses: actions/checkout@v3
-
       # Run tests in Release configuration.
       - name: Test release
         run: dotnet test ./Elephant.NuGets.sln --configuration Release --verbosity normal
-
-  # pack-release:
-    # name: Pack Release
-    # needs: test-release
-    # runs-on: windows-latest # Note: ubuntu-latest doesn't work because of MAUI.
-    # steps:
-      # - name: Checkout code
-        # uses: actions/checkout@v3
 
       # Restore dependencies.
       - name: Restore dependencies
         run: dotnet restore ./Elephant.NuGets.sln
 
-      # pack app
+      # Pack. The dotnet pack command builds the project and creates NuGet packages. The result of this command is a NuGet package (that is, a .nupkg file).
       - name: pack application
         run: dotnet pack ./Elephant.NuGets.sln --no-build --configuration Release --nologo
 
-  # publish-to-nuget-org:
-    # name: Publish NuGets
-    # needs:  [build-debug, pack-release]
-    # runs-on: windows-latest # Note: ubuntu-latest doesn't work because of MAUI.
-    # steps:
-      # - name: Checkout code
-        # uses: actions/checkout@v3
-
+      # Requires a GitHub secret called NUGET_ORG.
       - name: Publish
         #if: startsWith(github.ref, 'refs/heads/release')
         run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_ORG}} -SkipDuplicate
