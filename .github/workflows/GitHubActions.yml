@@ -21,9 +21,9 @@ on:
     branches:
       - master # Trigger the workflow on a push to the master branch.
       # - other-branch-here
-  pull_request:
+  pull_request: # Trigger the workflow on any Pull Request.
     branches:
-      - master # Trigger the workflow on a Pull Request to the master branch.
+      - '**'
 
 ##########
 #  Jobs  #
@@ -88,10 +88,10 @@ jobs:
         run: dotnet restore ./Elephant.NuGets.sln
 
       # Pack. The dotnet pack command builds the project and creates NuGet packages. The result of this command is a NuGet package (that is, a .nupkg file).
-      - name: pack application
+      - name: Pack application
         run: dotnet pack ./Elephant.NuGets.sln --no-build --configuration Release --nologo
 
       # Requires a GitHub secret called NUGET_ORG.
       - name: Publish
-        #if: startsWith(github.ref, 'refs/heads/release')
+        if: ${{ github.event.pull_request.merged }} # Only run if this is a PR that is being merged.
         run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_ORG}} -SkipDuplicate
