@@ -25,54 +25,54 @@ on:
 #  Jobs  #
 ##########
 jobs:
-  checkout-code:
-    name: Checkout
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+  # checkout-code:
+    # name: Checkout
+    # runs-on: ubuntu-latest
+    # steps:
+      # - name: Checkout code
+        # uses: actions/checkout@v3
 
-  setup-net-frameworks:
-    name: Setup .NET Frameworks
-    needs: checkout-code
-    runs-on: ubuntu-latest
+  # setup-net-frameworks:
+    # name: Setup .NET Frameworks
+    # needs: checkout-code
+    # runs-on: ubuntu-latest
 
-    # Setup required .NET frameworks.
-    steps:
-      - name: Setup .NET 2.0
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: 2.0
+    # # Setup required .NET frameworks.
+    # steps:
+      # - name: Setup .NET 2.0
+        # uses: actions/setup-dotnet@v3
+        # with:
+          # dotnet-version: 2.0
 
-      - name: Setup .NET 2.1
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: 2.1
+      # - name: Setup .NET 2.1
+        # uses: actions/setup-dotnet@v3
+        # with:
+          # dotnet-version: 2.1
 
-      - name: Setup .NET 3.0
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: 3.0
+      # - name: Setup .NET 3.0
+        # uses: actions/setup-dotnet@v3
+        # with:
+          # dotnet-version: 3.0
 
-      - name: Setup .NET 3.1
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: 3.1
+      # - name: Setup .NET 3.1
+        # uses: actions/setup-dotnet@v3
+        # with:
+          # dotnet-version: 3.1
 
-      - name: Setup .NET 5.0
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: 5.0
+      # - name: Setup .NET 5.0
+        # uses: actions/setup-dotnet@v3
+        # with:
+          # dotnet-version: 5.0
 
-      - name: Setup .NET 6.0.x
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: 6.0.x
+      # - name: Setup .NET 6.0.x
+        # uses: actions/setup-dotnet@v3
+        # with:
+          # dotnet-version: 6.0.x
 
-      - name: Setup .NET 7.0.x
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: 7.0.x
+      # - name: Setup .NET 7.0.x
+        # uses: actions/setup-dotnet@v3
+        # with:
+          # dotnet-version: 7.0.x
 
   build-debug:
     name: Build Debug
