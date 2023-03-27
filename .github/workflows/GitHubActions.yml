@@ -1,3 +1,8 @@
+# For more info see: https://docs.github.com/en/actions/using-workflows/about-workflows
+
+############
+# Workflow #
+############
 name: .net CI [Build and Release] # Name of the workflow
 
 ############
@@ -94,7 +99,7 @@ jobs:
 
       # build with debug
       - name: Build Debug
-        run: dotnet build -exclude-source "Elephant.Lnk\Elephant.Lnk.csproj" --configuration Debug --no-restore --no-logo
+        run: dotnet build Elephant.NuGets.sln --configuration Debug --no-restore --no-logo
 
   build-release:
     name: Build Release
@@ -123,7 +128,7 @@ jobs:
 
       # build release
       - name: Build Release
-        run: dotnet build -exclude-source "Elephant.Lnk\Elephant.Lnk.csproj" --configuration Release --no-logo
+        run: dotnet build Elephant.NuGets.sln --configuration Release --no-logo
 
       # test release
       #- name: Test release
@@ -165,7 +170,7 @@ jobs:
 
   publish-to-nuget-org:
     name: Publish NuGets
-    needs: pack-release
+    needs:  [build-debug, pack-release]
     runs-on: windows-latest # Note: ubuntu-latest doesn't work because of MAUI.
 
     # List of steps to run in build-debug & release
