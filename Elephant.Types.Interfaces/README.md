@@ -8,6 +8,7 @@ Contains shared/common/generic type interfaces.
 - IIdName
 - IIdNameDescription
 - IIsEnabled
+- IGuid
 - IName
 
 # Response wrapper interfaces

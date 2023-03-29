@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>3.0.0</Version>
-		<PackageReleaseNotes>Change pagination URLs into URIs.</PackageReleaseNotes>
+		<Version>3.0.1</Version>
+		<PackageReleaseNotes>Add IGuid.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
