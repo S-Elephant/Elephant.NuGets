@@ -13,6 +13,7 @@ namespace Elephant.CodeFirst.SqlServer
 		/// <summary>
 		/// Creates a table with an auto-incrementing Id column of type int as the primary key.
 		/// </summary>
+		/// <returns>Table name.</returns>
 		public static string ToIdTableWithPrimaryKey<TEntity>(ref EntityTypeBuilder<TEntity> builder, string? schema = null, string? tableName = null)
 			where TEntity : class, IId
 		{
