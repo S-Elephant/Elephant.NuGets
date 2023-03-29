@@ -12,7 +12,7 @@ namespace Elephant.CodeFirst.Sqlite
 	{
 		/// <summary>
 		/// Creates a table with an auto-incrementing Id field of type int as the primary key.
-		/// Note that Sqlite does not support schemas.
+		/// Note that SQLite does not support schemas.
 		/// </summary>
 		public static string ToIdTableWithPrimaryKey<T>(ref EntityTypeBuilder<T> builder, string? tableName = null)
 			where T : class, IId
