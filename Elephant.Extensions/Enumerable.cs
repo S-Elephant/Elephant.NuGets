@@ -79,5 +79,20 @@
 		{
 			return EqualityComparer<TSource>.Default.Equals(source.Last(), itemToCompare);
 		}
+
+		/// <summary>
+		/// Return true if EVERY item in <paramref name="source"/> is unique or if it is empty or null.
+		/// If every item must always be unique then consider using a <see cref="HashSet{T}"/>.
+		/// </summary>
+		/// <typeparam name="TSource">IEnumerable type.</typeparam>
+		/// <param name="source">Source list.</param>
+		/// <returns>True if EVERY item in <paramref name="source"/> is unique or if it is empty or null.</returns>
+		public static bool AreAllItemsUnique<TSource>(this IEnumerable<TSource>? source)
+		{
+			if (source == null)
+				return true;
+
+			return source.Distinct().Count() == source.Count();
+		}
 	}
 }

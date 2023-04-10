@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.0.9</Version>
-		<PackageReleaseNotes>Add new extensions.</PackageReleaseNotes>
+		<Version>1.0.10</Version>
+		<PackageReleaseNotes>Add new extension.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
