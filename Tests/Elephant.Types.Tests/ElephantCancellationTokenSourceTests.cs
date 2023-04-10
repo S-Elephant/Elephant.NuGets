@@ -1,4 +1,6 @@
-﻿namespace Elephant.Types.Tests
+﻿using Elephant.Types.Tests.ResponseWrappers;
+
+namespace Elephant.Types.Tests
 {
 	/// <summary>
 	/// <see cref="ElephantCancellationTokenSource"/> tests.

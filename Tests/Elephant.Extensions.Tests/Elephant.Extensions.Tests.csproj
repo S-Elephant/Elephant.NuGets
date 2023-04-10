@@ -25,7 +25,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\Elephant.Extensions\Elephant.Extensions.csproj" />
-		<ProjectReference Include="..\..\Elephant.Testing.Xunit\Elephant.Testing.Xunit.csproj" />
+		<ProjectReference Include="..\..\Testing\Elephant.Testing.Xunit\Elephant.Testing.Xunit.csproj" />
 	</ItemGroup>
 
 	<!-- StyleCop (only in Debug configuration) -->

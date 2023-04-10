@@ -11,6 +11,7 @@ namespace Elephant.ApiControllers.Tests
 		/// <see cref="ControllerExtensions.ToIFormFile(byte[], string, string, string)"/> and <see cref="ControllerExtensions.ToByteArray(IFormFile)"/> tests.
 		/// </summary>
 		[Fact]
+		[SpeedVeryFast, UnitTest]
 		public void FromBytesToFormFileAndBack()
 		{
 			// Arrange.
@@ -29,6 +30,7 @@ namespace Elephant.ApiControllers.Tests
 		/// <see cref="ControllerExtensions.ToIFormFile(byte[], string, string, string)"/> and <see cref="ControllerExtensions.ToByteArray(IFormFile)"/> conversions test.
 		/// </summary>
 		[Fact]
+		[SpeedVeryFast, UnitTest]
 		public void FromEmptyBytesToFormFileAndBack()
 		{
 			// Arrange.

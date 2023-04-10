@@ -1,4 +1,6 @@
-﻿namespace Elephant.Types.Tests.TrileanTests
+﻿using Elephant.Types.Tests.ResponseWrappers;
+
+namespace Elephant.Types.Tests.TrileanTests
 {
     /// <summary>
     /// <see cref="Trilean"/> tests.

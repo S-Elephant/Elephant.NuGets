@@ -44,8 +44,8 @@
 		<PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.1" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.1" />
+		<ProjectReference Include="..\Constants\Elephant.Constants.SqlServer\Elephant.Constants.SqlServer.csproj" />
 		<ProjectReference Include="..\Elephant.Common\Elephant.Common.csproj" />
-		<ProjectReference Include="..\Elephant.Constants.SqlServer\Elephant.Constants.SqlServer.csproj" />
 		<ProjectReference Include="..\Elephant.Types.Interfaces\Elephant.Types.Interfaces.csproj" />
 	</ItemGroup>
 

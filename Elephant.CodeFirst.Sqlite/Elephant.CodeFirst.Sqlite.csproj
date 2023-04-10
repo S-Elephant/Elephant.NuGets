@@ -55,7 +55,7 @@
 		</None>
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\Elephant.Constants.Sqlite\Elephant.Constants.Sqlite.csproj" />
+	  <ProjectReference Include="..\Constants\Elephant.Constants.Sqlite\Elephant.Constants.Sqlite.csproj" />
 	  <ProjectReference Include="..\Elephant.Types.Interfaces\Elephant.Types.Interfaces.csproj" />
 	</ItemGroup>
 

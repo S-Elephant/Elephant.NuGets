@@ -48,7 +48,7 @@
 		</None>
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\Elephant.Constants.SqlServer\Elephant.Constants.SqlServer.csproj" />
+	  <ProjectReference Include="..\Constants\Elephant.Constants.SqlServer\Elephant.Constants.SqlServer.csproj" />
 	</ItemGroup>
 
 </Project>
