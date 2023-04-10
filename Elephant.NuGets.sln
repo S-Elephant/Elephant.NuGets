@@ -65,6 +65,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.Constants.SqlServe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.Rijksdriehoek.Tests", "Tests\Elephant.Rijksdriehoek.Tests\Elephant.Rijksdriehoek.Tests.csproj", "{A2D80AE1-7561-430E-AECD-A4CE7EFF5BAD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elephant.Constants.MockData", "Constants\Elephant.Constants.MockData\Elephant.Constants.MockData.csproj", "{A0CA4EEB-FA20-4895-8350-C682F29CA923}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elephant.Constants.MockData.Tests", "Tests\Elephant.Constants.MockData.Tests\Elephant.Constants.MockData.Tests.csproj", "{A99701D3-E961-4C17-92DD-A20A3124AF23}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -183,6 +187,14 @@ Global
 		{A2D80AE1-7561-430E-AECD-A4CE7EFF5BAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2D80AE1-7561-430E-AECD-A4CE7EFF5BAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2D80AE1-7561-430E-AECD-A4CE7EFF5BAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0CA4EEB-FA20-4895-8350-C682F29CA923}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0CA4EEB-FA20-4895-8350-C682F29CA923}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0CA4EEB-FA20-4895-8350-C682F29CA923}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0CA4EEB-FA20-4895-8350-C682F29CA923}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A99701D3-E961-4C17-92DD-A20A3124AF23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A99701D3-E961-4C17-92DD-A20A3124AF23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A99701D3-E961-4C17-92DD-A20A3124AF23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A99701D3-E961-4C17-92DD-A20A3124AF23}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -200,6 +212,8 @@ Global
 		{03353200-64AB-4A09-8EDD-B829AEFD083F} = {7E68A68E-5C63-4352-AEF3-08F7E29E928B}
 		{5BE24952-54BC-4555-8615-FA8CF3E3C99F} = {7E68A68E-5C63-4352-AEF3-08F7E29E928B}
 		{A2D80AE1-7561-430E-AECD-A4CE7EFF5BAD} = {4F5D45E5-E7E9-4D89-8261-0B52F71DD917}
+		{A0CA4EEB-FA20-4895-8350-C682F29CA923} = {7E68A68E-5C63-4352-AEF3-08F7E29E928B}
+		{A99701D3-E961-4C17-92DD-A20A3124AF23} = {4F5D45E5-E7E9-4D89-8261-0B52F71DD917}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6DB47403-D8D8-4EEB-9D37-8E73C2E536E4}

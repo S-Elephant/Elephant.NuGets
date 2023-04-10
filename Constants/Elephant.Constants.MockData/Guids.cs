@@ -1,0 +1,136 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
+namespace Elephant.Constants.MockData
+{
+	/// <summary>
+	/// GUID mock data.
+	/// </summary>
+	public static class Guids
+	{
+		/// <summary>
+		/// 10 unique largest United States cities, sorted by population from 2013.
+		/// </summary>
+		public static readonly ReadOnlyCollection<Guid> Guids10 = new(new List<Guid>
+		{
+			new Guid("844c5565-6de2-491c-9025-d2fa5b1a0526"),
+			new Guid("eecae651-b5a3-4669-972a-ef576e7e155d"),
+			new Guid("aedcb85f-1211-43a6-82f9-fa1f09ffe77b"),
+			new Guid("20ce576f-a5e7-4305-8627-43884e4a1508"),
+			new Guid("b91c685e-e5b9-48a6-ae5c-aa45e94333c1"),
+			new Guid("349b1b28-a25d-4e56-adcd-dd5dba3a6684"),
+			new Guid("bbb074a6-80f7-4119-ae45-bb7dbe418681"),
+			new Guid("1e4b01fd-954b-4dba-85de-b0d6f20b18dc"),
+			new Guid("053848da-ffa5-4582-afce-557c188cfb29"),
+			new Guid("f6d9b933-cd10-4bbf-948f-04e6b6b05f5d"),
+		});
+
+		/// <summary>
+		/// 100 unique largest United States cities, sorted by population from 2013.
+		/// </summary>
+		public static readonly ReadOnlyCollection<Guid> Guids100 = new(new List<Guid>
+		{
+			new Guid("844c5565-6de2-491c-9025-d2fa5b1a0526"),
+			new Guid("eecae651-b5a3-4669-972a-ef576e7e155d"),
+			new Guid("aedcb85f-1211-43a6-82f9-fa1f09ffe77b"),
+			new Guid("20ce576f-a5e7-4305-8627-43884e4a1508"),
+			new Guid("b91c685e-e5b9-48a6-ae5c-aa45e94333c1"),
+			new Guid("349b1b28-a25d-4e56-adcd-dd5dba3a6684"),
+			new Guid("bbb074a6-80f7-4119-ae45-bb7dbe418681"),
+			new Guid("1e4b01fd-954b-4dba-85de-b0d6f20b18dc"),
+			new Guid("053848da-ffa5-4582-afce-557c188cfb29"),
+			new Guid("f6d9b933-cd10-4bbf-948f-04e6b6b05f5d"),
+			new Guid("c6475da2-b014-40e8-ab59-13837383fee2"),
+			new Guid("95e71583-5584-4ee1-b74c-bc63b7d24b19"),
+			new Guid("d88ee653-c4c5-4f58-90e8-6b65705ae1ac"),
+			new Guid("41f99b99-9189-446e-93b6-e17a242a463c"),
+			new Guid("d25e4574-2cdb-402c-ab10-b08c9f2223ff"),
+			new Guid("228e854f-189b-4352-93e5-0101c8250e9f"),
+			new Guid("cb3bce4b-12fc-4cb0-a5ad-3926cea2cd12"),
+			new Guid("40efab7c-7b96-4b3d-97b1-5df9c4352f52"),
+			new Guid("cffb0283-b7fd-4461-ad6f-be8e70ae3621"),
+			new Guid("5dae1160-87ba-4034-b815-36593fa354a4"),
+			new Guid("94f72d8a-73f7-4778-ab96-28403f338bdf"),
+			new Guid("1fc8325b-479a-4255-953b-758e045d75f1"),
+			new Guid("c05b62d3-102a-4868-87d8-7ee12548d42b"),
+			new Guid("47e23b66-a7b5-4118-8aca-fef113786957"),
+			new Guid("64f63a9f-37a5-42c5-ab1f-7aa41029bf64"),
+			new Guid("da19c211-1b54-417b-9d24-70e1e9079a1b"),
+			new Guid("ace46fcb-9f53-4e81-bb6b-72f0df2e13d0"),
+			new Guid("979014b5-81f2-4411-8fb1-f6fc19ad52b3"),
+			new Guid("54cc0054-8e61-40d8-a801-ca30cab68b1f"),
+			new Guid("0faa5319-3a00-4348-b007-45b04e8887e5"),
+			new Guid("e6202b84-114d-4b0a-8817-9b8297fb32a7"),
+			new Guid("c68c6fdb-f5df-45a2-b1d0-45839748aa2d"),
+			new Guid("595d22cd-1399-4a57-8e94-7ebecf4d7893"),
+			new Guid("61d59645-f148-4a6e-8845-b428485d7738"),
+			new Guid("a579931c-d17a-4446-aff1-8c6eca3ebf33"),
+			new Guid("1a332e94-a3fd-4bc9-b539-b499633b9de6"),
+			new Guid("82366cc1-c9fe-4d9c-8655-7aa01a799028"),
+			new Guid("017437b7-03ba-4791-b336-f9bfc88ac446"),
+			new Guid("c3fce285-e15e-4330-b27d-9ba4e0482175"),
+			new Guid("a5bdce8e-d5c4-4d51-999b-13b58c6a60e4"),
+			new Guid("0782d30b-b9a4-430e-a285-757ce07df9c2"),
+			new Guid("595d9289-249f-4dc6-9859-519f96452d1e"),
+			new Guid("be7af8c7-35e7-4cff-8829-9b8a7b8e770b"),
+			new Guid("a8fa4de2-2843-40cc-be18-e29d4336cb89"),
+			new Guid("01514538-15e8-4e05-9383-c8c54b9e94a5"),
+			new Guid("cd847288-8099-40b1-a4f6-24bb07547ba6"),
+			new Guid("2d0d1f1a-a812-41f3-a201-b0196988435d"),
+			new Guid("ffd0ca84-091a-471a-abca-2aa1488cd8e9"),
+			new Guid("0134130f-6fd2-4f17-9be7-55555d233f1e"),
+			new Guid("0ccb9cf6-b2b0-4cfb-862c-e73e6ecdf02a"),
+			new Guid("d3468dd1-475f-48ab-af5a-bb9ff44d8e5f"),
+			new Guid("0d10bec2-e754-4af6-b3b5-67a456b9c19f"),
+			new Guid("d4f209e9-52ef-4d56-8b7d-e84df696d534"),
+			new Guid("d7d76313-f30f-4fe7-b854-1296d163f48c"),
+			new Guid("06f156f1-369e-459b-b057-01f731b3719d"),
+			new Guid("868f0d99-289d-4b7b-a6be-4bdab3a1a2cd"),
+			new Guid("dd07ac68-078a-4e87-9fee-901742fae3b9"),
+			new Guid("3c9f14aa-0468-4021-a616-c9c24cb18bea"),
+			new Guid("8f88a70b-bff9-4e6a-849c-6397448f6416"),
+			new Guid("57e15fd1-8bf7-49f5-abf2-e28202638b92"),
+			new Guid("63dba87a-c0eb-4782-8c62-c98268548883"),
+			new Guid("22bf6b23-4a95-4922-87ac-cb728fd96c65"),
+			new Guid("eace29f3-197c-40f6-8dc5-fbd0957b5ff8"),
+			new Guid("a1d2c668-f366-4025-8b8b-cb3324b7b31d"),
+			new Guid("94711232-f0a6-4a85-ba2a-a3582573d214"),
+			new Guid("eb4f233b-e823-44ff-a5f6-7220b4c2bf1d"),
+			new Guid("645ad6bf-981d-4763-8327-1ed4a4cbcc17"),
+			new Guid("3839eb6c-68e1-4967-a5b8-40660b959755"),
+			new Guid("4c7c24cb-b7af-4fbb-93f7-c5192fe47f77"),
+			new Guid("1acb76fd-1311-4556-bdb2-a85258fdb0d7"),
+			new Guid("d2d96cf0-1f5d-4bf1-a0d2-90b8fbe4828f"),
+			new Guid("3bf59bcf-30e0-405a-8a2c-3cb3fa837826"),
+			new Guid("6cad81bf-aa16-426f-8246-f382969bfc3b"),
+			new Guid("7849c4ba-5e4e-4b50-9e27-25b4fc5d94c9"),
+			new Guid("48d84678-ff18-4a56-8cb1-7f686e3fac58"),
+			new Guid("c56df610-5022-48e0-a53a-98094544bf19"),
+			new Guid("223e70d8-fbc3-45e9-8d77-1fed04127e5c"),
+			new Guid("db03b811-795f-4b24-ab76-e47558a6128f"),
+			new Guid("514f53cf-dc63-4d8b-80e0-35630aff38df"),
+			new Guid("fd045744-6eee-4972-a165-880d4dc631a9"),
+			new Guid("a6ff184e-2938-4c41-ac3b-3ff7e224753b"),
+			new Guid("9161c459-ac9f-4cef-884c-f4a247209cb4"),
+			new Guid("b054747b-8f14-4d72-b189-d5a4de214c8a"),
+			new Guid("90a4dae6-97c4-4741-b08f-75cef894b550"),
+			new Guid("f3453629-0a4d-42af-a1a8-c9463c01d2a9"),
+			new Guid("4cb7a4ab-42a5-4301-aab5-3f6114a6a019"),
+			new Guid("4469a41d-8acf-4003-bd13-c99edaa3a092"),
+			new Guid("482ee451-0e27-4f68-9db7-3545278f829b"),
+			new Guid("d0f0d5c0-d1ea-4ba2-bef2-0bc215be4ffa"),
+			new Guid("e2473e9e-de0d-4dd2-be33-03e6efdd4efe"),
+			new Guid("541084ac-3319-4c10-bf58-12c53278d83f"),
+			new Guid("b9a60e10-1598-4f1a-a3af-81fc1db719dc"),
+			new Guid("4733b061-44b4-4abe-8c42-d2e4847e6eaf"),
+			new Guid("ca3ac478-63c0-4750-bef7-0d576e0d6276"),
+			new Guid("28df35d4-e986-4610-9073-a12f81119229"),
+			new Guid("e810482a-065a-4615-8ae9-27b2c92f3b06"),
+			new Guid("3ab00ad8-8535-4f57-8b8d-a5eec100a9c5"),
+			new Guid("8a26ecf8-231b-46cd-8a16-ccdad86db9af"),
+			new Guid("dd1b76af-e2df-4918-ab99-c24dd994362c"),
+			new Guid("585a9e57-5879-429f-b13b-92af9bec088f"),
+		});
+	}
+}
