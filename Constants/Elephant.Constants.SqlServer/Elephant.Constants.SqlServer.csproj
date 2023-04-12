@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>3.0.1</Version>
-		<PackageReleaseNotes>Add phone numbers.</PackageReleaseNotes>
+		<Version>3.0.2</Version>
+		<PackageReleaseNotes>Add 3 new types.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->

@@ -34,6 +34,11 @@ Contains constant Microsoft SQL Server database types plus a few extras.
 - GuidString
 - GuidHex
 
+### Spatial
+
+- Geography
+- Geometry
+
 ### String
 
 - NVarCharMax
@@ -91,6 +96,7 @@ Contains constant Microsoft SQL Server database types plus a few extras.
 - PhoneNumberInternational
 - PhoneNumberNetherlands
 - Url
+- Xml
 
 # Upgrade instructions
 

@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using static System.Net.WebRequestMethods;
 
 namespace Elephant.Constants.SqlServer
 {
@@ -135,6 +136,22 @@ namespace Elephant.Constants.SqlServer
 
 		#endregion
 
+		#region Spatial types
+
+		/// <summary>
+		/// For spatial geography data.
+		/// </summary>
+		/// <remarks>For more info see: https://learn.microsoft.com/en-us/sql/t-sql/spatial-geography/spatial-types-geography?view=sql-server-ver16.</remarks>
+		public const string Geography = "GEOGRAPHY";
+
+		/// <summary>
+		/// For spatial geometry data.
+		/// </summary>
+		/// <remarks>For more info see: https://learn.microsoft.com/en-us/sql/t-sql/spatial-geometry/spatial-types-geometry-transact-sql?view=sql-server-ver16.</remarks>
+		public const string Geometry = "GEOMETRY";
+
+		#endregion
+
 		#region String data types
 
 		/// <summary>
@@ -207,7 +224,7 @@ namespace Elephant.Constants.SqlServer
 
 		/// <summary>
 		/// An actual GUID. If you need a string GUID instead then you should probably use either <see cref="GuidHex"/> or <see cref="GuidString"/> instead.
-		/// This type of GUID has much better performance compared to string GUID's.
+		/// This type of GUID has much better performance compared to string GUIDs.
 		/// </summary>
 		public static readonly string Guid = $"UNIQUEIDENTIFIER";
 
@@ -261,14 +278,24 @@ namespace Elephant.Constants.SqlServer
 		/// </summary>
 		/// <remarks>For more info see: https://stackoverflow.com/questions/723587/whats-the-longest-possible-worldwide-phone-number-i-should-consider-in-sql-varc.</remarks>
 		/// <example>06-12345678 using the country code +31, can be stored as: 31612345678</example>
-		[SuppressMessage("Microsoft.StyleCop.CSharp.OrderingRules", "SA1203:ConstantsShouldAppearBeforeFields", Justification = "Group related items for clarity.")]
 		public const string PhoneNumberNetherlands = "VARCHAR(11)";
+
+		/// <summary>
+		/// SQL Variant.
+		/// </summary>
+		/// <remarks>For more info see: https://learn.microsoft.com/en-us/sql/t-sql/data-types/sql-variant-transact-sql?view=sql-server-ver16.</remarks>
+		public const string SqlVariant = "SQL_VARIANT";
 
 		/// <summary>
 		/// <see cref="string"/> with max-length 2048.
 		/// </summary>
-		[SuppressMessage("Microsoft.StyleCop.CSharp.OrderingRules", "SA1203:ConstantsShouldAppearBeforeFields", Justification = "Group related items for clarity.")]
 		public const string Url = "VARCHAR(2048)";
+
+		/// <summary>
+		/// <see cref="string"/> with max-length 2048.
+		/// </summary>
+		/// <remarks>For more info see: https://learn.microsoft.com/en-us/sql/t-sql/xml/xml-transact-sql?view=sql-server-ver16.</remarks>
+		public const string Xml = "XML";
 
 		#endregion
 
