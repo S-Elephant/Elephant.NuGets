@@ -2,12 +2,14 @@
 
 Contains constant Microsoft SQL Server database types plus a few extras.
 
+Has both an identical static version and a non-static with an interface.
+
 ## DbTypes
 
 ### Numeric
 
 - BigInt
-- Bit
+- Bool
 - Decimal
 - Float
 - Float4
