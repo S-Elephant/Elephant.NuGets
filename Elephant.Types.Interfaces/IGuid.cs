@@ -1,13 +1,15 @@
-﻿namespace Elephant.Types.Interfaces
+﻿using System;
+
+namespace Elephant.Types.Interfaces
 {
     /// <summary>
-    /// Interface with a <see cref="Guid"/> property.
+    /// Interface with a <see cref="System.Guid"/> property.
     /// </summary>
     public interface IGuid
     {
         /// <summary>
         /// Unique identifier (GUID).
         /// </summary>
-        IGuid Guid { get; set; }
+        Guid Guid { get; set; }
     }
 }
