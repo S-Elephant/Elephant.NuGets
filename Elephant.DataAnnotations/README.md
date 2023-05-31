@@ -2,7 +2,7 @@
 
 Contains validation attributes commonly used in backend endpoint Controllers and view models.
 
-# Attribute list
+# Validation attribute list
 
 - [**EqualsAnotherPropertyStringAttribute**(string otherPropertyName)]
 - [**EqualsAnotherPropertyStringRequiredAttribute**(string otherPropertyName)]
@@ -19,3 +19,35 @@ Contains validation attributes commonly used in backend endpoint Controllers and
 - [**ListMinRequired**(int minValue)]
 - [**ListNotEmptyRequired**]
 - [**ListOneItemRequired**]
+
+# Attribute list
+
+- **[IfEmptyMakeItNull]** (To use it without writing code, use the **DataAnnotationService.ReplaceEmptyStringsWithNulls(..)**)
+
+# Services
+
+- IDataAnnotationService
+
+
+
+# Examples
+
+```c#
+[IfEmptyMakeItNull] // Note that this attribute may also be placed on the property or properties themselves.
+private class Customer
+{
+	public string? Notes { get; set; } = string.Empty; // Note that this MUST be a nullable type.
+	..
+}
+
+..
+
+private void Foo()
+{
+	DataAnnotationService dataAnnotationService = new(); // Use DI if possible.
+	Customer customer = new();
+	dataAnnotationService.ReplaceEmptyStringsWithNulls(ref customer);
+	// customer.Notes value is now null.
+}
+```
+
