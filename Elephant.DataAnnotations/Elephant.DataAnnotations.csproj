@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.0.5</Version>
-		<PackageReleaseNotes>Add two new attributes.</PackageReleaseNotes>
+		<Version>1.0.7</Version>
+		<PackageReleaseNotes>Add DataAnnotationService.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
