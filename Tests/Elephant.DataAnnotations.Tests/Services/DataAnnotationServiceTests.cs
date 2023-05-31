@@ -17,7 +17,7 @@ namespace Elephant.DataAnnotations.Tests
 
 			public int IntNonNullable { get; set; } = 0;
 
-			public string? Float { get; set; } = null;
+			public float? Float { get; set; } = null;
 		}
 
 		private class TestWithAnnotations
@@ -31,7 +31,23 @@ namespace Elephant.DataAnnotations.Tests
 			public int? IntDontNull { get; set; } = 0;
 
 			[IfEmptyMakeItNull]
-			public string? Float { get; set; } = null;
+			public float? Float { get; set; } = null;
+
+			[IfEmptyMakeItNull]
+			public char? Char { get; set; } = null;
+		}
+
+		[IfEmptyMakeItNull]
+		private class TestClassAnnotationWithValues
+		{
+			public string? String { get; set; } = "Foo";
+
+			public int? Int { get; set; } = 2;
+
+			[IfEmptyMakeItNull]
+			public float? Float { get; set; } = -32.53f;
+
+			public string? StringThatIsEmpty { get; set; } = string.Empty;
 		}
 
 		private readonly IDataAnnotationService _systemUnderTest = new DataAnnotationService();
@@ -98,6 +114,24 @@ namespace Elephant.DataAnnotations.Tests
 		}
 
 		/// <summary>
+		/// Replace <see cref="char"/> with null succeeds.
+		/// </summary>
+		[Fact]
+		[SpeedVeryFast, UnitTest]
+		public void ReplaceCharWithNullWorks()
+		{
+			// Arrange.
+			object dummy = new TestWithAnnotations();
+
+			// Act.
+			_systemUnderTest.ReplaceEmptyStringsWithNulls(ref dummy);
+
+			// Assert.
+			TestWithAnnotations dummyCasted = (TestWithAnnotations)dummy;
+			Assert.Null(dummyCasted.Char);
+		}
+
+		/// <summary>
 		/// Non-marked property should not be nulled.
 		/// </summary>
 		[Fact]
@@ -148,6 +182,27 @@ namespace Elephant.DataAnnotations.Tests
 
 			// Assert.
 			Assert.Equal(0, ((TestClassAnnotation)dummy).IntNonNullable);
+		}
+
+		/// <summary>
+		/// Marked class must not replace empty non-nullable properties.
+		/// </summary>
+		[Fact]
+		[SpeedVeryFast, UnitTest]
+		public void AnnotationWithValuesRemainsUnchanged()
+		{
+			// Arrange.
+			object dummy = new TestClassAnnotationWithValues();
+
+			// Act.
+			_systemUnderTest.ReplaceEmptyStringsWithNulls(ref dummy);
+
+			TestClassAnnotationWithValues dummyCasted = (TestClassAnnotationWithValues)dummy;
+
+			// Assert.
+			Assert.NotNull(dummyCasted.Float);
+			Assert.NotNull(dummyCasted.Int);
+			Assert.NotNull(dummyCasted.String);
 		}
 	}
 }
