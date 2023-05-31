@@ -67,14 +67,13 @@ namespace Elephant.DataAnnotations.Tests
 		public void ReplaceStringWithNullWorks()
 		{
 			// Arrange.
-			object dummy = new TestWithAnnotations();
+			TestWithAnnotations dummy = new();
 
 			// Act.
 			_systemUnderTest.ReplaceEmptyStringsWithNulls(ref dummy);
 
 			// Assert.
-			TestWithAnnotations dummyCasted = (TestWithAnnotations)dummy;
-			Assert.Null(dummyCasted.String);
+			Assert.Null(dummy.String);
 		}
 
 		/// <summary>
@@ -85,14 +84,13 @@ namespace Elephant.DataAnnotations.Tests
 		public void ReplaceIntWithNullWorks()
 		{
 			// Arrange.
-			object dummy = new TestWithAnnotations();
+			TestWithAnnotations dummy = new ();
 
 			// Act.
 			_systemUnderTest.ReplaceEmptyStringsWithNulls(ref dummy);
 
 			// Assert.
-			TestWithAnnotations dummyCasted = (TestWithAnnotations)dummy;
-			Assert.Null(dummyCasted.Int);
+			Assert.Null(dummy.Int);
 		}
 
 		/// <summary>
@@ -103,14 +101,13 @@ namespace Elephant.DataAnnotations.Tests
 		public void ReplaceFloatWithNullWorks()
 		{
 			// Arrange.
-			object dummy = new TestWithAnnotations();
+			TestWithAnnotations dummy = new();
 
 			// Act.
 			_systemUnderTest.ReplaceEmptyStringsWithNulls(ref dummy);
 
 			// Assert.
-			TestWithAnnotations dummyCasted = (TestWithAnnotations)dummy;
-			Assert.Null(dummyCasted.Float);
+			Assert.Null(dummy.Float);
 		}
 
 		/// <summary>
@@ -121,14 +118,13 @@ namespace Elephant.DataAnnotations.Tests
 		public void ReplaceCharWithNullWorks()
 		{
 			// Arrange.
-			object dummy = new TestWithAnnotations();
+			TestWithAnnotations dummy = new();
 
 			// Act.
 			_systemUnderTest.ReplaceEmptyStringsWithNulls(ref dummy);
 
 			// Assert.
-			TestWithAnnotations dummyCasted = (TestWithAnnotations)dummy;
-			Assert.Null(dummyCasted.Char);
+			Assert.Null(dummy.Char);
 		}
 
 		/// <summary>
@@ -139,14 +135,13 @@ namespace Elephant.DataAnnotations.Tests
 		public void DoesntReplaceNonMarkedProperty()
 		{
 			// Arrange.
-			object dummy = new TestWithAnnotations();
+			TestWithAnnotations dummy = new();
 
 			// Act.
 			_systemUnderTest.ReplaceEmptyStringsWithNulls(ref dummy);
 
 			// Assert.
-			TestWithAnnotations dummyCasted = (TestWithAnnotations)dummy;
-			Assert.NotNull(dummyCasted.IntDontNull);
+			Assert.NotNull(dummy.IntDontNull);
 		}
 
 		/// <summary>
@@ -157,14 +152,13 @@ namespace Elephant.DataAnnotations.Tests
 		public void MarkedClassReplacesNullables()
 		{
 			// Arrange.
-			object dummy = new TestClassAnnotation();
+			TestClassAnnotation dummy = new();
 
 			// Act.
 			_systemUnderTest.ReplaceEmptyStringsWithNulls(ref dummy);
 
 			// Assert.
-			TestClassAnnotation dummyCasted = (TestClassAnnotation)dummy;
-			Assert.Null(dummyCasted.Float);
+			Assert.Null(dummy.Float);
 		}
 
 		/// <summary>
@@ -175,13 +169,13 @@ namespace Elephant.DataAnnotations.Tests
 		public void MarkedClassDoesntReplaceNonNullable()
 		{
 			// Arrange.
-			object dummy = new TestClassAnnotation();
+			TestClassAnnotation dummy = new();
 
 			// Act.
 			_systemUnderTest.ReplaceEmptyStringsWithNulls(ref dummy);
 
 			// Assert.
-			Assert.Equal(0, ((TestClassAnnotation)dummy).IntNonNullable);
+			Assert.Equal(0, dummy.IntNonNullable);
 		}
 
 		/// <summary>
@@ -192,17 +186,15 @@ namespace Elephant.DataAnnotations.Tests
 		public void AnnotationWithValuesRemainsUnchanged()
 		{
 			// Arrange.
-			object dummy = new TestClassAnnotationWithValues();
+			TestClassAnnotationWithValues dummy = new();
 
 			// Act.
 			_systemUnderTest.ReplaceEmptyStringsWithNulls(ref dummy);
 
-			TestClassAnnotationWithValues dummyCasted = (TestClassAnnotationWithValues)dummy;
-
 			// Assert.
-			Assert.NotNull(dummyCasted.Float);
-			Assert.NotNull(dummyCasted.Int);
-			Assert.NotNull(dummyCasted.String);
+			Assert.NotNull(dummy.Float);
+			Assert.NotNull(dummy.Int);
+			Assert.NotNull(dummy.String);
 		}
 	}
 }

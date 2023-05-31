@@ -33,22 +33,21 @@ Contains validation attributes commonly used in backend endpoint Controllers and
 # Examples
 
 ```c#
-[IfEmptyMakeItNull]
+[IfEmptyMakeItNull] // Note that this attribute may also be placed on the property or properties themselves.
 private class Customer
 {
-	public string? Notes { get; set; } = string.Empty; // Note that this must be a nullable type.
-    ..
+	public string? Notes { get; set; } = string.Empty; // Note that this MUST be a nullable type.
+	..
 }
 
 ..
 
 private void Foo()
 {
-    DataAnnotationService dataAnnotationService = new(); // Please use DI if possible.
-	object customer = new Customer(); // Create a dummy object for demo purposes.
-
-    dataAnnotationService.ReplaceEmptyStringsWithNulls(ref customer);
-    // ((Customer)customer).Notes should now be null.
+	DataAnnotationService dataAnnotationService = new(); // Use DI if possible.
+	Customer customer = new();
+	dataAnnotationService.ReplaceEmptyStringsWithNulls(ref customer);
+	// customer.Notes value is now null.
 }
 ```
 
