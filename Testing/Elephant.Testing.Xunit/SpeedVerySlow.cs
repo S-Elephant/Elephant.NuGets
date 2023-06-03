@@ -18,7 +18,9 @@ namespace Elephant.Testing.Xunit
 	/// <summary>
 	/// <see cref="SpeedVerySlow"/> <see cref="ITraitDiscoverer"/>.
 	/// </summary>
+#if DEBUG
 	[SuppressMessage("Microsoft.StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleType", Justification = "Group related items for clarity.")]
+#endif
 	public class SpeedVerySlowDiscoverer : ITraitDiscoverer
 	{
 		private const string Key = "Speed";
