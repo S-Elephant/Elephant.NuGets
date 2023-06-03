@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+#if DEBUG
 using System.Diagnostics.CodeAnalysis;
+#endif
 using Elephant.Types.Interfaces;
 
 namespace Elephant.Types

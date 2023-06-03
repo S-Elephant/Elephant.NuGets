@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+#if DEBUG
 using System.Diagnostics.CodeAnalysis;
+#endif
 using Xunit.Abstractions;
 using Xunit.Sdk;
 
