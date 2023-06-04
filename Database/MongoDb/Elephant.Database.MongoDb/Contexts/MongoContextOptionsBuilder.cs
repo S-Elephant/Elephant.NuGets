@@ -29,9 +29,7 @@ namespace Elephant.Database.MongoDb.Contexts
 		}
 
 		/// <inheritdoc/>
-#if DEBUG
 		[SuppressMessage("Microsoft.StyleCop.CSharp.SpacingRules", "SA1009:ClosingParenthesisMustBeSpacedCorrectly", Justification = "I don't like a space between ) and ! .")]
-#endif
 		public void Configure(IMongoContext context, Action configAction)
 		{
 			if (!IsConfigured)

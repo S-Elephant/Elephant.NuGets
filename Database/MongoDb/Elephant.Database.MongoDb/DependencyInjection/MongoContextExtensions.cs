@@ -18,9 +18,7 @@ namespace Elephant.Database.MongoDb.DependencyInjection
 	///   options.DatabaseName = "MyDatabaseName";
 	///	});]]>
 	/// </example>
-#if DEBUG
 	[SuppressMessage("Microsoft.StyleCop.CSharp.SpacingRules", "SA1004:DocumentationLinesMustBeginWithSingleSpace", Justification = "Readability.")]
-#endif
 	public static class MongoContextExtensions
 	{
 		/// <summary>
