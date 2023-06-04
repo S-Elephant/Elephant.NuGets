@@ -24,7 +24,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\Elephant.Database.Utilities\Elephant.Database.Utilities.csproj" />
+		<ProjectReference Include="..\..\Database\Elephant.Database.Utilities\Elephant.Database.Utilities.csproj" />
 		<ProjectReference Include="..\..\Testing\Elephant.Testing.Xunit\Elephant.Testing.Xunit.csproj" />
 	</ItemGroup>
 
