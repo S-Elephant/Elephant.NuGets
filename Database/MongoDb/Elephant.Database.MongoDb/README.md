@@ -92,7 +92,7 @@ public class ProductRepository : GenericCrudRepository<Product>, IProductReposit
 	/// </summary>
 	public ProductRepository(IShopContext shopContext) : base(shopContext.Products)
 	{
-        // Your custom methods here.
+        // Your custom methods here. You may use the inherited variable DbSet.
 	}
 }
 ```
