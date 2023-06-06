@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
+using Elephant.Database.MongoDb.Abstractions.DbSets;
 using Elephant.Database.MongoDb.Abstractions.Repositories;
-using Elephant.Database.MongoDb.DbSets;
 using Elephant.Database.MongoDb.Types.Abstractions;
 using MongoDB.Driver;
 
@@ -10,50 +10,53 @@ namespace Elephant.Database.MongoDb.Repositories
 	public class GenericCrudRepository<TEntity> : IGenericCrudRepository<TEntity>
 		where TEntity : IId
 	{
-		private readonly DbSet<TEntity> _dbSet;
+		/// <summary>
+		/// Collection/DbSet of your entity.
+		/// </summary>
+		public IDbSet<TEntity> DbSet { get; }
 
 		/// <summary>
 		/// Constructor.
 		/// </summary>
-		public GenericCrudRepository(DbSet<TEntity> dbSet)
+		public GenericCrudRepository(IDbSet<TEntity> dbSet)
 		{
-			_dbSet = dbSet;
+			DbSet = dbSet;
 		}
 
 		/// <inheritdoc/>
 		public async Task<TEntity?> ById(string id, CancellationToken cancellationToken)
 		{
-			return await _dbSet.ById(id, cancellationToken: cancellationToken);
+			return await DbSet.ById(id, cancellationToken: cancellationToken);
 		}
 
 		/// <inheritdoc/>
 		public async Task<List<TEntity>> List(CancellationToken cancellationToken)
 		{
-			return await _dbSet.Find(_ => true).ToListAsync(cancellationToken);
+			return await DbSet.Find(_ => true).ToListAsync(cancellationToken);
 		}
 
 		/// <inheritdoc/>
 		public async Task<List<TEntity>> List(Expression<Func<TEntity, bool>> filter, CancellationToken cancellationToken)
 		{
-			return await _dbSet.Find(filter).ToListAsync(cancellationToken);
+			return await DbSet.Find(filter).ToListAsync(cancellationToken);
 		}
 
 		/// <inheritdoc/>
 		public async Task<long> Count(CancellationToken cancellationToken)
 		{
-			return await _dbSet.CountDocumentsAsync(_ => true, cancellationToken: cancellationToken);
+			return await DbSet.CountDocumentsAsync(_ => true, cancellationToken: cancellationToken);
 		}
 
 		/// <inheritdoc/>
 		public async Task<long> Count(Expression<Func<TEntity, bool>> filter, CountOptions? countOptions = null, CancellationToken cancellationToken = default)
 		{
-			return await _dbSet.CountDocumentsAsync(filter, countOptions, cancellationToken);
+			return await DbSet.CountDocumentsAsync(filter, countOptions, cancellationToken);
 		}
 
 		/// <inheritdoc/>
 		public async Task<string> Insert(TEntity entityToInsert, CancellationToken cancellationToken)
 		{
-			await _dbSet.InsertOneAsync(entityToInsert, cancellationToken);
+			await DbSet.InsertOneAsync(entityToInsert, cancellationToken: cancellationToken);
 			return entityToInsert.MongoId;
 		}
 
@@ -63,7 +66,7 @@ namespace Elephant.Database.MongoDb.Repositories
 			if (!entitiesToInsert.Any())
 				return new List<string>();
 
-			await _dbSet.InsertManyAsync(entitiesToInsert, insertManyOptions, cancellationToken);
+			await DbSet.InsertManyAsync(entitiesToInsert, insertManyOptions, cancellationToken);
 			return entitiesToInsert.Select(x => x.MongoId);
 		}
 
@@ -76,37 +79,37 @@ namespace Elephant.Database.MongoDb.Repositories
 		/// <inheritdoc/>
 		public async Task<ReplaceOneResult> ReplaceOne(FilterDefinition<TEntity> filter, TEntity replacement, ReplaceOptions? options = null, CancellationToken cancellationToken = default)
 		{
-			return await _dbSet.ReplaceOneAsync(filter, replacement, options, cancellationToken);
+			return await DbSet.ReplaceOneAsync(filter, replacement, options, cancellationToken);
 		}
 
 		/// <inheritdoc/>
 		public async Task<ReplaceOneResult> ReplaceOne(string id, TEntity replacement, ReplaceOptions? options = null, CancellationToken cancellationToken = default)
 		{
-			return await _dbSet.ReplaceOneAsync(doc => doc.MongoId == id, replacement, options, cancellationToken);
+			return await DbSet.ReplaceOneAsync(doc => doc.MongoId == id, replacement, options, cancellationToken);
 		}
 
 		/// <inheritdoc/>
 		public async Task<UpdateResult> UpdateById(string id, UpdateDefinition<TEntity> updateDefinition, UpdateOptions? updateOptions = null, CancellationToken cancellationToken = default)
 		{
-			return await _dbSet.UpdateById(id, updateDefinition, updateOptions, cancellationToken);
+			return await DbSet.UpdateById(id, updateDefinition, updateOptions, cancellationToken);
 		}
 
 		/// <inheritdoc/>
 		public async Task<DeleteResult> Delete(string id, CancellationToken cancellationToken)
 		{
-			return await _dbSet.DeleteById(id, cancellationToken);
+			return await DbSet.DeleteById(id, cancellationToken);
 		}
 
 		/// <inheritdoc/>
 		public async Task<DeleteResult> Delete(FilterDefinition<TEntity> filter, CancellationToken cancellationToken)
 		{
-			return await _dbSet.DeleteManyAsync(filter, cancellationToken);
+			return await DbSet.DeleteManyAsync(filter, cancellationToken);
 		}
 
 		/// <inheritdoc/>
 		public async Task<DeleteResult> DeleteAll(CancellationToken cancellationToken)
 		{
-			return await _dbSet.DeleteManyAsync(FilterDefinition<TEntity>.Empty, cancellationToken);
+			return await DbSet.DeleteManyAsync(FilterDefinition<TEntity>.Empty, cancellationToken);
 		}
 	}
 }

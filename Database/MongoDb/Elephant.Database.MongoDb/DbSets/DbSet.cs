@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Linq.Expressions;
 using Elephant.Database.MongoDb.Abstractions.Contexts;
+using Elephant.Database.MongoDb.Abstractions.DbSets;
 using Elephant.Database.MongoDb.Contexts;
 using Elephant.Database.MongoDb.Types;
 using Elephant.Database.MongoDb.Types.Abstractions;
@@ -15,7 +16,7 @@ namespace Elephant.Database.MongoDb.DbSets
 	/// MongoDb database set.
 	/// </summary>
 	/// <typeparam name="TEntity">Your database entity.</typeparam>
-	public class DbSet<TEntity> : IMongoCollection<TEntity>, IMongoQueryable<TEntity>
+	public class DbSet<TEntity> : IDbSet<TEntity>
 		where TEntity : IId
 	{
 		/// <inheritdoc cref="IMongoCollection{TDocument}"/>
@@ -46,13 +47,7 @@ namespace Elephant.Database.MongoDb.DbSets
 			return Builders<TEntity>.Filter.Eq(nameof(BaseId.MongoId), idValue);
 		}
 
-		/// <summary>
-		/// Finds an entity by its MongoDb key.
-		/// </summary>
-		/// <param name="idValue">Mongo identifier (is always a string).</param>
-		/// <param name="findOptions"><see cref="FindOptions"/></param>
-		/// <param name="cancellationToken"><see cref="CancellationToken"/></param>
-		/// <returns>Entity or null if not found.</returns>
+		/// <inheritdoc/>
 		public async Task<TEntity?> ById(string idValue, FindOptions<TEntity>? findOptions = null, CancellationToken cancellationToken = default)
 		{
 			FilterDefinition<TEntity> filter = CreateByIdFilterDefinition(idValue);
@@ -60,14 +55,7 @@ namespace Elephant.Database.MongoDb.DbSets
 			return await cursor.FirstOrDefaultAsync(cancellationToken);
 		}
 
-		/// <summary>
-		/// For more info see: https://www.mongodb.com/docs/drivers/csharp/current/usage-examples/updateOne.
-		/// </summary>
-		/// <param name="idValue">Unique identifier value of the entity to update.</param>
-		/// <param name="updateDefinition"><![CDATA[Example: UpdateDefinition<YourEntity> updateDefinition = Builders<YourEntity>.Update.Set(yourEntity => yourEntity.Price, 100);]]></param>
-		/// <param name="updateOptions"><see cref="UpdateOptions"/></param>
-		/// <param name="cancellationToken"><see cref="CancellationToken"/></param>
-		/// <returns><see cref="UpdateResult"/></returns>
+		/// <inheritdoc/>
 		public async Task<UpdateResult> UpdateById(string idValue, UpdateDefinition<TEntity> updateDefinition, UpdateOptions? updateOptions = null, CancellationToken cancellationToken = default)
 		{
 			FilterDefinition<TEntity> filter = CreateByIdFilterDefinition(idValue);
@@ -88,28 +76,14 @@ namespace Elephant.Database.MongoDb.DbSets
 			return await _collection.UpdateOneAsync(filter, updateDefinition, null, cancellationToken);
 		}
 
-		/// <summary>
-		/// Delete entity with id <paramref name="idValue"/>.
-		/// For more info see: https://www.mongodb.com/docs/drivers/csharp/current/usage-examples/deleteOne/.
-		/// </summary>
-		/// <param name="idValue">The entity with this Mongo unique identifier will be deleted.</param>
-		/// <param name="deleteOptions"><see cref="DeleteOptions"/></param>
-		/// <param name="cancellationToken"><see cref="CancellationToken"/></param>
-		/// <returns><see cref="DeleteResult"/></returns>
+		/// <inheritdoc/>
 		public async Task<DeleteResult> DeleteById(string idValue, DeleteOptions? deleteOptions = null, CancellationToken cancellationToken = default)
 		{
 			FilterDefinition<TEntity> filter = CreateByIdFilterDefinition(idValue);
 			return await _collection.DeleteOneAsync(filter, deleteOptions, cancellationToken);
 		}
 
-		/// <summary>
-		/// Delete entity with id <paramref name="idValue"/>.
-		/// Has no <see cref="DeleteOptions"/>.
-		/// For more info see: https://www.mongodb.com/docs/drivers/csharp/current/usage-examples/deleteOne/.
-		/// </summary>
-		/// <param name="idValue">The entity with this Mongo unique identifier will be deleted.</param>
-		/// <param name="cancellationToken"><see cref="CancellationToken"/></param>
-		/// <returns><see cref="DeleteResult"/></returns>
+		/// <inheritdoc/>
 		public async Task<DeleteResult> DeleteById(string idValue, CancellationToken cancellationToken = default)
 		{
 			FilterDefinition<TEntity> filter = CreateByIdFilterDefinition(idValue);

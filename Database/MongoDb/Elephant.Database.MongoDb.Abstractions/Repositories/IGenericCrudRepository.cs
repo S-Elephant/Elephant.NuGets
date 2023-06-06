@@ -1,4 +1,5 @@
 ﻿using System.Linq.Expressions;
+using Elephant.Database.MongoDb.Abstractions.DbSets;
 using Elephant.Database.MongoDb.Types.Abstractions;
 using MongoDB.Driver;
 
@@ -10,6 +11,11 @@ namespace Elephant.Database.MongoDb.Abstractions.Repositories;
 public interface IGenericCrudRepository<TEntity>
 	where TEntity : IId
 {
+	/// <summary>
+	/// Collection/DbSet of your entity.
+	/// </summary>
+	protected IDbSet<TEntity> DbSet { get; }
+
 	/// <summary>
 	/// Get entity by <paramref name="id"/>.
 	/// </summary>
