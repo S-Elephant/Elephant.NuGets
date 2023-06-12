@@ -14,6 +14,9 @@ public interface IDbTypes
 	/// <inheritdoc cref="DbTypes.Decimal"/>
 	string Decimal { get; }
 
+	/// <inheritdoc cref="DbTypes.Double"/>
+	string Double { get; }
+
 	/// <inheritdoc cref="DbTypes.Float"/>
 	string Float { get; }
 

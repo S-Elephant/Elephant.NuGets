@@ -1,7 +1,4 @@
-﻿using System;
-using static System.Net.WebRequestMethods;
-
-namespace Elephant.Constants.SqlServer;
+﻿namespace Elephant.Constants.SqlServer;
 
 /// <summary>
 /// Database length constants.
@@ -19,6 +16,15 @@ public static class DbLengths
 	/// <see cref="decimal"/> 12,4.
 	/// </summary>
 	public const int DecimalScale = 4;
+
+	/// <summary>
+	/// Precision: 15 digits (number data from -1.79E + 308 to 1.79E + 308).
+	/// Is an approximate data type; therefore, not all values in the data type range can be represented exactly.
+	/// Storage: 8 bytes.
+	/// For more info see: https://learn.microsoft.com/en-us/sql/t-sql/data-types/float-and-real-transact-sql?view=sql-server-ver16.
+	/// </summary>
+	/// <remarks>This is the same as the float(53).</remarks>
+	public const int Double = 53;
 
 	/// <summary>
 	/// Precision: 15 digits (number data from -1.79E + 308 to 1.79E + 308).

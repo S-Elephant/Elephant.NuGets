@@ -11,6 +11,7 @@ Has both an identical static version and a non-static with an interface.
 - BigInt
 - Bool
 - Decimal
+- Double (=Float(53))
 - Float
 - Float4
 - Int

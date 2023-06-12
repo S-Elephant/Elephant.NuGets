@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>3.1.2</Version>
-		<PackageReleaseNotes>Add more types.</PackageReleaseNotes>
+		<Version>3.2.0</Version>
+		<PackageReleaseNotes>Add double type.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
