@@ -118,3 +118,25 @@ public void ConfigureServices(..)
 }
 ```
 
+# Conventions
+
+## camelCase example
+
+```c#
+using Elephant.Database.MongoDb;
+
+public void ConfigureServices(IServiceCollection services, ..)
+{
+    ConfigureDatabases(..)       
+    ..
+}
+
+public void ConfigureDatabases(IServiceCollection services, ..)
+{
+   // Execute this BEFORE creating your MongoDb context. So usually before services.AddMongoContext<..>(options => ..);
+   ConventionPacks.EnforceGlobalCamelCase(); // Add optional namespaces as needed in the parameter.
+   
+   // Configure your MongoDB context(s) here somewhere.
+}
+```
+
