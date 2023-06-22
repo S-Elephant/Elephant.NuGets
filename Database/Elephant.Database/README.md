@@ -134,6 +134,8 @@ virtual Task<bool> HasId(int id, CancellationToken cancellationToken);
 virtual Task<int> HighestId(CancellationToken cancellationToken);
 
 virtual Task<int> LowestId(CancellationToken cancellationToken);
+virtual Task<int> NextId(int sourceId, bool cycle, CancellationToken cancellationToken);
+virtual Task<int> PreviousId(int sourceId, bool cycle, CancellationToken cancellationToken);
 ```
 
 
