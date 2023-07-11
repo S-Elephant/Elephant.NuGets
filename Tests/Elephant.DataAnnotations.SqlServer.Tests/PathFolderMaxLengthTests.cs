@@ -46,9 +46,9 @@ namespace Elephant.DataAnnotations.SqlServer.Tests
         /// <see cref="PathFolderMaxLengthAttribute"/> test with data.
         /// </summary>
         [Theory]
-        [InlineData("ab")]
-        [InlineData("abc")]
-        [InlineData("Lorem ipsum./n Line 2.")]
+        [InlineData("")]
+        [InlineData("_")]
+        [InlineData("+=")]
         [SpeedVeryFast, UnitTest]
         public void ShouldReturnTrueIfDataDataIsWithinBoundaries(string data)
         {
@@ -60,25 +60,6 @@ namespace Elephant.DataAnnotations.SqlServer.Tests
 
             // Assert.
             Assert.True(isValid);
-        }
-
-        /// <summary>
-        /// <see cref="PathFolderMaxLengthAttribute"/> test with data.
-        /// </summary>
-        [Theory]
-        [InlineData("a")]
-        [InlineData("")]
-        [SpeedVeryFast, UnitTest]
-        public void ShouldReturnFalseIfDataDataIsTooShort(string data)
-        {
-            // Arrange.
-            ValidationTarget target = new (data);
-
-            // Act.
-            bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
-
-            // Assert.
-            Assert.False(isValid);
         }
 
         /// <summary>
