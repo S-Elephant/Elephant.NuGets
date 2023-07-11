@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.0.1</Version>
-		<PackageReleaseNotes>Add two filename data annotations.</PackageReleaseNotes>
+		<Version>1.0.2</Version>
+		<PackageReleaseNotes>Bugfix wrong names.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->

@@ -3,40 +3,47 @@ using Elephant.Constants.SqlServer;
 
 namespace Elephant.DataAnnotations.SqlServer
 {
-    /// <summary>
-    /// Validation attribute to check if the <see cref="string"/> length is between <see cref="PathFolderMaxLengthAttribute.MinLength"/> (defaults to 0) and <see cref="DbTypes.FolderPath"/>
-    /// and also checks if it is not null.
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
-    public class FilenameMaxLengthRequiredAttribute : PathFolderMaxLengthAttribute
-    {
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="minLength">Minimum length. Must be equal or greater than 0.</param>
-        public FilenameMaxLengthRequiredAttribute(int minLength = 0)
-            : base(minLength)
-        {
-        }
+	/// <summary>
+	/// Validation attribute that checks if the value is smaller ir equal to <see cref="MaxLength"/> and not null.
+	/// and also checks if it is not null.
+	/// </summary>
+	[AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
+	public class FilenameMaxLengthRequiredAttribute : MaxLengthAttribute
+	{
+		/// <summary>
+		/// Maximum length.
+		/// </summary>
+		protected int MaxLength { get; }
 
-        /// <summary>
-        /// Validate that the <paramref name="value"/> is not null and is between <see cref="PathFolderMaxLengthAttribute.MinLength"/> and <see cref="DbTypes.FolderPath"/>.
-        /// </summary>
-        /// <param name="value">Object to validate.</param>
-        /// <param name="validationContext"><see cref="ValidationContext"/></param>
-        /// <returns>True if the minimum length is at least <see cref="PathFolderMaxLengthAttribute.MinLength"/> and if it is not null.</returns>
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-        {
-            // Disallow null.
-            if (value == null)
-                return new ValidationResult($"Value cannot be null.");
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		/// <param name="maxLength">Maximum length.</param>
+		public FilenameMaxLengthRequiredAttribute(int maxLength = DbLengths.Filename)
+			: base(maxLength)
+		{
+			MaxLength = maxLength;
+		}
 
-            // Process base.
-            ValidationResult baseBValidationResult = base.IsValid(value, validationContext);
-            if (baseBValidationResult != ValidationResult.Success)
-                return baseBValidationResult;
+		/// <summary>
+		/// Validate that the <paramref name="value"/> is not null and is smaller or equal to <see cref="MaxLength"/>.
+		/// </summary>
+		/// <param name="value">Object to validate.</param>
+		/// <param name="validationContext"><see cref="ValidationContext"/></param>
+		/// <returns>True if the length is smaller or equal to <see cref="MaxLength"/> and if it is not null.</returns>
+		protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+		{
+			// Disallow null.
+			if (value == null)
+				return new ValidationResult($"Value cannot be null.");
 
-            return ValidationResult.Success;
-        }
-    }
+			// Process base.
+			bool isValid = IsValid(value);
+
+			if (isValid)
+				return ValidationResult.Success;
+
+			return new ValidationResult($"Length cannot be more than {MaxLength}. Actual: {value!.ToString().Length}.");
+		}
+	}
 }
