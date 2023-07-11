@@ -13,8 +13,10 @@ namespace Elephant.DataAnnotations
 	[AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
 	public class FilenameAllowAlphaNumericOnly : ValidationAttribute
 	{
-		private const string _baseRegex = @"[^a-zA-Z0-9]";
-		private Regex _regex = new(_baseRegex);
+		private const string BaseRegex = @"[^a-zA-Z0-9]";
+		private readonly Regex _regex;
+		private readonly bool _allowUnderscore;
+		private readonly string _extraCharacters;
 
 		/// <summary>
 		/// Constructor.
@@ -24,14 +26,16 @@ namespace Elephant.DataAnnotations
 		/// <param name="extraAllowedCharacters">If not empty, then any character (case-sensitive) in this string will be allowed as well.</param>
 		public FilenameAllowAlphaNumericOnly(bool allowDot = false, bool allowUnderscore = false, string extraAllowedCharacters = "")
 		{
-			StringBuilder finalRegex = new(_baseRegex);
+			StringBuilder finalRegex = new(BaseRegex);
 
 			if (allowDot)
-				finalRegex = finalRegex.Insert(_baseRegex.Length - 1, ".");
+				finalRegex = finalRegex.Insert(BaseRegex.Length - 1, ".");
 
+			_allowUnderscore = allowUnderscore;
 			if (allowUnderscore)
-				finalRegex = finalRegex.Insert(_baseRegex.Length - 1, "_");
+				finalRegex = finalRegex.Insert(BaseRegex.Length - 1, "_");
 
+			_extraCharacters = extraAllowedCharacters;
 			if (extraAllowedCharacters != string.Empty)
 			{
 				/* Yeah... This must be escapped manually because Regex.Escape(..) does not escape certain cases like "{}" for example and
@@ -48,7 +52,7 @@ namespace Elephant.DataAnnotations
 				foreach (char extraAllowedCharacter in extraAllowedCharacters)
 					escapedExtraAllowedCharacters.Append($"\\{extraAllowedCharacter}");
 
-				finalRegex = finalRegex.Insert(_baseRegex.Length - 1, escapedExtraAllowedCharacters);
+				finalRegex = finalRegex.Insert(BaseRegex.Length - 1, escapedExtraAllowedCharacters);
 			}
 
 			_regex = new Regex(finalRegex.ToString());
@@ -69,7 +73,11 @@ namespace Elephant.DataAnnotations
 				return ValidationResult.Success;
 
 			if (value is string stringValue)
-				return _regex.IsMatch(stringValue) ? new ValidationResult($"Value may only contains alphanumerics (and if pure numeric, then positive whole numbers only). Actual: {stringValue}.") : ValidationResult.Success;
+			{
+				string underscoreText = _allowUnderscore ? " and underscores" : "";
+				string extraCharactersText = _extraCharacters == string.Empty ? "" : $" or any of the following chartacters:\"{_extraCharacters}\"";
+				return _regex.IsMatch(stringValue) ? new ValidationResult($"Value may only contains alphanumerics{underscoreText}{extraCharactersText} (and if pure numeric, then positive whole numbers only). Actual: {stringValue}.") : ValidationResult.Success;
+			}
 
 			if (value is byte || value is uint || value is ulong)
 				return ValidationResult.Success;
