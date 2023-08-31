@@ -32,6 +32,15 @@ public static class DbTypes
 	/// Storage: 8 bytes.
 	/// For more info see: https://learn.microsoft.com/en-us/sql/t-sql/data-types/float-and-real-transact-sql?view=sql-server-ver16.
 	/// </summary>
+	/// <remarks>A double is in MsSql a FLOAT(53).</remarks>
+	public static readonly string Double = $"FLOAT({DbLengths.Double})";
+
+	/// <summary>
+	/// Precision: 15 digits (number data from -1.79E + 308 to 1.79E + 308).
+	/// Is an approximate data type; therefore, not all values in the data type range can be represented exactly.
+	/// Storage: 8 bytes.
+	/// For more info see: https://learn.microsoft.com/en-us/sql/t-sql/data-types/float-and-real-transact-sql?view=sql-server-ver16.
+	/// </summary>
 	public static readonly string Float = $"FLOAT({DbLengths.Float})";
 
 	/// <summary>

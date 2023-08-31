@@ -17,6 +17,9 @@ public class DbTypesInstance : IDbTypes
 	public virtual string Decimal => DbTypes.Decimal;
 
 	/// <inheritdoc/>
+	public virtual string Double => DbTypes.Double;
+
+	/// <inheritdoc/>
 	public virtual string Float => DbTypes.Float;
 
 	/// <inheritdoc/>
