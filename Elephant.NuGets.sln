@@ -81,7 +81,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.Database.MongoDb.T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.Database.Utilities.Tests", "Tests\Elephant.Database.Utilities.Tests\Elephant.Database.Utilities.Tests.csproj", "{D24CF50D-1D59-4470-870B-D6A25855958B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elephant.Database.Tests", "Tests\Elephant.Database.Tests\Elephant.Database.Tests.csproj", "{1F555049-C484-4E9A-BE80-148D351D4154}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.Database.Tests", "Tests\Elephant.Database.Tests\Elephant.Database.Tests.csproj", "{1F555049-C484-4E9A-BE80-148D351D4154}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elephant.Common.Maths", "Elephant.Common.Maths\Elephant.Common.Maths.csproj", "{1491C777-B34B-4297-A46D-BF13CB33106A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elephant.Common.Maths.Tests", "Tests\Elephant.Common.Maths.Tests\Elephant.Common.Maths.Tests.csproj", "{10486A91-CFB5-4552-A3D8-D1003B797BAA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -229,6 +233,14 @@ Global
 		{1F555049-C484-4E9A-BE80-148D351D4154}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F555049-C484-4E9A-BE80-148D351D4154}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F555049-C484-4E9A-BE80-148D351D4154}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1491C777-B34B-4297-A46D-BF13CB33106A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1491C777-B34B-4297-A46D-BF13CB33106A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1491C777-B34B-4297-A46D-BF13CB33106A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1491C777-B34B-4297-A46D-BF13CB33106A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10486A91-CFB5-4552-A3D8-D1003B797BAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10486A91-CFB5-4552-A3D8-D1003B797BAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10486A91-CFB5-4552-A3D8-D1003B797BAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10486A91-CFB5-4552-A3D8-D1003B797BAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -256,6 +268,7 @@ Global
 		{413911D7-869D-4BFA-BB6F-6453383FA6F8} = {853640C0-BDE8-476C-9FC2-FB1E36B1C28F}
 		{D24CF50D-1D59-4470-870B-D6A25855958B} = {4F5D45E5-E7E9-4D89-8261-0B52F71DD917}
 		{1F555049-C484-4E9A-BE80-148D351D4154} = {4F5D45E5-E7E9-4D89-8261-0B52F71DD917}
+		{10486A91-CFB5-4552-A3D8-D1003B797BAA} = {4F5D45E5-E7E9-4D89-8261-0B52F71DD917}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6DB47403-D8D8-4EEB-9D37-8E73C2E536E4}
