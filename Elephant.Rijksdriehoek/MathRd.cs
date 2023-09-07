@@ -187,12 +187,12 @@ namespace Elephant.Rijksdriehoek
 		/// <summary>
 		/// WSG84 GPS x coordinate of the City Amersfoort (in The Netherlands).
 		/// </summary>
-		private const double AmersfoortWgs84CoordinateX = 52.15517d;
+		private const double AmersfoortWgs84CoordinateX = 52.15517440d;
 
 		/// <summary>
 		/// WSG84 GPS y coordinate of the City Amersfoort (in The Netherlands).
 		/// </summary>
-		private const double AmersfoortWgs84CoordinateY = 5.387206d;
+		private const double AmersfoortWgs84CoordinateY = 5.38720621d;
 
 		/// <summary>
 		/// Convert a WGS84 GPS coordinate into RD (=Rijksdriehoek) coordinates.
@@ -296,13 +296,14 @@ namespace Elephant.Rijksdriehoek
 
 		/// <summary>
 		/// Convert a RD (=Rijksdriehoek) coordinates into a WGS84 GPS coordinate.
+		/// Is accurate until 4 decimals behind the comma.
 		/// </summary>
 		/// <param name="x">RD x coordinate.</param>
 		/// <param name="y">RD y coordinate.</param>
 		public static (double latitude, double longitude) ConvertToLatitudeLongitude(double x, double y)
 		{
-			double deltaX = (double)(x - AmersfoortRdCoordinateX) * (double)Math.Pow(10, -5);
-			double deltaY = (double)(y - AmersfoortRdCoordinateY) * (double)Math.Pow(10, -5);
+			double deltaX = (x - AmersfoortRdCoordinateX) * Math.Pow(10, -5);
+			double deltaY = (y - AmersfoortRdCoordinateY) * Math.Pow(10, -5);
 
 			// All lines of latitude above the Equator are indicated with the letter 'N'.
 			double sumN =
@@ -341,6 +342,7 @@ namespace Elephant.Rijksdriehoek
 
 		/// <summary>
 		/// Convert a RD (=Rijksdriehoek) coordinates into a WGS84 GPS coordinate.
+		/// Is accurate until 13 decimals behind the comma.
 		/// </summary>
 		/// <param name="x">RD x coordinate.</param>
 		/// <param name="y">RD y coordinate.</param>
