@@ -128,12 +128,28 @@ namespace Elephant.Rijksdriehoek.Tests
 			Assert.Equal(expectedY, resultY, 6f);
 		}
 
+		private const int ConvertToLatitudeLongitudePrecision = 4;
+
 		/// <summary>
 		/// <see cref="MathRd.ConvertToLatitudeLongitude(double, double)"/> tests.
 		/// </summary>
 		[Theory]
 		[SpeedVeryFast, UnitTest]
-		[InlineData(122202d, 487250d, 52.372143838117d, 4.90559760435224d, 13)]
+		[InlineData(176548d, 318068d, 50.85204602321809d, 5.693181181444698d, ConvertToLatitudeLongitudePrecision)] // Maastricht.
+		[InlineData(161664d, 383111d, 51.4370644101525d, 5.483039577727214d, ConvertToLatitudeLongitudePrecision)] // Eindhoven.
+		[InlineData(133561d, 397126d, 51.56267096731468d, 5.078016769674488d, ConvertToLatitudeLongitudePrecision)] // Tilburg.
+		[InlineData(112691d, 400437d, 51.591244471919005d, 4.776662178460902d, ConvertToLatitudeLongitudePrecision)] // Breda.
+		[InlineData(32143d, 391346d, 51.497724935924936d, 3.617838516788694d, ConvertToLatitudeLongitudePrecision)] // Middelburg.
+		[InlineData(91873d, 436967d, 51.91760749459275d, 4.46962367068906d, ConvertToLatitudeLongitudePrecision)] // Rotterdam.
+		[InlineData(80300d, 453738d, 52.06688833415241d, 4.297768334323142d, ConvertToLatitudeLongitudePrecision)] // The Hague.
+		[InlineData(121605d, 487759d, 52.37668890821108d, 4.896782660725934d, ConvertToLatitudeLongitudePrecision)] // Amsterdam.
+		[InlineData(182687d, 579310d, 53.19971993186204d, 5.801522396941571d, ConvertToLatitudeLongitudePrecision)] // Leeuwarden.
+		[InlineData(233627d, 581737d, 53.21647004196559d, 6.564292486864583d, ConvertToLatitudeLongitudePrecision)] // Groningen.
+		[InlineData(256494d, 534047d, 52.78420195511749d, 6.891631130023316d, ConvertToLatitudeLongitudePrecision)] // Emmen.
+		[InlineData(257781d, 471341d, 52.22056106147205d, 6.891387579659575d, ConvertToLatitudeLongitudePrecision)] // Enschede.
+		[InlineData(185826d, 424987d, 51.81265295534943d, 5.834226504298018d, ConvertToLatitudeLongitudePrecision)] // Nijmegen.
+		[InlineData(154675d, 463049d, 52.15561201090535d, 5.382458244825791d, ConvertToLatitudeLongitudePrecision)] // Amersfoort.
+		[InlineData(227846d, 618116d, 53.54411077235744d, 6.486070323938958d, ConvertToLatitudeLongitudePrecision)] // Rottumerplaat.
 		public void ConvertToLatitudeLongitude(double rdX, double rdY, double expectedLattitude, double expectedLongitude, int precision)
 		{
 			(double latitude, double longitude) = MathRd.ConvertToLatitudeLongitude(rdX, rdY);
@@ -146,7 +162,21 @@ namespace Elephant.Rijksdriehoek.Tests
 		/// </summary>
 		[Theory]
 		[SpeedVeryFast, UnitTest]
-		[InlineData(122202f, 487250f, 52.372143838117f, 4.90559760435224f, 6f)]
+		[InlineData(176548f, 318068f, 50.85204602321809f, 5.693181181444698f, 13)] // Maastricht.
+		[InlineData(161664f, 383111f, 51.4370644101525f, 5.483039577727214f, 13)] // Eindhoven.
+		[InlineData(133561f, 397126f, 51.56267096731468f, 5.078016769674488f, 13)] // Tilburg.
+		[InlineData(112691f, 400437f, 51.591244471919005f, 4.776662178460902d, 13)] // Breda.
+		[InlineData(32143f, 391346f, 51.497724935924936f, 3.617838516788694f, 13)] // Middelburg.
+		[InlineData(91873f, 436967f, 51.91760749459275f, 4.46962367068906f, 13)] // Rotterdam.
+		[InlineData(80300f, 453738f, 52.06688833415241f, 4.297768334323142f, 13)] // The Hague.
+		[InlineData(121605f, 487759f, 52.37668890821108f, 4.896782660725934f, 13)] // Amsterdam.
+		[InlineData(182687f, 579310f, 53.19971993186204f, 5.801522396941571f, 13)] // Leeuwarden.
+		[InlineData(233627f, 581737f, 53.21647004196559f, 6.564292486864583f, 13)] // Groningen.
+		[InlineData(256494f, 534047f, 52.78420195511749f, 6.891631130023316f, 13)] // Emmen.
+		[InlineData(257781f, 471341f, 52.22056106147205f, 6.891387579659575f, 13)] // Enschede.
+		[InlineData(185826f, 424987f, 51.81265295534943f, 5.834226504298018f, 13)] // Nijmegen.
+		[InlineData(154675f, 463049f, 52.15561201090535f, 5.382458244825791f, 13)] // Amersfoort.
+		[InlineData(227846f, 618116f, 53.54411077235744f, 6.486070323938958f, 13)] // Rottumerplaat.
 		public void ConvertToLatitudeLongitudeFloat(float rdX, float rdY, float expectedLattitude, float expectedLongitude, float precision)
 		{
 			(float latitude, float longitude) = MathRd.ConvertToLatitudeLongitude(rdX, rdY);
@@ -154,12 +184,28 @@ namespace Elephant.Rijksdriehoek.Tests
 			Assert.Equal(expectedLongitude, longitude, precision);
 		}
 
+		private const float ConvertToRijksdriehoekPrecision = 13;
+
 		/// <summary>
 		/// <see cref="MathRd.ConvertToRijksdriehoek(double, double)"/> tests.
 		/// </summary>
 		[Theory]
 		[SpeedFast, UnitTest]
-		[InlineData(52.372143838117d, 4.90559760435224d, 122202d, 487250d, 0.9f)]
+		[InlineData(50.85204602321809d, 5.693181181444698d, 176548d, 318068d, ConvertToRijksdriehoekPrecision)] // Maastricht.
+		[InlineData(51.4370644101525d, 5.483039577727214d, 161664d, 383111d, ConvertToRijksdriehoekPrecision)] // Eindhoven.
+		[InlineData(51.56267096731468d, 5.078016769674488d, 133561d, 397126d, ConvertToRijksdriehoekPrecision)] // Tilburg.
+		[InlineData(51.591244471919005d, 4.776662178460902d, 112691d, 400437d, ConvertToRijksdriehoekPrecision)] // Breda.
+		[InlineData(51.497724935924936d, 3.617838516788694d, 32143d, 391346d, ConvertToRijksdriehoekPrecision)] // Middelburg.
+		[InlineData(51.91760749459275d, 4.46962367068906d, 91873d, 436967d, ConvertToRijksdriehoekPrecision)] // Rotterdam.
+		[InlineData(52.06688833415241d, 4.297768334323142d, 80300d, 453738d, ConvertToRijksdriehoekPrecision)] // The Hague.
+		[InlineData(52.37668890821108d, 4.896782660725934d, 121605d, 487759d, ConvertToRijksdriehoekPrecision)] // Amsterdam.
+		[InlineData(53.19971993186204d, 5.801522396941571d, 182687d, 579310d, ConvertToRijksdriehoekPrecision)] // Leeuwarden.
+		[InlineData(53.21647004196559d, 6.564292486864583d, 233627d, 581737d, ConvertToRijksdriehoekPrecision)] // Groningen.
+		[InlineData(52.78420195511749d, 6.891631130023316d, 256494d, 534047d, ConvertToRijksdriehoekPrecision)] // Emmen.
+		[InlineData(52.22056106147205d, 6.891387579659575d, 257781d, 471341d, ConvertToRijksdriehoekPrecision)] // Enschede.
+		[InlineData(51.81265295534943d, 5.834226504298018d, 185826d, 424987d, ConvertToRijksdriehoekPrecision)] // Nijmegen.
+		[InlineData(52.15561201090535d, 5.382458244825791d, 154675d, 463049d, ConvertToRijksdriehoekPrecision)] // Amersfoort.
+		[InlineData(53.54411077235744d, 6.486070323938958d, 227846d, 618116d, ConvertToRijksdriehoekPrecision)] // Rottumerplaat.
 		public void ConvertToRijksdriehoek(double latitude, double longitude, double expectedRdX, double expectedRdY, float precision)
 		{
 			(double rdX, double rdY) = MathRd.ConvertToRijksdriehoek(latitude, longitude);

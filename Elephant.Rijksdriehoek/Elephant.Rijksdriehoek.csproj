@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.0.3</Version>
-		<PackageReleaseNotes>Generate documentation file.</PackageReleaseNotes>
+		<Version>1.0.4</Version>
+		<PackageReleaseNotes>Slightly improve precision and docs.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
