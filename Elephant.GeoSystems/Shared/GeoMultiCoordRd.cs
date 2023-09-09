@@ -27,19 +27,14 @@ namespace Elephant.GeoSystems.Shared
 		/// Protected backing field Rijksdriehoek x-coordinate.
 		/// </summary>
 		// ReSharper disable once InconsistentNaming
-#if DEBUG
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "Naming conflict.")]
-#endif
 		protected decimal _rdX { get; set; } = Constants.AmersfoortRdCoordinateX;
 
 		/// <summary>
 		/// Protected backing field Rijksdriehoek y-coordinate.
 		/// </summary>
 		// ReSharper disable once InconsistentNaming
-#if DEBUG
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.StyleCop.CSharp.NamingRules",
-			"SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "Naming conflict.")]
-#endif
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "Naming conflict.")]
 		protected decimal _rdY { get; set; } = Constants.AmersfoortRdCoordinateY;
 
 		private decimal? _gpsLatitude = null;
