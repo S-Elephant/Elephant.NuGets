@@ -1,3 +1,7 @@
+# Deprecated
+
+This NuGet will soon be deprecated and be replaced by Elephant.GeoSystems when its done.
+
 # About
 
 Provides various [Rijksdriehoek coordinate](https://nl.wikipedia.org/wiki/Rijksdriehoeksco%C3%B6rdinaten) calculations and helpers.

@@ -1,7 +1,10 @@
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using Elephant.Testing.Xunit;
 using Xunit;
 using Xunit.Categories;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Elephant.Rijksdriehoek.Tests
 {
@@ -153,6 +156,38 @@ namespace Elephant.Rijksdriehoek.Tests
 		public void ConvertToLatitudeLongitude(double rdX, double rdY, double expectedLattitude, double expectedLongitude, int precision)
 		{
 			(double latitude, double longitude) = MathRd.ConvertToLatitudeLongitude(rdX, rdY);
+			Assert.Equal(expectedLattitude, latitude, precision);
+			Assert.Equal(expectedLongitude, longitude, precision);
+		}
+
+		/// <summary>
+		/// <see cref="MathRd.ConvertToLatitudeLongitude(double, double)"/> tests.
+		/// </summary>
+		[Theory]
+		[SpeedVeryFast, UnitTest]
+		[InlineData("176548", "318068", "50.85204602321809", "5.693181181444698", ConvertToLatitudeLongitudePrecision)] // Maastricht.
+		[InlineData("161664", "383111", "51.4370644101525", "5.483039577727214", ConvertToLatitudeLongitudePrecision)] // Eindhoven.
+		[InlineData("133561", "397126", "51.56267096731468", "5.078016769674488", ConvertToLatitudeLongitudePrecision)] // Tilburg.
+		[InlineData("112691", "400437", "51.591244471919005", "4.776662178460902", ConvertToLatitudeLongitudePrecision)] // Breda.
+		[InlineData("32143", "391346", "51.497724935924936", "3.617838516788694", ConvertToLatitudeLongitudePrecision)] // Middelburg.
+		[InlineData("91873", "436967", "51.91760749459275", "4.46962367068906", ConvertToLatitudeLongitudePrecision)] // Rotterdam.
+		[InlineData("80300", "453738", "52.06688833415241", "4.297768334323142", ConvertToLatitudeLongitudePrecision)] // The Hague.
+		[InlineData("121605", "487759", "52.37668890821108", "4.896782660725934", ConvertToLatitudeLongitudePrecision)] // Amsterdam.
+		[InlineData("182687", "579310", "53.19971993186204", "5.801522396941571", ConvertToLatitudeLongitudePrecision)] // Leeuwarden.
+		[InlineData("233627", "581737", "53.21647004196559", "6.564292486864583", ConvertToLatitudeLongitudePrecision)] // Groningen.
+		[InlineData("256494", "534047", "52.78420195511749", "6.891631130023316", ConvertToLatitudeLongitudePrecision)] // Emmen.
+		[InlineData("257781", "471341", "52.22056106147205", "6.891387579659575", ConvertToLatitudeLongitudePrecision)] // Enschede.
+		[InlineData("185826", "424987", "51.81265295534943", "5.834226504298018", ConvertToLatitudeLongitudePrecision)] // Nijmegen.
+		[InlineData("154675", "463049", "52.15561201090535", "5.382458244825791", ConvertToLatitudeLongitudePrecision)] // Amersfoort.
+		[InlineData("227846", "618116", "53.54411077235744", "6.486070323938958", ConvertToLatitudeLongitudePrecision)] // Rottumerplaat.
+		public void ConvertToLatitudeLongitudeDecimal(string rdXAsString, string rdYAsString, string expectedLattitudeAsString, string expectedLongitudeAsString, int precision)
+		{
+			decimal rdX = Convert.ToDecimal(rdXAsString, CultureInfo.InvariantCulture);
+			decimal rdY = Convert.ToDecimal(rdYAsString, CultureInfo.InvariantCulture);
+			decimal expectedLattitude = Convert.ToDecimal(expectedLattitudeAsString, CultureInfo.InvariantCulture);
+			decimal expectedLongitude = Convert.ToDecimal(expectedLongitudeAsString, CultureInfo.InvariantCulture);
+
+			(decimal latitude, decimal longitude) = MathRd.ConvertToLatitudeLongitude(rdX, rdY);
 			Assert.Equal(expectedLattitude, latitude, precision);
 			Assert.Equal(expectedLongitude, longitude, precision);
 		}

@@ -1,20 +1,20 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.0.5</Version>
-		<PackageReleaseNotes>Slightly improve precision, performance and docs.</PackageReleaseNotes>
+		<Version>0.1.0</Version>
+		<PackageReleaseNotes>Initial release.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;netstandard2.1;netcoreapp3.0;netcoreapp3.1;net5.0;net6.0;net7.0</TargetFrameworks>
+		<TargetFramework>netstandard2.0</TargetFramework>
 		<LangVersion>latest</LangVersion>
 		<ImplicitUsings>disable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<Company>SquirtingElephant</Company>
 		<Authors>SquirtingElephant</Authors>
-		<Description>Rijksdriehoek library.</Description>
+		<Description>Multi-system geographical coordinate library.</Description>
 		<CheckEolTargetFramework>false</CheckEolTargetFramework> <!-- Suppress the warning: warning NETSDK1138: The target framework 'netcoreapp3.0' is out of support and.. -->
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 	</PropertyGroup>

@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace Elephant.DataAnnotations.Tests
 {
     /// <summary>
@@ -122,7 +124,7 @@ namespace Elephant.DataAnnotations.Tests
         public void ValidateDecimal(string? value, bool expectedIsValid)
         {
             // Arrange.
-            ValidationTargetDecimal target = new (value == null ? null : Convert.ToDecimal(value));
+            ValidationTargetDecimal target = new (value == null ? null : Convert.ToDecimal(value, CultureInfo.InvariantCulture));
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
