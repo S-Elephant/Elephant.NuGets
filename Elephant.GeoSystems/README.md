@@ -95,14 +95,3 @@ Convert a Polygon to WKT text:
 ```c#
 string wkt = myPolgyon.ToText();
 ```
-
-# Convert a WKT string into a Polygon snippet
-
-```c#
-// Requires NuGet: Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite
-private static string PolygonToWKT(Polygon polygon)
-{
-    return polygon?.ToText();
-}
-```
-
