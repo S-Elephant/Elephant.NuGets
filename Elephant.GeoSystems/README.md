@@ -65,10 +65,44 @@ GpsValidator.IsValid(float latitude, float longitude) // Plus another 5 overload
 RdValidator.IsValid(float rdX, float rdY) // Plus another 5 overloads.
 ```
 
-# [WIP] Classes for caching and converting
+# Convert Polygon into/from a WKT (=Well Known Text) string snippet
+
+I removed my code and I suggest that you use the NetTopologySuite NuGet instead found [here](https://github.com/NetTopologySuite/NetTopologySuite). Conversion examples:
 
 ```c#
-GeoMultiCoordGps // Not yet implemented.
-GeoMultiCoordRd
+/// <summary>
+/// Convert a Well-Known Text (WKT) representation of a polygon to a NetTopologySuite Polygon.
+/// </summary>
+/// <param name="wkt">The Well-Known Text (WKT) representation of the polygon.</param>
+/// <returns>The NetTopologySuite Polygon.</returns>
+/// <exception cref="ArgumentException">Thrown if the provided WKT does not represent a polygon.</exception>
+public static ToPolygon ConvertWktToPolygon(string wkt)
+{
+	if (string.IsNullOrEmpty(wkt))
+		return Polygon.Empty;
+
+	WKTReader reader = new();
+	Geometry geometry = reader.Read(wkt);
+	if (geometry is Polygon polygon)
+		return polygon;
+	else
+		throw new ArgumentException($"WKT does not represent a polygon. Got: {wkt}");
+}
+```
+
+Convert a Polygon to WKT text:
+
+```c#
+string wkt = myPolgyon.ToText();
+```
+
+# Convert a WKT string into a Polygon snippet
+
+```c#
+// Requires NuGet: Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite
+private static string PolygonToWKT(Polygon polygon)
+{
+    return polygon?.ToText();
+}
 ```
 
