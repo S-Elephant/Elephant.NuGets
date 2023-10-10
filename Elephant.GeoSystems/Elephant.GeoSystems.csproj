@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>0.1.0</Version>
-		<PackageReleaseNotes>Initial release.</PackageReleaseNotes>
+		<Version>0.2.0</Version>
+		<PackageReleaseNotes>Small improvements and delete GeoMultoCoordRd.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->

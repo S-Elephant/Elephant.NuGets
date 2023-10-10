@@ -18,6 +18,7 @@ namespace Elephant.GeoSystems.Converters
 		/// <param name="longitude">GPS (WGS84) longitude.</param>
 		/// <returns>Open Street Map tile coordinate.</returns>
 		/// <exception cref="ArgumentException">Thrown if the GPS coordinate is invalid.</exception>
+		/// <remarks>More info here: https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames#C#.</remarks>
 		public static (int TileX, int TileY) GpsToOsmTile(int zoom, float latitude, float longitude)
 		{
 			return GpsToOsmTile(zoom, (double)latitude, (double)longitude);
@@ -48,8 +49,9 @@ namespace Elephant.GeoSystems.Converters
 			// Convert the latitude to a tile Y coordinate.
 			// This formula involves some trigonometry to transform from a latitude in degrees to a
 			// Mercator-projected Y coordinate, then scales it by the number of tiles at the given zoom level.
+			// Note that latitude * Math.PI / 180 converts the latitude to radians.
 			// See also: https://en.wikipedia.org/wiki/Mercator_projection.
-			int tileY = (int)Math.Floor((1 - Math.Log(Math.Tan(latitude * Math.PI / 180) + 1 / Math.Cos(latitude * Math.PI / 180)) / Math.PI) / 2 * Math.Pow(2, zoom));
+			int tileY = (int)Math.Floor((1 - Math.Log(Math.Tan(latitude * Math.PI / 180) + 1 / Math.Cos(latitude * Math.PI / 180)) / Math.PI) / 2 * zoomScale);
 
 			return (tileX, tileY);
 		}
@@ -80,7 +82,7 @@ namespace Elephant.GeoSystems.Converters
 			// This formula involves some trigonometry to transform from a latitude in degrees to a
 			// Mercator-projected Y coordinate, then scales it by the number of tiles at the given zoom level.
 			// See also: https://en.wikipedia.org/wiki/Mercator_projection.
-			int tileY = (int)Math.Floor((1 - Math.Log(Math.Tan((double)latitude * Math.PI / 180) + 1 / Math.Cos((double)latitude * Math.PI / 180)) / Math.PI) / 2 * Math.Pow(2, zoom));
+			int tileY = (int)Math.Floor((1 - Math.Log(Math.Tan((double)latitude * Math.PI / 180) + 1 / Math.Cos((double)latitude * Math.PI / 180)) / Math.PI) / 2 * zoomScale);
 
 			return (tileX, tileY);
 		}
