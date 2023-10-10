@@ -18,7 +18,6 @@ internal class ExampleClass
         bool isValid = MathRd.IsValidRdCoordinate(10.434f, 350000.123f);
         var gpsCoordinates = MathRd.ConvertToLatitudeLongitude(10.434f, 350000.123f);
         var rdCoordinates = MathRd.ConvertToRijksdriehoek(52.372143838117f, 4.90559760435224f);
-        MathRd.TryParseFromPointString("POINT(10500.123 350000.456)", out float x, out float y);
         // And more.
     }
 }
