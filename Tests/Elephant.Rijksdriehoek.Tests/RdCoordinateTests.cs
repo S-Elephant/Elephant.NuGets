@@ -140,7 +140,8 @@ namespace Elephant.Rijksdriehoek.Tests
         [InlineData("123,200", "456,752", 123f, 200f, true)]
         [InlineData("123 124", "456 457", 123, 124, true)]
         [InlineData("100.123", "-1000", 100.123f, 0f, true)]
-        public void TryParseFromPointString(string x, string y, float expectedX, float expectedY, bool expectedSuccess)
+		[Obsolete("Use https://github.com/NetTopologySuite/NetTopologySuite instead.")]
+		public void TryParseFromPointString(string x, string y, float expectedX, float expectedY, bool expectedSuccess)
         {
             RdCoordinate? rdCoordinate = RdCoordinate.TryParseFromPointString($"POINT({x} {y})");
 

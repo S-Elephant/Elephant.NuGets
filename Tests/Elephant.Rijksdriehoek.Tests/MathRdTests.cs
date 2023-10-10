@@ -4,7 +4,6 @@ using System.Globalization;
 using Elephant.Testing.Xunit;
 using Xunit;
 using Xunit.Categories;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Elephant.Rijksdriehoek.Tests
 {
@@ -122,6 +121,7 @@ namespace Elephant.Rijksdriehoek.Tests
 		[InlineData("123,200", "456,752", 123f, 200f, true)]
 		[InlineData("123 124", "456 457", 123, 124, true)]
 		[InlineData("100.123", "-1000", 100.123f, 0f, true)]
+		[Obsolete("Use https://github.com/NetTopologySuite/NetTopologySuite instead.")]
 		public void TryParseFromPointString(string x, string y, float expectedX, float expectedY, bool expectedSuccess)
 		{
 			bool success = MathRd.TryParseFromPointString($"POINT({x} {y})", out float resultX, out float resultY);
@@ -283,6 +283,7 @@ namespace Elephant.Rijksdriehoek.Tests
 		[Theory]
 		[SpeedFast, UnitTest]
 		[MemberData(nameof(ConvertStringToPolygonRdData))]
+		[Obsolete("Use https://github.com/NetTopologySuite/NetTopologySuite instead.")]
 		public void ConvertStringToPolygonRd(string polygonString, List<(float x, float y)> expected)
 		{
 			List<(float x, float y)> result = MathRd.ConvertStringToPolygonRd(polygonString);

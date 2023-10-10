@@ -113,6 +113,9 @@ namespace Elephant.Rijksdriehoek
 		/// <remarks><para>The optional decimal separator must be a dot.</para>
 		/// <para>The x and y values must be separated by either a single blank space or a comma.</para>
 		/// <para>Negative values will result in a 0f value. Rd coordinates can never be smaller than 0.</para></remarks>
+#pragma warning disable S1133
+		[Obsolete("Use https://github.com/NetTopologySuite/NetTopologySuite instead.")]
+#pragma warning restore S1133
 		public static bool TryParseFromPointString(string pointString, out float x, out float y)
 		{
 			try
@@ -146,6 +149,9 @@ namespace Elephant.Rijksdriehoek
 		/// Converts a RD polygon string into a list of floats (rd-x and rd-y).
 		/// </summary>
 		/// <param name="polygonString">Example value: POLYGON ((12.194 500500.123, 121.888 488444.423, 2000.101 450400.400))"</param>
+#pragma warning disable S1133
+		[Obsolete("Use https://github.com/NetTopologySuite/NetTopologySuite instead.")]
+#pragma warning restore S1133
 		public static List<(float x, float y)> ConvertStringToPolygonRd(string polygonString)
 		{
 			if (string.IsNullOrWhiteSpace(polygonString))

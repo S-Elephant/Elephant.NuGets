@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.0.5</Version>
-		<PackageReleaseNotes>Slightly improve precision, performance and docs.</PackageReleaseNotes>
+		<Version>1.0.6</Version>
+		<PackageReleaseNotes>Deprecate WKT logic.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->

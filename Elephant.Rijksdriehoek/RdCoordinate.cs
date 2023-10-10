@@ -63,15 +63,16 @@ namespace Elephant.Rijksdriehoek
             return MathRd.Distance(X, Y, otherRdCoordinate.Value.X, otherRdCoordinate.Value.Y);
         }
 
-        /// <summary>
-        /// <inheritdoc cref="MathRd.TryParseFromPointString(string, out float, out float)"/>
-        /// </summary>
-        public static RdCoordinate? TryParseFromPointString(string pointString)
+		/// <summary>
+		/// <inheritdoc cref="MathRd.TryParseFromPointString(string, out float, out float)"/>
+		/// </summary>
+		[Obsolete("Use https://github.com/NetTopologySuite/NetTopologySuite instead.")]
+		public static RdCoordinate? TryParseFromPointString(string pointString)
         {
-            if (MathRd.TryParseFromPointString(pointString, out float x, out float y))
-                return new RdCoordinate(x, y);
+	        if (MathRd.TryParseFromPointString(pointString, out float x, out float y))
+		        return new RdCoordinate(x, y);
 
-            return null;
+			return null;
         }
 
         /// <summary>
