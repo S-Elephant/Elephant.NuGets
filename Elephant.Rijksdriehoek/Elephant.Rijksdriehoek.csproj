@@ -3,7 +3,7 @@
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
 		<Version>1.0.6</Version>
-		<PackageReleaseNotes>Deprecate two WKT methods.</PackageReleaseNotes>
+		<PackageReleaseNotes>Deprecate WKT logic.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
