@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>4.0.2</Version>
-		<PackageReleaseNotes>Use proper namespace.</PackageReleaseNotes>
+		<Version>4.0.3</Version>
+		<PackageReleaseNotes>Add Concurrency conflict response wrapper.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
