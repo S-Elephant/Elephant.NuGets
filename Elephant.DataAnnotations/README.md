@@ -14,6 +14,7 @@ Contains validation attributes commonly used in backend endpoint Controllers and
 - [**FileSizeMin**(int fileSizeMin)]
 - [**GreaterThanZero**] *(compatible with all standard numeric types)*
 - [**GreaterThanZeroRequired**] *(compatible with all standard numeric types)*
+- [**GuidNotEmpty**(allowNull)]
 - [**ListMax**(int maxValue)]
 - [**ListMin**(int minValue)]
 - [**ListMinRequired**(int minValue)]

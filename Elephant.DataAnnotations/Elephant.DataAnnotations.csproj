@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.0.10</Version>
-		<PackageReleaseNotes>Improve error response.</PackageReleaseNotes>
+		<Version>1.0.11</Version>
+		<PackageReleaseNotes>Add GuidNotEmptyAttribute.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
