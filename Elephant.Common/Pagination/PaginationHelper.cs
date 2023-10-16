@@ -86,7 +86,7 @@ namespace Elephant.Common.Pagination
 			if (sourceCount <= 0 || limit <= 0)
 				return 0;
 
-			return (int)Math.Ceiling(sourceCount / (float)limit);
+			return (sourceCount + limit - 1) / limit;
 		}
 
 		/// <summary>
