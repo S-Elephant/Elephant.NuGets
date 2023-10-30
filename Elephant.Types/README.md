@@ -45,6 +45,7 @@ The following wrappers are included:
 
 - ResponseWrapper and IResponseWrapper (for custom status codes)
 - ResponseWrapperBadRequest : ResponseWrapper 
+- ResponseWrapperConcurrencyConflict : ResponseWrapper 
 - ResponseWrapperCreated : ResponseWrapper 
 - ResponseWrapperInternalServerError : ResponseWrapper 
 - ResponseWrapperNoContent : ResponseWrapper 
