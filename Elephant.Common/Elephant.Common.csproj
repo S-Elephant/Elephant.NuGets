@@ -30,7 +30,8 @@
 		<RepositoryType>git</RepositoryType>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 	</PropertyGroup>
-	
+
+  <!-- Dependencies -->
 	<ItemGroup>
 	  <ProjectReference Include="..\Elephant.Types.Interfaces\Elephant.Types.Interfaces.csproj" />
 	  <ProjectReference Include="..\Elephant.Types\Elephant.Types.csproj" />

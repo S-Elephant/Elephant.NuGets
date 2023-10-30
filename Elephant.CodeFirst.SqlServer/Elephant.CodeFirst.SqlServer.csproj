@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.0.7</Version>
-		<PackageReleaseNotes>Add GUID methods.</PackageReleaseNotes>
+		<Version>1.0.8</Version>
+		<PackageReleaseNotes>Bugfix .Net 6 support.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
@@ -42,12 +42,18 @@
 	<!-- Dependencies -->
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.1" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.1" />
 		<ProjectReference Include="..\Constants\Elephant.Constants.SqlServer\Elephant.Constants.SqlServer.csproj" />
 		<ProjectReference Include="..\Elephant.Common\Elephant.Common.csproj" />
 		<ProjectReference Include="..\Elephant.Types.Interfaces\Elephant.Types.Interfaces.csproj" />
 	</ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.0" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.0" />
+  </ItemGroup>
 
 	<!-- Package README -->
 	<ItemGroup>
