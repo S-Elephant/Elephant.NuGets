@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using Elephant.Database.MongoDb.Abstractions.Contexts;
@@ -14,7 +15,7 @@ namespace Elephant.Database.MongoDb.Contexts
 		/// </summary>
 		private bool IsConfigured { get; set; }
 
-		private readonly IDictionary<Type, object> _entityToBuilderMap = new Dictionary<Type, object>();
+		private readonly ConcurrentDictionary<Type, object> _entityToBuilderMap = new();
 
 		/// <inheritdoc/>
 		public IMongoDatabase Database { get; }
