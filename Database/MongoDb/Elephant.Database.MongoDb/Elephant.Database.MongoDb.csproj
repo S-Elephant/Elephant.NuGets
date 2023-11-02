@@ -2,8 +2,8 @@
 
   <!-- This must be updated for every release -->
   <PropertyGroup>
-    <Version>1.2.1</Version>
-    <PackageReleaseNotes>Bugfix .Net 6 support.</PackageReleaseNotes>
+    <Version>1.2.2</Version>
+    <PackageReleaseNotes>Bugfix ConcurrentOperationsNotSupported.</PackageReleaseNotes>
   </PropertyGroup>
 
   <!-- Core -->
