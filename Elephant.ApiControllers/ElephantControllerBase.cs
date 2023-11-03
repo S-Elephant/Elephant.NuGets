@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using Elephant.Types.Interfaces.ResponseWrappers;
 using Elephant.Types.ResponseWrappers;
+using Elephant.Types.Results.Abstractions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,10 +13,45 @@ namespace Elephant.ApiControllers
 	public class ElephantControllerBase : ControllerBase
 	{
 		/// <summary>
+		/// Unwrap the <paramref name="result"/> to an <see cref="IActionResult"/>.
+		/// </summary>
+		/// <typeparam name="TData"><paramref name="result"/> data type.</typeparam>
+		/// <param name="result">Result.</param>
+		/// <returns><see cref="IActionResult"/></returns>
+		public virtual IActionResult Unwrap<TData>(IResult<TData> result)
+		{
+			if (result.UsesData)
+			{
+				return result.StatusCode switch
+				{
+					StatusCodes.Status204NoContent => NoContent(),
+					StatusCodes.Status201Created => CreatedResult(result.Data),
+					_ => StatusCode(result.StatusCode, result.Data)
+				};
+			}
+
+			return StatusCode(result.StatusCode, result.Message);
+		}
+
+		/// <summary>
+		/// Unwrap the <paramref name="result"/> that uses no data to an <see cref="IActionResult"/>.
+		/// </summary>
+		/// <param name="result">Result.</param>
+		/// <returns><see cref="IActionResult"/></returns>
+		public virtual IActionResult Unwrap(IResult result)
+		{
+			if (result.UsesData)
+				throw new InvalidOperationException($"{nameof(result)} shouldn't be using any data. If you want to use data then use IResult<TData> instead.");
+
+			return Unwrap<bool>(result);
+		}
+
+		/// <summary>
 		/// Convert to <see cref="IActionResult"/>.
 		/// </summary>
 		/// <param name="result"><see cref="ResponseWrapper{TData}"/></param>
 		/// <param name="useData">If true, <see cref="ResponseWrapper{TData}.Data"/> will be returned if applicable and possible; Otherwise, <see cref="ResponseWrapper{TData}.Data"/> will never be returned.</param>
+		[Obsolete("Use Unwrap() and the new NuGet Elephant.Types.Results(.Abstractions) instead.")]
 		protected IActionResult ToApiResult<TData>(IResponseWrapper<TData> result, bool useData = true)
 			where TData : new()
 		{
@@ -51,6 +87,7 @@ namespace Elephant.ApiControllers
 		/// <summary>
 		/// Convert to <see cref="IActionResult"/>.
 		/// </summary>
+		[Obsolete("Use Unwrap() and the new NuGet Elephant.Types.Results(.Abstractions) instead.")]
 		protected IActionResult ToApiResult(IResponseWrapper result)
 		{
 			return ToApiResult(result, false);

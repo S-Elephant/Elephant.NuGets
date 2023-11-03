@@ -91,6 +91,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.GeoSystems", "Elep
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.GeoSystems.Tests", "Tests\Elephant.GeoSystems.Tests\Elephant.GeoSystems.Tests.csproj", "{6BC1C0E3-A1C1-43C4-B9FF-34FD41FBADC9}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.Types.Results", "Elephant.Types.Results\Elephant.Types.Results.csproj", "{E948949C-224C-4243-B249-8C07785ED0D7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.Types.Results.Abstractions", "Elephant.Types.Results.Abstractions\Elephant.Types.Results.Abstractions.csproj", "{8D2DCB36-E488-450E-AE95-690A2BA93B8D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Types", "Types", "{0246C5D3-6BDC-4BE9-8D8D-EE4F9C052889}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elephant.Types.Results.Tests", "Tests\Types\Elephant.Types.Results.Tests\Elephant.Types.Results.Tests.csproj", "{A6D749A5-1796-40C1-AD0A-7D2E26C147F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -253,6 +261,18 @@ Global
 		{6BC1C0E3-A1C1-43C4-B9FF-34FD41FBADC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BC1C0E3-A1C1-43C4-B9FF-34FD41FBADC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BC1C0E3-A1C1-43C4-B9FF-34FD41FBADC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E948949C-224C-4243-B249-8C07785ED0D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E948949C-224C-4243-B249-8C07785ED0D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E948949C-224C-4243-B249-8C07785ED0D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E948949C-224C-4243-B249-8C07785ED0D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D2DCB36-E488-450E-AE95-690A2BA93B8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D2DCB36-E488-450E-AE95-690A2BA93B8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D2DCB36-E488-450E-AE95-690A2BA93B8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D2DCB36-E488-450E-AE95-690A2BA93B8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6D749A5-1796-40C1-AD0A-7D2E26C147F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6D749A5-1796-40C1-AD0A-7D2E26C147F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6D749A5-1796-40C1-AD0A-7D2E26C147F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6D749A5-1796-40C1-AD0A-7D2E26C147F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -282,6 +302,8 @@ Global
 		{1F555049-C484-4E9A-BE80-148D351D4154} = {4F5D45E5-E7E9-4D89-8261-0B52F71DD917}
 		{10486A91-CFB5-4552-A3D8-D1003B797BAA} = {4F5D45E5-E7E9-4D89-8261-0B52F71DD917}
 		{6BC1C0E3-A1C1-43C4-B9FF-34FD41FBADC9} = {4F5D45E5-E7E9-4D89-8261-0B52F71DD917}
+		{0246C5D3-6BDC-4BE9-8D8D-EE4F9C052889} = {4F5D45E5-E7E9-4D89-8261-0B52F71DD917}
+		{A6D749A5-1796-40C1-AD0A-7D2E26C147F2} = {0246C5D3-6BDC-4BE9-8D8D-EE4F9C052889}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6DB47403-D8D8-4EEB-9D37-8E73C2E536E4}
