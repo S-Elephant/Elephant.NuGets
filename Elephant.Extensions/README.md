@@ -1,3 +1,5 @@
+[![Nuget downloads](https://img.shields.io/nuget/v/Elephant.Extensions)](https://www.nuget.org/packages/Elephant.Extensions/) [![NuGet Downloads](https://img.shields.io/nuget/dt/Elephant.Extensions.svg)](https://www.nuget.org/packages/Elephant.Extensions/) ![Workflow](https://github.com/S-Elephant/Elephant.NuGets/actions/workflows/GitHubActions.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/S-Elephant/Elephant.NuGets/tree/master/Elephant.Extensions/LICENSE.txt)
+
 # About
 
 Generic and shared extensions library.

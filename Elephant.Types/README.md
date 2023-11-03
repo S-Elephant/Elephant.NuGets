@@ -1,3 +1,5 @@
+[![Nuget downloads](https://img.shields.io/nuget/v/Elephant.Types)](https://www.nuget.org/packages/Elephant.Types/) [![NuGet Downloads](https://img.shields.io/nuget/dt/Elephant.Types.svg)](https://www.nuget.org/packages/Elephant.Types/) ![Workflow](https://github.com/S-Elephant/Elephant.NuGets/actions/workflows/GitHubActions.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/S-Elephant/Elephant.NuGets/tree/master/Elephant.Types/LICENSE.txt)
+
 # About
 
 Contains shared/common/generic types but contains no specific types.

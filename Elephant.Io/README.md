@@ -1,3 +1,5 @@
+[![Nuget downloads](https://img.shields.io/nuget/v/Elephant.Io)](https://www.nuget.org/packages/Elephant.Io/) [![NuGet Downloads](https://img.shields.io/nuget/dt/Elephant.Io.svg)](https://www.nuget.org/packages/Elephant.Io/) ![Workflow](https://github.com/S-Elephant/Elephant.NuGets/actions/workflows/GitHubActions.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/S-Elephant/Elephant.NuGets/tree/master/Elephant.Io/LICENSE.txt)
+
 # About
 
 File IO library.

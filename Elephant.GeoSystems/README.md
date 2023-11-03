@@ -1,3 +1,5 @@
+[![Nuget downloads](https://img.shields.io/nuget/v/Elephant.GeoSystems)](https://www.nuget.org/packages/Elephant.GeoSystems/) [![NuGet Downloads](https://img.shields.io/nuget/dt/Elephant.GeoSystems.svg)](https://www.nuget.org/packages/Elephant.GeoSystems/) ![Workflow](https://github.com/S-Elephant/Elephant.NuGets/actions/workflows/GitHubActions.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/S-Elephant/Elephant.NuGets/tree/master/Elephant.GeoSystems/LICENSE.txt)
+
 # About
 
 Provides various conversions, validations and data-containers for using and converting between Rd, Open Street Map, GPS and custom positioning systems.

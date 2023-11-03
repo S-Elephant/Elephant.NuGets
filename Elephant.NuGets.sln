@@ -97,7 +97,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.Types.Results.Abst
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Types", "Types", "{0246C5D3-6BDC-4BE9-8D8D-EE4F9C052889}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elephant.Types.Results.Tests", "Tests\Types\Elephant.Types.Results.Tests\Elephant.Types.Results.Tests.csproj", "{A6D749A5-1796-40C1-AD0A-7D2E26C147F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elephant.Types.Results.Tests", "Tests\Types\Elephant.Types.Results.Tests\Elephant.Types.Results.Tests.csproj", "{A6D749A5-1796-40C1-AD0A-7D2E26C147F2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9D1D12C2-8EB1-40A9-BB38-361598635C57}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

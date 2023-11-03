@@ -1,3 +1,5 @@
+[![Nuget downloads](https://img.shields.io/nuget/v/Elephant.Blazor.Clipboard)](https://www.nuget.org/packages/Elephant.Blazor.Clipboard/) [![NuGet Downloads](https://img.shields.io/nuget/dt/Elephant.Blazor.Clipboard.svg)](https://www.nuget.org/packages/Elephant.Blazor.Clipboard/) ![Workflow](https://github.com/S-Elephant/Elephant.NuGets/actions/workflows/GitHubActions.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/S-Elephant/Elephant.NuGets/tree/master/Elephant.Blazor.Clipboard/LICENSE.txt)
+
 # About
 
 Contains a MAUI/Blazor ClipBoard service.
