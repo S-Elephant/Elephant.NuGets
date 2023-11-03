@@ -1,3 +1,5 @@
+[![Nuget downloads](https://img.shields.io/nuget/v/Elephant.Common)](https://www.nuget.org/packages/Elephant.Common/) [![NuGet Downloads](https://img.shields.io/nuget/dt/Elephant.Common.svg)](https://www.nuget.org/packages/Elephant.Common/) ![Workflow](https://github.com/S-Elephant/Elephant.NuGets/actions/workflows/GitHubActions.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/S-Elephant/Elephant.NuGets/tree/master/Elephant.Common/LICENSE.txt)
+
 # About
 
 Generic and shared common code library.

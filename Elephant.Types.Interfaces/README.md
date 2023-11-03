@@ -1,3 +1,5 @@
+[![Nuget downloads](https://img.shields.io/nuget/v/Elephant.Types.Interfaces)](https://www.nuget.org/packages/Elephant.Types.Interfaces/) [![NuGet Downloads](https://img.shields.io/nuget/dt/Elephant.Types.Interfaces.svg)](https://www.nuget.org/packages/Elephant.Types.Interfaces/) ![Workflow](https://github.com/S-Elephant/Elephant.NuGets/actions/workflows/GitHubActions.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/S-Elephant/Elephant.NuGets/tree/master/Elephant.Types.Interfaces/LICENSE.txt)
+
 # About
 
 Contains shared/common/generic type interfaces.

@@ -1,3 +1,5 @@
+[![Nuget downloads](https://img.shields.io/nuget/v/Elephant.Rijksdriehoek)](https://www.nuget.org/packages/Elephant.Rijksdriehoek/) [![NuGet Downloads](https://img.shields.io/nuget/dt/Elephant.Rijksdriehoek.svg)](https://www.nuget.org/packages/Elephant.Rijksdriehoek/) ![Workflow](https://github.com/S-Elephant/Elephant.NuGets/actions/workflows/GitHubActions.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/S-Elephant/Elephant.NuGets/tree/master/Elephant.Rijksdriehoek/LICENSE.txt)
+
 # Deprecated
 
 This NuGet will soon be deprecated and be replaced by Elephant.GeoSystems when its done.

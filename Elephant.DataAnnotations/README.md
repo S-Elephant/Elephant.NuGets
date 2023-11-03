@@ -1,3 +1,5 @@
+[![Nuget downloads](https://img.shields.io/nuget/v/Elephant.DataAnnotations)](https://www.nuget.org/packages/Elephant.DataAnnotations/) [![NuGet Downloads](https://img.shields.io/nuget/dt/Elephant.DataAnnotations.svg)](https://www.nuget.org/packages/Elephant.DataAnnotations/) ![Workflow](https://github.com/S-Elephant/Elephant.NuGets/actions/workflows/GitHubActions.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/S-Elephant/Elephant.NuGets/tree/master/Elephant.DataAnnotations/LICENSE.txt)
+
 # About
 
 Contains validation attributes commonly used in backend endpoint Controllers and view models.

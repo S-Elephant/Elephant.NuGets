@@ -1,3 +1,5 @@
+[![Nuget downloads](https://img.shields.io/nuget/v/Elephant.Common.Maths)](https://www.nuget.org/packages/Elephant.Common.Maths/) [![NuGet Downloads](https://img.shields.io/nuget/dt/Elephant.Common.Maths.svg)](https://www.nuget.org/packages/Elephant.Common.Maths/) ![Workflow](https://github.com/S-Elephant/Elephant.NuGets/actions/workflows/GitHubActions.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/S-Elephant/Elephant.NuGets/tree/master/Elephant.Common.Maths/LICENSE.txt)
+
 # About
 
 Common mathematics library.

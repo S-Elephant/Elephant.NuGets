@@ -1,3 +1,5 @@
+[![Nuget downloads](https://img.shields.io/nuget/v/Elephant.Models)](https://www.nuget.org/packages/Elephant.Models/) [![NuGet Downloads](https://img.shields.io/nuget/dt/Elephant.Models.svg)](https://www.nuget.org/packages/Elephant.Models/) ![Workflow](https://github.com/S-Elephant/Elephant.NuGets/actions/workflows/GitHubActions.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/S-Elephant/Elephant.NuGets/tree/master/Elephant.Models/LICENSE.txt)
+
 # About
 
 Contains shared/common/generic models.
