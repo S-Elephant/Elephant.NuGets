@@ -10,14 +10,36 @@ namespace Elephant.ApiControllers.Tests
 	/// </summary>
 	public class UnwrapTests
 	{
-		private readonly ElephantControllerBase _systemUnderTest;
+		/// <summary>
+		/// System under test class used for exposing protected methods.
+		/// </summary>
+		private class ElephantControllerBaseParent : ElephantControllerBase
+		{
+			/// <summary>
+			/// Expose for testing purposes.
+			/// </summary>
+			internal IActionResult UnwrapTest<TData>(IResult<TData> result)
+			{
+				return Unwrap(result);
+			}
+
+			/// <summary>
+			/// Expose for testing purposes.
+			/// </summary>
+			internal IActionResult UnwrapTest(IResult result)
+			{
+				return Unwrap(result);
+			}
+		}
+
+		private readonly ElephantControllerBaseParent _systemUnderTest;
 
 		/// <summary>
 		/// Setup.
 		/// </summary>
 		public UnwrapTests()
 		{
-			_systemUnderTest = new ElephantControllerBase();
+			_systemUnderTest = new ElephantControllerBaseParent();
 		}
 
 		/// <summary>
@@ -28,10 +50,10 @@ namespace Elephant.ApiControllers.Tests
 		public void OkWithoutDataReturnsNull()
 		{
 			// Arrange.
-			IResult result = Result.Ok();
+			IResult result = Result.OkNoData();
 
 			// Act.
-			IActionResult actionResult = _systemUnderTest.Unwrap(result);
+			IActionResult actionResult = _systemUnderTest.UnwrapTest(result);
 
 			// Assert.
 			ObjectResult createdResult = Assert.IsType<ObjectResult>(actionResult);
@@ -46,10 +68,10 @@ namespace Elephant.ApiControllers.Tests
 		public void InternalServerErrorWithoutDataTest()
 		{
 			// Arrange.
-			IResult result = Result.InternalServerError();
+			IResult result = Result.InternalServerErrorNoData();
 
 			// Act.
-			IActionResult actionResult = _systemUnderTest.Unwrap(result);
+			IActionResult actionResult = _systemUnderTest.UnwrapTest(result);
 
 			// Assert.
 			ObjectResult createdResult = Assert.IsType<ObjectResult>(actionResult);
@@ -64,10 +86,10 @@ namespace Elephant.ApiControllers.Tests
 		public void InternalServerErrorWithoutDataAndMessageReturnsNoMessage()
 		{
 			// Arrange.
-			IResult result = Result.InternalServerError();
+			IResult result = Result.InternalServerErrorNoData();
 
 			// Act.
-			IActionResult actionResult = _systemUnderTest.Unwrap(result);
+			IActionResult actionResult = _systemUnderTest.UnwrapTest(result);
 
 			// Assert.
 			ObjectResult createdResult = Assert.IsType<ObjectResult>(actionResult);
@@ -82,10 +104,10 @@ namespace Elephant.ApiControllers.Tests
 		public void InternalServerErrorWithoutDataReturnsCorrectMessage()
 		{
 			// Arrange.
-			IResult result = Result.InternalServerError("Pikachu");
+			IResult result = Result.InternalServerErrorNoData("Pikachu");
 
 			// Act.
-			IActionResult actionResult = _systemUnderTest.Unwrap(result);
+			IActionResult actionResult = _systemUnderTest.UnwrapTest(result);
 
 			// Assert.
 			ObjectResult createdResult = Assert.IsType<ObjectResult>(actionResult);
@@ -108,7 +130,7 @@ namespace Elephant.ApiControllers.Tests
 			IResult<int> result = Result<int>.Ok(data);
 
 			// Act.
-			IActionResult actionResult = _systemUnderTest.Unwrap(result);
+			IActionResult actionResult = _systemUnderTest.UnwrapTest(result);
 
 			// Assert.
 			ObjectResult createdResult = Assert.IsType<ObjectResult>(actionResult);
@@ -132,7 +154,7 @@ namespace Elephant.ApiControllers.Tests
 			IResult<string> result = Result<string>.Ok(data, null);
 
 			// Act.
-			IActionResult actionResult = _systemUnderTest.Unwrap(result);
+			IActionResult actionResult = _systemUnderTest.UnwrapTest(result);
 
 			// Assert.
 			ObjectResult createdResult = Assert.IsType<ObjectResult>(actionResult);
@@ -176,7 +198,7 @@ namespace Elephant.ApiControllers.Tests
 			IResult<Customer> result = Result<Customer>.Ok(new Customer());
 
 			// Act.
-			IActionResult actionResult = _systemUnderTest.Unwrap(result);
+			IActionResult actionResult = _systemUnderTest.UnwrapTest(result);
 
 			// Assert.
 			ObjectResult createdResult = Assert.IsType<ObjectResult>(actionResult);
@@ -200,7 +222,7 @@ namespace Elephant.ApiControllers.Tests
 			IResult<List<Customer>> result = Result<List<Customer>>.Created(new List<Customer>(createdCustomers));
 
 			// Act.
-			IActionResult actionResult = _systemUnderTest.Unwrap(result);
+			IActionResult actionResult = _systemUnderTest.UnwrapTest(result);
 
 			// Assert.
 			ObjectResult createdResult = Assert.IsType<ObjectResult>(actionResult);
@@ -224,7 +246,7 @@ namespace Elephant.ApiControllers.Tests
 			IResult<List<Customer>> result = Result<List<Customer>>.Created(new List<Customer>(createdCustomers));
 
 			// Act.
-			IActionResult actionResult = _systemUnderTest.Unwrap(result);
+			IActionResult actionResult = _systemUnderTest.UnwrapTest(result);
 
 			// Assert.
 			ObjectResult createdResult = Assert.IsType<ObjectResult>(actionResult);

@@ -1,10 +1,12 @@
 ﻿using System.Linq.Expressions;
+using Elephant.Database.Abstractions.DbContexts;
+using Elephant.Database.Abstractions.Repositories;
 using Elephant.Types.Interfaces;
-using Elephant.Types.Interfaces.ResponseWrappers;
-using Elephant.Types.ResponseWrappers;
+using Elephant.Types.Results;
+using Elephant.Types.Results.Abstractions;
 using Microsoft.EntityFrameworkCore;
 
-namespace Elephant.Database
+namespace Elephant.Database.Repositories
 {
 	/// <inheritdoc cref="IGenericCrudIdRepository{TEntity}"/>
 	public abstract class GenericCrudIdRepository<TEntity, TContext> : GenericCrudRepository<TEntity, TContext>, IGenericCrudIdRepository<TEntity>
@@ -102,15 +104,15 @@ namespace Elephant.Database
 
 		/// <summary>
 		/// Update and save.
-		/// Checks if the <paramref name="obj"/> already exists and if not, returns a <see cref="ResponseWrapperNotFound{TData}"/>.
+		/// Checks if the <paramref name="obj"/> already exists and if not, returns a not-found result.
 		/// </summary>
-		public override async Task<IResponseWrapper<int>> UpdateAndSave(TEntity obj, CancellationToken cancellationToken)
+		public override async Task<IResult<int>> UpdateAndSave(TEntity obj, CancellationToken cancellationToken)
 		{
 			bool hasId = await HasId(obj.Id, cancellationToken);
 			if (hasId)
 				return await base.UpdateAndSave(obj, cancellationToken);
 			else
-				return new ResponseWrapperNotFound<int>($"Entity with Id {obj.Id} was not found. No insert and no save were performed.");
+				return Result<int>.NotFound($"Entity with Id {obj.Id} was not found. No insert and no save were performed.");
 		}
 	}
 }

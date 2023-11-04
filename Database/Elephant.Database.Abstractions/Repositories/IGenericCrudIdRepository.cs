@@ -2,7 +2,7 @@
 using Elephant.Types.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace Elephant.Database
+namespace Elephant.Database.Abstractions.Repositories
 {
 	/// <summary>
 	/// Generic CRUD repository base class that expects the entity to be of type IId.

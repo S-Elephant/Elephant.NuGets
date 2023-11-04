@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Elephant.Database
+namespace Elephant.Database.Extensions
 {
 	/// <summary>
 	/// Provides extension methods for <see cref="DbSet{TEntity}"/>.
 	/// </summary>
 	public static class DbSetExtensions
-    {
+	{
 		/// <summary>
 		/// Clear the specified <see cref="DbSet{TEntity}"/>.
 		/// </summary>
@@ -25,5 +25,5 @@ namespace Elephant.Database
 
 			return dbSet;
 		}
-    }
+	}
 }

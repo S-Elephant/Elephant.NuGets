@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using Elephant.Types.Results.Abstractions;
 
@@ -163,7 +164,7 @@ namespace Elephant.Types.Results
 		/// <param name="httpStatusCode">Custom HTTP status code.</param>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult Custom(int httpStatusCode, string? message = null)
+		public static IResult CustomNoData(int httpStatusCode, string? message = null)
 		{
 			return (IResult)new ResultDataless().AddCustom(false, httpStatusCode, message);
 		}
@@ -176,7 +177,7 @@ namespace Elephant.Types.Results
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddCustom(int httpStatusCode, string? message = null)
+		public virtual IResult AddCustomNoData(int httpStatusCode, string? message = null)
 		{
 			ResultStatuses.Add(new ResultStatus<TData>(default, httpStatusCode, message));
 			return (IResult)this;
@@ -190,7 +191,7 @@ namespace Elephant.Types.Results
 		/// <param name="data">Optional data.</param>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> Continue(TData? data, string? message = null)
+		public static IResult<TData> Continue(TData? data = default, string? message = null)
 		{
 			return new Result<TData>().AddContinue(data, message);
 		}
@@ -200,7 +201,7 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult Continue(string? message = null)
+		public static IResult ContinueNoData(string? message = null)
 		{
 			return (IResult)new ResultDataless().AddContinue(false, message);
 		}
@@ -212,7 +213,7 @@ namespace Elephant.Types.Results
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddContinue(string? message = null)
+		public virtual IResult AddContinueNoData(string? message = null)
 		{
 			return (IResult)AddCustom(default, (int)HttpStatusCode.Continue, message);
 		}
@@ -225,7 +226,7 @@ namespace Elephant.Types.Results
 		/// <param name="data">Optional data.</param>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> SwitchingProtocols(TData? data, string? message = null)
+		public static IResult<TData> SwitchingProtocols(TData? data = default, string? message = null)
 		{
 			return new Result<TData>().AddSwitchingProtocols(data, message);
 		}
@@ -235,7 +236,7 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult SwitchingProtocols(string? message = null)
+		public static IResult SwitchingProtocolsNoData(string? message = null)
 		{
 			return (IResult)new ResultDataless().AddSwitchingProtocols(false, message);
 		}
@@ -247,7 +248,7 @@ namespace Elephant.Types.Results
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddSwitchingProtocols(string? message = null)
+		public virtual IResult AddSwitchingProtocolsNoData(string? message = null)
 		{
 			return (IResult)AddCustom(default, (int)HttpStatusCode.SwitchingProtocols, message);
 		}
@@ -260,7 +261,7 @@ namespace Elephant.Types.Results
 		/// <param name="data">Optional data.</param>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> Processing(TData? data, string? message = null)
+		public static IResult<TData> Processing(TData? data = default, string? message = null)
 		{
 			return new Result<TData>().AddProcessing(data, message);
 		}
@@ -270,7 +271,7 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult Processing(string? message = null)
+		public static IResult ProcessingNoData(string? message = null)
 		{
 			return (IResult)new ResultDataless().AddProcessing(false, message);
 		}
@@ -282,7 +283,7 @@ namespace Elephant.Types.Results
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddProcessing(string? message = null)
+		public virtual IResult AddProcessingNoData(string? message = null)
 		{
 			return (IResult)AddCustom(default, HttpStatusCodeProcessing, message);
 		}
@@ -295,7 +296,7 @@ namespace Elephant.Types.Results
 		/// <param name="data">Optional data.</param>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> EarlyHints(TData? data, string? message = null)
+		public static IResult<TData> EarlyHints(TData? data = default, string? message = null)
 		{
 			return new Result<TData>().AddEarlyHints(data, message);
 		}
@@ -305,7 +306,7 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult EarlyHints(string? message = null)
+		public static IResult EarlyHintsNoData(string? message = null)
 		{
 			return (IResult)new ResultDataless().AddEarlyHints(false, message);
 		}
@@ -317,7 +318,7 @@ namespace Elephant.Types.Results
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddEarlyHints(string? message = null)
+		public virtual IResult AddEarlyHintsNoData(string? message = null)
 		{
 			return (IResult)AddCustom(default, HttpStatusCodeEarlyHints, message);
 		}
@@ -332,7 +333,7 @@ namespace Elephant.Types.Results
 		/// <param name="data">Optional data.</param>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> Ok(TData? data, string? message = null)
+		public static IResult<TData> Ok(TData? data = default, string? message = null)
 		{
 			return new Result<TData>().AddOk(data, message);
 		}
@@ -342,7 +343,7 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult Ok(string? message = null)
+		public static IResult OkNoData(string? message = null)
 		{
 			return (IResult)new ResultDataless().AddOk(false, message);
 		}
@@ -354,7 +355,7 @@ namespace Elephant.Types.Results
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddOk(string? message = null)
+		public virtual IResult AddOkNoData(string? message = null)
 		{
 			return (IResult)AddCustom(default, (int)HttpStatusCode.OK, message);
 		}
@@ -367,7 +368,7 @@ namespace Elephant.Types.Results
 		/// <param name="data">Optional data.</param>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> Created(TData? data, string? message = null)
+		public static IResult<TData> Created(TData? data = default, string? message = null)
 		{
 			return new Result<TData>().AddCreated(data, message);
 		}
@@ -377,7 +378,7 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult Created(string? message = null)
+		public static IResult CreatedNoData(string? message = null)
 		{
 			return (IResult)new ResultDataless().AddCreated(false, message);
 		}
@@ -389,7 +390,7 @@ namespace Elephant.Types.Results
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddCreated(string? message = null)
+		public virtual IResult AddCreatedNoData(string? message = null)
 		{
 			return (IResult)AddCustom(default, (int)HttpStatusCode.Created, message);
 		}
@@ -404,7 +405,7 @@ namespace Elephant.Types.Results
 		/// <param name="data">Optional data.</param>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> Accepted(TData? data, string? message = null)
+		public static IResult<TData> Accepted(TData? data = default, string? message = null)
 		{
 			return new Result<TData>().AddAccepted(data, message);
 		}
@@ -416,7 +417,7 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult Accepted(string? message = null)
+		public static IResult AcceptedNoData(string? message = null)
 		{
 			return (IResult)new ResultDataless().AddAccepted(false, message);
 		}
@@ -428,7 +429,7 @@ namespace Elephant.Types.Results
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddAccepted(string? message = null)
+		public virtual IResult AddAcceptedNoData(string? message = null)
 		{
 			return (IResult)AddCustom(default, (int)HttpStatusCode.Accepted, message);
 		}
@@ -443,7 +444,7 @@ namespace Elephant.Types.Results
 		/// <param name="data">Optional data.</param>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> NonAuthoritativeInformation(TData? data, string? message = null)
+		public static IResult<TData> NonAuthoritativeInformation(TData? data = default, string? message = null)
 		{
 			return new Result<TData>().AddNonAuthoritativeInformation(data, message);
 		}
@@ -455,7 +456,7 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult NonAuthoritativeInformation(string? message = null)
+		public static IResult NonAuthoritativeInformationNoData(string? message = null)
 		{
 			return (IResult)new ResultDataless().AddNonAuthoritativeInformation(false, message);
 		}
@@ -467,7 +468,7 @@ namespace Elephant.Types.Results
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddNonAuthoritativeInformation(string? message = null)
+		public virtual IResult AddNonAuthoritativeInformationNoData(string? message = null)
 		{
 			return (IResult)AddCustom(default, (int)HttpStatusCode.NonAuthoritativeInformation, message);
 		}
@@ -480,7 +481,7 @@ namespace Elephant.Types.Results
 		/// <param name="data">Optional data.</param>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> NoContent(TData? data, string? message = null)
+		public static IResult<TData> NoContent(TData? data = default, string? message = null)
 		{
 			return new Result<TData>().AddNoContent(data, message);
 		}
@@ -490,7 +491,7 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult NoContent(string? message = null)
+		public static IResult NoContentNoData(string? message = null)
 		{
 			return (IResult)new ResultDataless().AddNoContent(false, message);
 		}
@@ -502,7 +503,7 @@ namespace Elephant.Types.Results
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddNoContent(string? message = null)
+		public virtual IResult AddNoContentNoData(string? message = null)
 		{
 			return (IResult)AddCustom(default, (int)HttpStatusCode.NoContent, message);
 		}
@@ -515,7 +516,7 @@ namespace Elephant.Types.Results
 		/// <param name="data">Optional data.</param>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> ResetContent(TData? data, string? message = null)
+		public static IResult<TData> ResetContent(TData? data = default, string? message = null)
 		{
 			return new Result<TData>().AddResetContent(data, message);
 		}
@@ -525,7 +526,7 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult ResetContent(string? message = null)
+		public static IResult ResetContentNoData(string? message = null)
 		{
 			return (IResult)new ResultDataless().AddResetContent(false, message);
 		}
@@ -537,7 +538,7 @@ namespace Elephant.Types.Results
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddResetContent(string? message = null)
+		public virtual IResult AddResetContentNoData(string? message = null)
 		{
 			return (IResult)AddCustom(default, (int)HttpStatusCode.ResetContent, message);
 		}
@@ -551,7 +552,7 @@ namespace Elephant.Types.Results
 		/// <param name="data">Optional data.</param>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> PartialContent(TData? data, string? message = null)
+		public static IResult<TData> PartialContent(TData? data = default, string? message = null)
 		{
 			return new Result<TData>().AddPartialContent(data, message);
 		}
@@ -562,7 +563,7 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult PartialContent(string? message = null)
+		public static IResult PartialContentNoData(string? message = null)
 		{
 			return (IResult)new ResultDataless().AddPartialContent(false, message);
 		}
@@ -574,7 +575,7 @@ namespace Elephant.Types.Results
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddPartialContent(string? message = null)
+		public virtual IResult AddPartialContentNoData(string? message = null)
 		{
 			return (IResult)AddCustom(default, (int)HttpStatusCode.PartialContent, message);
 		}
@@ -588,7 +589,7 @@ namespace Elephant.Types.Results
 		/// <param name="data">Optional data.</param>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> MultiStatus(TData? data, string? message = null)
+		public static IResult<TData> MultiStatus(TData? data = default, string? message = null)
 		{
 			return new Result<TData>().AddMultiStatus(data, message);
 		}
@@ -599,7 +600,7 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult MultiStatus(string? message = null)
+		public static IResult MultiStatusNoData(string? message = null)
 		{
 			return (IResult)new ResultDataless().AddMultiStatus(false, message);
 		}
@@ -611,7 +612,7 @@ namespace Elephant.Types.Results
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddMultiStatus(string? message = null)
+		public virtual IResult AddMultiStatusNoData(string? message = null)
 		{
 			return (IResult)AddCustom(default, HttpStatusCodeMultiStatus, message);
 		}
@@ -625,7 +626,7 @@ namespace Elephant.Types.Results
 		/// <param name="data">Optional data.</param>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> AlreadyReported(TData? data, string? message = null)
+		public static IResult<TData> AlreadyReported(TData? data = default, string? message = null)
 		{
 			return new Result<TData>().AddAlreadyReported(data, message);
 		}
@@ -636,7 +637,7 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult AlreadyReported(string? message = null)
+		public static IResult AlreadyReportedNoData(string? message = null)
 		{
 			return (IResult)new ResultDataless().AddAlreadyReported(false, message);
 		}
@@ -648,7 +649,7 @@ namespace Elephant.Types.Results
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddAlreadyReported(string? message = null)
+		public virtual IResult AddAlreadyReportedNoData(string? message = null)
 		{
 			return (IResult)AddCustom(default, HttpStatusCodeAlreadyReported, message);
 		}
@@ -662,7 +663,7 @@ namespace Elephant.Types.Results
 		/// <param name="data">Optional data.</param>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> ImUsed(TData? data, string? message = null)
+		public static IResult<TData> ImUsed(TData? data = default, string? message = null)
 		{
 			return new Result<TData>().AddImUsed(data, message);
 		}
@@ -673,7 +674,7 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult ImUsed(string? message = null)
+		public static IResult ImUsedNoData(string? message = null)
 		{
 			return (IResult)new ResultDataless().AddImUsed(false, message);
 		}
@@ -685,7 +686,7 @@ namespace Elephant.Types.Results
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddImUsed(string? message = null)
+		public virtual IResult AddImUsedNoData(string? message = null)
 		{
 			return (IResult)AddCustom(default, HttpStatusCodeImUsed, message);
 		}
@@ -700,7 +701,7 @@ namespace Elephant.Types.Results
 		/// <param name="data">Optional data.</param>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> MultipleChoices(TData? data, string? message = null)
+		public static IResult<TData> MultipleChoices(TData? data = default, string? message = null)
 		{
 			return new Result<TData>().AddMultipleChoices(data, message);
 		}
@@ -710,7 +711,7 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult MultipleChoices(string? message = null)
+		public static IResult MultipleChoicesNoData(string? message = null)
 		{
 			return (IResult)new ResultDataless().AddMultipleChoices(false, message);
 		}
@@ -722,7 +723,7 @@ namespace Elephant.Types.Results
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddMultipleChoices(string? message = null)
+		public virtual IResult AddMultipleChoicesNoData(string? message = null)
 		{
 			return (IResult)AddCustom(default, (int)HttpStatusCode.MultipleChoices, message);
 		}
@@ -735,7 +736,7 @@ namespace Elephant.Types.Results
 		/// <param name="data">Optional data.</param>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> MovedPermanently(TData? data, string? message = null)
+		public static IResult<TData> MovedPermanently(TData? data = default, string? message = null)
 		{
 			return new Result<TData>().AddMovedPermanently(data, message);
 		}
@@ -745,7 +746,7 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult MovedPermanently(string? message = null)
+		public static IResult MovedPermanentlyNoData(string? message = null)
 		{
 			return (IResult)new ResultDataless().AddMovedPermanently(false, message);
 		}
@@ -757,7 +758,7 @@ namespace Elephant.Types.Results
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddMovedPermanently(string? message = null)
+		public virtual IResult AddMovedPermanentlyNoData(string? message = null)
 		{
 			return (IResult)AddCustom(default, (int)HttpStatusCode.MovedPermanently, message);
 		}
@@ -771,7 +772,7 @@ namespace Elephant.Types.Results
 		/// <param name="data">Optional data.</param>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> Found(TData? data, string? message = null)
+		public static IResult<TData> Found(TData? data = default, string? message = null)
 		{
 			return new Result<TData>().AddFound(data, message);
 		}
@@ -782,7 +783,7 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult Found(string? message = null)
+		public static IResult FoundNoData(string? message = null)
 		{
 			return (IResult)new ResultDataless().AddFound(false, message);
 		}
@@ -794,7 +795,7 @@ namespace Elephant.Types.Results
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddFound(string? message = null)
+		public virtual IResult AddFoundNoData(string? message = null)
 		{
 			return (IResult)AddCustom(default, (int)HttpStatusCode.Found, message);
 		}
@@ -808,7 +809,7 @@ namespace Elephant.Types.Results
 		/// <param name="data">Optional data.</param>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> SeeOther(TData? data, string? message = null)
+		public static IResult<TData> SeeOther(TData? data = default, string? message = null)
 		{
 			return new Result<TData>().AddSeeOther(data, message);
 		}
@@ -819,7 +820,7 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult SeeOther(string? message = null)
+		public static IResult SeeOtherNoData(string? message = null)
 		{
 			return (IResult)new ResultDataless().AddSeeOther(false, message);
 		}
@@ -831,7 +832,7 @@ namespace Elephant.Types.Results
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddSeeOther(string? message = null)
+		public virtual IResult AddSeeOtherNoData(string? message = null)
 		{
 			return (IResult)AddCustom(default, (int)HttpStatusCode.SeeOther, message);
 		}
@@ -845,7 +846,7 @@ namespace Elephant.Types.Results
 		/// <param name="data">Optional data.</param>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> NotModified(TData? data, string? message = null)
+		public static IResult<TData> NotModified(TData? data = default, string? message = null)
 		{
 			return new Result<TData>().AddNotModified(data, message);
 		}
@@ -856,7 +857,7 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult NotModified(string? message = null)
+		public static IResult NotModifiedNoData(string? message = null)
 		{
 			return (IResult)new ResultDataless().AddNotModified(false, message);
 		}
@@ -868,7 +869,7 @@ namespace Elephant.Types.Results
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddNotModified(string? message = null)
+		public virtual IResult AddNotModifiedNoData(string? message = null)
 		{
 			return (IResult)AddCustom(default, (int)HttpStatusCode.NotModified, message);
 		}
@@ -885,7 +886,7 @@ namespace Elephant.Types.Results
 		/// <param name="data">Optional data.</param>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> TemporaryRedirect(TData? data, string? message = null)
+		public static IResult<TData> TemporaryRedirect(TData? data = default, string? message = null)
 		{
 			return new Result<TData>().AddTemporaryRedirect(data, message);
 		}
@@ -899,7 +900,7 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult TemporaryRedirect(string? message = null)
+		public static IResult TemporaryRedirectNoData(string? message = null)
 		{
 			return (IResult)new ResultDataless().AddTemporaryRedirect(false, message);
 		}
@@ -911,7 +912,7 @@ namespace Elephant.Types.Results
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddTemporaryRedirect(string? message = null)
+		public virtual IResult AddTemporaryRedirectNoData(string? message = null)
 		{
 			return (IResult)AddCustom(default, (int)HttpStatusCode.TemporaryRedirect, message);
 		}
@@ -924,7 +925,7 @@ namespace Elephant.Types.Results
 		/// <param name="data">Optional data.</param>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> PermanentRedirect(TData? data, string? message = null)
+		public static IResult<TData> PermanentRedirect(TData? data = default, string? message = null)
 		{
 			return new Result<TData>().AddPermanentRedirect(data, message);
 		}
@@ -934,7 +935,7 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult PermanentRedirect(string? message = null)
+		public static IResult PermanentRedirectNoData(string? message = null)
 		{
 			return (IResult)new ResultDataless().AddPermanentRedirect(false, message);
 		}
@@ -946,7 +947,7 @@ namespace Elephant.Types.Results
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddPermanentRedirect(string? message = null)
+		public virtual IResult AddPermanentRedirectNoData(string? message = null)
 		{
 			return (IResult)AddCustom(default, HttpStatusCodePermanentRedirect, message);
 		}
@@ -958,12 +959,35 @@ namespace Elephant.Types.Results
 		/// <summary>
 		/// Custom error with HTTP status code 500.
 		/// </summary>
+		/// <param name="exception"><see cref="Exception"/></param>
+		/// <param name="statusCode">HTTP error status code. Defaults to 500.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> Error(TData? data, string? message = null)
+		public static IResult<TData> Error(Exception exception, int statusCode = 500, TData? data = default)
 		{
-			return new Result<TData>().AddError(data, message);
+			return Custom(data, statusCode, exception.ToString());
+		}
+
+		/// <summary>
+		/// Custom error with HTTP status code 500.
+		/// </summary>
+		/// <param name="exception"><see cref="Exception"/></param>
+		/// <param name="statusCode">HTTP error status code. Defaults to 500.</param>
+		/// <returns><see cref="IResult{TData}"/></returns>
+		public static IResult ErrorNoData(Exception exception, int statusCode = 500)
+		{
+			return CustomNoData(statusCode, exception.ToString());
+		}
+
+		/// <summary>
+		/// Custom error with HTTP status code 500.
+		/// </summary>
+		/// <param name="message">Optional message.</param>
+		/// <param name="data">Optional data.</param>
+		/// <returns><see cref="IResult{TData}"/></returns>
+		public static IResult<TData> Error(string? message = null, TData? data = default)
+		{
+			return new Result<TData>().AddError(message, data);
 		}
 
 		/// <summary>
@@ -971,21 +995,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult Error(string? message = null)
+		public static IResult ErrorNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddError(false, message);
+			return new Result().AddErrorNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddError(TData? data, string? message = null)
+		public virtual IResult<TData> AddError(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, (int)HttpStatusCode.InternalServerError, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddError(string? message = null)
+		public virtual IResult AddErrorNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, (int)HttpStatusCode.InternalServerError, message);
+			return AddCustomNoData((int)HttpStatusCode.InternalServerError, message);
 		}
 
 		#region Client
@@ -995,12 +1019,12 @@ namespace Elephant.Types.Results
 		/// perceived to be a client error (e.g., malformed request syntax,
 		/// invalid request message framing, or deceptive request routing).
 		/// </summary>
-		/// <param name="data">Optional data.</param>
 		/// <param name="message">Optional message.</param>
+		/// <param name="data">Optional data.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> BadRequest(TData? data, string? message = null)
+		public static IResult<TData> BadRequest(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddBadRequest(data, message);
+			return new Result<TData>().AddBadRequest(message, data);
 		}
 
 		/// <summary>
@@ -1010,21 +1034,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult BadRequest(string? message = null)
+		public static IResult BadRequestNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddBadRequest(false, message);
+			return new Result().AddBadRequestNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddBadRequest(TData? data, string? message = null)
+		public virtual IResult<TData> AddBadRequest(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, (int)HttpStatusCode.BadRequest, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddBadRequest(string? message = null)
+		public virtual IResult AddBadRequestNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, (int)HttpStatusCode.BadRequest, message);
+			return AddCustomNoData((int)HttpStatusCode.BadRequest, message);
 		}
 
 
@@ -1034,12 +1058,12 @@ namespace Elephant.Types.Results
 		/// this response means "unauthenticated". That is, the client must
 		/// authenticate itself to get the requested response.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> Unauthorized(TData? data, string? message = null)
+		public static IResult<TData> Unauthorized(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddUnauthorized(data, message);
+			return new Result<TData>().AddUnauthorized(message, data);
 		}
 
 		/// <summary>
@@ -1049,21 +1073,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult Unauthorized(string? message = null)
+		public static IResult UnauthorizedNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddUnauthorized(false, message);
+			return new Result().AddUnauthorizedNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddUnauthorized(TData? data, string? message = null)
+		public virtual IResult<TData> AddUnauthorized(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, (int)HttpStatusCode.Unauthorized, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddUnauthorized(string? message = null)
+		public virtual IResult AddUnauthorizedNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, (int)HttpStatusCode.Unauthorized, message);
+			return AddCustomNoData((int)HttpStatusCode.Unauthorized, message);
 		}
 
 
@@ -1073,12 +1097,12 @@ namespace Elephant.Types.Results
 		/// for digital payment systems, however this status code is used very rarely and
 		/// no standard convention exists.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> PaymentRequired(TData? data, string? message = null)
+		public static IResult<TData> PaymentRequired(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddPaymentRequired(data, message);
+			return new Result<TData>().AddPaymentRequired(message, data);
 		}
 
 		/// <summary>
@@ -1088,21 +1112,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult PaymentRequired(string? message = null)
+		public static IResult PaymentRequiredNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddPaymentRequired(false, message);
+			return new Result().AddPaymentRequiredNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddPaymentRequired(TData? data, string? message = null)
+		public virtual IResult<TData> AddPaymentRequired(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, (int)HttpStatusCode.PaymentRequired, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddPaymentRequired(string? message = null)
+		public virtual IResult AddPaymentRequiredNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, (int)HttpStatusCode.PaymentRequired, message);
+			return AddCustomNoData((int)HttpStatusCode.PaymentRequired, message);
 		}
 
 
@@ -1112,12 +1136,12 @@ namespace Elephant.Types.Results
 		/// so the server is refusing to give the requested resource. Unlike 401 Unauthorized,
 		/// the client's identity is known to the server.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> Forbidden(TData? data, string? message = null)
+		public static IResult<TData> Forbidden(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddForbidden(data, message);
+			return new Result<TData>().AddForbidden(message, data);
 		}
 
 		/// <summary>
@@ -1127,21 +1151,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult Forbidden(string? message = null)
+		public static IResult ForbiddenNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddForbidden(false, message);
+			return new Result().AddForbiddenNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddForbidden(TData? data, string? message = null)
+		public virtual IResult<TData> AddForbidden(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, (int)HttpStatusCode.Forbidden, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddForbidden(string? message = null)
+		public virtual IResult AddForbiddenNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, (int)HttpStatusCode.Forbidden, message);
+			return AddCustomNoData((int)HttpStatusCode.Forbidden, message);
 		}
 
 
@@ -1149,12 +1173,12 @@ namespace Elephant.Types.Results
 		/// <summary>
 		/// Something isn't found.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> NotFound(TData? data, string? message = null)
+		public static IResult<TData> NotFound(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddNotFound(data, message);
+			return new Result<TData>().AddNotFound(message, data);
 		}
 
 		/// <summary>
@@ -1162,21 +1186,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult NotFound(string? message = null)
+		public static IResult NotFoundNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddNotFound(false, message);
+			return new Result().AddNotFoundNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddNotFound(TData? data, string? message = null)
+		public virtual IResult<TData> AddNotFound(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, (int)HttpStatusCode.NotFound, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddNotFound(string? message = null)
+		public virtual IResult AddNotFoundNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, (int)HttpStatusCode.NotFound, message);
+			return AddCustomNoData((int)HttpStatusCode.NotFound, message);
 		}
 
 
@@ -1185,12 +1209,12 @@ namespace Elephant.Types.Results
 		/// Method is known by the server but is not supported by the target
 		/// resource. For example, an API may not allow calling DELETE to
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> MethodNotAllowed(TData? data, string? message = null)
+		public static IResult<TData> MethodNotAllowed(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddMethodNotAllowed(data, message);
+			return new Result<TData>().AddMethodNotAllowed(message, data);
 		}
 
 		/// <summary>
@@ -1199,21 +1223,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult MethodNotAllowed(string? message = null)
+		public static IResult MethodNotAllowedNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddMethodNotAllowed(false, message);
+			return new Result().AddMethodNotAllowedNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddMethodNotAllowed(TData? data, string? message = null)
+		public virtual IResult<TData> AddMethodNotAllowed(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, (int)HttpStatusCode.MethodNotAllowed, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddMethodNotAllowed(string? message = null)
+		public virtual IResult AddMethodNotAllowedNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, (int)HttpStatusCode.MethodNotAllowed, message);
+			return AddCustomNoData((int)HttpStatusCode.MethodNotAllowed, message);
 		}
 
 
@@ -1223,12 +1247,12 @@ namespace Elephant.Types.Results
 		/// negotiation, doesn't find any content that conforms to the criteria
 		/// given by the user agent.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> NotAcceptable(TData? data, string? message = null)
+		public static IResult<TData> NotAcceptable(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddNotAcceptable(data, message);
+			return new Result<TData>().AddNotAcceptable(message, data);
 		}
 
 		/// <summary>
@@ -1238,58 +1262,58 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult NotAcceptable(string? message = null)
+		public static IResult NotAcceptableNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddNotAcceptable(false, message);
+			return new Result().AddNotAcceptableNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddNotAcceptable(TData? data, string? message = null)
+		public virtual IResult<TData> AddNotAcceptable(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, (int)HttpStatusCode.NotAcceptable, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddNotAcceptable(string? message = null)
+		public virtual IResult AddNotAcceptableNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, (int)HttpStatusCode.NotAcceptable, message);
+			return AddCustomNoData((int)HttpStatusCode.NotAcceptable, message);
 		}
 
 
 
 		/// <summary>
-		/// This is similar to <see cref="AddUnauthorized(TData?,string?)"/> but
+		/// This is similar to <see cref="AddUnauthorized"/> but
 		/// authentication is needed to be done by a proxy.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> ProxyAuthenticationRequired(TData? data, string? message = null)
+		public static IResult<TData> ProxyAuthenticationRequired(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddProxyAuthenticationRequired(data, message);
+			return new Result<TData>().AddProxyAuthenticationRequired(message, data);
 		}
 
 		/// <summary>
-		/// This is similar to <see cref="AddUnauthorized(TData?,string?)"/> but
+		/// This is similar to <see cref="AddUnauthorized"/> but
 		/// authentication is needed to be done by a proxy.
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult ProxyAuthenticationRequired(string? message = null)
+		public static IResult ProxyAuthenticationRequiredNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddProxyAuthenticationRequired(false, message);
+			return new Result().AddProxyAuthenticationRequiredNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddProxyAuthenticationRequired(TData? data, string? message = null)
+		public virtual IResult<TData> AddProxyAuthenticationRequired(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, (int)HttpStatusCode.ProxyAuthenticationRequired, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddProxyAuthenticationRequired(string? message = null)
+		public virtual IResult AddProxyAuthenticationRequiredNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, (int)HttpStatusCode.ProxyAuthenticationRequired, message);
+			return AddCustomNoData((int)HttpStatusCode.ProxyAuthenticationRequired, message);
 		}
 
 
@@ -1302,12 +1326,12 @@ namespace Elephant.Types.Results
 		/// speed up surfing. Also note that some servers merely shut down the
 		/// connection without sending this message.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> RequestTimeout(TData? data, string? message = null)
+		public static IResult<TData> RequestTimeout(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddRequestTimeout(data, message);
+			return new Result<TData>().AddRequestTimeout(message, data);
 		}
 
 		/// <summary>
@@ -1320,21 +1344,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult RequestTimeout(string? message = null)
+		public static IResult RequestTimeoutNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddRequestTimeout(false, message);
+			return new Result().AddRequestTimeoutNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddRequestTimeout(TData? data, string? message = null)
+		public virtual IResult<TData> AddRequestTimeout(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, (int)HttpStatusCode.RequestTimeout, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddRequestTimeout(string? message = null)
+		public virtual IResult AddRequestTimeoutNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, (int)HttpStatusCode.RequestTimeout, message);
+			return AddCustomNoData((int)HttpStatusCode.RequestTimeout, message);
 		}
 
 
@@ -1343,12 +1367,12 @@ namespace Elephant.Types.Results
 		/// This response is sent when a request conflicts with the current state
 		/// of the server. Example: a database concurrency conflict occurred.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> Conflict(TData? data, string? message = null)
+		public static IResult<TData> Conflict(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddConflict(data, message);
+			return new Result<TData>().AddConflict(message, data);
 		}
 
 		/// <summary>
@@ -1357,21 +1381,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult Conflict(string? message = null)
+		public static IResult ConflictNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddConflict(false, message);
+			return new Result().AddConflictNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddConflict(TData? data, string? message = null)
+		public virtual IResult<TData> AddConflict(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, (int)HttpStatusCode.Conflict, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddConflict(string? message = null)
+		public virtual IResult AddConflictNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, (int)HttpStatusCode.Conflict, message);
+			return AddCustomNoData((int)HttpStatusCode.Conflict, message);
 		}
 
 
@@ -1384,12 +1408,12 @@ namespace Elephant.Types.Results
 		/// compelled to indicate resources that have been deleted with this status
 		/// code.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> Gone(TData? data, string? message = null)
+		public static IResult<TData> Gone(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddGone(data, message);
+			return new Result<TData>().AddGone(message, data);
 		}
 
 		/// <summary>
@@ -1402,21 +1426,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult Gone(string? message = null)
+		public static IResult GoneNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddGone(false, message);
+			return new Result().AddGoneNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddGone(TData? data, string? message = null)
+		public virtual IResult<TData> AddGone(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, (int)HttpStatusCode.Gone, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddGone(string? message = null)
+		public virtual IResult AddGoneNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, (int)HttpStatusCode.Gone, message);
+			return AddCustomNoData((int)HttpStatusCode.Gone, message);
 		}
 
 
@@ -1425,12 +1449,12 @@ namespace Elephant.Types.Results
 		/// Request rejected because the Content-Length header field is not
 		/// defined and the server requires it.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> LengthRequired(TData? data, string? message = null)
+		public static IResult<TData> LengthRequired(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddLengthRequired(data, message);
+			return new Result<TData>().AddLengthRequired(message, data);
 		}
 
 		/// <summary>
@@ -1439,21 +1463,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult LengthRequired(string? message = null)
+		public static IResult LengthRequiredNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddLengthRequired(false, message);
+			return new Result().AddLengthRequiredNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddLengthRequired(TData? data, string? message = null)
+		public virtual IResult<TData> AddLengthRequired(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, (int)HttpStatusCode.LengthRequired, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddLengthRequired(string? message = null)
+		public virtual IResult AddLengthRequiredNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, (int)HttpStatusCode.LengthRequired, message);
+			return AddCustomNoData((int)HttpStatusCode.LengthRequired, message);
 		}
 
 
@@ -1462,12 +1486,12 @@ namespace Elephant.Types.Results
 		/// Client has indicated preconditions in its headers which the server
 		/// does not meet.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> PreconditionFailed(TData? data, string? message = null)
+		public static IResult<TData> PreconditionFailed(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddPreconditionFailed(data, message);
+			return new Result<TData>().AddPreconditionFailed(message, data);
 		}
 
 		/// <summary>
@@ -1476,21 +1500,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult PreconditionFailed(string? message = null)
+		public static IResult PreconditionFailedNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddPreconditionFailed(false, message);
+			return new Result().AddPreconditionFailedNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddPreconditionFailed(TData? data, string? message = null)
+		public virtual IResult<TData> AddPreconditionFailed(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, (int)HttpStatusCode.PreconditionFailed, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddPreconditionFailed(string? message = null)
+		public virtual IResult AddPreconditionFailedNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, (int)HttpStatusCode.PreconditionFailed, message);
+			return AddCustomNoData((int)HttpStatusCode.PreconditionFailed, message);
 		}
 
 
@@ -1499,12 +1523,12 @@ namespace Elephant.Types.Results
 		/// Request entity is larger than limits defined by server. The server
 		/// might close the connection or return an Retry-After header field.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> PayloadTooLarge(TData? data, string? message = null)
+		public static IResult<TData> PayloadTooLarge(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddPayloadTooLarge(data, message);
+			return new Result<TData>().AddPayloadTooLarge(message, data);
 		}
 
 		/// <summary>
@@ -1513,21 +1537,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult PayloadTooLarge(string? message = null)
+		public static IResult PayloadTooLargeNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddPayloadTooLarge(false, message);
+			return new Result().AddPayloadTooLargeNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddPayloadTooLarge(TData? data, string? message = null)
+		public virtual IResult<TData> AddPayloadTooLarge(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, HttpStatusCodePayloadTooLarge, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddPayloadTooLarge(string? message = null)
+		public virtual IResult AddPayloadTooLargeNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, HttpStatusCodePayloadTooLarge, message);
+			return AddCustomNoData(HttpStatusCodePayloadTooLarge, message);
 		}
 
 
@@ -1535,12 +1559,12 @@ namespace Elephant.Types.Results
 		/// <summary>
 		/// URI is longer than the server is willing to interpret.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> UriTooLong(TData? data, string? message = null)
+		public static IResult<TData> UriTooLong(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddUriTooLong(data, message);
+			return new Result<TData>().AddUriTooLong(message, data);
 		}
 
 		/// <summary>
@@ -1548,21 +1572,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult UriTooLong(string? message = null)
+		public static IResult UriTooLongNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddUriTooLong(false, message);
+			return new Result().AddUriTooLongNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddUriTooLong(TData? data, string? message = null)
+		public virtual IResult<TData> AddUriTooLong(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, HttpStatusCodeUriTooLong, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddUriTooLong(string? message = null)
+		public virtual IResult AddUriTooLongNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, HttpStatusCodeUriTooLong, message);
+			return AddCustomNoData(HttpStatusCodeUriTooLong, message);
 		}
 
 
@@ -1570,12 +1594,12 @@ namespace Elephant.Types.Results
 		/// <summary>
 		/// Media format of the requested data is not supported by the server, so the server is rejecting the request.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> UnsupportedMediaType(TData? data, string? message = null)
+		public static IResult<TData> UnsupportedMediaType(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddUnsupportedMediaType(data, message);
+			return new Result<TData>().AddUnsupportedMediaType(message, data);
 		}
 
 		/// <summary>
@@ -1583,21 +1607,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult UnsupportedMediaType(string? message = null)
+		public static IResult UnsupportedMediaTypeNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddUnsupportedMediaType(false, message);
+			return new Result().AddUnsupportedMediaTypeNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddUnsupportedMediaType(TData? data, string? message = null)
+		public virtual IResult<TData> AddUnsupportedMediaType(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, (int)HttpStatusCode.UnsupportedMediaType, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddUnsupportedMediaType(string? message = null)
+		public virtual IResult AddUnsupportedMediaTypeNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, (int)HttpStatusCode.UnsupportedMediaType, message);
+			return AddCustomNoData((int)HttpStatusCode.UnsupportedMediaType, message);
 		}
 
 
@@ -1606,13 +1630,14 @@ namespace Elephant.Types.Results
 		/// Range specified by the Range header field in the request cannot be fulfilled.
 		/// It's possible that the range is outside the size of the target URI's data.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> RangeNotSatisfiable(TData? data, string? message = null)
+		public static IResult<TData> RangeNotSatisfiable(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddRangeNotSatisfiable(data, message);
+			return new Result<TData>().AddRangeNotSatisfiable(message, data);
 		}
+
 
 		/// <summary>
 		/// Range specified by the Range header field in the request cannot be fulfilled.
@@ -1620,21 +1645,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult RangeNotSatisfiable(string? message = null)
+		public static IResult RangeNotSatisfiableNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddRangeNotSatisfiable(false, message);
+			return new Result().AddRangeNotSatisfiableNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddRangeNotSatisfiable(TData? data, string? message = null)
+		public virtual IResult<TData> AddRangeNotSatisfiable(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, HttpStatusCodeRangeNotSatisfiable, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddRangeNotSatisfiable(string? message = null)
+		public virtual IResult AddRangeNotSatisfiableNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, HttpStatusCodeRangeNotSatisfiable, message);
+			return AddCustomNoData(HttpStatusCodeRangeNotSatisfiable, message);
 		}
 
 
@@ -1642,12 +1667,12 @@ namespace Elephant.Types.Results
 		/// <summary>
 		/// Expectation indicated by the Expect request header field cannot be met by the server.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> ExpectationFailed(TData? data, string? message = null)
+		public static IResult<TData> ExpectationFailed(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddExpectationFailed(data, message);
+			return new Result<TData>().AddExpectationFailed(message, data);
 		}
 
 		/// <summary>
@@ -1655,21 +1680,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult ExpectationFailed(string? message = null)
+		public static IResult ExpectationFailedNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddExpectationFailed(false, message);
+			return new Result().AddExpectationFailedNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddExpectationFailed(TData? data, string? message = null)
+		public virtual IResult<TData> AddExpectationFailed(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, (int)HttpStatusCode.ExpectationFailed, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddExpectationFailed(string? message = null)
+		public virtual IResult AddExpectationFailedNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, (int)HttpStatusCode.ExpectationFailed, message);
+			return AddCustomNoData((int)HttpStatusCode.ExpectationFailed, message);
 		}
 
 
@@ -1677,12 +1702,12 @@ namespace Elephant.Types.Results
 		/// <summary>
 		/// Server refuses the attempt to brew coffee with a teapot.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> ImATeapot(TData? data, string? message = null)
+		public static IResult<TData> ImATeapot(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddImATeapot(data, message);
+			return new Result<TData>().AddImATeapot(message, data);
 		}
 
 		/// <summary>
@@ -1690,21 +1715,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult ImATeapot(string? message = null)
+		public static IResult ImATeapotNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddImATeapot(false, message);
+			return new Result().AddImATeapotNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddImATeapot(TData? data, string? message = null)
+		public virtual IResult<TData> AddImATeapot(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, HttpStatusCodeImATeapot, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddImATeapot(string? message = null)
+		public virtual IResult AddImATeapotNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, HttpStatusCodeImATeapot, message);
+			return AddCustomNoData(HttpStatusCodeImATeapot, message);
 		}
 
 
@@ -1715,12 +1740,12 @@ namespace Elephant.Types.Results
 		/// for the combination of scheme and authority that are included in the
 		/// request URI.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> MisdirectedRequest(TData? data, string? message = null)
+		public static IResult<TData> MisdirectedRequest(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddMisdirectedRequest(data, message);
+			return new Result<TData>().AddMisdirectedRequest(message, data);
 		}
 
 		/// <summary>
@@ -1731,21 +1756,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult MisdirectedRequest(string? message = null)
+		public static IResult MisdirectedRequestNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddMisdirectedRequest(false, message);
+			return new Result().AddMisdirectedRequestNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddMisdirectedRequest(TData? data, string? message = null)
+		public virtual IResult<TData> AddMisdirectedRequest(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, HttpStatusCodeMisdirectedRequest, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddMisdirectedRequest(string? message = null)
+		public virtual IResult AddMisdirectedRequestNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, HttpStatusCodeMisdirectedRequest, message);
+			return AddCustomNoData(HttpStatusCodeMisdirectedRequest, message);
 		}
 
 
@@ -1753,12 +1778,12 @@ namespace Elephant.Types.Results
 		/// <summary>
 		/// Request was well-formed but was unable to be followed due to semantic errors.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> UnprocessableContent(TData? data, string? message = null)
+		public static IResult<TData> UnprocessableContent(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddUnprocessableContent(data, message);
+			return new Result<TData>().AddUnprocessableContent(message, data);
 		}
 
 		/// <summary>
@@ -1766,21 +1791,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult UnprocessableContent(string? message = null)
+		public static IResult UnprocessableContentNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddUnprocessableContent(false, message);
+			return new Result().AddUnprocessableContentNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddUnprocessableContent(TData? data, string? message = null)
+		public virtual IResult<TData> AddUnprocessableContent(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, HttpStatusCodeUnprocessableContent, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddUnprocessableContent(string? message = null)
+		public virtual IResult AddUnprocessableContentNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, HttpStatusCodeUnprocessableContent, message);
+			return AddCustomNoData(HttpStatusCodeUnprocessableContent, message);
 		}
 
 
@@ -1788,12 +1813,12 @@ namespace Elephant.Types.Results
 		/// <summary>
 		/// Resource that is being accessed is locked.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> Locked(TData? data, string? message = null)
+		public static IResult<TData> Locked(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddLocked(data, message);
+			return new Result<TData>().AddLocked(message, data);
 		}
 
 		/// <summary>
@@ -1801,21 +1826,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult Locked(string? message = null)
+		public static IResult LockedNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddLocked(false, message);
+			return new Result().AddLockedNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddLocked(TData? data, string? message = null)
+		public virtual IResult<TData> AddLocked(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, HttpStatusCodeLocked, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddLocked(string? message = null)
+		public virtual IResult AddLockedNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, HttpStatusCodeLocked, message);
+			return AddCustomNoData(HttpStatusCodeLocked, message);
 		}
 
 
@@ -1823,12 +1848,12 @@ namespace Elephant.Types.Results
 		/// <summary>
 		/// Request failed due to failure of a previous request.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> FailedDependency(TData? data, string? message = null)
+		public static IResult<TData> FailedDependency(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddFailedDependency(data, message);
+			return new Result<TData>().AddFailedDependency(message, data);
 		}
 
 		/// <summary>
@@ -1836,21 +1861,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult FailedDependency(string? message = null)
+		public static IResult FailedDependencyNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddFailedDependency(false, message);
+			return new Result().AddFailedDependencyNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddFailedDependency(TData? data, string? message = null)
+		public virtual IResult<TData> AddFailedDependency(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, HttpStatusCodeFailedDependency, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddFailedDependency(string? message = null)
+		public virtual IResult AddFailedDependencyNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, HttpStatusCodeFailedDependency, message);
+			return AddCustomNoData(HttpStatusCodeFailedDependency, message);
 		}
 
 
@@ -1858,12 +1883,12 @@ namespace Elephant.Types.Results
 		/// <summary>
 		/// Server is unwilling to risk processing a request that might be replayed.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> TooEarly(TData? data, string? message = null)
+		public static IResult<TData> TooEarly(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddTooEarly(data, message);
+			return new Result<TData>().AddTooEarly(message, data);
 		}
 
 		/// <summary>
@@ -1871,21 +1896,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult TooEarly(string? message = null)
+		public static IResult TooEarlyNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddTooEarly(false, message);
+			return new Result().AddTooEarlyNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddTooEarly(TData? data, string? message = null)
+		public virtual IResult<TData> AddTooEarly(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, HttpStatusCodeTooEarly, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddTooEarly(string? message = null)
+		public virtual IResult AddTooEarlyNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, HttpStatusCodeTooEarly, message);
+			return AddCustomNoData(HttpStatusCodeTooEarly, message);
 		}
 
 
@@ -1896,12 +1921,12 @@ namespace Elephant.Types.Results
 		/// server sends an Upgrade header in a 426 response to indicate the required
 		/// protocol(s).
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> UpgradeRequired(TData? data, string? message = null)
+		public static IResult<TData> UpgradeRequired(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddUpgradeRequired(data, message);
+			return new Result<TData>().AddUpgradeRequired(message, data);
 		}
 
 		/// <summary>
@@ -1912,21 +1937,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult UpgradeRequired(string? message = null)
+		public static IResult UpgradeRequiredNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddUpgradeRequired(false, message);
+			return new Result().AddUpgradeRequiredNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddUpgradeRequired(TData? data, string? message = null)
+		public virtual IResult<TData> AddUpgradeRequired(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, (int)HttpStatusCode.UpgradeRequired, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddUpgradeRequired(string? message = null)
+		public virtual IResult AddUpgradeRequiredNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, (int)HttpStatusCode.UpgradeRequired, message);
+			return AddCustomNoData((int)HttpStatusCode.UpgradeRequired, message);
 		}
 
 
@@ -1937,12 +1962,12 @@ namespace Elephant.Types.Results
 		/// modifies it and PUTs it back to the server, when meanwhile a third party has
 		/// modified the state on the server, leading to a conflict.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> PreconditionRequired(TData? data, string? message = null)
+		public static IResult<TData> PreconditionRequired(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddPreconditionRequired(data, message);
+			return new Result<TData>().AddPreconditionRequired(message, data);
 		}
 
 		/// <summary>
@@ -1953,21 +1978,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult PreconditionRequired(string? message = null)
+		public static IResult PreconditionRequiredNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddPreconditionRequired(false, message);
+			return new Result().AddPreconditionRequiredNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddPreconditionRequired(TData? data, string? message = null)
+		public virtual IResult<TData> AddPreconditionRequired(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, HttpStatusCodePreconditionRequired, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddPreconditionRequired(string? message = null)
+		public virtual IResult AddPreconditionRequiredNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, HttpStatusCodePreconditionRequired, message);
+			return AddCustomNoData(HttpStatusCodePreconditionRequired, message);
 		}
 
 
@@ -1975,12 +2000,12 @@ namespace Elephant.Types.Results
 		/// <summary>
 		/// Received too many requests in a given amount of time.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> TooManyRequests(TData? data, string? message = null)
+		public static IResult<TData> TooManyRequests(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddTooManyRequests(data, message);
+			return new Result<TData>().AddTooManyRequests(message, data);
 		}
 
 		/// <summary>
@@ -1988,21 +2013,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult TooManyRequests(string? message = null)
+		public static IResult TooManyRequestsNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddTooManyRequests(false, message);
+			return new Result().AddTooManyRequestsNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddTooManyRequests(TData? data, string? message = null)
+		public virtual IResult<TData> AddTooManyRequests(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, HttpStatusCodeTooManyRequests, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddTooManyRequests(string? message = null)
+		public virtual IResult AddTooManyRequestsNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, HttpStatusCodeTooManyRequests, message);
+			return AddCustomNoData(HttpStatusCodeTooManyRequests, message);
 		}
 
 
@@ -2012,12 +2037,12 @@ namespace Elephant.Types.Results
 		/// are too large. The request may be resubmitted after reducing the size
 		/// of the request header fields.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> RequestHeaderFieldsTooLarge(TData? data, string? message = null)
+		public static IResult<TData> RequestHeaderFieldsTooLarge(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddRequestHeaderFieldsTooLarge(data, message);
+			return new Result<TData>().AddRequestHeaderFieldsTooLarge(message, data);
 		}
 
 		/// <summary>
@@ -2027,21 +2052,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult RequestHeaderFieldsTooLarge(string? message = null)
+		public static IResult RequestHeaderFieldsTooLargeNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddRequestHeaderFieldsTooLarge(false, message);
+			return new Result().AddRequestHeaderFieldsTooLargeNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddRequestHeaderFieldsTooLarge(TData? data, string? message = null)
+		public virtual IResult<TData> AddRequestHeaderFieldsTooLarge(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, HttpStatusCodeRequestHeaderFieldsTooLarge, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddRequestHeaderFieldsTooLarge(string? message = null)
+		public virtual IResult AddRequestHeaderFieldsTooLargeNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, HttpStatusCodeRequestHeaderFieldsTooLarge, message);
+			return AddCustomNoData(HttpStatusCodeRequestHeaderFieldsTooLarge, message);
 		}
 
 
@@ -2050,12 +2075,12 @@ namespace Elephant.Types.Results
 		/// User agent requested a resource that cannot legally be provided,
 		/// such as a web page censored by a government.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> UnavailableForLegalReasons(TData? data, string? message = null)
+		public static IResult<TData> UnavailableForLegalReasons(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddUnavailableForLegalReasons(data, message);
+			return new Result<TData>().AddUnavailableForLegalReasons(message, data);
 		}
 
 		/// <summary>
@@ -2064,21 +2089,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult UnavailableForLegalReasons(string? message = null)
+		public static IResult UnavailableForLegalReasonsNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddUnavailableForLegalReasons(false, message);
+			return new Result().AddUnavailableForLegalReasonsNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddUnavailableForLegalReasons(TData? data, string? message = null)
+		public virtual IResult<TData> AddUnavailableForLegalReasons(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, HttpStatusCodeUnavailableForLegalReasons, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddUnavailableForLegalReasons(string? message = null)
+		public virtual IResult AddUnavailableForLegalReasonsNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, HttpStatusCodeUnavailableForLegalReasons, message);
+			return AddCustomNoData(HttpStatusCodeUnavailableForLegalReasons, message);
 		}
 
 		#endregion
@@ -2086,14 +2111,36 @@ namespace Elephant.Types.Results
 		#region Server
 
 		/// <summary>
+		/// Custom error with HTTP status code 500.
+		/// </summary>
+		/// <param name="exception"><see cref="Exception"/></param>
+		/// <param name="statusCode">HTTP error status code. Defaults to 500.</param>
+		/// <param name="data">Optional data.</param>
+		/// <returns><see cref="IResult{TData}"/></returns>
+		public static IResult<TData> InternalServerError(Exception exception, int statusCode = 500, TData? data = default)
+		{
+			return InternalServerError(exception.ToString(), data);
+		}
+
+		/// <summary>
+		/// Custom error with HTTP status code 500.
+		/// </summary>
+		/// <param name="exception"><see cref="Exception"/></param>
+		/// <returns><see cref="IResult{TData}"/></returns>
+		public static IResult InternalServerErrorNoData(Exception exception)
+		{
+			return InternalServerErrorNoData(exception.ToString());
+		}
+
+		/// <summary>
 		/// Server has encountered a situation it does not know how to handle.
 		/// </summary>
-		/// <param name="data">Optional data.</param>
 		/// <param name="message">Optional message.</param>
+		/// <param name="data">Optional data.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> InternalServerError(TData? data, string? message = null)
+		public static IResult<TData> InternalServerError(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddInternalServerError(data, message);
+			return new Result<TData>().AddInternalServerError(message, data);
 		}
 
 		/// <summary>
@@ -2101,21 +2148,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult InternalServerError(string? message = null)
+		public static IResult InternalServerErrorNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddInternalServerError(false, message);
+			return new Result().AddInternalServerErrorNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddInternalServerError(TData? data, string? message = null)
+		public virtual IResult<TData> AddInternalServerError(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, (int)HttpStatusCode.InternalServerError, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddInternalServerError(string? message = null)
+		public virtual IResult AddInternalServerErrorNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, (int)HttpStatusCode.InternalServerError, message);
+			return AddCustomNoData((int)HttpStatusCode.InternalServerError, message);
 		}
 
 
@@ -2123,12 +2170,12 @@ namespace Elephant.Types.Results
 		/// <summary>
 		/// No records affected.
 		/// </summary>
-		/// <param name="data">Optional data.</param>
 		/// <param name="message">Optional message.</param>
+		/// <param name="data">Optional data.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> NoRecordsAffected(TData? data, string? message = null)
+		public static IResult<TData> NoRecordsAffected(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddNoRecordsAffected(data, message);
+			return new Result<TData>().AddNoRecordsAffected(message, data);
 		}
 
 		/// <summary>
@@ -2136,21 +2183,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult NoRecordsAffected(string? message = null)
+		public static IResult NoRecordsAffectedNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddNoRecordsAffected(false, message);
+			return new Result().AddNoRecordsAffectedNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddNoRecordsAffected(TData? data, string? message = null)
+		public virtual IResult<TData> AddNoRecordsAffected(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, (int)HttpStatusCode.InternalServerError, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddNoRecordsAffected(string? message = null)
+		public virtual IResult AddNoRecordsAffectedNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, (int)HttpStatusCode.InternalServerError, message);
+			return AddCustomNoData((int)HttpStatusCode.InternalServerError, message);
 		}
 
 
@@ -2158,12 +2205,12 @@ namespace Elephant.Types.Results
 		/// <summary>
 		/// Not implemented.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> NotImplemented(TData? data, string? message = null)
+		public static IResult<TData> NotImplemented(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddNotImplemented(data, message);
+			return new Result<TData>().AddNotImplemented(message, data);
 		}
 
 		/// <summary>
@@ -2171,21 +2218,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult NotImplemented(string? message = null)
+		public static IResult NotImplementedNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddNotImplemented(false, message);
+			return new Result().AddNotImplementedNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddNotImplemented(TData? data, string? message = null)
+		public virtual IResult<TData> AddNotImplemented(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, (int)HttpStatusCode.NotImplemented, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddNotImplemented(string? message = null)
+		public virtual IResult AddNotImplementedNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, (int)HttpStatusCode.NotImplemented, message);
+			return AddCustomNoData((int)HttpStatusCode.NotImplemented, message);
 		}
 
 
@@ -2194,12 +2241,12 @@ namespace Elephant.Types.Results
 		/// Server, while working as a gateway to get a response needed to
 		/// handle the request, got an invalid response.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> BadGateway(TData? data, string? message = null)
+		public static IResult<TData> BadGateway(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddBadGateway(data, message);
+			return new Result<TData>().AddBadGateway(message, data);
 		}
 
 		/// <summary>
@@ -2208,21 +2255,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult BadGateway(string? message = null)
+		public static IResult BadGatewayNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddBadGateway(false, message);
+			return new Result().AddBadGatewayNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddBadGateway(TData? data, string? message = null)
+		public virtual IResult<TData> AddBadGateway(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, (int)HttpStatusCode.BadGateway, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddBadGateway(string? message = null)
+		public virtual IResult AddBadGatewayNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, (int)HttpStatusCode.BadGateway, message);
+			return AddCustomNoData((int)HttpStatusCode.BadGateway, message);
 		}
 
 
@@ -2236,12 +2283,12 @@ namespace Elephant.Types.Results
 		/// also take care about the caching-related headers that are sent along with this
 		/// response, as these temporary condition responses should usually not be cached.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> ServiceUnavailable(TData? data, string? message = null)
+		public static IResult<TData> ServiceUnavailable(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddServiceUnavailable(data, message);
+			return new Result<TData>().AddServiceUnavailable(message, data);
 		}
 
 		/// <summary>
@@ -2255,21 +2302,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult ServiceUnavailable(string? message = null)
+		public static IResult ServiceUnavailableNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddServiceUnavailable(false, message);
+			return new Result().AddServiceUnavailableNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddServiceUnavailable(TData? data, string? message = null)
+		public virtual IResult<TData> AddServiceUnavailable(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, (int)HttpStatusCode.ServiceUnavailable, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddServiceUnavailable(string? message = null)
+		public virtual IResult AddServiceUnavailableNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, (int)HttpStatusCode.ServiceUnavailable, message);
+			return AddCustomNoData((int)HttpStatusCode.ServiceUnavailable, message);
 		}
 
 
@@ -2277,12 +2324,12 @@ namespace Elephant.Types.Results
 		/// <summary>
 		/// Server is acting as a gateway and cannot get a response in time.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> GatewayTimeout(TData? data, string? message = null)
+		public static IResult<TData> GatewayTimeout(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddGatewayTimeout(data, message);
+			return new Result<TData>().AddGatewayTimeout(message, data);
 		}
 
 		/// <summary>
@@ -2290,21 +2337,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult GatewayTimeout(string? message = null)
+		public static IResult GatewayTimeoutNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddGatewayTimeout(false, message);
+			return new Result().AddGatewayTimeoutNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddGatewayTimeout(TData? data, string? message = null)
+		public virtual IResult<TData> AddGatewayTimeout(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, (int)HttpStatusCode.GatewayTimeout, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddGatewayTimeout(string? message = null)
+		public virtual IResult AddGatewayTimeoutNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, (int)HttpStatusCode.GatewayTimeout, message);
+			return AddCustomNoData((int)HttpStatusCode.GatewayTimeout, message);
 		}
 
 
@@ -2312,12 +2359,12 @@ namespace Elephant.Types.Results
 		/// <summary>
 		/// HTTP version used in the request is not supported by the server.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> HttpVersionNotSupported(TData? data, string? message = null)
+		public static IResult<TData> HttpVersionNotSupported(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddHttpVersionNotSupported(data, message);
+			return new Result<TData>().AddHttpVersionNotSupported(message, data);
 		}
 
 		/// <summary>
@@ -2325,21 +2372,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult HttpVersionNotSupported(string? message = null)
+		public static IResult HttpVersionNotSupportedNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddHttpVersionNotSupported(false, message);
+			return new Result().AddHttpVersionNotSupportedNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddHttpVersionNotSupported(TData? data, string? message = null)
+		public virtual IResult<TData> AddHttpVersionNotSupported(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, (int)HttpStatusCode.HttpVersionNotSupported, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddHttpVersionNotSupported(string? message = null)
+		public virtual IResult AddHttpVersionNotSupportedNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, (int)HttpStatusCode.HttpVersionNotSupported, message);
+			return AddCustomNoData((int)HttpStatusCode.HttpVersionNotSupported, message);
 		}
 
 
@@ -2347,12 +2394,12 @@ namespace Elephant.Types.Results
 		/// <summary>
 		/// Server has an internal configuration error.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> VariantAlsoNegotiates(TData? data, string? message = null)
+		public static IResult<TData> VariantAlsoNegotiates(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddVariantAlsoNegotiates(data, message);
+			return new Result<TData>().AddVariantAlsoNegotiates(message, data);
 		}
 
 		/// <summary>
@@ -2360,21 +2407,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult VariantAlsoNegotiates(string? message = null)
+		public static IResult VariantAlsoNegotiatesNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddVariantAlsoNegotiates(false, message);
+			return new Result().AddVariantAlsoNegotiatesNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddVariantAlsoNegotiates(TData? data, string? message = null)
+		public virtual IResult<TData> AddVariantAlsoNegotiates(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, HttpStatusCodeVariantAlsoNegotiates, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddVariantAlsoNegotiates(string? message = null)
+		public virtual IResult AddVariantAlsoNegotiatesNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, HttpStatusCodeVariantAlsoNegotiates, message);
+			return AddCustomNoData(HttpStatusCodeVariantAlsoNegotiates, message);
 		}
 
 
@@ -2382,12 +2429,12 @@ namespace Elephant.Types.Results
 		/// <summary>
 		/// Server has an internal configuration error.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> ConfigurationError(TData? data, string? message = null)
+		public static IResult<TData> ConfigurationError(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddConfigurationError(data, message);
+			return new Result<TData>().AddConfigurationError(message, data);
 		}
 
 		/// <summary>
@@ -2395,21 +2442,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult ConfigurationError(string? message = null)
+		public static IResult ConfigurationErrorNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddConfigurationError(false, message);
+			return new Result().AddConfigurationErrorNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddConfigurationError(TData? data, string? message = null)
+		public virtual IResult<TData> AddConfigurationError(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, HttpStatusCodeVariantAlsoNegotiates, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddConfigurationError(string? message = null)
+		public virtual IResult AddConfigurationErrorNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, HttpStatusCodeVariantAlsoNegotiates, message);
+			return AddCustomNoData(HttpStatusCodeVariantAlsoNegotiates, message);
 		}
 
 
@@ -2417,12 +2464,12 @@ namespace Elephant.Types.Results
 		/// <summary>
 		/// Server is unable to store the representation needed to successfully complete the request.
 		/// </summary>
-		/// <param name="data">Optional data.</param>
 		/// <param name="message">Optional message.</param>
+		/// <param name="data">Optional data.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> InsufficientStorage(TData? data, string? message = null)
+		public static IResult<TData> InsufficientStorage(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddInsufficientStorage(data, message);
+			return new Result<TData>().AddInsufficientStorage(message, data);
 		}
 
 		/// <summary>
@@ -2430,21 +2477,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult InsufficientStorage(string? message = null)
+		public static IResult InsufficientStorageNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddInsufficientStorage(false, message);
+			return new Result().AddInsufficientStorageNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddInsufficientStorage(TData? data, string? message = null)
+		public virtual IResult<TData> AddInsufficientStorage(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, HttpStatusCodeInsufficientStorage, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddInsufficientStorage(string? message = null)
+		public virtual IResult AddInsufficientStorageNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, HttpStatusCodeInsufficientStorage, message);
+			return AddCustomNoData(HttpStatusCodeInsufficientStorage, message);
 		}
 
 
@@ -2452,12 +2499,12 @@ namespace Elephant.Types.Results
 		/// <summary>
 		/// Infinite loop detected.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> LoopDetected(TData? data, string? message = null)
+		public static IResult<TData> LoopDetected(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddLoopDetected(data, message);
+			return new Result<TData>().AddLoopDetected(message, data);
 		}
 
 		/// <summary>
@@ -2465,21 +2512,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult LoopDetected(string? message = null)
+		public static IResult LoopDetectedNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddLoopDetected(false, message);
+			return new Result().AddLoopDetectedNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddLoopDetected(TData? data, string? message = null)
+		public virtual IResult<TData> AddLoopDetected(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, HttpStatusCodeLoopDetected, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddLoopDetected(string? message = null)
+		public virtual IResult AddLoopDetectedNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, HttpStatusCodeLoopDetected, message);
+			return AddCustomNoData(HttpStatusCodeLoopDetected, message);
 		}
 
 
@@ -2487,12 +2534,12 @@ namespace Elephant.Types.Results
 		/// <summary>
 		/// Further extensions to the request are required for the server to fulfill it.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> NotExtended(TData? data, string? message = null)
+		public static IResult<TData> NotExtended(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddNotExtended(data, message);
+			return new Result<TData>().AddNotExtended(message, data);
 		}
 
 		/// <summary>
@@ -2500,21 +2547,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult NotExtended(string? message = null)
+		public static IResult NotExtendedNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddNotExtended(false, message);
+			return new Result().AddNotExtendedNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddNotExtended(TData? data, string? message = null)
+		public virtual IResult<TData> AddNotExtended(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, HttpStatusCodeNotExtended, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddNotExtended(string? message = null)
+		public virtual IResult AddNotExtendedNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, HttpStatusCodeNotExtended, message);
+			return AddCustomNoData(HttpStatusCodeNotExtended, message);
 		}
 
 
@@ -2522,12 +2569,12 @@ namespace Elephant.Types.Results
 		/// <summary>
 		/// Client needs to authenticate to gain network access.
 		/// </summary>
+		/// <param name="message">Optional message.</param>
 		/// <param name="data">Optional data.</param>
-		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult<TData> NetworkAuthenticationRequired(TData? data, string? message = null)
+		public static IResult<TData> NetworkAuthenticationRequired(string? message = null, TData? data = default)
 		{
-			return new Result<TData>().AddNetworkAuthenticationRequired(data, message);
+			return new Result<TData>().AddNetworkAuthenticationRequired(message, data);
 		}
 
 		/// <summary>
@@ -2535,21 +2582,21 @@ namespace Elephant.Types.Results
 		/// </summary>
 		/// <param name="message">Optional message.</param>
 		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult NetworkAuthenticationRequired(string? message = null)
+		public static IResult NetworkAuthenticationRequiredNoData(string? message = null)
 		{
-			return (IResult)new ResultDataless().AddNetworkAuthenticationRequired(false, message);
+			return new Result().AddNetworkAuthenticationRequiredNoData(message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult<TData> AddNetworkAuthenticationRequired(TData? data, string? message = null)
+		public virtual IResult<TData> AddNetworkAuthenticationRequired(string? message = null, TData? data = default)
 		{
 			return AddCustom(data, HttpStatusCodeNetworkAuthenticationRequired, message);
 		}
 
 		/// <inheritdoc/>
-		public virtual IResult AddNetworkAuthenticationRequired(string? message = null)
+		public virtual IResult AddNetworkAuthenticationRequiredNoData(string? message = null)
 		{
-			return (IResult)AddCustom(default, HttpStatusCodeNetworkAuthenticationRequired, message);
+			return AddCustomNoData(HttpStatusCodeNetworkAuthenticationRequired, message);
 		}
 
 		#endregion

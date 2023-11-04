@@ -1,3 +1,5 @@
+[![Nuget downloads](https://img.shields.io/nuget/v/Elephant.Database)](https://www.nuget.org/packages/Elephant.Database/) [![NuGet Downloads](https://img.shields.io/nuget/dt/Elephant.Database.svg)](https://www.nuget.org/packages/Elephant.Database/) ![Workflow](https://github.com/S-Elephant/Elephant.NuGets/actions/workflows/GitHubActions.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/S-Elephant/Elephant.NuGets/tree/master/Elephant.Database/LICENSE.txt)
+
 # About
 
 Contains various EF Core related database helpers.
@@ -26,7 +28,7 @@ virtual Task<int> Count(Expression<Func<TEntity, bool>> predicate, CancellationT
 
 virtual void Delete(object id);
 
-virtual Task<ResponseWrapper<int>> DeleteAndSave(object id, CancellationToken cancellationToken);
+virtual Task<IResult<int>> DeleteAndSave(object id, CancellationToken cancellationToken);
 
 virtual Task<bool> HasAny(CancellationToken cancellationToken);
 
@@ -36,15 +38,15 @@ virtual Task Insert(TEntity obj, CancellationToken cancellationToken);
 
 virtual Task Insert(ICollection<TEntity> objects, CancellationToken cancellationToken);
 
-virtual Task<ResponseWrapper<int>> InsertAndSave(TEntity obj, CancellationToken cancellationToken);
+virtual Task<IResult<int>> InsertAndSave(TEntity obj, CancellationToken cancellationToken);
 
-virtual Task<ResponseWrapper<int>> Save(CancellationToken cancellationToken);
+virtual Task<int> Save(CancellationToken cancellationToken);
 
 virtual void Update(TEntity obj);
 
 virtual void Update(ICollection<TEntity> objects);
 
-virtual Task<ResponseWrapper<int>> UpdateAndSave(TEntity obj, CancellationToken cancellationToken);
+virtual Task<IResult<int>> UpdateAndSave(TEntity obj, CancellationToken cancellationToken);
 
 virtual Task DeleteAllAndResetAutoIncrement(CancellationToken cancellationToken = default, string schema = "dbo");
 
@@ -60,12 +62,6 @@ virtual Task RollbackTransactionAsyncAndDispose(IDbContextTransaction? transacti
 ### Example IContext transaction implementation
 
 ```c#
-// Usings
-using Elephant.Database;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
-
 // Inside your DbContext or IdentityDbContext class:
 
 /// <inheritdoc/>
@@ -164,3 +160,10 @@ public async Task<int> ExecuteSqlAsync(FormattableString sql, CancellationToken 
 }
 ```
 
+## 0.8.1 &rarr; 0.9.0
+
+Files have been moved into a different folder and namespace. Update your usings.
+
+Some files have been moved into a different project. You may also need the NuGet [Elephant.Database.Abstractions](https://www.nuget.org/packages/Elephant.Database.Abstractions) and also the NuGets [Elephant.Types.Results](https://www.nuget.org/packages/Elephant.Types.Results) and [Elephant.Types.Results.Abstractions](https://www.nuget.org/packages/Elephant.Types.Results.Abstractions).
+
+The ResponseWrappers are no longer used.

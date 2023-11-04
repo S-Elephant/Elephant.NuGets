@@ -1,22 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <!-- This must be updated for every release -->
   <PropertyGroup>
-    <Version>1.0.1</Version>
-    <PackageReleaseNotes>Initial public version.</PackageReleaseNotes>
+    <Version>0.9.0</Version>
+    <PackageReleaseNotes>Initial release.</PackageReleaseNotes>
   </PropertyGroup>
 
   <!-- Core -->
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
-    <ImplicitUsings>disable</ImplicitUsings>
+    <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Company>SquirtingElephant</Company>
     <Authors>SquirtingElephant</Authors>
-    <Description>Results abstractions.</Description>
-    <CheckEolTargetFramework>false</CheckEolTargetFramework>
-    <!-- Suppress the warning: warning NETSDK1138: The target framework 'netcoreapp3.0' is out of support and.. -->
+    <Description>Common EF Core database code.</Description>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
@@ -33,6 +30,17 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
+  <!-- Dependencies -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
+  </ItemGroup>
+
   <!-- StyleCop (only in Debug configuration) -->
   <ItemGroup Condition="'$(Configuration)' == 'Debug'">
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
@@ -44,10 +52,13 @@
   <!-- Package README -->
   <ItemGroup>
     <None Include="README.md">
-      <!-- Changed "Update" to "Include" because of an open bug. See: https://github.com/NuGet/Home/issues/11467#issuecomment-1022487996 -->
       <PackagePath>\</PackagePath>
       <Pack>True</Pack>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Elephant.Types.Interfaces\Elephant.Types.Interfaces.csproj" />
+    <ProjectReference Include="..\..\Elephant.Types.Results.Abstractions\Elephant.Types.Results.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

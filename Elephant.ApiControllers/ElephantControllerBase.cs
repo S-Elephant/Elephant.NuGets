@@ -18,7 +18,7 @@ namespace Elephant.ApiControllers
 		/// <typeparam name="TData"><paramref name="result"/> data type.</typeparam>
 		/// <param name="result">Result.</param>
 		/// <returns><see cref="IActionResult"/></returns>
-		public virtual IActionResult Unwrap<TData>(IResult<TData> result)
+		protected virtual IActionResult Unwrap<TData>(IResult<TData> result)
 		{
 			if (result.UsesData)
 			{
@@ -38,7 +38,7 @@ namespace Elephant.ApiControllers
 		/// </summary>
 		/// <param name="result">Result.</param>
 		/// <returns><see cref="IActionResult"/></returns>
-		public virtual IActionResult Unwrap(IResult result)
+		protected virtual IActionResult Unwrap(IResult result)
 		{
 			if (result.UsesData)
 				throw new InvalidOperationException($"{nameof(result)} shouldn't be using any data. If you want to use data then use IResult<TData> instead.");
