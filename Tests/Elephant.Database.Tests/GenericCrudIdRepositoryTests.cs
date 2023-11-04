@@ -1,5 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
+using Elephant.Database.Abstractions.Repositories;
+using Elephant.Database.Repositories;
 using Elephant.Database.Tests.InMemory;
 
 namespace Elephant.Database.Tests

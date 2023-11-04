@@ -14,6 +14,18 @@ There are really many reasons that can be found online. I'll highlight the 3 tha
 
 # Usage examples
 
+
+## With data
+
+```c#
+public async Task<IResult<Customer>> UpdateCustomerAsync(Customer customer, CancellationToken cancellationToken)
+{
+	// Update customer logic here.
+
+    return Result<Customer>.Ok(updatedCustomer, "Optional message here.");
+}
+```
+
 ## Without data
 
 ```c#
@@ -21,7 +33,7 @@ public async Task<IResult> UpdateCustomerAsync(Customer customer, CancellationTo
 {
     Customer? customerInDb = _customerRepository.ById(customer.Id);
     if (customerInDb == null)
-		return Result.NotFound();
+		return Result.NotFoundNoData();
     
     // Update customer logic here.
 }
@@ -30,43 +42,45 @@ public async Task<IResult> UpdateCustomerAsync(Customer customer, CancellationTo
 {
     Customer? customerInDb = await _customerRepository.ByIdAsync(customer.Id);
     if (customerInDb == null)
-		Result.NotFound($"{nameof(Customer)} with {nameof(Customer.Id)} {Customer.Id} not found.");
+		Result.NotFoundNoData($"{nameof(Customer)} with {nameof(Customer.Id)} {Customer.Id} not found.");
     
 	// Update customer logic here.
 
-	return Result.Ok();
+	return Result.OkNoData();
 }
 ```
-
-## With data
-
-```c#
-public async Task<IResult<Customer>> UpdateCustomerAsync(Customer customer, CancellationToken cancellationToken)
-{
-	Customer? customerInDb = _customerRepository.ById(customer.Id);
-	if (customerInDb == null)
-		return Result<Customer>.NotFound();
-
-	// Update customer logic here.
-
-    return Result<Customer>.Ok(updatedCustomer, "Optional message here.");
-}
-```
-
-
 
 ## Multi status support
 
 ```c#
-public async Task<IResult> Foo(..)
+private IResult<string> ErrorMethod(bool errorOccurred)
 {
-	IResult result = Result.Ok();
+	IResult<string> result = Result<string>.Ok("Success.");
 
-	if (someError)
+	if (errorOccurred)
+    {
+        // You can chain different statuses as long as the generic is of the same type.
+        // That means you can't combine the data and the no-data versions in the same chain because
+        // they have a different return type.
 		result.AddError("Error 1")
 			.AddInternalServerError("Error 2")
 			.AddContinue("Continue")
-			.AddConflict("Concurrency conflict on .."); // You can chain statuses.
+			.AddOk("Ok data")
+			.AddConflict("Concurrency conflict on ..");
+    }
+
+	return result;
+}
+
+private IResult ChainNoDataMethod()
+{
+	IResult result = Result.OkNoData();
+	result.AddErrorNoData("Unable to fetch cat food.")
+		.AddInternalServerErrorNoData("Unable to fetch cat food.")
+		.AddInternalServerErrorNoData()
+		.AddInternalServerErrorNoData("Unable to fetch cat food.")
+		.AddContinueNoData("Continue")
+		.AddConflictNoData("Concurrency conflict on ..");
 
 	return result;
 }
@@ -75,8 +89,8 @@ public async Task<IResult> Foo(..)
 ## Custom errors
 
 ```c#
-return Result.Error("Something went wrong.");
-return Result<Payment>.Custom(payment, 20101);
+return Result.ErrorNoData("Something went wrong.");
+return Result<Customer>.Error(new YourCustomException(), 23122, customer); // With 23122 being your optional custom code.
 ```
 
 ## Unwrap in controller

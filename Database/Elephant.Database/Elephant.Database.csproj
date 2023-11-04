@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <!-- This must be updated for every release -->
   <PropertyGroup>
-    <Version>0.8.1</Version>
-    <PackageReleaseNotes>Bugfix .Net 6 support.</PackageReleaseNotes>
+    <Version>0.9.0</Version>
+    <PackageReleaseNotes>Split project and move files.</PackageReleaseNotes>
   </PropertyGroup>
 
   <!-- Core -->
@@ -58,7 +58,10 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Elephant.Types.Interfaces\Elephant.Types.Interfaces.csproj" />
+    <ProjectReference Include="..\..\Elephant.Types.Results.Abstractions\Elephant.Types.Results.Abstractions.csproj" />
+    <ProjectReference Include="..\..\Elephant.Types.Results\Elephant.Types.Results.csproj" />
     <ProjectReference Include="..\..\Elephant.Types\Elephant.Types.csproj" />
+    <ProjectReference Include="..\Elephant.Database.Abstractions\Elephant.Database.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

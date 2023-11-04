@@ -2,8 +2,8 @@
 
   <!-- This must be updated for every release -->
   <PropertyGroup>
-    <Version>1.0.0</Version>
-    <PackageReleaseNotes>Initial version.</PackageReleaseNotes>
+    <Version>1.0.3</Version>
+    <PackageReleaseNotes>First public release.</PackageReleaseNotes>
   </PropertyGroup>
 
   <!-- Core -->

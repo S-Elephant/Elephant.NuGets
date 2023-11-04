@@ -104,6 +104,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elephant.Database.Abstractions", "Database\Elephant.Database.Abstractions\Elephant.Database.Abstractions.csproj", "{761E8267-EDA5-4FEF-879B-B8E5953B3D87}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -278,6 +280,10 @@ Global
 		{A6D749A5-1796-40C1-AD0A-7D2E26C147F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6D749A5-1796-40C1-AD0A-7D2E26C147F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6D749A5-1796-40C1-AD0A-7D2E26C147F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{761E8267-EDA5-4FEF-879B-B8E5953B3D87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{761E8267-EDA5-4FEF-879B-B8E5953B3D87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{761E8267-EDA5-4FEF-879B-B8E5953B3D87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{761E8267-EDA5-4FEF-879B-B8E5953B3D87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -309,6 +315,7 @@ Global
 		{6BC1C0E3-A1C1-43C4-B9FF-34FD41FBADC9} = {4F5D45E5-E7E9-4D89-8261-0B52F71DD917}
 		{0246C5D3-6BDC-4BE9-8D8D-EE4F9C052889} = {4F5D45E5-E7E9-4D89-8261-0B52F71DD917}
 		{A6D749A5-1796-40C1-AD0A-7D2E26C147F2} = {0246C5D3-6BDC-4BE9-8D8D-EE4F9C052889}
+		{761E8267-EDA5-4FEF-879B-B8E5953B3D87} = {CC128DAB-2139-4869-AFD3-D5124A5BB437}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6DB47403-D8D8-4EEB-9D37-8E73C2E536E4}

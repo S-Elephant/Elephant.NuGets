@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Elephant.Database.Repositories;
 
 namespace Elephant.Database.Tests.InMemory
 {

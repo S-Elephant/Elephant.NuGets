@@ -1,3 +1,5 @@
+[![Nuget downloads](https://img.shields.io/nuget/v/Elephant.Constants.MockData)](https://www.nuget.org/packages/Elephant.Constants.MockData/) [![NuGet Downloads](https://img.shields.io/nuget/dt/Elephant.Constants.MockData.svg)](https://www.nuget.org/packages/Elephant.Constants.MockData/) ![Workflow](https://github.com/S-Elephant/Elephant.NuGets/actions/workflows/GitHubActions.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/S-Elephant/Elephant.NuGets/tree/master/Elephant.Constants.MockData/LICENSE.txt)
+
 # About
 
 Contains static ReadOnlyCollection unique mock data in x10, x100 and x1000 for:

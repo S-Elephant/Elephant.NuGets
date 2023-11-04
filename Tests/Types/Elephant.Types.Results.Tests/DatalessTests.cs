@@ -96,7 +96,7 @@ namespace Elephant.Types.Results.Tests
 		public void StaticInformationalConstructorTest()
 		{
 			// Act.
-			IResult result = Result.Continue();
+			IResult result = Result.ContinueNoData();
 
 			// Assert.
 			Assert.False(result.IsSuccess);
@@ -115,14 +115,58 @@ namespace Elephant.Types.Results.Tests
 		public void StaticInformationalConstructorTest2()
 		{
 			// Act.
-			IResult result = Result.SwitchingProtocols();
-			result.AddContinue();
+			IResult result = Result.SwitchingProtocolsNoData();
+			result.AddContinueNoData();
 
 			// Assert.
 			Assert.False(result.IsSuccess);
 			Assert.False(result.IsError);
 			Assert.True(result.IsInformativeRedirectionOrCustom);
 			Assert.Equal((int)HttpStatusCode.SwitchingProtocols, result.StatusCode);
+			Assert.False(result.UsesData);
+		}
+
+		private IResult NotFoundMethod()
+		{
+			return Result.NotFoundNoData();
+		}
+
+		/// <summary>
+		/// Test Method without data should return NotFound.
+		/// </summary>
+		[Fact]
+		[SpeedVeryFast, UnitTest]
+		public void MethodReturnsNotFound()
+		{
+			// Act.
+			IResult result = NotFoundMethod();
+
+			// Assert.
+			Assert.True(result.IsError);
+			Assert.Equal((int)HttpStatusCode.NotFound, result.StatusCode);
+			Assert.Null(result.Message);
+			Assert.False(result.UsesData);
+		}
+
+		private IResult ContinueMethod()
+		{
+			return Result.ContinueNoData();
+		}
+
+		/// <summary>
+		/// Test Method without data should return Continue.
+		/// </summary>
+		[Fact]
+		[SpeedVeryFast, UnitTest]
+		public void MethodReturnsContinue()
+		{
+			// Act.
+			IResult result = ContinueMethod();
+
+			// Assert.
+			Assert.True(result.IsInformativeRedirectionOrCustom);
+			Assert.Equal((int)HttpStatusCode.Continue, result.StatusCode);
+			Assert.Null(result.Message);
 			Assert.False(result.UsesData);
 		}
 	}
