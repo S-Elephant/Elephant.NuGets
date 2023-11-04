@@ -31,3 +31,7 @@ Contains shared/common/generic type interfaces.
 ## 2.0.0 &rarr; 3.0.0
 
 - Update your pagination URL properties into URI properties (only its name changed).
+
+## 3.0.2 &rarr; 4.0.0
+
+- All your implementations of **IGuid** should be renamed from **Guid** &rarr; **Id**.

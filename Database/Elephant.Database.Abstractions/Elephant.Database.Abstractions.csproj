@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <!-- This must be updated for every release -->
   <PropertyGroup>
-    <Version>0.9.0</Version>
-    <PackageReleaseNotes>Initial release.</PackageReleaseNotes>
+    <Version>0.10.0</Version>
+    <PackageReleaseNotes>Add simple GUID repository interface and add async suffix.</PackageReleaseNotes>
   </PropertyGroup>
 
   <!-- Core -->

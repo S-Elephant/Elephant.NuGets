@@ -7,6 +7,12 @@ Contains abstractions for the [Elephant.Database](https://www.nuget.org/packages
 # Contained abstractions
 
 - IContext
+- IGenericCrudGuidRepository
 - IGenericCrudIdRepository
 - IGenericCrudRepository
 
+# Upgrade instructions
+
+## 0.9.0 &rarr; 0.10.0
+
+Add the "Async" (without double quotes) to your calls and overrides.

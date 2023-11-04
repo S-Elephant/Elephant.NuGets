@@ -33,7 +33,7 @@ namespace Elephant.Database.Tests.InMemory
 				},
 				cancellationToken);
 
-			await Save(cancellationToken);
+			await SaveAsync(cancellationToken);
 		}
 	}
 }

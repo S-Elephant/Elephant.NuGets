@@ -15,48 +15,48 @@ Contains various EF Core related database helpers.
 ## GenericCrudRepository
 
 ```c#
-virtual Task<List<TEntity>> All(CancellationToken cancellationToken);
+virtual Task<List<TEntity>> AllAsync(CancellationToken cancellationToken);
 
 // Example usage: await myRepository.All(1, QueryTrackingBehavior.NoTracking, CancellationToken.None, x => x.CustomersCrossOrders, x => x.CustomersCrossAddresses);
-virtual Task<List<TEntity>> All(QueryTrackingBehavior queryTrackingBehavior = QueryTrackingBehavior.TrackAll, CancellationToken cancellationToken = default, params Expression<Func<TEntity, object>>[] includes);
+virtual Task<List<TEntity>> AllAsync(QueryTrackingBehavior queryTrackingBehavior = QueryTrackingBehavior.TrackAll, CancellationToken cancellationToken = default, params Expression<Func<TEntity, object>>[] includes);
 
-virtual Task<TEntity?> ById(object id, CancellationToken cancellationToken);
+virtual Task<TEntity?> ByIdAsync(object id, CancellationToken cancellationToken);
 
-virtual Task<int> Count(CancellationToken cancellationToken);
+virtual Task<int> CountAsync(CancellationToken cancellationToken);
 
-virtual Task<int> Count(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken);
+virtual Task<int> CountAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken);
 
 virtual void Delete(object id);
 
-virtual Task<IResult<int>> DeleteAndSave(object id, CancellationToken cancellationToken);
+virtual Task<IResult<int>> DeleteAndSaveAsync(object id, CancellationToken cancellationToken);
 
-virtual Task<bool> HasAny(CancellationToken cancellationToken);
+virtual Task<bool> HasAnyAsync(CancellationToken cancellationToken);
 
-virtual Task<bool> HasAny(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken);
+virtual Task<bool> HasAnyAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken);
 
-virtual Task Insert(TEntity obj, CancellationToken cancellationToken);
+virtual Task InsertAsync(TEntity obj, CancellationToken cancellationToken);
 
-virtual Task Insert(ICollection<TEntity> objects, CancellationToken cancellationToken);
+virtual Task InsertAsync(ICollection<TEntity> objects, CancellationToken cancellationToken);
 
-virtual Task<IResult<int>> InsertAndSave(TEntity obj, CancellationToken cancellationToken);
+virtual Task<IResult<int>> InsertAndSaveAsync(TEntity obj, CancellationToken cancellationToken);
 
-virtual Task<int> Save(CancellationToken cancellationToken);
+virtual Task<int> SaveAsync(CancellationToken cancellationToken);
 
 virtual void Update(TEntity obj);
 
 virtual void Update(ICollection<TEntity> objects);
 
-virtual Task<IResult<int>> UpdateAndSave(TEntity obj, CancellationToken cancellationToken);
+virtual Task<IResult<int>> UpdateAndSaveAsync(TEntity obj, CancellationToken cancellationToken);
 
-virtual Task DeleteAllAndResetAutoIncrement(CancellationToken cancellationToken = default, string schema = "dbo");
+virtual Task DeleteAllAndResetAutoIncrementAsync(CancellationToken cancellationToken = default, string schema = "dbo");
 
 // Transactions:
 
 virtual Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken);
 
-virtual Task CommitTransactionAsyncAndDispose(IDbContextTransaction? transaction, CancellationToken cancellationToken);
+virtual Task CommitTransactionAsyncAndDisposeAsync(IDbContextTransaction? transaction, CancellationToken cancellationToken);
 
-virtual Task RollbackTransactionAsyncAndDispose(IDbContextTransaction? transaction, CancellationToken cancellationToken);
+virtual Task RollbackTransactionAsyncAndDisposeAsync(IDbContextTransaction? transaction, CancellationToken cancellationToken);
 ```
 
 ### Example IContext transaction implementation
@@ -65,13 +65,13 @@ virtual Task RollbackTransactionAsyncAndDispose(IDbContextTransaction? transacti
 // Inside your DbContext or IdentityDbContext class:
 
 /// <inheritdoc/>
-public async Task<IDbContextTransaction> BeginTransaction(CancellationToken cancellationToken)
+public async Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken)
 {
 	return await Database.BeginTransactionAsync(cancellationToken);
 }
 
 /// <inheritdoc/>
-public async Task CommitTransactionAndDispose(IDbContextTransaction? transaction, CancellationToken cancellationToken)
+public async Task CommitTransactionAndDisposeAsync(IDbContextTransaction? transaction, CancellationToken cancellationToken)
 {
 	if (transaction == null)
 		return;
@@ -81,7 +81,7 @@ public async Task CommitTransactionAndDispose(IDbContextTransaction? transaction
 }
 
 /// <inheritdoc/>
-public async Task RollbackTransactionAndDispose(IDbContextTransaction? transaction, CancellationToken cancellationToken)
+public async Task RollbackTransactionAndDisposeAsync(IDbContextTransaction? transaction, CancellationToken cancellationToken)
 {
 	if (transaction == null)
 		return;
@@ -97,7 +97,7 @@ public async Task RollbackTransactionAndDispose(IDbContextTransaction? transacti
 ### Example transaction in your service
 
 ```c#
-using (IDbContextTransaction transaction = await _customerRepository.BeginTransaction(cancellationToken))
+using (IDbContextTransaction transaction = await _customerRepository.BeginTransactionAsync(cancellationToken))
 {
     try
     {
@@ -106,13 +106,13 @@ using (IDbContextTransaction transaction = await _customerRepository.BeginTransa
     catch (Exception exception)
     {
         _logger.LogError($"An error occurred. Rolling back changes. Exception: {exception}".);
-        await _customerRepository.RollbackTransactionAndDispose(transaction, cancellationToken);
+        await _customerRepository.RollbackTransactionAndDisposeAsync(transaction, cancellationToken);
         return;
     }
 
     // Perform CRUD actions or whatever.
-	await _customerRepository.Save(cancellationToken);
-	await _customerRepository.CommitTransactionAndDispose(transaction, cancellationToken);
+	await _customerRepository.SaveAsync(cancellationToken);
+	await _customerRepository.CommitTransactionAndDisposeAsync(transaction, cancellationToken);
 }
 ```
 
@@ -123,15 +123,27 @@ using (IDbContextTransaction transaction = await _customerRepository.BeginTransa
 All methods as listed in [GenericCrudRepository](##GenericCrudRepository) plus:
 
 ```c#
-virtual Task<T?> ById(int id, QueryTrackingBehavior queryTrackingBehavior = QueryTrackingBehavior.TrackAll, CancellationToken cancellationToken = default, params Expression<Func<T, object>>[] includes);
+virtual Task<T?> ByIdAsync(int id, QueryTrackingBehavior queryTrackingBehavior = QueryTrackingBehavior.TrackAll, CancellationToken cancellationToken = default, params Expression<Func<T, object>>[] includes);
 
-virtual Task<bool> HasId(int id, CancellationToken cancellationToken);
+virtual Task<bool> HasIdAsync(int id, CancellationToken cancellationToken);
 
-virtual Task<int> HighestId(CancellationToken cancellationToken);
+virtual Task<int> HighestIdAsync(CancellationToken cancellationToken);
 
-virtual Task<int> LowestId(CancellationToken cancellationToken);
-virtual Task<int> NextId(int sourceId, bool cycle, CancellationToken cancellationToken);
-virtual Task<int> PreviousId(int sourceId, bool cycle, CancellationToken cancellationToken);
+virtual Task<int> LowestIdAsync(CancellationToken cancellationToken);
+virtual Task<int> NextIdAsync(int sourceId, bool cycle, CancellationToken cancellationToken);
+virtual Task<int> PreviousIdAsync(int sourceId, bool cycle, CancellationToken cancellationToken);
+```
+
+
+
+## GenericCrudGuidRepository
+
+All methods as listed in [GenericCrudRepository](##GenericCrudRepository) plus:
+
+```c#
+virtual Task<TEntity?> ByIdAsync(Guid id, QueryTrackingBehavior queryTrackingBehavior = QueryTrackingBehavior.TrackAll, CancellationToken cancellationToken = default, params Expression<Func<TEntity, object>>[] includes);
+
+virtual Task<bool> HasIdAsync(Guid id, CancellationToken cancellationToken);
 ```
 
 
@@ -167,3 +179,7 @@ Files have been moved into a different folder and namespace. Update your usings.
 Some files have been moved into a different project. You may also need the NuGet [Elephant.Database.Abstractions](https://www.nuget.org/packages/Elephant.Database.Abstractions) and also the NuGets [Elephant.Types.Results](https://www.nuget.org/packages/Elephant.Types.Results) and [Elephant.Types.Results.Abstractions](https://www.nuget.org/packages/Elephant.Types.Results.Abstractions).
 
 The ResponseWrappers are no longer used.
+
+## 0.9.0 &rarr; 0.10.0
+
+Add the "Async" (without double quotes) to your calls and overrides.

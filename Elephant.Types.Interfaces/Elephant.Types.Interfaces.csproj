@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>3.0.2</Version>
-		<PackageReleaseNotes>IGuid type fix.</PackageReleaseNotes>
+		<Version>4.0.1</Version>
+		<PackageReleaseNotes>IGuid property is now called Id.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
