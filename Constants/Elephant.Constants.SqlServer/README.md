@@ -1,3 +1,5 @@
+[![Nuget downloads](https://img.shields.io/nuget/v/Elephant.Constants.SqlServer)](https://www.nuget.org/packages/Elephant.Constants.SqlServer/) [![NuGet Downloads](https://img.shields.io/nuget/dt/Elephant.Constants.SqlServer.svg)](https://www.nuget.org/packages/Elephant.Constants.SqlServer/) ![Workflow](https://github.com/S-Elephant/Elephant.NuGets/actions/workflows/GitHubActions.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/S-Elephant/Elephant.NuGets/tree/master/Elephant.Constants.SqlServer/LICENSE.txt)
+
 # About
 
 Contains constant Microsoft SQL Server database types plus a few extras.
