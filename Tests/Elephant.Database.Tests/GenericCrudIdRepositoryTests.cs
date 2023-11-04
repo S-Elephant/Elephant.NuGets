@@ -22,7 +22,7 @@ namespace Elephant.Database.Tests
 		}
 
 		/// <summary>
-		/// <see cref="IGenericCrudIdRepository{TEntity}.HighestId"/> test with records.
+		/// <see cref="IGenericCrudIdRepository{TEntity}.HighestIdAsync"/> test with records.
 		/// </summary>
 		[Fact]
 		[SpeedVeryFast, IntegrationTest]
@@ -32,28 +32,28 @@ namespace Elephant.Database.Tests
 			await _systemUnderTest.Seed(CancellationToken.None);
 
 			// Act.
-			int highestId = await _systemUnderTest.HighestId(CancellationToken.None);
+			int highestId = await _systemUnderTest.HighestIdAsync(CancellationToken.None);
 
 			// Assert.
 			Assert.Equal(5, highestId);
 		}
 
 		/// <summary>
-		/// <see cref="IGenericCrudIdRepository{TEntity}.HighestId"/> test without records.
+		/// <see cref="IGenericCrudIdRepository{TEntity}.HighestIdAsync"/> test without records.
 		/// </summary>
 		[Fact]
 		[SpeedVeryFast, IntegrationTest]
 		public async Task HighestIdReturnsMinus1()
 		{
 			// Act.
-			int highestId = await _systemUnderTest.HighestId(CancellationToken.None);
+			int highestId = await _systemUnderTest.HighestIdAsync(CancellationToken.None);
 
 			// Assert.
 			Assert.Equal(-1, highestId);
 		}
 
 		/// <summary>
-		/// <see cref="IGenericCrudIdRepository{TEntity}.NextId"/> test with records.
+		/// <see cref="IGenericCrudIdRepository{TEntity}.NextIdAsync"/> test with records.
 		/// </summary>
 		[Theory]
 		[SpeedVeryFast, IntegrationTest]
@@ -73,14 +73,14 @@ namespace Elephant.Database.Tests
 			await _systemUnderTest.Seed(CancellationToken.None);
 
 			// Act.
-			int highestId = await _systemUnderTest.NextId(sourceId, cycle, CancellationToken.None);
+			int highestId = await _systemUnderTest.NextIdAsync(sourceId, cycle, CancellationToken.None);
 
 			// Assert.
 			Assert.Equal(expectedId, highestId);
 		}
 
 		/// <summary>
-		/// <see cref="IGenericCrudIdRepository{TEntity}.NextId"/> test without records.
+		/// <see cref="IGenericCrudIdRepository{TEntity}.NextIdAsync"/> test without records.
 		/// </summary>
 		[Theory]
 		[SpeedVerySlow, IntegrationTest]
@@ -97,14 +97,14 @@ namespace Elephant.Database.Tests
 		public async Task NextIdIdTestsWithoutRecords(int sourceId, bool cycle)
 		{
 			// Act.
-			int highestId = await _systemUnderTest.NextId(sourceId, cycle, CancellationToken.None);
+			int highestId = await _systemUnderTest.NextIdAsync(sourceId, cycle, CancellationToken.None);
 
 			// Assert.
 			Assert.Equal(-1, highestId);
 		}
 
 		/// <summary>
-		/// <see cref="IGenericCrudIdRepository{TEntity}.PreviousId"/> test with records.
+		/// <see cref="IGenericCrudIdRepository{TEntity}.PreviousIdAsync"/> test with records.
 		/// </summary>
 		[Theory]
 		[SpeedVeryFast, IntegrationTest]
@@ -124,14 +124,14 @@ namespace Elephant.Database.Tests
 			await _systemUnderTest.Seed(CancellationToken.None);
 
 			// Act.
-			int highestId = await _systemUnderTest.PreviousId(sourceId, cycle, CancellationToken.None);
+			int highestId = await _systemUnderTest.PreviousIdAsync(sourceId, cycle, CancellationToken.None);
 
 			// Assert.
 			Assert.Equal(expectedId, highestId);
 		}
 
 		/// <summary>
-		/// <see cref="IGenericCrudIdRepository{TEntity}.PreviousId"/> test without records.
+		/// <see cref="IGenericCrudIdRepository{TEntity}.PreviousIdAsync"/> test without records.
 		/// </summary>
 		[Theory]
 		[SpeedVeryFast, IntegrationTest]
@@ -148,7 +148,7 @@ namespace Elephant.Database.Tests
 		public async Task PreviousIdIdTestsWithoutRecords(int sourceId, bool cycle)
 		{
 			// Act.
-			int highestId = await _systemUnderTest.PreviousId(sourceId, cycle, CancellationToken.None);
+			int highestId = await _systemUnderTest.PreviousIdAsync(sourceId, cycle, CancellationToken.None);
 
 			// Assert.
 			Assert.Equal(-1, highestId);

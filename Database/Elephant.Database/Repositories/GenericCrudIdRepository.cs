@@ -22,7 +22,7 @@ namespace Elephant.Database.Repositories
 		}
 
 		/// <inheritdoc/>
-		public virtual async Task<TEntity?> ById(int id, QueryTrackingBehavior queryTrackingBehavior = QueryTrackingBehavior.TrackAll, CancellationToken cancellationToken = default, params Expression<Func<TEntity, object>>[] includes)
+		public virtual async Task<TEntity?> ByIdAsync(int id, QueryTrackingBehavior queryTrackingBehavior = QueryTrackingBehavior.TrackAll, CancellationToken cancellationToken = default, params Expression<Func<TEntity, object>>[] includes)
 		{
 			return await includes
 				.Aggregate(Table.AsQueryable(), (current, include) => current.Include(include))
@@ -31,13 +31,13 @@ namespace Elephant.Database.Repositories
 		}
 
 		/// <inheritdoc/>
-		public async Task<bool> HasId(int id, CancellationToken cancellationToken)
+		public async Task<bool> HasIdAsync(int id, CancellationToken cancellationToken)
 		{
 			return await Table.AnyAsync(x => x.Id == id, cancellationToken);
 		}
 
 		/// <inheritdoc/>
-		public virtual async Task<int> HighestId(CancellationToken cancellationToken)
+		public virtual async Task<int> HighestIdAsync(CancellationToken cancellationToken)
 		{
 			int highestId = await Table
 				.AsNoTracking()
@@ -49,7 +49,7 @@ namespace Elephant.Database.Repositories
 		}
 
 		/// <inheritdoc/>
-		public virtual async Task<int> LowestId(CancellationToken cancellationToken)
+		public virtual async Task<int> LowestIdAsync(CancellationToken cancellationToken)
 		{
 			int lowestId = await Table
 				.AsNoTracking()
@@ -61,7 +61,7 @@ namespace Elephant.Database.Repositories
 		}
 
 		/// <inheritdoc/>
-		public virtual async Task<int> NextId(int sourceId, bool cycle, CancellationToken cancellationToken)
+		public virtual async Task<int> NextIdAsync(int sourceId, bool cycle, CancellationToken cancellationToken)
 		{
 			int nextId = await Table
 				.OrderBy(x => x.Id)
@@ -73,7 +73,7 @@ namespace Elephant.Database.Repositories
 			if (nextId == 0)
 			{
 				if (cycle)
-					return await LowestId(cancellationToken);
+					return await LowestIdAsync(cancellationToken);
 
 				return -1;
 			}
@@ -82,7 +82,7 @@ namespace Elephant.Database.Repositories
 		}
 
 		/// <inheritdoc/>
-		public virtual async Task<int> PreviousId(int sourceId, bool cycle, CancellationToken cancellationToken)
+		public virtual async Task<int> PreviousIdAsync(int sourceId, bool cycle, CancellationToken cancellationToken)
 		{
 			int previousId = await Table
 				.OrderByDescending(x => x.Id)
@@ -94,7 +94,7 @@ namespace Elephant.Database.Repositories
 			if (previousId == 0)
 			{
 				if (cycle)
-					return await HighestId(cancellationToken);
+					return await HighestIdAsync(cancellationToken);
 
 				return -1;
 			}
@@ -106,13 +106,12 @@ namespace Elephant.Database.Repositories
 		/// Update and save.
 		/// Checks if the <paramref name="obj"/> already exists and if not, returns a not-found result.
 		/// </summary>
-		public override async Task<IResult<int>> UpdateAndSave(TEntity obj, CancellationToken cancellationToken)
+		public override async Task<IResult<int>> UpdateAndSaveAsync(TEntity obj, CancellationToken cancellationToken)
 		{
-			bool hasId = await HasId(obj.Id, cancellationToken);
+			bool hasId = await HasIdAsync(obj.Id, cancellationToken);
 			if (hasId)
-				return await base.UpdateAndSave(obj, cancellationToken);
-			else
-				return Result<int>.NotFound($"Entity with Id {obj.Id} was not found. No insert and no save were performed.");
+				return await base.UpdateAndSaveAsync(obj, cancellationToken);
+			return Result<int>.NotFound($"Entity with Id {obj.Id} was not found. No insert and no save were performed.");
 		}
 	}
 }

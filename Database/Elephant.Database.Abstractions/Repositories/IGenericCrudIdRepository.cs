@@ -13,24 +13,24 @@ namespace Elephant.Database.Abstractions.Repositories
 		/// <summary>
 		/// Retrieves <typeparamref name="TEntity"/> by id.
 		/// </summary>
-		Task<TEntity?> ById(int id, QueryTrackingBehavior queryTrackingBehavior = QueryTrackingBehavior.TrackAll, CancellationToken cancellationToken = default, params Expression<Func<TEntity, object>>[] includes);
+		Task<TEntity?> ByIdAsync(int id, QueryTrackingBehavior queryTrackingBehavior = QueryTrackingBehavior.TrackAll, CancellationToken cancellationToken = default, params Expression<Func<TEntity, object>>[] includes);
 
 		/// <summary>
 		/// Return true if any record with <paramref name="id"/> exists.
 		/// </summary>
-		Task<bool> HasId(int id, CancellationToken cancellationToken);
+		Task<bool> HasIdAsync(int id, CancellationToken cancellationToken);
 
 		/// <summary>
 		/// Return the highest id that exists in the table.
 		/// Returns -1 if there are no records.
 		/// </summary>
-		Task<int> HighestId(CancellationToken cancellationToken);
+		Task<int> HighestIdAsync(CancellationToken cancellationToken);
 
 		/// <summary>
 		/// Return the highest id that exists in the table.
 		/// Returns -1 if there are no records.
 		/// </summary>
-		Task<int> LowestId(CancellationToken cancellationToken);
+		Task<int> LowestIdAsync(CancellationToken cancellationToken);
 
 		/// <summary>
 		/// Return the next available id from the <paramref name="sourceId"/>.
@@ -41,7 +41,7 @@ namespace Elephant.Database.Abstractions.Repositories
 		/// <param name="sourceId">The id to take the next id from.</param>
 		/// <param name="cycle">If true, will return the lowest id if the <paramref name="sourceId"/> is the highest id.</param>
 		/// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-		Task<int> NextId(int sourceId, bool cycle, CancellationToken cancellationToken);
+		Task<int> NextIdAsync(int sourceId, bool cycle, CancellationToken cancellationToken);
 
 		/// <summary>
 		/// Return the previous available id from the <paramref name="sourceId"/>.
@@ -52,6 +52,6 @@ namespace Elephant.Database.Abstractions.Repositories
 		/// <param name="sourceId">The id to take the next id from.</param>
 		/// <param name="cycle">If true, will return the highest id if the <paramref name="sourceId"/> is the lowest id.</param>
 		/// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-		Task<int> PreviousId(int sourceId, bool cycle, CancellationToken cancellationToken);
+		Task<int> PreviousIdAsync(int sourceId, bool cycle, CancellationToken cancellationToken);
 	}
 }

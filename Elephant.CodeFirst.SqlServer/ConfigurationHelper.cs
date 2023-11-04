@@ -52,10 +52,10 @@ namespace Elephant.CodeFirst.SqlServer
 			tableName = ToTableName<TEntity>(tableName);
 			builder.ToTable(tableName, schema);
 
-			builder.HasKey(p => p.Guid)
+			builder.HasKey(p => p.Id)
 				.HasName($"PK_{tableName}");
 
-			builder.Property(p => p.Guid)
+			builder.Property(p => p.Id)
 				.HasColumnType(DbTypes.Guid)
 				.ValueGeneratedOnAdd()
 				.HasDefaultValueSql("NEWID()")

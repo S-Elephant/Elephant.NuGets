@@ -3,13 +3,13 @@
 namespace Elephant.Types.Interfaces
 {
     /// <summary>
-    /// Interface with a <see cref="System.Guid"/> property.
+    /// Interface with a <see cref="Guid"/> property.
     /// </summary>
     public interface IGuid
     {
         /// <summary>
-        /// Unique identifier (GUID).
+        /// Unique identifier as a <see cref="Guid"/>.
         /// </summary>
-        Guid Guid { get; set; }
+        Guid Id { get; set; }
     }
 }
