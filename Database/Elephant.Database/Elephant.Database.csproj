@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <!-- This must be updated for every release -->
   <PropertyGroup>
-    <Version>0.10.0</Version>
-    <PackageReleaseNotes>Add simple GUID repository and add async suffix.</PackageReleaseNotes>
+    <Version>0.10.1</Version>
+    <PackageReleaseNotes>Add .NET 8 support.</PackageReleaseNotes>
   </PropertyGroup>
 
   <!-- Core -->
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -39,6 +39,9 @@
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
   </ItemGroup>
 
   <!-- StyleCop (only in Debug configuration) -->

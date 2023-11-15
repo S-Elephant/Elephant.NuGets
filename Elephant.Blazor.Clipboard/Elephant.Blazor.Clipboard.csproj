@@ -2,13 +2,14 @@
 
   <!-- This must be updated for every release -->
   <PropertyGroup>
-    <Version>0.1.0</Version>
-    <PackageReleaseNotes>Initial release.</PackageReleaseNotes>
+    <Version>0.1.1</Version>
+    <PackageReleaseNotes>Add .NET 8 support.</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFrameworks>net7.0;net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
+    <TargetFrameworks>net7.0;net7.0-android;net7.0-ios;net7.0-maccatalyst;net8.0;net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
     <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
     <UseMaui>true</UseMaui>
     <SingleProject>true</SingleProject>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -48,8 +49,12 @@
   </ItemGroup>
 
   <!-- Dependencies -->
-  <ItemGroup>
-    <PackageReference Include="Microsoft.JSInterop" Version="7.0.2" />
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('net7.0')) ">
+    <PackageReference Include="Microsoft.JSInterop" Version="7.0.0" />
+  </ItemGroup>
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('net8.0')) ">
+    <PackageReference Include="Microsoft.JSInterop" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.3" />
   </ItemGroup>
 
   <!-- Package README -->
