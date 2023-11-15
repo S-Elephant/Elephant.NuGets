@@ -35,7 +35,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      
+
+      # Setup .NET SDK for .NET 8.
+      # .NET 6 and 7 seem already installed on windows-latest image but .NET 8 not (yet).
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '8.x.x'
+
       # Setup MAUI Tizen.
       - name: maui-tizen install 1/3
         run: dotnet nuget locals all --clear
@@ -60,7 +67,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      
+
+      # Setup .NET SDK for .NET 8.
+      # .NET 6 and 7 seem already installed on windows-latest image but .NET 8 not (yet).
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '8.x.x'
+
       # Setup MAUI Tizen.
       - name: maui-tizen install
         run: dotnet nuget locals all --clear

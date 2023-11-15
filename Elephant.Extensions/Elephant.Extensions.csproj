@@ -2,13 +2,13 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.0.10</Version>
-		<PackageReleaseNotes>Add new extension.</PackageReleaseNotes>
+		<Version>1.0.11</Version>
+    <PackageReleaseNotes>Update target framework(s).</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
 	<PropertyGroup>
-		<TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+		<TargetFramework>netstandard2.0</TargetFramework>
 		<LangVersion>latest</LangVersion>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>

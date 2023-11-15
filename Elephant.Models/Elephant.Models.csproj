@@ -2,13 +2,13 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>2.0.1</Version>
-		<PackageReleaseNotes>Rename URL parameters into URIs instead.</PackageReleaseNotes>
+		<Version>2.0.2</Version>
+    <PackageReleaseNotes>Update target framework(s).</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;netstandard2.1;netcoreapp3.0;netcoreapp3.1;net5.0;net6.0;net7.0</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0</TargetFrameworks>
 		<LangVersion>latest</LangVersion>
 		<ImplicitUsings>disable</ImplicitUsings>
 		<Nullable>enable</Nullable>

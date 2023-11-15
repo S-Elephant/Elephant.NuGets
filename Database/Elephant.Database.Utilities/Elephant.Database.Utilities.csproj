@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.0.2</Version>
-		<PackageReleaseNotes>Add IsValid and IsInvalid methods.</PackageReleaseNotes>
+		<Version>1.0.3</Version>
+    <PackageReleaseNotes>Update target framework(s).</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;netstandard2.1;netcoreapp3.0;netcoreapp3.1;net5.0;net6.0;net7.0</TargetFrameworks>
+		<TargetFramework>netstandard2.0</TargetFramework>
 		<LangVersion>latest</LangVersion>
 		<ImplicitUsings>disable</ImplicitUsings>
 		<!--<Nullable>enable</Nullable>-->

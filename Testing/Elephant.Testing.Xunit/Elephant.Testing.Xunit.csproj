@@ -2,13 +2,13 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.0.5</Version>
-		<PackageReleaseNotes>Generate documentation file.</PackageReleaseNotes>
+		<Version>1.0.6</Version>
+		<PackageReleaseNotes>Update target framework(s).</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;netstandard2.1;netcoreapp3.0;netcoreapp3.1;net5.0;net6.0;net7.0</TargetFrameworks>
+		<TargetFramework>netstandard2.0</TargetFramework>
 		<LangVersion>latest</LangVersion>
 		<ImplicitUsings>disable</ImplicitUsings> <!-- Disabled because of older target frameworks. -->
 		<Nullable>disable</Nullable> <!-- Disabled because of older target frameworks. -->
@@ -34,7 +34,7 @@
 
 	<!-- Dependencies -->
 	<ItemGroup>
-		<PackageReference Include="xunit.extensibility.core" Version="2.4.2" />
+		<PackageReference Include="xunit.extensibility.core" Version="2.6.1" />
 	</ItemGroup>
 
 	<!-- StyleCop (only in Debug configuration) -->
