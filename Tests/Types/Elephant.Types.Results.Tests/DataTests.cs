@@ -238,5 +238,24 @@ namespace Elephant.Types.Results.Tests
 			Assert.Equal("Data here.", result.Data);
 			Assert.True(result.UsesData);
 		}
+
+		/// <summary>
+		/// <see cref="IResult{TData}.AsNoData"/> converts into expected result.
+		/// </summary>
+		[Fact]
+		[SpeedVeryFast, UnitTest]
+		public void AsNoDataConvertsAsExpected()
+		{
+			// Arrange.
+			IResult<string> result = Result<string>.Ok("Data here.");
+
+			// Act.
+			IResult resultWithoutData = result.AsNoData();
+
+			// Assert.
+			Assert.True(resultWithoutData.IsSuccess);
+			Assert.Equal((int)HttpStatusCode.OK, resultWithoutData.StatusCode);
+			Assert.False(resultWithoutData.UsesData);
+		}
 	}
 }

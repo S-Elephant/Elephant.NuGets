@@ -1,13 +1,11 @@
-﻿using Elephant.Types.Tests.ResponseWrappers;
-
-namespace Elephant.Types.Tests
+﻿namespace Elephant.Types.Tests
 {
 	/// <summary>
 	/// <see cref="ElephantCancellationTokenSource"/> tests.
 	/// </summary>
 	public class ElephantCancellationTokenSourceTests : IDisposable
 	{
-		private ElephantCancellationTokenSource _systemUnderTest = new();
+		private readonly ElephantCancellationTokenSource _systemUnderTest = new();
 
 		/// <summary>
 		/// <see cref="ElephantCancellationTokenSource"/> cancellation test.

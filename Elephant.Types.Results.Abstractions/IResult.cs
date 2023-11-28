@@ -1174,6 +1174,11 @@
 		#endregion
 
 		#endregion
+
+		/// <summary>
+		/// Return this as a <see cref="IResult"/> without data.
+		/// </summary>
+		IResult AsNoData();
 	}
 
 	/// <summary>
