@@ -174,6 +174,12 @@ namespace Elephant.Types.Results
 		}
 
 		#endregion
+
+		/// <inheritdoc/>
+		public IResult AsNoData()
+		{
+			return new Result(StatusCode, Message);
+		}
 	}
 
 	/// <summary>
