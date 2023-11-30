@@ -30,6 +30,11 @@ namespace Elephant.UndoRedo
 		public TStateType? CurrentState => _currentState;
 
 		/// <summary>
+		/// Returns true if <see cref="CurrentState"/> is not null.
+		/// </summary>
+		public bool HasState => _currentState != null;
+
+		/// <summary>
 		/// Returns true if calling <see cref="Undo(bool)"/> is possible.
 		/// </summary>
 		public bool CanUndo => _undoStack.Count > 0;
@@ -69,6 +74,17 @@ namespace Elephant.UndoRedo
 
 			for (int i = 1; i < initialStatesAsList.Count; i++)
 				SaveState(initialStatesAsList[i]);
+		}
+
+		/// <summary>
+		/// Clear all states and set the <see cref="CurrentState"/> to <paramref name="initialState"/>.
+		/// </summary>
+		/// <param name="initialState">Optional initial state after clearing.</param>
+		public void Clear(TStateType? initialState = default(TStateType))
+		{
+			_currentState = initialState;
+			_undoStack.Clear();
+			_redoStack.Clear();
 		}
 
 		/// <summary>
@@ -142,32 +158,6 @@ namespace Elephant.UndoRedo
 		}
 
 		/// <summary>
-		/// Returns true if calling <see cref="UndoXTimes"/> is possible with
-		/// the specified <paramref name="undoAmount"/>.
-		/// </summary>
-		/// <param name="undoAmount">Amount of times to undo.</param>
-		public bool CanUndoUsingAmount(int undoAmount)
-		{
-			if (undoAmount <= 0)
-				return false;
-
-			return _undoStack.Count >= undoAmount;
-		}
-
-		/// <summary>
-		/// Returns true if calling <see cref="RedoXTimes"/> is possible with
-		/// the specified <paramref name="redoAmount"/>.
-		/// </summary>
-		/// <param name="redoAmount">Amount of times to undo.</param>
-		public bool CanRedoUsingAmount(int redoAmount)
-		{
-			if (redoAmount <= 0)
-				return false;
-
-			return _redoStack.Count >= redoAmount;
-		}
-
-		/// <summary>
 		/// Reverts to the previous state.
 		/// </summary>
 		/// <param name="undoAmount">Amount of times to undo.</param>
@@ -192,6 +182,32 @@ namespace Elephant.UndoRedo
 				Undo(ignoreError);
 
 			return _currentState;
+		}
+
+		/// <summary>
+		/// Returns true if calling <see cref="UndoXTimes"/> is possible with
+		/// the specified <paramref name="undoAmount"/>.
+		/// </summary>
+		/// <param name="undoAmount">Amount of times to undo.</param>
+		public bool CanUndoUsingAmount(int undoAmount)
+		{
+			if (undoAmount <= 0)
+				return false;
+
+			return _undoStack.Count >= undoAmount;
+		}
+
+		/// <summary>
+		/// Returns true if calling <see cref="RedoXTimes"/> is possible with
+		/// the specified <paramref name="redoAmount"/>.
+		/// </summary>
+		/// <param name="redoAmount">Amount of times to undo.</param>
+		public bool CanRedoUsingAmount(int redoAmount)
+		{
+			if (redoAmount <= 0)
+				return false;
+
+			return _redoStack.Count >= redoAmount;
 		}
 
 		/// <summary>
