@@ -9,12 +9,13 @@ namespace Elephant.Types.ResponseWrappers
 	public class ResponseWrapperUnauthorized<TData> : ResponseWrapper<TData>
         where TData : new()
     {
-        private const int StatusCodeUnauthorized = 401;
+	    // ReSharper disable once InconsistentNaming
+	    private const int StatusCodeUnauthorized = 401;
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public ResponseWrapperUnauthorized(TData? data = default, string message = "Unauthorized.")
+	    public ResponseWrapperUnauthorized(TData? data = default, string message = "Unauthorized.")
             : base(data, StatusCodeUnauthorized, message)
         {
         }
@@ -22,7 +23,7 @@ namespace Elephant.Types.ResponseWrappers
         /// <summary>
         /// Constructor.
         /// </summary>
-        public ResponseWrapperUnauthorized(string message)
+	    public ResponseWrapperUnauthorized(string message)
             : base(default, StatusCodeUnauthorized, message)
         {
         }
@@ -33,6 +34,7 @@ namespace Elephant.Types.ResponseWrappers
 	/// </summary>
 	public class ResponseWrapperUnauthorized : ResponseWrapper
 	{
+		// ReSharper disable once InconsistentNaming
 		private const int StatusCodeUnauthorized = 401;
 
 		/// <summary>

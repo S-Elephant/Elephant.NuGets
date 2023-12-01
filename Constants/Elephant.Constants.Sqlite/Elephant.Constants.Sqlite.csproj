@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.0.5</Version>
-		<PackageReleaseNotes>Update target framework(s).</PackageReleaseNotes>
+		<Version>2.0.0</Version>
+		<PackageReleaseNotes>Rename 2 primitives to avoid name clash.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
@@ -40,13 +40,9 @@
 		</PackageReference>
 	</ItemGroup>
 
-	<!-- Package README -->
-	<ItemGroup>
-		<None Include="README.md">
-			<!-- Changed "Update" to "Include" because of an open bug. See: https://github.com/NuGet/Home/issues/11467#issuecomment-1022487996 -->
-			<PackagePath>\</PackagePath>
-			<Pack>True</Pack>
-		</None>
-	</ItemGroup>
+  <!-- Package README -->
+  <ItemGroup>
+    <None Include="README.md" Pack="True" PackagePath="\" />
+  </ItemGroup>
 
 </Project>

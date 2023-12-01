@@ -32,6 +32,11 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 	</PropertyGroup>
 
+  <!-- Dependencies -->
+  <ItemGroup>
+    <ProjectReference Include="..\Elephant.Types.Interfaces\Elephant.Types.Interfaces.csproj" />
+  </ItemGroup>
+
 	<!-- StyleCop (only in Debug configuration) -->
 	<ItemGroup Condition="'$(Configuration)' == 'Debug'">
 		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
@@ -40,16 +45,9 @@
 		</PackageReference>
 	</ItemGroup>
 
-	<!-- Package README -->
-	<ItemGroup>
-		<None Include="README.md">
-			<!-- Changed "Update" to "Include" because of an open bug. See: https://github.com/NuGet/Home/issues/11467#issuecomment-1022487996 -->
-			<PackagePath>\</PackagePath>
-			<Pack>True</Pack>
-		</None>
-	</ItemGroup>
-	<ItemGroup>
-		<ProjectReference Include="..\Elephant.Types.Interfaces\Elephant.Types.Interfaces.csproj" />
-	</ItemGroup>
+  <!-- Package README -->
+  <ItemGroup>
+    <None Include="README.md" Pack="True" PackagePath="\" />
+  </ItemGroup>
 
 </Project>

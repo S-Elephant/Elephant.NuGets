@@ -1,6 +1,6 @@
-﻿using Elephant.Constants.MockData;
+﻿using Elephant.Extensions;
 
-namespace Elephant.Extensions.Tests
+namespace Elephant.Constants.MockData.Tests
 {
 	/// <summary>
 	/// Test if all mock data is unique.
@@ -68,6 +68,7 @@ namespace Elephant.Extensions.Tests
 		/// </summary>
 		[Fact]
 		[SpeedVeryFast]
+		// ReSharper disable once InconsistentNaming
 		public void PostalCodesNl4pp10()
 		{
 			// Act.
@@ -82,6 +83,7 @@ namespace Elephant.Extensions.Tests
 		/// </summary>
 		[Fact]
 		[SpeedVeryFast]
+		// ReSharper disable once InconsistentNaming
 		public void PostalCodesNl4pp100()
 		{
 			// Act.
@@ -96,6 +98,7 @@ namespace Elephant.Extensions.Tests
 		/// </summary>
 		[Fact]
 		[SpeedVeryFast]
+		// ReSharper disable once InconsistentNaming
 		public void PostalCodesNl4pp1000()
 		{
 			// Act.
@@ -110,6 +113,7 @@ namespace Elephant.Extensions.Tests
 		/// </summary>
 		[Fact]
 		[SpeedVeryFast]
+		// ReSharper disable once InconsistentNaming
 		public void PostalCodesNl6pp10()
 		{
 			// Act.
@@ -124,6 +128,7 @@ namespace Elephant.Extensions.Tests
 		/// </summary>
 		[Fact]
 		[SpeedVeryFast]
+		// ReSharper disable once InconsistentNaming
 		public void PostalCodesNl6pp100()
 		{
 			// Act.
@@ -138,6 +143,7 @@ namespace Elephant.Extensions.Tests
 		/// </summary>
 		[Fact]
 		[SpeedVeryFast]
+		// ReSharper disable once InconsistentNaming
 		public void PostalCodesNl6pp1000()
 		{
 			// Act.

@@ -23,7 +23,7 @@ namespace Elephant.ApiControllers
             byte[] bytes = new byte[length];
             using (Stream stream = formFile.OpenReadStream())
             {
-                stream.Read(bytes, 0, (int)formFile.Length);
+	            int _ = stream.Read(bytes, 0, (int)formFile.Length);
             }
 
             return bytes;

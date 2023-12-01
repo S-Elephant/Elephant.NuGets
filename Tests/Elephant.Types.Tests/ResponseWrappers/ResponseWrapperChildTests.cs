@@ -71,7 +71,7 @@ namespace Elephant.Types.Tests.ResponseWrappers
         public void NotFoundIsError()
         {
             // Arrange and act.
-            ResponseWrapperNotFound<int> sut = new (-1, "Foo");
+            ResponseWrapperNotFound<int> sut = new ("Foo");
 
             // Assert.
             Assert.True(sut.IsError);

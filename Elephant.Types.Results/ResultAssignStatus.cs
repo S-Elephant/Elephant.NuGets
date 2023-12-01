@@ -7,7 +7,7 @@ namespace Elephant.Types.Results
 {
 	/// <inheritdoc cref="IResult{TData}"/>
 	[SuppressMessage("Microsoft.StyleCop.CSharp.OrderingRules", "SA1402:FileMayOnlyContainASingleType", Justification = "Generic and non-generic version belong together.")]
-	public partial class Result<TData> : IResult<TData>
+	public partial class Result<TData>
 	{
 		#region HTTP Status codes that are missing in .Net Standard 2.0
 

@@ -32,7 +32,12 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
 	</PropertyGroup>
 
-	<!-- StyleCop (only in Debug configuration) -->
+  <!-- Dependencies -->
+  <ItemGroup>
+    <ProjectReference Include="..\Constants\Elephant.Constants.SqlServer\Elephant.Constants.SqlServer.csproj" />
+  </ItemGroup>
+
+  <!-- StyleCop (only in Debug configuration) -->
 	<ItemGroup Condition="'$(Configuration)' == 'Debug'">
 		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
 			<PrivateAssets>all</PrivateAssets>
@@ -40,15 +45,9 @@
 		</PackageReference>
 	</ItemGroup>
 
-	<!-- Package README -->
-	<ItemGroup>
-		<None Include="README.md"> <!-- Changed "Update" to "Include" because of an open bug. See: https://github.com/NuGet/Home/issues/11467#issuecomment-1022487996 -->
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
-	</ItemGroup>
-	<ItemGroup>
-	  <ProjectReference Include="..\Constants\Elephant.Constants.SqlServer\Elephant.Constants.SqlServer.csproj" />
-	</ItemGroup>
+  <!-- Package README -->
+  <ItemGroup>
+    <None Include="README.md" Pack="True" PackagePath="\" />
+  </ItemGroup>
 
 </Project>

@@ -11,7 +11,7 @@ namespace Elephant.Database.MongoDb.Types
 		/// <inheritdoc/>
 		[BsonElement("_id")]
 		[BsonRepresentation(BsonType.ObjectId)]
-		public string MongoId { get; set; } = ObjectId.GenerateNewId().ToString();
+		public string MongoId { get; set; } = ObjectId.GenerateNewId().ToString() !;
 	}
 
 	/// <summary>

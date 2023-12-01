@@ -11,6 +11,7 @@ namespace Elephant.Constants.MockData
 		/// <summary>
 		/// 10 fictional sorted unique Dutch Postal Codes in 4PP format.
 		/// </summary>
+		// ReSharper disable once InconsistentNaming
 		public static readonly ReadOnlyCollection<string> Nl4pp10 = new(new List<string>
 		{
 			"1000",
@@ -28,6 +29,7 @@ namespace Elephant.Constants.MockData
 		/// <summary>
 		/// 100 fictional sorted unique Dutch Postal Codes in 4PP format.
 		/// </summary>
+		// ReSharper disable once InconsistentNaming
 		public static readonly ReadOnlyCollection<string> Nl4pp100 = new(new List<string>
 		{
 			"1000",
@@ -135,6 +137,7 @@ namespace Elephant.Constants.MockData
 		/// <summary>
 		/// 1000 fictional sorted unique Dutch Postal Codes in 4PP format.
 		/// </summary>
+		// ReSharper disable once InconsistentNaming
 		public static readonly ReadOnlyCollection<string> Nl4pp1000 = new(new List<string>
 		{
 			"1000",
@@ -1142,6 +1145,7 @@ namespace Elephant.Constants.MockData
 		/// <summary>
 		/// 10 fictional sorted unique Dutch Postal Codes in 6PP format.
 		/// </summary>
+		// ReSharper disable once InconsistentNaming
 		public static readonly ReadOnlyCollection<string> Nl6pp10 = new(new List<string>
 		{
 			"1000AA",
@@ -1159,6 +1163,7 @@ namespace Elephant.Constants.MockData
 		/// <summary>
 		/// 100 fictional sorted unique Dutch Postal Codes in 6PP format.
 		/// </summary>
+		// ReSharper disable once InconsistentNaming
 		public static readonly ReadOnlyCollection<string> Nl6pp100 = new(new List<string>
 		{
 			"1000AA",
@@ -1266,6 +1271,7 @@ namespace Elephant.Constants.MockData
 		/// <summary>
 		/// 1000 fictional sorted unique Dutch Postal Codes in 6PP format.
 		/// </summary>
+		// ReSharper disable once InconsistentNaming
 		public static readonly ReadOnlyCollection<string> Nl6pp1000 = new(new List<string>
 		{
 			"1000AA",

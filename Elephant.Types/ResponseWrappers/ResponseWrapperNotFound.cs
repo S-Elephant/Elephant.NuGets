@@ -9,12 +9,13 @@ namespace Elephant.Types.ResponseWrappers
 	public class ResponseWrapperNotFound<TData> : ResponseWrapper<TData>
         where TData : new()
     {
-        private const int StatusCodeNotFound = 404;
+	    // ReSharper disable once InconsistentNaming
+	    private const int StatusCodeNotFound = 404;
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public ResponseWrapperNotFound(TData? data = default, string message = "Not found.")
+	    private protected ResponseWrapperNotFound(TData? data = default, string message = "Not found.")
             : base(data, StatusCodeNotFound, message)
         {
         }
@@ -22,7 +23,7 @@ namespace Elephant.Types.ResponseWrappers
         /// <summary>
         /// Constructor.
         /// </summary>
-        public ResponseWrapperNotFound(string message)
+	    public ResponseWrapperNotFound(string message)
             : base(default, StatusCodeNotFound, message)
         {
         }
@@ -33,6 +34,7 @@ namespace Elephant.Types.ResponseWrappers
 	/// </summary>
 	public class ResponseWrapperNotFound : ResponseWrapper
 	{
+		// ReSharper disable once InconsistentNaming
 		private const int StatusCodeNotFound = 404;
 
 		/// <summary>

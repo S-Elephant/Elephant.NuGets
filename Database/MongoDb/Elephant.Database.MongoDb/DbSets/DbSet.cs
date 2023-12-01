@@ -423,8 +423,8 @@ namespace Elephant.Database.MongoDb.DbSets
 			_collection.InsertOne(session, document, options, cancellationToken);
 
 		/// <inheritdoc/>
-		public Task InsertOneAsync(TEntity document, CancellationToken _cancellationToken) =>
-			_collection.InsertOneAsync(document, null, _cancellationToken);
+		public Task InsertOneAsync(TEntity document, CancellationToken cancellationToken) =>
+			_collection.InsertOneAsync(document, null, cancellationToken);
 
 		/// <inheritdoc/>
 		public Task InsertOneAsync(TEntity document, InsertOneOptions? options = null,

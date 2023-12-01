@@ -1,7 +1,8 @@
 using Elephant.DataAnnotations.Services;
 using Elephant.DataAnnotations.Services.Interfaces;
+// ReSharper disable UnusedMember.Local
 
-namespace Elephant.DataAnnotations.Tests
+namespace Elephant.DataAnnotations.Tests.Services
 {
 	/// <summary>
 	/// <see cref="DataAnnotationService"/> tests.

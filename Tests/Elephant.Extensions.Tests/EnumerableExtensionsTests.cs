@@ -1,4 +1,5 @@
-﻿namespace Elephant.Extensions.Tests
+﻿// ReSharper disable CollectionNeverUpdated.Local
+namespace Elephant.Extensions.Tests
 {
 	/// <summary>
 	/// <see cref="Enumerable"/> tests.
@@ -69,9 +70,14 @@
 		[InlineData(false, -10)]
 		public void NoneWithPredicateTest(bool expected, int value)
 		{
+			// Arrange.
 			List<int> x = new() { -10, 1, 2, 3 };
 
-			Assert.Equal(expected, x.None(x => x == value));
+			// Act.
+			bool containsNone = x.None(y => y == value);
+
+			// Assert.
+			Assert.Equal(expected, containsNone);
 		}
 
 		/// <summary>
@@ -81,10 +87,15 @@
 		[SpeedVeryFast, UnitTest]
 		public void ContainsAllReturnsTrueIfAllContained()
 		{
+			// Arange.
 			List<int> source = new() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, };
 			List<int> values = new() { 1, 5, 10, };
 
-			Assert.True(source.ContainsAll(values));
+			// Act.
+			bool containsAll = source.ContainsAll(values);
+
+			// Assert.
+			Assert.True(containsAll);
 		}
 
 		/// <summary>
@@ -94,10 +105,15 @@
 		[SpeedVeryFast, UnitTest]
 		public void ContainsAllReturnsFalseIfNotAllContained()
 		{
+			// Arrange.
 			List<int> source = new() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, };
 			List<int> values = new() { 1, 5, 10, 0, };
 
-			Assert.False(source.ContainsAll(values));
+			// Act.
+			bool containsAll = source.ContainsAll(values);
+
+			// Assert.
+			Assert.False(containsAll);
 		}
 
 		/// <summary>
@@ -107,10 +123,15 @@
 		[SpeedVeryFast, UnitTest]
 		public void ContainsAllReturnsFalseIfSourceIsEmpty()
 		{
+			// Arrange.
 			List<int> source = new();
 			List<int> values = new() { 0, };
 
-			Assert.False(source.ContainsAll(values));
+			// Act.
+			bool containsAll = source.ContainsAll(values);
+
+			// Assert.
+			Assert.False(containsAll);
 		}
 
 		/// <summary>
@@ -120,10 +141,14 @@
 		[SpeedVeryFast, UnitTest]
 		public void ContainsAllReturnsTrueIfValuesIsEmpty()
 		{
+			// Arrange.
 			List<int> source = new() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, };
 			List<int> values = new();
 
-			Assert.True(source.ContainsAll(values));
+			// Act.
+			bool containsall = source.ContainsAll(values);
+
+			Assert.True(containsall);
 		}
 
 		/// <summary>
@@ -133,10 +158,14 @@
 		[SpeedVeryFast, UnitTest]
 		public void ContainsNoneReturnsFalseIfSourceContainsAll()
 		{
+			// Arrange.
 			List<int> source = new() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, };
 			List<int> values = new() { 1, 5, 10, };
 
-			Assert.False(source.ContainsNone(values));
+			// Act.
+			bool containsNone = source.ContainsNone(values);
+
+			Assert.False(containsNone);
 		}
 
 		/// <summary>
@@ -146,10 +175,15 @@
 		[SpeedVeryFast, UnitTest]
 		public void ContainsNoneReturnsFalseIfSourceContainsAny()
 		{
+			// Arrange.
 			List<int> source = new() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, };
 			List<int> values = new() { -1, 5, 100, };
 
-			Assert.False(source.ContainsNone(values));
+			// Act.
+			bool containsNone = source.ContainsNone(values);
+
+			// Assert.
+			Assert.False(containsNone);
 		}
 
 		/// <summary>
@@ -159,10 +193,15 @@
 		[SpeedVeryFast, UnitTest]
 		public void ContainsNoneReturnsTrueIfSourceIsEmpty()
 		{
+			// Arrange.
 			List<int> source = new();
 			List<int> values = new() { 0, };
 
-			Assert.True(source.ContainsNone(values));
+			// Act.
+			bool containsNone = source.ContainsNone(values);
+
+			// Assert.
+			Assert.True(containsNone);
 		}
 
 		/// <summary>
@@ -172,10 +211,15 @@
 		[SpeedVeryFast, UnitTest]
 		public void ContainsNoneReturnsTrueIfValuesIsEmpty()
 		{
+			// Arrange.
 			List<int> source = new() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, };
 			List<int> values = new();
 
-			Assert.True(source.ContainsNone(values));
+			// Act.
+			bool containsNone = source.ContainsNone(values);
+
+			// Assert.
+			Assert.True(containsNone);
 		}
 
 		/// <summary>
@@ -192,9 +236,14 @@
 		[SpeedVeryFast, UnitTest]
 		public void IsFirstTests(int itemToCompare, bool expectedValue)
 		{
+			// Arrange.
 			List<int> source = new() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, };
 
-			Assert.Equal(expectedValue, source.IsFirst(itemToCompare));
+			// Act.
+			bool isFirst = source.IsFirst(itemToCompare);
+
+			// Assert.
+			Assert.Equal(expectedValue, isFirst);
 		}
 
 		/// <summary>
@@ -211,9 +260,14 @@
 		[SpeedVeryFast, UnitTest]
 		public void IsLastTests(int itemToCompare, bool expectedValue)
 		{
+			// Arrange.
 			List<int> source = new() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, };
 
-			Assert.Equal(expectedValue, source.IsLast(itemToCompare));
+			// Act.
+			bool isLast = source.IsLast(itemToCompare);
+
+			// Assert.
+			Assert.Equal(expectedValue, isLast);
 		}
 
 		/// <summary>
@@ -231,10 +285,13 @@
 				new SimpleClass(),
 			};
 
-			SimpleClass first = source.First();
+			SimpleClass first = source[0];
 
-			// Act and assert.
-			Assert.True(source.IsFirst(first));
+			// Act.
+			bool isFirst = source.IsFirst(first);
+
+			// Assert.
+			Assert.True(isFirst);
 		}
 
 		/// <summary>
@@ -252,10 +309,13 @@
 				new SimpleClass(),
 			};
 
-			SimpleClass last = source.Last();
+			SimpleClass last = source[^1];
 
-			// Act and assert.
-			Assert.False(source.IsFirst(last));
+			// Act.
+			bool isFirst = source.IsFirst(last);
+
+			// Assert.
+			Assert.False(isFirst);
 		}
 
 		/// <summary>
@@ -273,10 +333,13 @@
 				new SimpleClass(),
 			};
 
-			SimpleClass last = source.Last();
+			SimpleClass last = source[^1];
 
-			// Act and assert.
-			Assert.True(source.IsLast(last));
+			// Act.
+			bool isLast = source.IsLast(last);
+
+			// Assert.
+			Assert.True(isLast);
 		}
 
 		/// <summary>
@@ -294,10 +357,13 @@
 				new SimpleClass(),
 			};
 
-			SimpleClass first = source.First();
+			SimpleClass first = source[0];
 
-			// Act and assert.
-			Assert.False(source.IsLast(first));
+			// Act.
+			bool isLast = source.IsLast(first);
+
+			// Assert.
+			Assert.False(isLast);
 		}
 
 		/// <summary>
@@ -317,8 +383,11 @@
 
 			SimpleClass? itemToCompare = null;
 
-			// Act and assert.
-			Assert.False(source.IsLast(itemToCompare));
+			// Act.
+			bool isLast = source.IsLast(itemToCompare);
+
+			// Assert.
+			Assert.False(isLast);
 		}
 
 		private class SimpleClass
@@ -326,6 +395,7 @@
 			/// <summary>
 			/// Test value.
 			/// </summary>
+			// ReSharper disable once UnusedMember.Local
 			public string A { get; set; } = "a";
 		}
 

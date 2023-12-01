@@ -17,6 +17,7 @@ namespace Elephant.DataAnnotations.Tests
             /// <see cref="IFormFile"/> to validate.
             /// </summary>
             [FileSignature(AllowedFileExtensionType.Txt, AllowedFileExtensionType.Png)]
+            // ReSharper disable once UnusedAutoPropertyAccessor.Local
             public FormFile? FormFile { get; set; }
 
             /// <summary>

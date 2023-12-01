@@ -31,7 +31,12 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 	</PropertyGroup>
 
-	<!-- StyleCop (only in Debug configuration) -->
+  <!-- Dependencies -->
+  <ItemGroup>
+    <PackageReference Include="System.Linq.Async" Version="6.0.1" />
+  </ItemGroup>
+
+  <!-- StyleCop (only in Debug configuration) -->
 	<ItemGroup Condition="'$(Configuration)' == 'Debug'">
 		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
 			<PrivateAssets>all</PrivateAssets>
@@ -39,15 +44,9 @@
 		</PackageReference>
 	</ItemGroup>
 
-	<!-- Package README -->
-	<ItemGroup>
-		<None Include="README.md">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
-	</ItemGroup>
-	<ItemGroup>
-		<PackageReference Include="System.Linq.Async" Version="6.0.1" />
-	</ItemGroup>
+  <!-- Package README -->
+  <ItemGroup>
+    <None Include="README.md" Pack="True" PackagePath="\" />
+  </ItemGroup>
 
 </Project>

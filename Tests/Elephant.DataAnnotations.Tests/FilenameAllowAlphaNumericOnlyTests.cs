@@ -1,3 +1,4 @@
+// ReSharper disable UnusedAutoPropertyAccessor.Local
 namespace Elephant.DataAnnotations.Tests
 {
 	/// <summary>
@@ -162,7 +163,7 @@ namespace Elephant.DataAnnotations.Tests
 		[InlineData(@"\a")]
 		[InlineData(@"a\")]
 		[InlineData("^^test")]
-		[InlineData("Ë")]
+		[InlineData("ï¿½")]
 		[InlineData("test.png")]
 		[SpeedVeryFast, UnitTest]
 		public void IsInvalidIfValueIsAlphanumericOnly(string value)

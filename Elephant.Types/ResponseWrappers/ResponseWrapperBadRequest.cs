@@ -9,6 +9,7 @@ namespace Elephant.Types.ResponseWrappers
 	public class ResponseWrapperBadRequest<TData> : ResponseWrapper<TData>
 		where TData : new()
 	{
+		// ReSharper disable once InconsistentNaming
 		private const int StatusCodeBadRequest = 400;
 
 		/// <summary>
@@ -33,6 +34,7 @@ namespace Elephant.Types.ResponseWrappers
 	/// </summary>
 	public class ResponseWrapperBadRequest : ResponseWrapper
 	{
+		// ReSharper disable once InconsistentNaming
 		private const int StatusCodeBadRequest = 400;
 
 		/// <summary>

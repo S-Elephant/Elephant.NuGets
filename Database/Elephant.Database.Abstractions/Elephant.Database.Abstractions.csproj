@@ -33,6 +33,8 @@
   <!-- Dependencies -->
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    <ProjectReference Include="..\..\Elephant.Types.Interfaces\Elephant.Types.Interfaces.csproj" />
+    <ProjectReference Include="..\..\Elephant.Types.Results.Abstractions\Elephant.Types.Results.Abstractions.csproj" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0" />
@@ -54,14 +56,7 @@
 
   <!-- Package README -->
   <ItemGroup>
-    <None Include="README.md">
-      <PackagePath>\</PackagePath>
-      <Pack>True</Pack>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Elephant.Types.Interfaces\Elephant.Types.Interfaces.csproj" />
-    <ProjectReference Include="..\..\Elephant.Types.Results.Abstractions\Elephant.Types.Results.Abstractions.csproj" />
+    <None Include="README.md" Pack="True" PackagePath="\" />
   </ItemGroup>
 
 </Project>

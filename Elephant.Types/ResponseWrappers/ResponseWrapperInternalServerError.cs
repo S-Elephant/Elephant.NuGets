@@ -10,6 +10,7 @@ namespace Elephant.Types.ResponseWrappers
 	public class ResponseWrapperInternalServerError<TData> : ResponseWrapper<TData>
 		where TData : new()
 	{
+		// ReSharper disable once InconsistentNaming
 		private const int StatusCodeInternalServerError = 500;
 
 		/// <summary>
@@ -42,6 +43,7 @@ namespace Elephant.Types.ResponseWrappers
 	/// </summary>
 	public class ResponseWrapperInternalServerError : ResponseWrapper
 	{
+		// ReSharper disable once InconsistentNaming
 		private const int StatusCodeInternalServerError = 500;
 
 		/// <summary>

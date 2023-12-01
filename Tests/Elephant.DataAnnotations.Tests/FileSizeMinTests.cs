@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
+// ReSharper disable UnusedAutoPropertyAccessor.Local
 
 namespace Elephant.DataAnnotations.Tests
 {
@@ -107,6 +108,7 @@ namespace Elephant.DataAnnotations.Tests
             /// Item to validate.
             /// </summary>
             [GreaterThanZeroRequired]
+            // ReSharper disable once UnusedMember.Local
             public AlwaysWrong Item { get; set; } = new ();
         }
 

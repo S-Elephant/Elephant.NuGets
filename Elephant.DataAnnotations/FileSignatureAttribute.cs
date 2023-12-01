@@ -132,7 +132,7 @@ namespace Elephant.DataAnnotations
 				return ValidationResult.Success;
 
 			// Get extension.
-			string? extensionLower = Path.GetExtension(file.FileName)?.ToLowerInvariant();
+			string extensionLower = Path.GetExtension(file.FileName).ToLowerInvariant();
 
 			// If there's no extension then the data can only be invalid.
 			if (string.IsNullOrWhiteSpace(extensionLower))
@@ -166,6 +166,7 @@ namespace Elephant.DataAnnotations
 				// Try-catch is required because requesting file.ContentType can throw an internal null reference exception.
 				try
 				{
+					// ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
 					if (file.ContentType == null)
 						return new ValidationResult("File has no content type.");
 				}

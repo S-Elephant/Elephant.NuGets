@@ -34,6 +34,9 @@
 	<!-- Dependencies -->
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <ProjectReference Include="..\Elephant.Common\Elephant.Common.csproj" />
+    <ProjectReference Include="..\Elephant.Types.Interfaces\Elephant.Types.Interfaces.csproj" />
+    <ProjectReference Include="..\Elephant.Types.Results.Abstractions\Elephant.Types.Results.Abstractions.csproj" />
 	</ItemGroup>
 
 	<!-- StyleCop (only in Debug configuration) -->
@@ -44,17 +47,9 @@
 		</PackageReference>
 	</ItemGroup>
 
-	<!-- Package README -->
-	<ItemGroup>
-		<None Include="README.md">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
-	</ItemGroup>
-	<ItemGroup>
-		<ProjectReference Include="..\Elephant.Common\Elephant.Common.csproj" />
-		<ProjectReference Include="..\Elephant.Types.Interfaces\Elephant.Types.Interfaces.csproj" />
-		<ProjectReference Include="..\Elephant.Types.Results.Abstractions\Elephant.Types.Results.Abstractions.csproj" />
-	</ItemGroup>
+  <!-- Package README -->
+  <ItemGroup>
+    <None Include="README.md" Pack="True" PackagePath="\" />
+  </ItemGroup>
 
 </Project>

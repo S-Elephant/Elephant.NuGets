@@ -61,7 +61,7 @@ namespace Elephant.Common
 		/// <returns>The joined string or an empty string if there was nothing to join.</returns>
 		public static string Join(char separatorChar, params string?[] stringsToCombine)
 		{
-			if (stringsToCombine == null)
+			if (!stringsToCombine.Any())
 				return string.Empty;
 
 			List<string> strippedStringsToCombine = new();
@@ -122,7 +122,7 @@ namespace Elephant.Common
 		/// </summary>
 		public static string RemoveSubstringFromString(string source, string substringToRemove)
 		{
-			int index = source.IndexOf(substringToRemove);
+			int index = source.IndexOf(substringToRemove, StringComparison.Ordinal);
 
 			return index < 0 ? source : source.Remove(index, substringToRemove.Length);
 		}

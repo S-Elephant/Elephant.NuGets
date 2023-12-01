@@ -11,7 +11,7 @@
             /// <summary>
             /// Sqlite primitive version of the Blob.
             /// </summary>
-            public const string Blob = "BLOB";
+            public const string BlobPrimitive = "BLOB";
 
             /// <summary>
             /// Sqlite primitive version of the <see cref="int"/>.
@@ -21,7 +21,7 @@
             /// <summary>
             /// Sqlite primitive version of the Real (also used for floats and doubles.
             /// </summary>
-            public const string Real = "REAL";
+            public const string RealPrimitive = "REAL";
 
             /// <summary>
             /// Sqlite primitive version of the <see cref="string"/>.
@@ -30,9 +30,9 @@
         }
 
         /// <summary>
-        /// A <see cref="Primitives.Blob"/>.
+        /// A <see cref="Primitives.BlobPrimitive"/>.
         /// </summary>
-        public const string Blob = Primitives.Blob;
+        public const string Blob = Primitives.BlobPrimitive;
 
         /// <summary>
         /// A <see cref="bool"/> which in Sqlite is a <see cref="Primitives.Integer"/>.
@@ -50,14 +50,14 @@
         public const string DateTime = Primitives.Text;
 
         /// <summary>
-        /// <see cref="Decimal"/> 12,4 which in Sqlite is a <see cref="Primitives.Real"/>.
+        /// <see cref="Decimal"/> 12,4 which in Sqlite is a <see cref="Primitives.RealPrimitive"/>.
         /// </summary>
-        public const string Decimal = Primitives.Real;
+        public const string Decimal = Primitives.RealPrimitive;
 
         /// <summary>
-        /// <see cref="double"/> 12,4 which in Sqlite is a <see cref="Primitives.Real"/>.
+        /// <see cref="double"/> 12,4 which in Sqlite is a <see cref="Primitives.RealPrimitive"/>.
         /// </summary>
-        public const string Double = Primitives.Real;
+        public const string Double = Primitives.RealPrimitive;
 
         /// <summary>
         /// E-mail which in Sqlite is a <see cref="Primitives.Text"/>.
@@ -76,9 +76,9 @@
         public const string EnumAsString = Primitives.Text;
 
         /// <summary>
-        /// <see cref="float"/> which in Sqlite is a <see cref="Primitives.Real"/>.
+        /// <see cref="float"/> which in Sqlite is a <see cref="Primitives.RealPrimitive"/>.
         /// </summary>
-        public const string Float = Primitives.Real;
+        public const string Float = Primitives.RealPrimitive;
 
         /// <summary>
         /// GUID which in Sqlite is a <see cref="Primitives.Text"/>.
@@ -101,9 +101,9 @@
         public const string Password = Primitives.Text;
 
         /// <summary>
-        /// A <see cref="Primitives.Real"/> which in Sqlite is a <see cref="Primitives.Real"/>.
+        /// A <see cref="Primitives.RealPrimitive"/> which in Sqlite is a <see cref="Primitives.RealPrimitive"/>.
         /// </summary>
-        public const string Real = Primitives.Real;
+        public const string Real = Primitives.RealPrimitive;
 
         /// <summary>
         /// <see cref="string"/> with maximum size which in Sqlite is a <see cref="Primitives.Text"/>.

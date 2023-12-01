@@ -1,5 +1,3 @@
-using Elephant.Testing.Xunit;
-
 namespace Elephant.UndoRedo.Tests
 {
 	/// <summary>
@@ -15,6 +13,7 @@ namespace Elephant.UndoRedo.Tests
 			/// <summary>
 			/// Test value.
 			/// </summary>
+			// ReSharper disable once UnusedAutoPropertyAccessor.Local
 			private int Value { get; set; }
 
 			/// <summary>
@@ -30,24 +29,24 @@ namespace Elephant.UndoRedo.Tests
 		/// <see cref="UndoRedo{TStateType}"/> nullable class test.
 		/// </summary>
 		[Fact]
-		[SpeedVeryFast]
+		[SpeedVeryFast, UnitTest]
 		public void CurrentStateReturnsExpected()
 		{
 			// Arrange.
-			DataTest? LastItem = new(100);
-			UndoRedo<DataTest?> undoRedo = new(new List<DataTest?> { new(1), new(3), new(5), new(6), new(9), LastItem });
+			DataTest lastItem = new(100);
+			UndoRedo<DataTest?> undoRedo = new(new List<DataTest?> { new(1), new(3), new(5), new(6), new(9), lastItem });
 
 			DataTest? result = undoRedo.CurrentState;
 
 			// Assert.
-			Assert.Equal(LastItem, result);
+			Assert.Equal(lastItem, result);
 		}
 
 		/// <summary>
 		/// <see cref="UndoRedo{TStateType}"/> reference type null test.
 		/// </summary>
 		[Fact]
-		[SpeedVeryFast]
+		[SpeedVeryFast, UnitTest]
 		public void CurrentReferenceTypeStateReturnsNull()
 		{
 			// Arrange.
@@ -63,7 +62,7 @@ namespace Elephant.UndoRedo.Tests
 		/// <see cref="UndoRedo{TStateType}"/> value type null test.
 		/// </summary>
 		[Fact]
-		[SpeedVeryFast]
+		[SpeedVeryFast, UnitTest]
 		public void CurrentValueTypeStateReturnsNull()
 		{
 			// Arrange.
@@ -79,24 +78,24 @@ namespace Elephant.UndoRedo.Tests
 		/// <see cref="UndoRedo{TStateType}"/> reference type nullable test.
 		/// </summary>
 		[Fact]
-		[SpeedVeryFast]
+		[SpeedVeryFast, UnitTest]
 		public void CurrentReferenceTypeStateReturnsCorrect()
 		{
 			// Arrange.
-			DataTest? LastItem = new(-100);
-			UndoRedo<DataTest?> undoRedo = new(new List<DataTest?> { null, LastItem });
+			DataTest lastItem = new(-100);
+			UndoRedo<DataTest?> undoRedo = new(new List<DataTest?> { null, lastItem });
 
 			DataTest? result = undoRedo.CurrentState;
 
 			// Assert.
-			Assert.Equal(LastItem, result);
+			Assert.Equal(lastItem, result);
 		}
 
 		/// <summary>
 		/// <see cref="UndoRedo{TStateType}"/> value type nullable test.
 		/// </summary>
 		[Fact]
-		[SpeedVeryFast]
+		[SpeedVeryFast, UnitTest]
 		public void CurrentValueTypeStateReturns10()
 		{
 			// Arrange.

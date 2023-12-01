@@ -150,8 +150,8 @@ namespace Elephant.Rijksdriehoek.Tests
 			if (expectedSuccess)
 			{
 				Assert.NotNull(rdCoordinate);
-				Assert.Equal(expectedX, rdCoordinate!.Value.X, 6f);
-				Assert.Equal(expectedY, rdCoordinate!.Value.Y, 6f);
+				Assert.Equal(expectedX, rdCoordinate.Value.X, 6f);
+				Assert.Equal(expectedY, rdCoordinate.Value.Y, 6f);
 			}
 			else
 			{

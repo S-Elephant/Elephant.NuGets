@@ -1,6 +1,4 @@
-﻿using Elephant.Testing.Xunit;
-
-namespace Elephant.UndoRedo.Tests
+﻿namespace Elephant.UndoRedo.Tests
 {
 	/// <summary>
 	/// Basic <see cref="UndoRedo{TStateType}.SaveState"/> and <see cref="UndoRedo{TStateType}.SaveStates"/> tests.
@@ -11,7 +9,7 @@ namespace Elephant.UndoRedo.Tests
 		/// <see cref="UndoRedo{TStateType}.SaveState"/> returns expected.
 		/// </summary>
 		[Fact]
-		[SpeedVeryFast]
+		[SpeedVeryFast, UnitTest]
 		public void SaveStateReturnsExpected()
 		{
 			// Arrange.
@@ -29,7 +27,7 @@ namespace Elephant.UndoRedo.Tests
 		/// <see cref="UndoRedo{TStateType}.SaveState"/> should return last saved state.
 		/// </summary>
 		[Fact]
-		[SpeedVeryFast]
+		[SpeedVeryFast, UnitTest]
 		public void SaveStateReturnsLastState()
 		{
 			// Arrange.
@@ -46,7 +44,7 @@ namespace Elephant.UndoRedo.Tests
 		/// <see cref="UndoRedo{TStateType}.SaveState"/> should return last saved state.
 		/// </summary>
 		[Fact]
-		[SpeedVeryFast]
+		[SpeedVeryFast, UnitTest]
 		public void SaveStatesSavesCorrectAmount()
 		{
 			// Arrange.

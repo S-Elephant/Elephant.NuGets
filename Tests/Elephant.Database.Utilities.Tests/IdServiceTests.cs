@@ -121,6 +121,7 @@ namespace Elephant.Database.Utilities.Tests
         public void InvalidConstructorParameterShouldThrow(int insertId, int firstInsertId)
         {
             // Arrange.
+            // ReSharper disable once ObjectCreationAsStatement
             Action a = () => new IdService(insertId, firstInsertId);
 
             // Act/Assert.
