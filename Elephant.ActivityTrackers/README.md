@@ -1,4 +1,4 @@
-[![Nuget downloads](https://img.shields.io/nuget/v/Elephant.ActivityTracker)](https://www.nuget.org/packages/Elephant.ActivityTracker/) [![NuGet Downloads](https://img.shields.io/nuget/dt/Elephant.ActivityTracker.svg)](https://www.nuget.org/packages/Elephant.ActivityTracker/) ![Workflow](https://github.com/S-Elephant/Elephant.NuGets/actions/workflows/GitHubActions.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/S-Elephant/Elephant.NuGets/tree/master/Elephant.ActivityTracker/LICENSE.txt)
+[![Nuget downloads](https://img.shields.io/nuget/v/Elephant.ActivityTrackers)](https://www.nuget.org/packages/Elephant.ActivityTrackers/) [![NuGet Downloads](https://img.shields.io/nuget/dt/Elephant.ActivityTrackers.svg)](https://www.nuget.org/packages/Elephant.ActivityTrackers/) ![Workflow](https://github.com/S-Elephant/Elephant.NuGets/actions/workflows/GitHubActions.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/S-Elephant/Elephant.NuGets/tree/master/Elephant.ActivityTrackers/LICENSE.txt)
 
 # About
 
