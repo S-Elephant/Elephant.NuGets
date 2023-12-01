@@ -39,7 +39,7 @@
     </PackageReference>
   </ItemGroup>
 
-  <!-- Package README and LICENSE files -->
+  <!-- Package README -->
   <ItemGroup>
     <None Include="README.md" Pack="True" PackagePath="\" />
   </ItemGroup>
