@@ -11,7 +11,7 @@ namespace Elephant.Types.ResponseWrappers
 		/// <summary>
 		/// Generic success HTTP success status code.
 		/// </summary>
-		private const int Status200OK = 200;
+		private const int Status200Ok = 200;
 
 		/// <summary>
 		/// Created HTTP success status code.
@@ -65,7 +65,7 @@ namespace Elephant.Types.ResponseWrappers
         }
 
 		/// <inheritdoc/>
-		public int StatusCode { get; protected set; } = Status200OK;
+		public int StatusCode { get; protected set; } = Status200Ok;
 
 		/// <inheritdoc/>
 		public string? Message { get; set; } = null;
@@ -147,7 +147,7 @@ namespace Elephant.Types.ResponseWrappers
         /// <inheritdoc/>
 		public virtual IResponseWrapper<TData> Ok(string? message = "Success.")
 		{
-			return Success(Status200OK, message);
+			return Success(Status200Ok, message);
 		}
 
 		/// <inheritdoc/>

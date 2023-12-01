@@ -86,7 +86,7 @@ namespace Elephant.Common
             if (workingDirectory != null)
                 info.WorkingDirectory = workingDirectory;
 
-            Process? process = null;
+            Process? process;
             try
             {
                 process = Process.Start(info);

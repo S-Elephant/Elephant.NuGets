@@ -1,6 +1,5 @@
 using System.Net;
 using Elephant.Types.Results.Abstractions;
-using Xunit.Sdk;
 
 namespace Elephant.Types.Results.Tests
 {

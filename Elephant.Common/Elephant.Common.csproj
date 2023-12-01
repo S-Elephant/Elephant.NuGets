@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>4.0.6</Version>
-    <PackageReleaseNotes>Add .NET 8 support.</PackageReleaseNotes>
+		<Version>4.0.7</Version>
+    <PackageReleaseNotes>Minor paginate bugfix if limit is smaller than 1 and StringOperation null-check.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->

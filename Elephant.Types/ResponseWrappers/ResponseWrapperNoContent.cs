@@ -12,6 +12,7 @@ namespace Elephant.Types.ResponseWrappers
         /// <summary>
         /// No content success HTTP status code.
         /// </summary>
+        // ReSharper disable once InconsistentNaming
         private const int StatusCodeNoContent = 204;
 
         /// <summary>
@@ -39,6 +40,7 @@ namespace Elephant.Types.ResponseWrappers
 		/// <summary>
 		/// No content success HTTP status code.
 		/// </summary>
+		// ReSharper disable once InconsistentNaming
 		private const int StatusCodeNoContent = 204;
 
 		/// <summary>

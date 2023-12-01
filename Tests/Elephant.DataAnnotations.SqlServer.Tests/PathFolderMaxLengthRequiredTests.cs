@@ -14,6 +14,7 @@ namespace Elephant.DataAnnotations.SqlServer.Tests
             /// Items to validate.
             /// </summary>
             [PathFolderMaxLengthRequired(2)]
+            // ReSharper disable once UnusedAutoPropertyAccessor.Local
             public string? Value { get; set; }
 
             /// <summary>

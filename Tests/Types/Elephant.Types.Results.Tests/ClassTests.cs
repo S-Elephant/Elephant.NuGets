@@ -1,5 +1,6 @@
 using System.Net;
 using Elephant.Types.Results.Abstractions;
+// ReSharper disable UnusedAutoPropertyAccessor.Local
 
 namespace Elephant.Types.Results.Tests
 {

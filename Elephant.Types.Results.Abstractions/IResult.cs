@@ -35,6 +35,7 @@
 		/// <summary>
 		/// HTTP status code. Defaults to 200.
 		/// </summary>
+		// ReSharper disable once InconsistentNaming
 		int StatusCode { get; }
 
 		/// <summary>

@@ -1,4 +1,5 @@
 using System.Globalization;
+// ReSharper disable UnusedAutoPropertyAccessor.Local
 
 namespace Elephant.DataAnnotations.Tests
 {
@@ -165,7 +166,7 @@ namespace Elephant.DataAnnotations.Tests
         public void ValidateByte(byte? value, bool expectedIsValid)
         {
             // Arrange.
-            ValidationTargetFloat target = new (value);
+            ValidationTargetByte target = new (value);
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
@@ -220,6 +221,7 @@ namespace Elephant.DataAnnotations.Tests
             /// Item to validate.
             /// </summary>
             [GreaterThanZero]
+            // ReSharper disable once UnusedMember.Local
             public AlwaysWrong Item { get; set; } = new ();
         }
 

@@ -121,7 +121,7 @@ namespace Elephant.Rijksdriehoek
 			try
 			{
 				// Remove the prefix and suffix.
-				string contents = pointString.Split(new string[] { "POINT(", ")" }, StringSplitOptions.None)[1];
+				string contents = pointString.Split(new[] { "POINT(", ")" }, StringSplitOptions.None)[1];
 
 				// Split the coordinates.
 				string[] split = contents.Split(' ', ',');

@@ -1,5 +1,3 @@
-using Elephant.Testing.Xunit;
-
 namespace Elephant.UndoRedo.Tests
 {
 	/// <summary>
@@ -11,7 +9,7 @@ namespace Elephant.UndoRedo.Tests
 		/// <see cref="UndoRedo{TStateType}.CanRedo"/> test.
 		/// </summary>
 		[Fact]
-		[SpeedVeryFast]
+		[SpeedVeryFast, UnitTest]
 		public void RedoReturns7()
 		{
 			// Arrange.
@@ -30,7 +28,7 @@ namespace Elephant.UndoRedo.Tests
 		/// <see cref="UndoRedo{TStateType}.CanRedo"/> test.
 		/// </summary>
 		[Fact]
-		[SpeedVeryFast]
+		[SpeedVeryFast, UnitTest]
 		public void RedoReturnsNegative10()
 		{
 			// Arrange.
@@ -49,7 +47,7 @@ namespace Elephant.UndoRedo.Tests
 		/// <see cref="UndoRedo{TStateType}.RedoXTimes"/> tests.
 		/// </summary>
 		[Theory]
-		[SpeedVeryFast]
+		[SpeedVeryFast, UnitTest]
 		[InlineData(1, 2)]
 		[InlineData(2, 5)]
 		[InlineData(3, 7)]
@@ -73,7 +71,7 @@ namespace Elephant.UndoRedo.Tests
 		/// until the end, if possible.
 		/// </summary>
 		[Fact]
-		[SpeedVeryFast]
+		[SpeedVeryFast, UnitTest]
 		public void UndoMoreThanPossibleIgnoringErrorsReturnsFirstState()
 		{
 			// Arrange.
@@ -92,7 +90,7 @@ namespace Elephant.UndoRedo.Tests
 		/// <see cref="UndoRedo{TStateType}.RedoAll"/> test.
 		/// </summary>
 		[Fact]
-		[SpeedVeryFast]
+		[SpeedVeryFast, UnitTest]
 		public void UndoUntilFirstReturnsFirstState()
 		{
 			// Arrange.

@@ -43,10 +43,7 @@ namespace Elephant.Common.Pagination
 		public static IQueryable<TSource> Paginate<TSource>(this IQueryable<TSource> source, int offset, int limit)
 		{
 			if (limit <= 0)
-			{
-				Enumerable.Empty<TSource>().AsQueryable();
-				return source;
-			}
+				return Enumerable.Empty<TSource>().AsQueryable();
 
 			// Max offset.
 			int totalPageCount = TotalPageCount(source.Count(), limit);

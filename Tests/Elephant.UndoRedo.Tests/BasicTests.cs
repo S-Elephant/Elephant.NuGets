@@ -1,5 +1,3 @@
-using Elephant.Testing.Xunit;
-
 namespace Elephant.UndoRedo.Tests
 {
 	/// <summary>
@@ -11,7 +9,7 @@ namespace Elephant.UndoRedo.Tests
 		/// <see cref="UndoRedo{TStateType}.UndoCount"/> test.
 		/// </summary>
 		[Fact]
-		[SpeedVeryFast]
+		[SpeedVeryFast, UnitTest]
 		public void NewUndoRedoHasZeroUndoCount()
 		{
 			// Arrange.
@@ -25,7 +23,7 @@ namespace Elephant.UndoRedo.Tests
 		/// <see cref="UndoRedo{TStateType}.RedoCount"/> test.
 		/// </summary>
 		[Fact]
-		[SpeedVeryFast]
+		[SpeedVeryFast, UnitTest]
 		public void NewUndoRedoHasZeroRedoCount()
 		{
 			// Arrange.
@@ -40,7 +38,7 @@ namespace Elephant.UndoRedo.Tests
 		/// false for <see cref="UndoRedo{TStateType}.CanUndo"/>.
 		/// </summary>
 		[Fact]
-		[SpeedVeryFast]
+		[SpeedVeryFast, UnitTest]
 		public void NewUndoRedoCantUndo()
 		{
 			// Arrange.
@@ -58,7 +56,7 @@ namespace Elephant.UndoRedo.Tests
 		/// false for <see cref="UndoRedo{TStateType}.CanRedo"/>.
 		/// </summary>
 		[Fact]
-		[SpeedVeryFast]
+		[SpeedVeryFast, UnitTest]
 		public void NewUndoRedoCantRedo()
 		{
 			// Arrange.
@@ -75,7 +73,7 @@ namespace Elephant.UndoRedo.Tests
 		/// <see cref="UndoRedo{TStateType}.Undo"/> throws if can't undo.
 		/// </summary>
 		[Fact]
-		[SpeedVeryFast]
+		[SpeedVeryFast, UnitTest]
 		public void UndoThrowsIfCantUndo()
 		{
 			// Arrange.
@@ -89,7 +87,7 @@ namespace Elephant.UndoRedo.Tests
 		/// <see cref="UndoRedo{TStateType}.Redo"/> throws if can't undo.
 		/// </summary>
 		[Fact]
-		[SpeedVeryFast]
+		[SpeedVeryFast, UnitTest]
 		public void RedoThrowsIfCantRedo()
 		{
 			// Arrange.
@@ -104,7 +102,7 @@ namespace Elephant.UndoRedo.Tests
 		/// the error is suppressed.
 		/// </summary>
 		[Fact]
-		[SpeedVeryFast]
+		[SpeedVeryFast, UnitTest]
 		public void UndoReturnsNullIfCantUndoAndSuppressed()
 		{
 			// Arrange.
@@ -122,7 +120,7 @@ namespace Elephant.UndoRedo.Tests
 		/// the error is suppressed.
 		/// </summary>
 		[Fact]
-		[SpeedVeryFast]
+		[SpeedVeryFast, UnitTest]
 		public void RedoReturnsNullIfCantRedoAndSuppressed()
 		{
 			// Arrange.

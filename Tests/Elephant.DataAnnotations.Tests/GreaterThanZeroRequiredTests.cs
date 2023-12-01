@@ -1,3 +1,4 @@
+// ReSharper disable UnusedAutoPropertyAccessor.Local
 namespace Elephant.DataAnnotations.Tests
 {
     /// <summary>
@@ -91,6 +92,7 @@ namespace Elephant.DataAnnotations.Tests
             /// Item to validate.
             /// </summary>
             [GreaterThanZeroRequired]
+            // ReSharper disable once UnusedMember.Local
             public AlwaysWrong Item { get; set; } = new ();
         }
 

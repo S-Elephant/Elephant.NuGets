@@ -9,6 +9,7 @@ namespace Elephant.Types.ResponseWrappers
 	public class ResponseWrapperConcurrencyConflict<TData> : ResponseWrapper<TData>
         where TData : new()
     {
+	    // ReSharper disable once InconsistentNaming
         private const int StatusCodeConflict = 409;
 
         /// <summary>
@@ -33,6 +34,7 @@ namespace Elephant.Types.ResponseWrappers
 	/// </summary>
 	public class ResponseWrapperConcurrencyConflict : ResponseWrapper
 	{
+		// ReSharper disable once InconsistentNaming
 		private const int StatusCodeConflict = 409;
 
 		/// <summary>

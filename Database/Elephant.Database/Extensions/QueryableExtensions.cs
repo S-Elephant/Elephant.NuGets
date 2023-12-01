@@ -45,7 +45,7 @@ namespace Elephant.Database.Extensions
 			Expression methodCallExpression = Expression.Call(
 				typeof(Queryable),
 				methodName,
-				new Type[] { source.ElementType, property.Type },
+				new[] { source.ElementType, property.Type },
 				source.Expression,
 				Expression.Quote(lambda));
 

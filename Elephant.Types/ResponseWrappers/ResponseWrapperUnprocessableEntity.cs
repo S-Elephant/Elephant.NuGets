@@ -9,6 +9,7 @@ namespace Elephant.Types.ResponseWrappers
 	public class ResponseWrapperUnprocessableEntity<TData> : ResponseWrapper<TData>
         where TData : new()
     {
+	    // ReSharper disable once InconsistentNaming
         private const int StatusCodeUnprocessableEntity = 422;
 
         /// <summary>
@@ -33,6 +34,7 @@ namespace Elephant.Types.ResponseWrappers
 	/// </summary>
 	public class ResponseWrapperUnprocessableEntity : ResponseWrapper
 	{
+		// ReSharper disable once InconsistentNaming
 		private const int StatusCodeUnprocessableEntity = 422;
 
 		/// <summary>

@@ -9,12 +9,13 @@ namespace Elephant.Types.ResponseWrappers
 	public class ResponseWrapperNoRecordsAffected<TData> : ResponseWrapper<TData>
         where TData : new()
     {
-        private const int StatusCodeInternalServerError = 500;
+	    // ReSharper disable once InconsistentNaming
+	    private const int StatusCodeInternalServerError = 500;
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public ResponseWrapperNoRecordsAffected(TData? data = default, string message = "No records affected.")
+	    public ResponseWrapperNoRecordsAffected(TData? data = default, string message = "No records affected.")
             : base(data, StatusCodeInternalServerError, message)
         {
         }
@@ -22,7 +23,7 @@ namespace Elephant.Types.ResponseWrappers
         /// <summary>
         /// Constructor.
         /// </summary>
-        public ResponseWrapperNoRecordsAffected(string message)
+	    public ResponseWrapperNoRecordsAffected(string message)
             : base(default, StatusCodeInternalServerError, message)
         {
         }
@@ -33,6 +34,7 @@ namespace Elephant.Types.ResponseWrappers
 	/// </summary>
 	public class ResponseWrapperNoRecordsAffected : ResponseWrapper
 	{
+		// ReSharper disable once InconsistentNaming
 		private const int StatusCodeInternalServerError = 500;
 
 		/// <summary>

@@ -72,7 +72,7 @@ namespace Elephant.Database.MongoDb.DependencyInjection
 			});
 			services.AddSingleton<IMongoContextOptionsBuilder>(provider =>
 			{
-				IMongoDatabase? database = provider.GetRequiredService<IMongoDatabase>();
+				IMongoDatabase database = provider.GetRequiredService<IMongoDatabase>();
 				return new MongoContextOptionsBuilder(database);
 			});
 		}

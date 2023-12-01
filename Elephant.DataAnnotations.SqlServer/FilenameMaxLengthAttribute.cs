@@ -41,7 +41,7 @@ namespace Elephant.DataAnnotations.SqlServer
 			if (isValid)
 				return ValidationResult.Success;
 
-			return new ValidationResult($"Length cannot be more than {MaxLength}. Actual: {value!.ToString().Length}.");
+			return new ValidationResult($"Length cannot be more than {MaxLength}. Actual: {(value!.ToString() ?? "").Length}.");
 		}
 	}
 }

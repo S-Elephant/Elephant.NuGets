@@ -29,9 +29,11 @@
 		/// </summary>
 		public static bool ContainsNone<TSource>(this IEnumerable<TSource> source, IEnumerable<TSource> values)
 		{
+			// ReSharper disable once PossibleMultipleEnumeration (B). Because otherwise it will execute the query.
 			if (!source.Any() || !values.Any())
 				return true;
 
+			// ReSharper disable once PossibleMultipleEnumeration (B). Because otherwise it will execute the query.
 			return !source.Intersect(values).Any(); // Note: LINQ Intersect returns the common elements from both collections.
 		}
 
@@ -92,6 +94,7 @@
 			if (source == null)
 				return true;
 
+			// ReSharper disable once PossibleMultipleEnumeration (B). Because otherwise it will execute the query.
 			return source.Distinct().Count() == source.Count();
 		}
 	}

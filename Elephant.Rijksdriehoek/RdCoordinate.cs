@@ -102,7 +102,7 @@ namespace Elephant.Rijksdriehoek
 		public static bool operator !=(RdCoordinate left, RdCoordinate right) => !(left == right);
 
 #if NETSTANDARD2_0 || NETSTANDARD2_1
-		/// <inheritdoc/>
+		/// <inheritdoc cref="object.Equals(object)"/>
 		public override bool Equals(object? obj)
 #else
 		/// <inheritdoc/>
@@ -121,7 +121,7 @@ namespace Elephant.Rijksdriehoek
 #endif
 		}
 
-		/// <inheritdoc/>
+		/// <inheritdoc cref="object.GetHashCode"/>
 		public override int GetHashCode()
 		{
 			unchecked

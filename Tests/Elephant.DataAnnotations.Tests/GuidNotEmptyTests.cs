@@ -1,3 +1,4 @@
+// ReSharper disable UnusedAutoPropertyAccessor.Local
 namespace Elephant.DataAnnotations.Tests
 {
 	/// <summary>

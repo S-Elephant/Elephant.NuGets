@@ -1,5 +1,6 @@
 ﻿using System;
 using Elephant.GeoSystems.Validators;
+// ReSharper disable RedundantCast
 
 namespace Elephant.GeoSystems.Converters
 {

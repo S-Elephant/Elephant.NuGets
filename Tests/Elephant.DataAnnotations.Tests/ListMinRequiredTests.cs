@@ -1,3 +1,4 @@
+// ReSharper disable UnusedMember.Local
 namespace Elephant.DataAnnotations.Tests
 {
     /// <summary>
@@ -37,6 +38,7 @@ namespace Elephant.DataAnnotations.Tests
             /// Items to validate.
             /// </summary>
             [ListMin(10)]
+            // ReSharper disable once UnusedAutoPropertyAccessor.Local
             public List<int>? Items { get; set; }
 
             /// <summary>
