@@ -57,3 +57,9 @@ StartOnOsStart.DeregisterFromStartup(string applicationName)
 ## Various
 
 Base entities.
+
+# Upgrade instructions
+
+## 4.0.7 &rarr; 5.0.0
+
+- PaginationHelper.Paginate(this IQueryable<TSource> source, IPaginationRequest paginationRequest) now returns all records instead of none if the limit property of IPaginationRequest is less or equal than zero (this is in line with the other overloads and pagination performance is increased for these cases).

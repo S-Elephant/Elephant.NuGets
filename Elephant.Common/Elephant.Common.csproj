@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>4.0.7</Version>
-    <PackageReleaseNotes>Minor paginate bugfix if limit is smaller than 1 and StringOperation null-check.</PackageReleaseNotes>
+		<Version>5.0.0</Version>
+    <PackageReleaseNotes>Paginate with IPaginationRequest param now returns all if invalid limit.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->

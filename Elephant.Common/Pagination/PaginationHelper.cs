@@ -5,52 +5,61 @@ namespace Elephant.Common.Pagination
 	/// <summary>
 	/// Pagination utilities and extensions using offsets and limits.
 	/// Page numbers (=offset) start at 0 and pagesize = limit.
+	/// If limit is smaller than 1 then no limit will be applied.
 	/// </summary>
 	public static class PaginationHelper
 	{
 		/// <summary>
-		/// Returns the paginated <paramref name="source"/>.
-		/// If <paramref name="limit"/> is smaller or equal to 0 them an empty List will be returned.
+		/// Paginates <paramref name="source"/> and returns the paginated <paramref name="source"/>.
 		/// <paramref name="offset"/> is capped to the maximum possible value.
 		/// </summary>
 		/// <param name="source">The unpaginated elements.</param>
 		/// <param name="offset">Starts at 0.</param>
-		/// <param name="limit">Number of items per page.</param>
+		/// <param name="limit">
+		/// Maximum number of items per page. If it's zero or less or equals to
+		/// <see cref="int.MaxValue"/> then no limit will be applied.
+		/// </param>
 		public static List<TSource> Paginate<TSource>(IList<TSource> source, int offset, int limit)
 		{
-			if (limit <= 0)
-			{
-				source.Clear();
-				return source.ToList();
-			}
+			if (offset < 0)
+				offset = 0;
 
 			// Max offset.
-			int totalPageCount = TotalPageCount(source.Count(), limit);
+			int totalPageCount = TotalPageCount(source.Count, limit);
 			if (offset > totalPageCount)
 				offset = totalPageCount - 1;
 
-			return source.Skip(offset * limit).Take(limit).ToList();
+			source = source.Skip(offset * limit).Take(limit).ToList();
+			if (limit <= 0 || limit == int.MaxValue)
+				return source.ToList();
+			return source.Take(limit).ToList();
 		}
 
 		/// <summary>
 		/// Use this overload for database Linq queries. Returns the paginated <paramref name="source"/>.
-		/// If <paramref name="limit"/> is smaller or equal to 0 them an empty IQueryable will be returned.
 		/// <paramref name="offset"/> is capped to the maximum possible value.
 		/// </summary>
 		/// <param name="source">The unpaginated elements.</param>
 		/// <param name="offset">Starts at 0.</param>
-		/// <param name="limit">Maximum number of items per page.</param>
+		/// <param name="limit">
+		/// Maximum number of items per page. If it's zero or less or equals to
+		/// <see cref="int.MaxValue"/> then no limit will be applied.
+		/// </param>
 		public static IQueryable<TSource> Paginate<TSource>(this IQueryable<TSource> source, int offset, int limit)
 		{
-			if (limit <= 0)
-				return Enumerable.Empty<TSource>().AsQueryable();
+			if (offset < 0)
+				offset = 0;
 
 			// Max offset.
 			int totalPageCount = TotalPageCount(source.Count(), limit);
 			if (offset > totalPageCount)
 				offset = totalPageCount - 1;
 
-			return source.Skip(offset * limit).Take(limit);
+			IQueryable<TSource> resultWithOffset = source.Skip(offset * limit);
+
+			if (limit <= 0 || limit == int.MaxValue)
+				return resultWithOffset;
+			return resultWithOffset.Take(limit);
 		}
 
 		/// <summary>
@@ -58,7 +67,7 @@ namespace Elephant.Common.Pagination
 		/// </summary>
 		public static IQueryable<TSource> Paginate<TSource>(this IQueryable<TSource> source, IPaginationRequest paginationRequest)
 		{
-			return source.Skip((paginationRequest.Offset) * paginationRequest.Limit).Take(paginationRequest.Limit);
+			return source.Paginate(paginationRequest.Offset, paginationRequest.Limit);
 		}
 
 		/// <summary>
