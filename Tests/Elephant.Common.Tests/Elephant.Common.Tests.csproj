@@ -25,6 +25,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\Elephant.Common\Elephant.Common.csproj" />
+		<ProjectReference Include="..\..\Elephant.Models\Elephant.Models.csproj" />
 		<ProjectReference Include="..\..\Testing\Elephant.Testing.Xunit\Elephant.Testing.Xunit.csproj" />
 	</ItemGroup>
 

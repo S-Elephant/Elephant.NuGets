@@ -1,4 +1,5 @@
 using Elephant.Common.Pagination;
+using Elephant.Models.RequestModels;
 
 namespace Elephant.Common.Tests.Pagination
 {
@@ -23,10 +24,13 @@ namespace Elephant.Common.Tests.Pagination
 		[InlineData(3, 103, 999, 10)]
 		public void PaginateCountTests(int expectedCount, int sourceCount, int offset, int limit)
 		{
+			// Arrange.
 			List<int> source = Enumerable.Range(1, sourceCount).ToList();
 
+			// Act.
 			List<int> paginatedResult = PaginationHelper.Paginate(source, offset, limit);
 
+			// Assert.
 			Assert.Equal(expectedCount, paginatedResult.Count);
 		}
 
@@ -42,11 +46,14 @@ namespace Elephant.Common.Tests.Pagination
 		[InlineData(106, 110, 3, 35)]
 		public void PaginateExpectedFirstValueTests(int expectedFirstValue, int sourceCount, int offset, int limit)
 		{
+			// Arrange.
 			List<int> source = Enumerable.Range(1, sourceCount).ToList();
 
+			// Act.
 			List<int> paginatedResult = PaginationHelper.Paginate(source, offset, limit);
 
-			Assert.Equal(expectedFirstValue, paginatedResult.First());
+			// Assert.
+			Assert.Equal(expectedFirstValue, paginatedResult[0]);
 		}
 
 		/// <summary>
@@ -62,11 +69,14 @@ namespace Elephant.Common.Tests.Pagination
 		[InlineData(110, 110, 3, 35)]
 		public void PaginateExpectedLastValueTests(int expectedLastValue, int sourceCount, int offset, int limit)
 		{
+			// Arrange.
 			List<int> source = Enumerable.Range(1, sourceCount).ToList();
 
+			// Act.
 			List<int> paginatedResult = PaginationHelper.Paginate(source, offset, limit);
 
-			Assert.Equal(expectedLastValue, paginatedResult.Last());
+			// Assert.
+			Assert.Equal(expectedLastValue, paginatedResult[^1]);
 		}
 
 		/// <summary>
@@ -149,6 +159,73 @@ namespace Elephant.Common.Tests.Pagination
 		public void IsLastPageNumber(bool expected, int sourceCount, int offset, int limit)
 		{
 			Assert.Equal(expected, PaginationHelper.IsLastPage(sourceCount, offset, limit));
+		}
+
+		/// <summary>
+		/// <see cref="PaginationHelper.Paginate{TSource}(IList{TSource},int,int)"/> test
+		/// with a limit of zero or less should return zero.
+		/// </summary>
+		[Theory]
+		[SpeedVeryFast, UnitTest]
+		[InlineData(0, 0, -1)]
+		[InlineData(0, 0, 0)]
+		[InlineData(0, 500, -400)]
+		[InlineData(0, 500, -500)]
+		[InlineData(0, 500, 0)]
+		public void PaginateWithZeroOrLessLimitReturnsZero(int expectedCount, int offset, int limit)
+		{
+			// Arrange.
+			List<int> source = Enumerable.Range(1, 10).ToList();
+
+			// Act.
+			List<int> result = PaginationHelper.Paginate(source, offset, limit);
+
+			// Assert.
+			Assert.Equal(expectedCount, result.Count);
+		}
+
+		/// <summary>
+		/// <see cref="PaginationHelper.Paginate{TSource}(IList{TSource},int,int)"/> test
+		/// with a limit of zero or less should return zero.
+		/// </summary>
+		[Theory]
+		[SpeedVeryFast, UnitTest]
+		[InlineData(0, -1)]
+		[InlineData(0, 0)]
+		[InlineData(500, -400)]
+		[InlineData(500, -500)]
+		[InlineData(500, 0)]
+		public void PaginateOverloadWithZeroOrLessLimitReturnsAll(int offset, int limit)
+		{
+			// Arrange.
+			IQueryable<int> source = Enumerable.Range(1, 10).AsQueryable();
+
+			// Act.
+			List<int> result = PaginationHelper.Paginate(source, new PaginationRequest(offset, limit)).ToList();
+
+			// Assert.
+			Assert.Equal(10, result.Count);
+		}
+
+		/// <summary>
+		/// IQueryable version of Paginate test.
+		/// </summary>
+		[Theory]
+		[InlineData(1, 9, 1)]
+		[InlineData(5, 0, 5)] // Test with the first page.
+		[InlineData(5, 1, 5)] // Test with the second page.
+		[InlineData(3, 2, 3)] // Test with a smaller page size.
+		public void PaginateWithValidInputsReturnsCorrectPage(int expectedCount, int offset, int limit)
+		{
+			// Arrange.
+			IQueryable<int> source = Enumerable.Range(1, 10).AsQueryable();
+
+			// Act.
+			List<int> result = source.Paginate(offset, limit).ToList();
+
+			// Assert.
+			Assert.Equal(expectedCount, result.Count);
+			Assert.Equal(source.Skip(offset * limit).Take(limit), result);
 		}
 	}
 }
