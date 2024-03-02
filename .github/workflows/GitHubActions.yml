@@ -34,7 +34,7 @@ jobs:
     runs-on: windows-latest # Note: ubuntu-latest doesn't work because of MAUI.
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       # Setup Java SDK v.11.
       - name: Set up JDK 11
@@ -46,7 +46,7 @@ jobs:
       # Setup .NET SDK for .NET 8.
       # .NET 6 and 7 seem already installed on windows-latest image but .NET 8 not (yet).
       - name: Setup .NET SDK
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '8.0.0'
 
@@ -73,7 +73,7 @@ jobs:
     runs-on: windows-latest # Note: ubuntu-latest doesn't work because of MAUI.
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       # Setup Java SDK v.11.
       - name: Set up JDK 11
@@ -85,7 +85,7 @@ jobs:
       # Setup .NET SDK for .NET 8.
       # .NET 6 and 7 seem already installed on windows-latest image but .NET 8 not (yet).
       - name: Setup .NET SDK
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '8.0.0'
 
