@@ -8,6 +8,7 @@
 
   <!-- Core -->
   <PropertyGroup>
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
     <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -34,10 +35,6 @@
   <!-- Dependencies -->
   <ItemGroup>
     <PackageReference Include="MongoDB.Driver" Version="2.19.2" />
-  </ItemGroup>
-
-  <!-- Dependencies -->
-  <ItemGroup>
     <ProjectReference Include="..\Elephant.Database.MongoDb.Types.Abstractions\Elephant.Database.MongoDb.Types.Abstractions.csproj" />
   </ItemGroup>
 

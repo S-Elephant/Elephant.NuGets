@@ -14,7 +14,7 @@
 		<Nullable>enable</Nullable>
 		<Company>SquirtingElephant</Company>
 		<Authors>SquirtingElephant</Authors>
-		<Description>Extensions library.</Description>
+		<Description>Library that provides efficient and easy-to-use implementations of various sorting algorithms.</Description>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 	</PropertyGroup>
 
@@ -33,7 +33,7 @@
 
 	<!-- StyleCop (only in Debug configuration) -->
 	<ItemGroup Condition="'$(Configuration)' == 'Debug'">
-		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+		<PackageReference Include="StyleCop.Analyzers">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>

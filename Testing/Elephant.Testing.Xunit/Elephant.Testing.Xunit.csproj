@@ -34,12 +34,12 @@
 
 	<!-- Dependencies -->
 	<ItemGroup>
-		<PackageReference Include="xunit.extensibility.core" Version="2.6.1" />
+		<PackageReference Include="xunit.extensibility.core" />
 	</ItemGroup>
 
 	<!-- StyleCop (only in Debug configuration) -->
 	<ItemGroup Condition="'$(Configuration)' == 'Debug'">
-		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+		<PackageReference Include="StyleCop.Analyzers">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>

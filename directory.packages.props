@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <PropertyGroup>
+	<!-- If true, globally enables centralized NuGet package versions. This means that the version numbers must be managed centrally but the package reference
+	must still be added to the csproj files. -->
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+	
+	<!--
+	By default, in CPVM, transitive dependencies are floated, meaning they can resolve to higher versions than those directly specified, as long as they meet
+	the version constraints defined by the directly referenced packages. This behavior aligns with the traditional way NuGet resolves dependencies, promoting
+	the use of the latest compatible versions and thereby benefiting from bug fixes	and performance improvements in those libraries.
+
+	The CentralPackageTransitivePinningEnabled property, when set to true, changes this behavior for projects using CPVM. It "pins" the versions of transitive
+	dependencies to the exact versions specified in the central versions file (assuming a version is specified there). This means that even if a higher version of a
+	transitive dependency is available and compatible, NuGet will use the exact version specified in your central version management file for all projects in the
+	solution.
+	-->
+    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+  </PropertyGroup>
+  <ItemGroup>	
+    <PackageVersion Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+	<PackageVersion Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+	<PackageVersion Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+	<PackageVersion Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
+	<PackageVersion Include="StyleCop.Analyzers" Version="1.1.118" />
+	<PackageVersion Include="System.ComponentModel.Annotations" Version="5.0.0" />
+	<PackageVersion Include="System.Linq.Async" Version="6.0.1" />
+	
+	<!-- Tests -->
+	<PackageVersion Include="coverlet.collector" Version="6.0.0" />
+	<PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.0" />
+	<PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+	<PackageVersion Include="xunit" Version="2.6.1" />
+	<PackageVersion Include="xunit.categories" Version="2.0.8" />
+	<PackageVersion Include="xunit.extensibility.core" Version="2.6.1" />
+	<PackageVersion Include="xunit.runner.visualstudio" Version="2.5.3" />
+	
+	<!-- MongoDB -->
+	<PackageVersion Include="MongoDB.Bson" Version="2.19.2" />
+	<PackageVersion Include="MongoDB.Driver" Version="2.19.2" />
+  </ItemGroup>
+</Project>
