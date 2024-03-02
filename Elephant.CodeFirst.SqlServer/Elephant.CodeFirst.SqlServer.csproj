@@ -33,7 +33,7 @@
 
 	<!-- StyleCop (only in Debug configuration) -->
 	<ItemGroup Condition="'$(Configuration)' == 'Debug'">
-		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+		<PackageReference Include="StyleCop.Analyzers">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
@@ -41,23 +41,18 @@
 
 	<!-- Dependencies -->
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
-		<ProjectReference Include="..\Constants\Elephant.Constants.SqlServer\Elephant.Constants.SqlServer.csproj" />
+		<PackageReference Include="Microsoft.AspNetCore.Http" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" />
+    <ProjectReference Include="..\Constants\Elephant.Constants.SqlServer\Elephant.Constants.SqlServer.csproj" />
 		<ProjectReference Include="..\Elephant.Common\Elephant.Common.csproj" />
 		<ProjectReference Include="..\Elephant.Types.Interfaces\Elephant.Types.Interfaces.csproj" />
 	</ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.0" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.0" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.0" />
-  </ItemGroup>
+
+  <!-- Target framework dependent dependencies -->
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('directory.packages.net60.props'))" Condition="'$(TargetFramework)' == 'net6.0'" />
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('directory.packages.net70.props'))" Condition="'$(TargetFramework)' == 'net7.0'" />
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('directory.packages.net80.props'))" Condition="'$(TargetFramework)' == 'net8.0'" />
 
   <!-- Package README -->
   <ItemGroup>

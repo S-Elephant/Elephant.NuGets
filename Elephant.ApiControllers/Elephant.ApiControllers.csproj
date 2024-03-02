@@ -33,7 +33,7 @@
 
 	<!-- Dependencies -->
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" />
     <ProjectReference Include="..\Elephant.Common\Elephant.Common.csproj" />
     <ProjectReference Include="..\Elephant.Types.Interfaces\Elephant.Types.Interfaces.csproj" />
     <ProjectReference Include="..\Elephant.Types.Results.Abstractions\Elephant.Types.Results.Abstractions.csproj" />
@@ -41,7 +41,7 @@
 
 	<!-- StyleCop (only in Debug configuration) -->
 	<ItemGroup Condition="'$(Configuration)' == 'Debug'">
-		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+		<PackageReference Include="StyleCop.Analyzers">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>

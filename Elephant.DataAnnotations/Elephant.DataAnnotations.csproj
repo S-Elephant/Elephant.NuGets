@@ -35,12 +35,12 @@
 
 	<!-- Dependencies -->
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
+		<PackageReference Include="Microsoft.AspNetCore.Http.Features" />
 	</ItemGroup>
 
 	<!-- StyleCop (only in Debug configuration) -->
 	<ItemGroup Condition="'$(Configuration)' == 'Debug'">
-		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+		<PackageReference Include="StyleCop.Analyzers">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>

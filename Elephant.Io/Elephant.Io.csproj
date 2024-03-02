@@ -33,12 +33,12 @@
 
   <!-- Dependencies -->
   <ItemGroup>
-    <PackageReference Include="System.Linq.Async" Version="6.0.1" />
+    <PackageReference Include="System.Linq.Async" />
   </ItemGroup>
 
   <!-- StyleCop (only in Debug configuration) -->
 	<ItemGroup Condition="'$(Configuration)' == 'Debug'">
-		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+		<PackageReference Include="StyleCop.Analyzers">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
