@@ -107,7 +107,7 @@
         [InlineData("/a/A/", "a", null, "A")]
         [InlineData("/A/", null, null, "A")]
         [InlineData("/A/", null, null, "/A/")]
-        public void TestIfNullWithNonNullValuesIgnoresNullValues(string expected, string stringA, string stringB, string stringC)
+        public void TestIfNullWithNonNullValuesIgnoresNullValues(string expected, string? stringA, string? stringB, string? stringC)
         {
             string joinedString = StringOperations.JoinWithLeadingAndTrailing('/', stringA, stringB, stringC);
 
