@@ -2,14 +2,14 @@
 
   <!-- This must be updated for every release -->
   <PropertyGroup>
-    <Version>1.0.1</Version>
-    <PackageReleaseNotes>Add .NET 8 support.</PackageReleaseNotes>
+    <Version>1.0.2</Version>
+    <PackageReleaseNotes>Add .NET 9 target framework.</PackageReleaseNotes>
   </PropertyGroup>
 
   <!-- Core -->
   <PropertyGroup>
     <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
-    <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net7.0;net8.0;net9.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
