@@ -2,13 +2,13 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.0.9</Version>
-    <PackageReleaseNotes>Add .NET 8 support.</PackageReleaseNotes>
+		<Version>1.0.10</Version>
+		<PackageReleaseNotes>Add .NET 9 target framework.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
 	<PropertyGroup>
-		<TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
+		<TargetFrameworks>net6.0;net7.0;net8.0;net9.0</TargetFrameworks>
 		<LangVersion>latest</LangVersion>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
@@ -53,6 +53,7 @@
   <Import Project="$([MSBuild]::GetPathOfFileAbove('directory.packages.net60.props'))" Condition="'$(TargetFramework)' == 'net6.0'" />
   <Import Project="$([MSBuild]::GetPathOfFileAbove('directory.packages.net70.props'))" Condition="'$(TargetFramework)' == 'net7.0'" />
   <Import Project="$([MSBuild]::GetPathOfFileAbove('directory.packages.net80.props'))" Condition="'$(TargetFramework)' == 'net8.0'" />
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('directory.packages.net90.props'))" Condition="'$(TargetFramework)' == 'net9.0'" />
 
   <!-- Package README -->
   <ItemGroup>
