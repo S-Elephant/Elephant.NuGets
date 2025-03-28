@@ -34,21 +34,27 @@ jobs:
     runs-on: windows-latest # Note: ubuntu-latest doesn't work because of MAUI.
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Setup Java SDK v.11.
       - name: Set up JDK 11
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v4
         with:
           java-version: '11'
           distribution: 'adopt'
 
       # Setup .NET SDK for .NET 8.
       # .NET 6 and 7 seem already installed on windows-latest image but .NET 8 not (yet).
-      - name: Setup .NET SDK
-        uses: actions/setup-dotnet@v3
+      - name: Setup .NET 8 SDK
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.102'
+
+      # Setup .NET SDK for .NET 9.
+      - name: Install .NET 9 SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
 
       # Setup MAUI Tizen.
       - name: maui-tizen install 1/3
