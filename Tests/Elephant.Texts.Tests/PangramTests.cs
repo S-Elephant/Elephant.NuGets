@@ -5,8 +5,18 @@
 	/// </summary>
 	public class PangramTests
 	{
-		/// <inheritdoc cref="IPangram"/>
-		private static readonly IPangram _pangram = new Pangram();
+		/// <summary>
+		/// System under test.
+		/// </summary>
+		private readonly IPangram _pangram;
+
+		/// <summary>
+		/// Setup.
+		/// </summary>
+		public PangramTests()
+		{
+			_pangram = new Pangram();
+		}
 
 		/// <summary>Classic "quick brown fox" pangram.</summary>
 		[Fact][SpeedVeryFast, UnitTest] public void ClassicPangram() => Assert.True(_pangram.IsValid("The quick brown fox jumps over the lazy dog"));
