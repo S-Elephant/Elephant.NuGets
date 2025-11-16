@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>5.0.1</Version>
-		<PackageReleaseNotes>Add .NET 9 target framework.</PackageReleaseNotes>
+		<Version>6.0.0</Version>
+		<PackageReleaseNotes>PaginationHelper bugfixes, refactor</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->

@@ -62,4 +62,8 @@ Base entities.
 
 ## 4.0.7 &rarr; 5.0.0
 
-- PaginationHelper.Paginate(this IQueryable<TSource> source, IPaginationRequest paginationRequest) now returns all records instead of none if the limit property of IPaginationRequest is less or equal than zero (this is in line with the other overloads and pagination performance is increased for these cases).
+- `PaginationHelper.Paginate(this IQueryable<TSource> source, IPaginationRequest paginationRequest)` now returns all records instead of none if the limit property of IPaginationRequest is less or equal than zero (this is in line with the other overloads and pagination performance is increased for these cases).
+
+## 5.0.1 &rarr; 6.0.0
+
+- Fixed edge case handling in `PaginationHelper` for integer boundary values (`int.MaxValue` and `int.MinValue`). If you implemented custom workarounds for these cases, you can now remove them. For most users, no action is required.

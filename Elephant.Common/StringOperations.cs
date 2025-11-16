@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Linq;
 
 namespace Elephant.Common
 {
@@ -11,6 +12,8 @@ namespace Elephant.Common
 		/// Returns a new string with the first character being capitalized.
 		/// This will not lower everything else and it will not capitalize the first character of every string.
 		/// If <paramref name="stringToCapitalize"/> is an empty string then it will return just that.
+		/// If the string starts with leading whitespace, then the same string is returned because the
+		/// first character cannot be uppered.
 		/// </summary>
 		public static string CapitalizeFirstChar(string stringToCapitalize)
 		{
@@ -24,6 +27,8 @@ namespace Elephant.Common
 		/// Returns a new string with the first character being capitalized.
 		/// This will not lower everything else and it will not capitalize the first character of every string.
 		/// If <paramref name="stringToCapitalize"/> is null or an empty string then it will return just that.
+		/// If the string starts with leading whitespace, then the same string is returned because the
+		/// first character cannot be uppered.
 		/// </summary>
 		public static string? CapitalizeFirstCharNullable(string? stringToCapitalize)
 		{
@@ -34,10 +39,22 @@ namespace Elephant.Common
 		}
 
 		/// <summary>
-		/// Encloses <paramref name="value"/> with <paramref name="encloser"/>. Will do nothing if its already encased in <paramref name="encloser"/>.
+		/// Encloses <paramref name="value"/> with <paramref name="encloser"/>.
+		/// Will do nothing if its already encased in <paramref name="encloser"/>.
+		/// If the <paramref name="value"/> is the same as the <paramref name="encloser"/>,
+		/// then it will return the value enclosed by the <paramref name="encloser"/>.
 		/// </summary>
+		/// <example><![CDATA[empty string with encloser a becomes: aa]]></example>
+		/// <example><![CDATA[test with encloser - becomes: -test-]]></example>
+		/// <example><![CDATA[" with encloser " becomes: """]]></example>
 		public static string EncloseByIfNotAlready(string value, char encloser)
 		{
+			if (value == string.Empty)
+				return $"{encloser}{encloser}";
+
+			if (value == encloser.ToString())
+				return $"{encloser}{encloser}{encloser}";
+
 			if (value[0] != encloser)
 			{
 				if (value.Last() != encloser)
@@ -106,6 +123,7 @@ namespace Elephant.Common
 		/// Join strings together using a separator.
 		/// There's both a leading and a trailing separator.
 		/// When joining, it will prevent double adjoining separators at the join-spots.
+		/// Null-values are ignored.
 		/// </summary>
 		/// <param name="separatorChar">The separator character.</param>
 		/// <param name="stringsToCombine">The strings to combine.</param>
@@ -116,12 +134,18 @@ namespace Elephant.Common
 		}
 
 		/// <summary>
-		/// Remove <paramref name="substringToRemove"/> from <paramref name="source"/>.
+		/// Remove the first occurance of <paramref name="substringToRemove"/> from <paramref name="source"/>.
 		/// Does nothing if <paramref name="source"/> does not contain the <paramref name="substringToRemove"/>.
 		/// Is case-sensitive and removes only the first occurance.
 		/// </summary>
 		public static string RemoveSubstringFromString(string source, string substringToRemove)
 		{
+			if (source == null)
+				return null!;
+
+			if (string.IsNullOrEmpty(substringToRemove))
+				return source;
+
 			int index = source.IndexOf(substringToRemove, StringComparison.Ordinal);
 
 			return index < 0 ? source : source.Remove(index, substringToRemove.Length);
@@ -134,7 +158,10 @@ namespace Elephant.Common
 		/// </summary>
 		public static string RemoveSubstringsFromString(string source, IEnumerable<string> substringsToRemove)
 		{
-			foreach (string substringToRemove in substringsToRemove)
+			if (source == null)
+				return null!;
+
+			foreach (string substringToRemove in substringsToRemove.Where(substringToRemove => substringToRemove != null))
 				source = RemoveSubstringFromString(source, substringToRemove);
 
 			return source;
@@ -162,7 +189,8 @@ namespace Elephant.Common
 		/// </summary>
 		/// <param name="stringToTitleCase">String to title-case.</param>
 		/// <returns>Title-cased string. For example: Turns "the LONG white dog." into "The Long White Dog.".</returns>
-		/// <example>Turns "the long white dog." into "The LONG White Dog.".</example>
+		/// <example>Turns "the long white dog." into "The Long White Dog.".</example>
+		/// <example>Turns "the !long white dog." into "The !Long White Dog.".</example>
 		public static string ToTitleCase(string stringToTitleCase)
 		{
 			return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(stringToTitleCase.ToLower());
@@ -174,7 +202,8 @@ namespace Elephant.Common
 		/// </summary>
 		/// <param name="stringToTitleCase">String to title-case.</param>
 		/// <returns>Title-cased string. For example: Turns "the LONG white dog." into "The Long White Dog.". Returns null if <paramref name="stringToTitleCase"/> is null.</returns>
-		/// <example>Turns "the long white dog." into "The LONG White Dog.".</example>
+		/// <example>Turns "the long white dog." into "The Long White Dog.".</example>
+		/// <example>Turns "the !long white dog." into "The !Long White Dog.".</example>
 		public static string? ToTitleCaseNullable(string? stringToTitleCase)
 		{
 			if (stringToTitleCase == null)
