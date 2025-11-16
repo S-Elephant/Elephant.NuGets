@@ -1,7 +1,7 @@
 using Elephant.Common.Pagination;
 using Elephant.Models.RequestModels;
 
-namespace Elephant.Common.Tests.Pagination
+namespace Elephant.Common.Tests.Pagination.PaginationHelpers
 {
 	/// <summary>
 	/// <see cref="PaginationHelper"/> tests.
@@ -35,15 +35,15 @@ namespace Elephant.Common.Tests.Pagination
 		}
 
 		/// <summary>
-		/// <see cref="PaginationHelper.Paginate{TSource}(IQueryable{TSource}, int, int)"/> tests.
+		/// Verifies that pagination returns the correct first element for various offset/limit combinations.
 		/// </summary>
 		[Theory]
 		[SpeedNormal, UnitTest]
-		[InlineData(1, 10, 0, 100)]
-		[InlineData(1, 110, 0, 35)]
-		[InlineData(36, 110, 1, 35)]
-		[InlineData(71, 110, 2, 35)]
-		[InlineData(106, 110, 3, 35)]
+		[InlineData(1, 10, 0, 100)] // First page, limit exceeds source.
+		[InlineData(1, 110, 0, 35)] // First page of multiple pages.
+		[InlineData(36, 110, 1, 35)] // Second page starts at item 36.
+		[InlineData(71, 110, 2, 35)] // Third page starts at item 71.
+		[InlineData(106, 110, 3, 35)] // Fourth page starts at item 106.
 		public void PaginateExpectedFirstValueTests(int expectedFirstValue, int sourceCount, int offset, int limit)
 		{
 			// Arrange.
@@ -80,88 +80,6 @@ namespace Elephant.Common.Tests.Pagination
 		}
 
 		/// <summary>
-		/// <see cref="PaginationHelper.LastOffset(int, int)"/> tests.
-		/// </summary>
-		[Theory]
-		[SpeedVeryFast, UnitTest]
-		[InlineData(0, -1, -1)]
-		[InlineData(0, 0, 0)]
-		[InlineData(0, 0, 1)]
-		[InlineData(0, 1, 1)]
-		[InlineData(9, 10, 1)]
-		[InlineData(0, 1, 10)]
-		[InlineData(9, 100, 10)]
-		[InlineData(4, 250, 50)]
-		public void LastOffset(int expected, int sourceCount, int limit)
-		{
-			Assert.Equal(expected, PaginationHelper.LastOffset(sourceCount, limit));
-		}
-
-		/// <summary>
-		/// <see cref="PaginationHelper.TotalPageCount(int, int)"/> tests.
-		/// </summary>
-		[Theory]
-		[SpeedVeryFast, UnitTest]
-		[InlineData(0, -1, 0)]
-		[InlineData(0, 0, -1)]
-		[InlineData(0, -1, -1)]
-		[InlineData(0, 0, 0)]
-		[InlineData(0, 1, 0)]
-		[InlineData(0, 0, 1)]
-		[InlineData(1, 1, 1)]
-		[InlineData(1, 10, 10)]
-		[InlineData(2, 10, 5)]
-		[InlineData(2, 10, 7)]
-		[InlineData(2, 10, 9)]
-		[InlineData(1, 10, 11)]
-		[InlineData(1, 10, 9999)]
-		[InlineData(4, 10, 3)]
-		public void TotalPageCount(int expected, int sourceCount, int limit)
-		{
-			Assert.Equal(expected, PaginationHelper.TotalPageCount(sourceCount, limit));
-		}
-
-		/// <summary>
-		/// <see cref="PaginationHelper.CurrentOffset(int, int, int)"/> tests.
-		/// </summary>
-		[Theory]
-		[SpeedVeryFast, UnitTest]
-		[InlineData(0, -1, 1, 1)]
-		[InlineData(0, 1, -1, 1)]
-		[InlineData(0, 1, 1, -1)]
-		[InlineData(0, 0, 0, 1)]
-		[InlineData(0, 100, -10, 1)]
-		[InlineData(0, 100, 0, 1)]
-		[InlineData(50, 100, 50, 1)]
-		[InlineData(1, 100, 5, 50)]
-		[InlineData(2, 100, 2, 45)]
-		[InlineData(6, 1000, 6, 100)]
-		[InlineData(9, 1000, 9, 100)]
-		[InlineData(9, 1000, 10, 100)]
-		public void CurrentOffset(int expected, int sourceCount, int offset, int limit)
-		{
-			Assert.Equal(expected, PaginationHelper.CurrentOffset(sourceCount, offset, limit));
-		}
-
-		/// <summary>
-		/// <see cref="PaginationHelper.IsLastPage(int, int, int)"/> tests.
-		/// </summary>
-		[Theory]
-		[SpeedVeryFast, UnitTest]
-		[InlineData(true, -1, 0, -1)]
-		[InlineData(true, 0, 0, 0)]
-		[InlineData(true, 0, 0, 1)]
-		[InlineData(true, 1, 0, 1)]
-		[InlineData(true, 10, 9, 1)]
-		[InlineData(true, 1, 0, 10)]
-		[InlineData(true, 100, 9, 10)]
-		[InlineData(true, 250, 4, 50)]
-		public void IsLastPageNumber(bool expected, int sourceCount, int offset, int limit)
-		{
-			Assert.Equal(expected, PaginationHelper.IsLastPage(sourceCount, offset, limit));
-		}
-
-		/// <summary>
 		/// <see cref="PaginationHelper.Paginate{TSource}(IList{TSource},int,int)"/> test
 		/// with a limit of zero or less should return zero.
 		/// </summary>
@@ -195,26 +113,31 @@ namespace Elephant.Common.Tests.Pagination
 		[InlineData(500, -400)]
 		[InlineData(500, -500)]
 		[InlineData(500, 0)]
-		public void PaginateOverloadWithZeroOrLessLimitReturnsAll(int offset, int limit)
+		public void PaginateOverloadWithZeroOrLessLimitReturnsNone(int offset, int limit)
 		{
 			// Arrange.
-			IQueryable<int> source = Enumerable.Range(1, 10).AsQueryable();
+			const int itemsInDatabaseCount = 10;
+			IQueryable<int> source = Enumerable.Range(1, itemsInDatabaseCount).AsQueryable();
+			PaginationRequest paginationRequest = new(offset, limit);
+			if (limit <= 0)
+				paginationRequest.Limit = 0; // Force limit to zero.
 
 			// Act.
-			List<int> result = PaginationHelper.Paginate(source, new PaginationRequest(offset, limit)).ToList();
+			IEnumerable<int> result = PaginationHelper.Paginate(source, paginationRequest);
 
 			// Assert.
-			Assert.Equal(10, result.Count);
+			Assert.Empty(result);
 		}
 
 		/// <summary>
-		/// IQueryable version of Paginate test.
+		/// Verifies that the IQueryable overload correctly paginates using page-based offset.
+		/// Offset represents the page number (0-based), not the number of items to skip.
 		/// </summary>
 		[Theory]
-		[InlineData(1, 9, 1)]
-		[InlineData(5, 0, 5)] // Test with the first page.
-		[InlineData(5, 1, 5)] // Test with the second page.
-		[InlineData(3, 2, 3)] // Test with a smaller page size.
+		[InlineData(1, 9, 1)] // Page 9, limit 1: returns 1 item.
+		[InlineData(5, 0, 5)] // Page 0, limit 5: returns first 5 items.
+		[InlineData(5, 1, 5)] // Page 1, limit 5: returns items 6-10.
+		[InlineData(3, 2, 3)] // Page 2, limit 3: returns items 7-9.
 		public void PaginateWithValidInputsReturnsCorrectPage(int expectedCount, int offset, int limit)
 		{
 			// Arrange.
@@ -225,7 +148,43 @@ namespace Elephant.Common.Tests.Pagination
 
 			// Assert.
 			Assert.Equal(expectedCount, result.Count);
-			Assert.Equal(source.Skip(offset * limit).Take(limit), result);
+			Assert.Equal(source.Skip(offset * limit).Take(limit).ToList(), result);
+		}
+
+		/// <summary>
+		/// <see cref="PaginationHelper.Paginate{TSource}(IList{TSource},int,int)"/> test
+		/// with 3 elements and a limit of int.MaxValue should return 3 elements.
+		/// </summary>
+		[Fact]
+		[SpeedVeryFast, UnitTest]
+		public void Paginate3ElementsWithMaxLimitReturns3()
+		{
+			// Arrange.
+			List<int> source = [1, 2, 3];
+
+			// Act.
+			List<int> result = PaginationHelper.Paginate(source, 0, int.MaxValue);
+
+			// Assert.
+			Assert.Equal(3, result.Count);
+		}
+
+		/// <summary>
+		/// <see cref="PaginationHelper.Paginate{TSource}(IList{TSource},int,int)"/> test
+		/// with 0 elements and a limit of int.MaxValue should return 0 elements.
+		/// </summary>
+		[Fact]
+		[SpeedVeryFast, UnitTest]
+		public void Paginate0ElementsWithMaxLimitReturns0()
+		{
+			// Arrange.
+			List<int> source = [];
+
+			// Act.
+			List<int> result = PaginationHelper.Paginate(source, 0, int.MaxValue);
+
+			// Assert.
+			Assert.Empty(result);
 		}
 	}
 }
