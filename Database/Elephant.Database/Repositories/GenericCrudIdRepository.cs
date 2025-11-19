@@ -40,9 +40,8 @@ namespace Elephant.Database.Repositories
 		public virtual async Task<int> HighestIdAsync(CancellationToken cancellationToken)
 		{
 			int highestId = await Table
-				.AsNoTracking()
-				.OrderByDescending(x => x.Id)
 				.Select(x => x.Id)
+				.OrderByDescending(id => id)
 				.FirstOrDefaultAsync(cancellationToken);
 
 			return highestId == 0 ? -1 : highestId;
@@ -52,9 +51,8 @@ namespace Elephant.Database.Repositories
 		public virtual async Task<int> LowestIdAsync(CancellationToken cancellationToken)
 		{
 			int lowestId = await Table
-				.AsNoTracking()
-				.OrderBy(x => x.Id)
 				.Select(x => x.Id)
+				.OrderBy(id => id)
 				.FirstOrDefaultAsync(cancellationToken);
 
 			return lowestId == 0 ? -1 : lowestId;
@@ -64,9 +62,9 @@ namespace Elephant.Database.Repositories
 		public virtual async Task<int> NextIdAsync(int sourceId, bool cycle, CancellationToken cancellationToken)
 		{
 			int nextId = await Table
-				.OrderBy(x => x.Id)
 				.Where(x => x.Id > sourceId)
 				.Select(x => x.Id)
+				.OrderBy(id => id)
 				.FirstOrDefaultAsync(cancellationToken);
 
 			// If none found then return the lowest id instead.
@@ -85,9 +83,9 @@ namespace Elephant.Database.Repositories
 		public virtual async Task<int> PreviousIdAsync(int sourceId, bool cycle, CancellationToken cancellationToken)
 		{
 			int previousId = await Table
-				.OrderByDescending(x => x.Id)
 				.Where(x => x.Id < sourceId)
 				.Select(x => x.Id)
+				.OrderByDescending(id => id)
 				.FirstOrDefaultAsync(cancellationToken);
 
 			// If none found then return the highest id instead.
