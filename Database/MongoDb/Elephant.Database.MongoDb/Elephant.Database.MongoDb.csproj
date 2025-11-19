@@ -2,14 +2,14 @@
 
   <!-- This must be updated for every release -->
   <PropertyGroup>
-    <Version>1.2.4</Version>
-    <PackageReleaseNotes>Add .NET 9 target framework.</PackageReleaseNotes>
+    <Version>1.2.5</Version>
+    <PackageReleaseNotes>Add .NET 10 target framework.</PackageReleaseNotes>
   </PropertyGroup>
 
   <!-- Core -->
   <PropertyGroup>
     <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
-    <TargetFrameworks>net6.0;net7.0;net8.0;net9.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net7.0;net8.0;net9.0;net10.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -51,6 +51,10 @@
   <ItemGroup Condition="'$(TargetFramework)' == 'net9.0'">
   	<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
   	<PackageReference Include="Microsoft.Extensions.Options" Version="9.0.0" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net10.0'">
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.0" />
   </ItemGroup>
 
   <!-- Dependencies -->

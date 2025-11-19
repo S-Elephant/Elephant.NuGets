@@ -2,13 +2,13 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>3.1.2</Version>
-		<PackageReleaseNotes>Add .NET 9 target framework.</PackageReleaseNotes>
+		<Version>3.1.3</Version>
+		<PackageReleaseNotes>Add .NET 10 target framework.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
 	<PropertyGroup>
-		<TargetFrameworks>net6.0;net7.0;net8.0;net9.0</TargetFrameworks>
+		<TargetFrameworks>net6.0;net7.0;net8.0;net9.0;net10.0</TargetFrameworks>
 		<LangVersion>latest</LangVersion>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
@@ -16,6 +16,13 @@
 		<Authors>SquirtingElephant</Authors>
 		<Description>Common API Controller code.</Description>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<NoWarn>NU1903</NoWarn> <!-- Suppress known high severity warning for some older .NET version(s).To avoid warning if not overridden -->
+	</PropertyGroup>
+
+	<!-- Suppress known high severity warning for some older .NET version(s). -->
+	<PropertyGroup Condition="'$(TargetFramework)' != 'net10.0'">
+		<WarningsNotAsErrors>$(WarningsNotAsErrors);NU1903</WarningsNotAsErrors>
+		<NoWarn>NU1903</NoWarn>
 	</PropertyGroup>
 
 	<!-- Package -->

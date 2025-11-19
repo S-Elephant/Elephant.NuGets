@@ -50,10 +50,10 @@ namespace Elephant.DataAnnotations.Tests
         [InlineData("", true)]
         [InlineData("A", true)]
         [InlineData("Some random string in here as the data.", false)]
-        public void Validate(string content, bool expectedIsValid)
+        public void Validate(string? content, bool expectedIsValid)
         {
             // Arrange.
-            ValidationTarget target = new (CreateIFormFileMock(content));
+            ValidationTarget target = new (CreateIFormFileMock(content!));
 
             // Act.
             bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);

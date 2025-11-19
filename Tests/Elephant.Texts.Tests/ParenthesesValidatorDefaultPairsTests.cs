@@ -106,7 +106,7 @@
 		[SpeedVeryFast, UnitTest]
 		[InlineData("")]
 		[InlineData(null)]
-		public void IsValid_EmptyOrNullInput_ReturnsTrue(string input)
+		public void IsValid_EmptyOrNullInput_ReturnsTrue(string? input)
 		{
 			// Act.
 			bool isValid = _parenthesesValidator.IsValid(input);
