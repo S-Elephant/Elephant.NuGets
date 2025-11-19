@@ -40,7 +40,7 @@
 		[InlineData("¥Radar", true)]
 		[InlineData("radar.", true)]
 		[InlineData("ra dar.", true)]
-		public void IsValidPalindromeTests(string input, bool expected)
+		public void IsValidPalindromeTests(string? input, bool expected)
 		{
 			Assert.Equal(expected, _palindrome.IsValid(input));
 		}

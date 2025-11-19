@@ -2,13 +2,13 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.0.7</Version>
-		<PackageReleaseNotes>Add .NET 9 target framework.</PackageReleaseNotes>
+		<Version>1.0.8</Version>
+		<PackageReleaseNotes>Add .NET 10 target framework.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
 	<PropertyGroup>
-		<TargetFrameworks>net6.0;net7.0;net8.0;net9.0</TargetFrameworks>
+		<TargetFrameworks>net6.0;net7.0;net8.0;net9.0;net10.0</TargetFrameworks>
 		<LangVersion>latest</LangVersion>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
@@ -17,6 +17,7 @@
 		<Company>SquirtingElephant</Company>
 		<Description>Sqlite helpers.</Description>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<NoWarn>NU1903</NoWarn> <!-- Suppress known high severity warning for some older .NET version(s).To avoid warning if not overridden -->
 	</PropertyGroup>
 
 	<!-- Package -->
@@ -39,13 +40,14 @@
 		<ProjectReference Include="..\Elephant.Types.Interfaces\Elephant.Types.Interfaces.csproj" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" />
-  </ItemGroup>
+	</ItemGroup>
 
-  <!-- Target framework dependent dependencies -->
-  <Import Project="$([MSBuild]::GetPathOfFileAbove('directory.packages.net60.props'))" Condition="'$(TargetFramework)' == 'net6.0'" />
-  <Import Project="$([MSBuild]::GetPathOfFileAbove('directory.packages.net70.props'))" Condition="'$(TargetFramework)' == 'net7.0'" />
-  <Import Project="$([MSBuild]::GetPathOfFileAbove('directory.packages.net80.props'))" Condition="'$(TargetFramework)' == 'net8.0'" />
-  <Import Project="$([MSBuild]::GetPathOfFileAbove('directory.packages.net90.props'))" Condition="'$(TargetFramework)' == 'net9.0'" />
+	<!-- Target framework dependent dependencies -->
+	<Import Project="$([MSBuild]::GetPathOfFileAbove('directory.packages.net60.props'))" Condition="'$(TargetFramework)' == 'net6.0'" />
+	<Import Project="$([MSBuild]::GetPathOfFileAbove('directory.packages.net70.props'))" Condition="'$(TargetFramework)' == 'net7.0'" />
+	<Import Project="$([MSBuild]::GetPathOfFileAbove('directory.packages.net80.props'))" Condition="'$(TargetFramework)' == 'net8.0'" />
+	<Import Project="$([MSBuild]::GetPathOfFileAbove('directory.packages.net90.props'))" Condition="'$(TargetFramework)' == 'net9.0'" />
+	<Import Project="$([MSBuild]::GetPathOfFileAbove('directory.packages.net100.props'))" Condition="'$(TargetFramework)' == 'net10.0'" />
 
 	<!-- StyleCop (only in Debug configuration) -->
 	<ItemGroup Condition="'$(Configuration)' == 'Debug'">
@@ -55,9 +57,9 @@
 		</PackageReference>
 	</ItemGroup>
 
-  <!-- Package README -->
-  <ItemGroup>
-    <None Include="README.md" Pack="True" PackagePath="\" />
-  </ItemGroup>
+	<!-- Package README -->
+	<ItemGroup>
+		<None Include="README.md" Pack="True" PackagePath="\" />
+	</ItemGroup>
 
 </Project>

@@ -63,7 +63,13 @@ namespace Elephant.Io
         /// <inheritdoc/>
         public async Task<IEnumerable<FileInfo>> GetFilesAsyncAsIEnumerable(IEnumerable<DirectoryInfo> sourceDirectories, string searchPattern, SearchOption searchOption, bool ignoreInaccessible = true)
         {
+#if NET10_0
+            List<IEnumerable<FileInfo>> result = new List<IEnumerable<FileInfo>>();
+            await foreach (IEnumerable<FileInfo> files in GetFilesAsync(sourceDirectories, searchPattern, searchOption, ignoreInaccessible))
+                result.Add(files);
+#else
             List<IEnumerable<FileInfo>> result = await GetFilesAsync(sourceDirectories, searchPattern, searchOption, ignoreInaccessible).ToListAsync();
+#endif
 
             // result.SelectMany(x => x) joins the list of lists together into one big list.
             return result.Any() ? result.SelectMany(x => x) : new List<FileInfo>();
@@ -72,7 +78,13 @@ namespace Elephant.Io
         /// <inheritdoc/>
         public async Task<IEnumerable<FileInfo>> GetFilesAsyncAsIEnumerable(IEnumerable<DirectoryInfo> sourceDirectories, string searchPattern, SearchOption searchOption, IEnumerable<string> extensions, bool ignoreInaccessible = true)
         {
+#if NET10_0
+            List<IEnumerable<FileInfo>> result = new List<IEnumerable<FileInfo>>();
+            await foreach (IEnumerable<FileInfo> files in GetFilesAsync(sourceDirectories, searchPattern, searchOption, extensions, ignoreInaccessible))
+                result.Add(files);
+#else
             List<IEnumerable<FileInfo>> result = await GetFilesAsync(sourceDirectories, searchPattern, searchOption, extensions, ignoreInaccessible).ToListAsync();
+#endif
 
             // result.SelectMany(x => x) joins the list of lists together into one big list.
             return result.Any() ? result.SelectMany(x => x) : new List<FileInfo>();

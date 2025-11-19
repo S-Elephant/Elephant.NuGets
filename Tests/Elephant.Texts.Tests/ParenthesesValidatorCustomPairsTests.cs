@@ -14,7 +14,7 @@ namespace Elephant.Texts.Tests
 		[SpeedVeryFast, UnitTest]
 		[InlineData("")]
 		[InlineData(null)]
-		public void IsValid_EmptyOrNullInput_ReturnsTrue(string input)
+		public void IsValid_EmptyOrNullInput_ReturnsTrue(string? input)
 		{
 			// Arrange.
 			IParenthesesValidator customValidator = new ParenthesesValidator(new() { { '«', '»' }, { '{', '}' } });

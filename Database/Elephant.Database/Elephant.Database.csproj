@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <!-- This must be updated for every release -->
   <PropertyGroup>
-    <Version>0.10.2</Version>
-    <PackageReleaseNotes>Add .NET 9 target framework.</PackageReleaseNotes>
+    <Version>0.10.3</Version>
+    <PackageReleaseNotes>Add .NET 10 target framework, minor performance optimization.</PackageReleaseNotes>
   </PropertyGroup>
 
   <!-- Core -->
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net7.0;net8.0;net9.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net7.0;net8.0;net9.0;net10.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -15,9 +15,10 @@
     <Authors>SquirtingElephant</Authors>
     <Description>Common EF Core database code.</Description>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+	<NoWarn>NU1903</NoWarn> <!-- Suppress known high severity warning for some older .NET version(s).To avoid warning if not overridden -->
   </PropertyGroup>
 
-  <!-- Package -->
+	<!-- Package -->
   <PropertyGroup>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -46,9 +47,10 @@
   <Import Project="$([MSBuild]::GetPathOfFileAbove('directory.packages.net70.props'))" Condition="'$(TargetFramework)' == 'net7.0'" />
   <Import Project="$([MSBuild]::GetPathOfFileAbove('directory.packages.net80.props'))" Condition="'$(TargetFramework)' == 'net8.0'" />
   <Import Project="$([MSBuild]::GetPathOfFileAbove('directory.packages.net90.props'))" Condition="'$(TargetFramework)' == 'net9.0'" />
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('directory.packages.net100.props'))" Condition="'$(TargetFramework)' == 'net10.0'" />
 
 
-    <!-- StyleCop (only in Debug configuration) -->
+  <!-- StyleCop (only in Debug configuration) -->
   <ItemGroup Condition="'$(Configuration)' == 'Debug'">
     <PackageReference Include="StyleCop.Analyzers">
       <PrivateAssets>all</PrivateAssets>
