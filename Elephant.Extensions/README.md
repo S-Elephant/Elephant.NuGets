@@ -24,6 +24,7 @@ IsFirst<TSource>(this IEnumerable<TSource> source, TSource itemToCompare)
 IsLast<TSource>(this IEnumerable<TSource> source, TSource itemToCompare)
 None<TSource>(this IEnumerable<TSource> source)
 None<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
+IEnumerable<List<T>> SplitIntoChunks<T>(this IEnumerable<T> source, int maxChunkSize)
 ```
 
 ## List extensions

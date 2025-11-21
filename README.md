@@ -67,3 +67,11 @@ See: https://docs.microsoft.com/en-us/nuget/consume-packages/managing-the-global
 **Texts** [![Nuget downloads](https://img.shields.io/nuget/v/Elephant.Types.Results.Abstractions)](https://www.nuget.org/packages/Elephant.Types.Results.Abstractions/) [![NuGet Downloads](https://img.shields.io/nuget/dt/Elephant.Types.Results.Abstractions.svg)](https://www.nuget.org/packages/Elephant.Types.Results.Abstractions/) ![Workflow](https://github.com/S-Elephant/Elephant.NuGets/actions/workflows/GitHubActions.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/S-Elephant/Elephant.NuGets/tree/master/Elephant.Types.Results.Abstractions/LICENSE.txt)
 
 **Validation** [![Nuget downloads](https://img.shields.io/nuget/v/Elephant.Validation)](https://www.nuget.org/packages/Elephant.Validation/) [![NuGet Downloads](https://img.shields.io/nuget/dt/Elephant.Validation.svg)](https://www.nuget.org/packages/Elephant.Validation/) ![Workflow](https://github.com/S-Elephant/Elephant.NuGets/actions/workflows/GitHubActions.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/S-Elephant/Elephant.NuGets/tree/master/Elephant.Validation/LICENSE.txt)
+
+# Developer Notes
+
+## Semantic Versioning summary
+
+- **Major** version when you make incompatible API changes.
+- **Minor** version when you add functionality in a backward compatible manner.
+- **Patch** version when you make backward compatible bug fixes, refactors, optimizations, etc.

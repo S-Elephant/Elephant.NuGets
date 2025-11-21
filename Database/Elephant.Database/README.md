@@ -124,13 +124,12 @@ All methods as listed in [GenericCrudRepository](##GenericCrudRepository) plus:
 
 ```c#
 virtual Task<T?> ByIdAsync(int id, QueryTrackingBehavior queryTrackingBehavior = QueryTrackingBehavior.TrackAll, CancellationToken cancellationToken = default, params Expression<Func<T, object>>[] includes);
-
+virtual async Task<int> DeleteOverflowingEntities(int maxEntities, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null, CancellationToken cancellationToken = default)
 virtual Task<bool> HasIdAsync(int id, CancellationToken cancellationToken);
-
 virtual Task<int> HighestIdAsync(CancellationToken cancellationToken);
-
 virtual Task<int> LowestIdAsync(CancellationToken cancellationToken);
 virtual Task<int> NextIdAsync(int sourceId, bool cycle, CancellationToken cancellationToken);
+virtual async Task<List<int>> OverflowingIds(int maxEntities, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null, QueryTrackingBehavior queryTrackingBehavior = QueryTrackingBehavior.TrackAll, CancellationToken cancellationToken = default)
 virtual Task<int> PreviousIdAsync(int sourceId, bool cycle, CancellationToken cancellationToken);
 ```
 
@@ -183,3 +182,7 @@ The ResponseWrappers are no longer used.
 ## 0.9.0 &rarr; 0.10.0
 
 Add the "Async" (without double quotes) to your calls and overrides.
+
+## 0.10.3 &rarr; 1.0.0
+
+Moving to 1.0.0 to mark the project's stability. The transition from 0.10.3 is fully compatible with no breaking changes.

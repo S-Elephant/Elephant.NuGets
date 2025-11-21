@@ -1,12 +1,12 @@
-﻿namespace Elephant.Extensions.Tests.ListExtensionsTests
+﻿namespace Elephant.Extensions.Tests.ListExtensionTests
 {
     /// <summary>
-    /// <see cref="ListExtensions.AddOrRemoveIfExists{TSource}(IList{TSource}, TSource)"/> tests.
+    /// <see cref="ListExtensions.AddOrRemoveIfExistsNullable{TSource}(IList{TSource}?, TSource)"/> tests.
     /// </summary>
-    public class AddOrRemoveIfExistsTests
+    public class AddOrRemoveIfExistsNullableTests
     {
         /// <summary>
-        /// <see cref="ListExtensions.AddOrRemoveIfExists{TSource}(IList{TSource}, TSource)"/> test that should remove a number.
+        /// <see cref="ListExtensions.AddOrRemoveIfExistsNullable{TSource}(IList{TSource}?, TSource)"/> test that should remove a number.
         /// </summary>
         [Fact]
         [SpeedFast, UnitTest]
@@ -20,7 +20,7 @@
         }
 
         /// <summary>
-        /// <see cref="ListExtensions.AddOrRemoveIfExists{TSource}(IList{TSource}, TSource)"/> test that should remove a number.
+        /// <see cref="ListExtensions.AddOrRemoveIfExistsNullable{TSource}(IList{TSource}?, TSource)"/> test that should remove a number.
         /// </summary>
         [Fact]
         [SpeedFast, UnitTest]
@@ -34,7 +34,7 @@
         }
 
         /// <summary>
-        /// <see cref="ListExtensions.AddOrRemoveIfExists{TSource}(IList{TSource}, TSource)"/> test that should add a number.
+        /// <see cref="ListExtensions.AddOrRemoveIfExistsNullable{TSource}(IList{TSource}?, TSource)"/> test that should add a number.
         /// </summary>
         [Fact]
         [SpeedFast, UnitTest]
@@ -48,7 +48,7 @@
         }
 
         /// <summary>
-        /// <see cref="ListExtensions.AddOrRemoveIfExists{TSource}(IList{TSource}, TSource)"/> test that should add a number.
+        /// <see cref="ListExtensions.AddOrRemoveIfExistsNullable{TSource}(IList{TSource}?, TSource)"/> test that should add a number.
         /// </summary>
         [Fact]
         [SpeedFast, UnitTest]
@@ -62,7 +62,7 @@
         }
 
         /// <summary>
-        /// <see cref="ListExtensions.AddOrRemoveIfExists{TSource}(IList{TSource}, TSource)"/> test that should add a number.
+        /// <see cref="ListExtensions.AddOrRemoveIfExistsNullable{TSource}(IList{TSource}?, TSource)"/> test that should add a number.
         /// </summary>
         [Fact]
         [SpeedFast, UnitTest]
@@ -73,6 +73,20 @@
             list.AddOrRemoveIfExists(0);
 
             Assert.Equal(new List<int>() { 0 }, list);
+        }
+
+        /// <summary>
+        /// <see cref="ListExtensions.AddOrRemoveIfExistsNullable{TSource}(IList{TSource}?, TSource)"/> test that should do nothing.
+        /// </summary>
+        [Fact]
+        [SpeedFast, UnitTest]
+        public void DoesNothingIfListIsNull()
+        {
+            List<int>? list = null;
+
+            list.AddOrRemoveIfExistsNullable(0);
+
+            Assert.Null(list);
         }
     }
 }

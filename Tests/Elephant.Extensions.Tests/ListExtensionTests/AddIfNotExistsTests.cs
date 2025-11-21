@@ -1,4 +1,4 @@
-﻿namespace Elephant.Extensions.Tests.ListExtensionsTests
+﻿namespace Elephant.Extensions.Tests.ListExtensionTests
 {
 	/// <summary>
 	/// <see cref="ListExtensions.AddIfNotExists{T}"/> tests.
