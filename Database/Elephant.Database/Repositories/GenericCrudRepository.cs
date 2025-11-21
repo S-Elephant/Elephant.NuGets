@@ -58,15 +58,14 @@ namespace Elephant.Database.Repositories
 		public virtual async Task InsertAsync(ICollection<TEntity> objects, CancellationToken cancellationToken)
 		{
 			foreach (TEntity objectToInsert in objects)
-			{
 				await InsertAsync(objectToInsert, cancellationToken);
-			}
 		}
 
 		/// <inheritdoc/>
 		public virtual async Task<int> SaveAsync(CancellationToken cancellationToken)
 		{
 			int recordsAffectedCount = await Context.SaveChangesAsync(cancellationToken);
+
 			return recordsAffectedCount;
 		}
 
@@ -95,6 +94,7 @@ namespace Elephant.Database.Repositories
 				return false;
 
 			Table.Remove(existing);
+
 			return true;
 		}
 
@@ -129,6 +129,7 @@ namespace Elephant.Database.Repositories
 		{
 			await InsertAsync(obj, cancellationToken);
 			int recordsAffectedCount = await SaveAsync(cancellationToken);
+
 			return recordsAffectedCount == 0 ? Result<int>.InternalServerError("Nothing inserted. No records affected.") : Result<int>.Ok(recordsAffectedCount);
 		}
 
@@ -137,6 +138,7 @@ namespace Elephant.Database.Repositories
 		{
 			Update(obj);
 			int recordsAffectedCount = await SaveAsync(cancellationToken);
+
 			return Result<int>.Ok(recordsAffectedCount);
 		}
 

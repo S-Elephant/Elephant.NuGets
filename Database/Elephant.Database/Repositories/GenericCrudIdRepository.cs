@@ -80,6 +80,105 @@ namespace Elephant.Database.Repositories
 		}
 
 		/// <inheritdoc/>
+		public virtual async Task<int> DeleteOverflowingEntities(int maxEntities, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null, CancellationToken cancellationToken = default)
+		{
+			// No overflow.
+			if (maxEntities <= 0)
+				return 0;
+
+			// Fast path for default ordering by Id: avoid materializing the whole table where possible.
+			if (orderBy == null)
+			{
+				// Quick total count check.
+				int totalCount = await Table.CountAsync(cancellationToken);
+				if (totalCount <= maxEntities)
+					return 0;
+
+				// Pull only the ids that must be deleted (server-side Skip/Select) — minimal memory footprint.
+				int[] idsToDelete = await Table
+					.OrderBy(x => x.Id)
+					.Skip(maxEntities)
+					.Select(x => x.Id)
+					.ToArrayAsync(cancellationToken);
+
+				if (idsToDelete.Length == 0)
+					return 0;
+
+				// Delete via EF (loads entities) to remain provider-agnostic.
+				List<TEntity> toDelete = await Table.Where(x => idsToDelete.Contains(x.Id)).ToListAsync(cancellationToken);
+				if (toDelete.Count == 0)
+					return 0;
+
+				Table.RemoveRange(toDelete);
+				await SaveAsync(cancellationToken);
+				return toDelete.Count;
+			}
+
+			// Fallback for custom ordering: must materialize the ordered id sequence to determine positions.
+			IOrderedQueryable<TEntity> orderedQuery = orderBy(Table);
+
+			// Only select ids to minimize memory footprint.
+			List<int> orderedIds = await orderedQuery.Select(x => x.Id).ToListAsync(cancellationToken);
+
+			if (orderedIds.Count <= maxEntities)
+				return 0;
+
+			int[] idsToDeleteCustom = orderedIds.Skip(maxEntities).ToArray();
+			if (idsToDeleteCustom.Length == 0)
+				return 0;
+
+			List<TEntity> toDeleteCustom = await Table.Where(x => idsToDeleteCustom.Contains(x.Id)).ToListAsync(cancellationToken);
+			if (toDeleteCustom.Count == 0)
+				return 0;
+
+			Table.RemoveRange(toDeleteCustom);
+			await SaveAsync(cancellationToken);
+			return toDeleteCustom.Count;
+		}
+
+		/// <inheritdoc/>
+		public virtual async Task<List<int>> OverflowingIds(int maxEntities, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null, QueryTrackingBehavior queryTrackingBehavior = QueryTrackingBehavior.TrackAll, CancellationToken cancellationToken = default)
+		{
+			// No overflow.
+			if (maxEntities <= 0)
+				return new List<int>();
+
+			// Base query.
+			IQueryable<TEntity> baseQuery = Table.AsQueryable().AsTracking(queryTrackingBehavior);
+
+			// Fast path for default ordering by Id, avoid materializing the whole table if possible.
+			if (orderBy == null)
+			{
+				// Quick total count check.
+				int totalCount = await baseQuery.CountAsync(cancellationToken);
+				if (totalCount <= maxEntities)
+					return new List<int>();
+
+				// Server-side Skip/Select to return only the overflowing ids.
+				List<int> ids = await baseQuery
+					.OrderBy(x => x.Id)
+					.Skip(maxEntities)
+					.Select(x => x.Id)
+					.ToListAsync(cancellationToken);
+
+				return ids;
+			}
+
+			// Fallback for custom ordering: we must materialize the ordered id sequence to determine positions.
+			IOrderedQueryable<TEntity> orderedQuery = orderBy(baseQuery);
+
+			// Select only ids to minimize memory footprint.
+			List<int> orderedIds = await orderedQuery
+				.Select(x => x.Id)
+				.ToListAsync(cancellationToken);
+
+			if (orderedIds.Count <= maxEntities)
+				return new List<int>();
+
+			return orderedIds.Skip(maxEntities).ToList();
+		}
+
+		/// <inheritdoc/>
 		public virtual async Task<int> PreviousIdAsync(int sourceId, bool cycle, CancellationToken cancellationToken)
 		{
 			int previousId = await Table

@@ -97,5 +97,83 @@
 			// ReSharper disable once PossibleMultipleEnumeration (B). Because otherwise it will execute the query.
 			return source.Distinct().Count() == source.Count();
 		}
+
+		/// <summary>
+		/// Split the <paramref name="source"/> into chunks of maximum <paramref name="maxChunkSize"/>.
+		/// Preserves the original order of elements.
+		/// </summary>
+		/// <typeparam name="T">IEnumerable type.</typeparam>
+		/// <param name="source">Source list.</param>
+		/// <param name="maxChunkSize">Maximum chunk size.</param>
+		/// <returns>Chunked <paramref name="source"/> with the original order of elements preserved.</returns>
+		/// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null.</exception>
+		/// <exception cref="ArgumentOutOfRangeException">Thrown if <paramref name="maxChunkSize"/> is less than or equal to zero.</exception>
+		public static IEnumerable<List<T>> SplitIntoChunks<T>(this IEnumerable<T> source, int maxChunkSize)
+		{
+			if (source == null)
+				throw new ArgumentNullException(nameof(source), "Null cannot be chunked.");
+
+			if (maxChunkSize <= 0)
+				throw new ArgumentOutOfRangeException(nameof(maxChunkSize), "Chunk size must be greater than zero.");
+
+			// Fast path for concrete List<T>.
+			if (source is List<T> concreteList)
+			{
+				int count = concreteList.Count;
+				if (maxChunkSize >= count)
+				{
+					yield return source.ToList();
+					yield break;
+				}
+
+				for (int i = 0; i < count; i += maxChunkSize)
+				{
+					int len = Math.Min(maxChunkSize, count - i);
+					yield return concreteList.GetRange(i, len);
+				}
+				yield break;
+			}
+
+			// Fast path for other random-access lists (IList<T>) to avoid enumerator overhead.
+			if (source is IList<T> indexedList)
+			{
+				int count = indexedList.Count;
+				if (maxChunkSize >= count)
+				{
+					yield return source.ToList();
+					yield break;
+				}
+
+				for (int i = 0; i < count; i += maxChunkSize)
+				{
+					int len = Math.Min(maxChunkSize, count - i);
+					List<T> chunk = new List<T>(len);
+					for (int j = 0; j < len; j++)
+						chunk.Add(indexedList[i + j]);
+					yield return chunk;
+				}
+				yield break;
+			}
+
+			// General enumerable path (single-pass).
+			List<T> bucket = new List<T>(maxChunkSize);
+			int bucketCount = 0;
+			using (IEnumerator<T> en = source.GetEnumerator())
+			{
+				while (en.MoveNext())
+				{
+					bucket.Add(en.Current);
+					if (++bucketCount == maxChunkSize)
+					{
+						yield return bucket;
+						bucket = new List<T>(maxChunkSize);
+						bucketCount = 0;
+					}
+				}
+			}
+
+			if (bucket.Count > 0)
+				yield return bucket;
+		}
 	}
 }

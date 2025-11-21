@@ -1,10 +1,11 @@
 ﻿// ReSharper disable CollectionNeverUpdated.Local
-namespace Elephant.Extensions.Tests
+
+namespace Elephant.Extensions.Tests.EnumerableTests
 {
 	/// <summary>
 	/// <see cref="Enumerable"/> tests.
 	/// </summary>
-	public class EnumerableExtensionsTests
+	public class CommonTests
 	{
 		/// <summary>
 		/// <see cref="Enumerable.None{TSource}(IEnumerable{TSource})"/> tests.
@@ -390,6 +391,9 @@ namespace Elephant.Extensions.Tests
 			Assert.False(isLast);
 		}
 
+		/// <summary>
+		/// Simple class used for testing.
+		/// </summary>
 		private class SimpleClass
 		{
 			/// <summary>
@@ -397,74 +401,6 @@ namespace Elephant.Extensions.Tests
 			/// </summary>
 			// ReSharper disable once UnusedMember.Local
 			public string A { get; set; } = "a";
-		}
-
-		/// <summary>
-		/// <see cref="Enumerable.AreAllItemsUnique{TSource}"/> test.
-		/// </summary>
-		[Fact]
-		[SpeedVeryFast, UnitTest]
-		public void AreAllItemsUniqueReturnsTrueIfAllUnique()
-		{
-			// Arrange.
-			List<int> source = new() { 1, 2, 3, 4, 5 };
-
-			// Act.
-			bool areAllItemsUnique = source.AreAllItemsUnique();
-
-			// Assert.
-			Assert.True(areAllItemsUnique);
-		}
-
-		/// <summary>
-		/// <see cref="Enumerable.AreAllItemsUnique{TSource}"/> test.
-		/// </summary>
-		[Fact]
-		[SpeedVeryFast, UnitTest]
-		public void AreAllItemsUniqueReturnsFalseIfNotAllUnique()
-		{
-			// Arrange.
-			List<int> source = new() { 1, 2, 4, 3, 4, 5 };
-
-			// Act.
-			bool areAllItemsUnique = source.AreAllItemsUnique();
-
-			// Assert.
-			Assert.False(areAllItemsUnique);
-		}
-
-		/// <summary>
-		/// <see cref="Enumerable.AreAllItemsUnique{TSource}"/> test.
-		/// </summary>
-		[Fact]
-		[SpeedVeryFast, UnitTest]
-		public void AreAllItemsUniqueReturnsTrueIfEmpty()
-		{
-			// Arrange.
-			List<int> source = new();
-
-			// Act.
-			bool areAllItemsUnique = source.AreAllItemsUnique();
-
-			// Assert.
-			Assert.True(areAllItemsUnique);
-		}
-
-		/// <summary>
-		/// <see cref="Enumerable.AreAllItemsUnique{TSource}"/> test.
-		/// </summary>
-		[Fact]
-		[SpeedVeryFast, UnitTest]
-		public void AreAllItemsUniqueReturnsTrueIfNull()
-		{
-			// Arrange.
-			List<int>? source = null;
-
-			// Act.
-			bool areAllItemsUnique = source.AreAllItemsUnique();
-
-			// Assert.
-			Assert.True(areAllItemsUnique);
 		}
 	}
 }

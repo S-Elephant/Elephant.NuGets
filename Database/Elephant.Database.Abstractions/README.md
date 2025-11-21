@@ -16,3 +16,7 @@ Contains abstractions for the [Elephant.Database](https://www.nuget.org/packages
 ## 0.9.0 &rarr; 0.10.0
 
 Add the "Async" (without double quotes) to your calls and overrides.
+
+## 0.10.3 &rarr; 1.0.0
+
+Moving to 1.0.0 to mark the project's stability. The transition from 0.10.3 is fully compatible with no breaking changes.
