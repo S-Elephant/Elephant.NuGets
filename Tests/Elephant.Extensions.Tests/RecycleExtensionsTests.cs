@@ -6,7 +6,8 @@
     public class RecycleExtensionsTests
     {
         /// <summary>
-        /// <see cref="RecycleExtensions.Recycle(int, int, int)"/> tests.
+        /// <see cref="RecycleExtensions.Recycle(int, int, int)"/>
+		/// tests.
         /// </summary>
         [Theory]
         [SpeedVeryFast]
@@ -23,11 +24,13 @@
         [InlineData(int.MaxValue, int.MinValue, int.MaxValue, int.MaxValue)]
         public void RecycleTests(int value, int min, int max, int expectedValue)
         {
-            Assert.Equal(expectedValue, value.Recycle(max, min));
+			// Act & Assert.
+			Assert.Equal(expectedValue, value.Recycle(max, min));
         }
 
         /// <summary>
-        /// <see cref="RecycleExtensions.Recycle(int?, int, int)"/> (nullable) tests.
+        /// <see cref="RecycleExtensions.Recycle(int?, int, int)"/>
+		/// (nullable) tests.
         /// </summary>
         [Theory]
         [SpeedVeryFast]
@@ -45,11 +48,13 @@
         [InlineData(null, int.MinValue, int.MaxValue, null)]
         public void RecycleNullableTests(int? value, int min, int max, int? expectedValue)
         {
-            Assert.Equal(expectedValue, value.Recycle(max, min));
+			// Act & Assert.
+			Assert.Equal(expectedValue, value.Recycle(max, min));
         }
 
         /// <summary>
-        /// <see cref="RecycleExtensions.RecycleOne(int, int)"/> tests.
+        /// <see cref="RecycleExtensions.RecycleOne(int, int)"/>
+		/// tests.
         /// </summary>
         [Theory]
         [SpeedVeryFast]
@@ -62,11 +67,13 @@
         [InlineData(int.MaxValue, int.MaxValue, int.MaxValue)]
         public void RecycleOneTests(int value, int max, int expectedValue)
         {
-            Assert.Equal(expectedValue, value.RecycleOne(max));
+			// Act & Assert.
+			Assert.Equal(expectedValue, value.RecycleOne(max));
         }
 
         /// <summary>
-        /// <see cref="RecycleExtensions.RecycleOne(int?, int)"/> (nullable) tests.
+        /// <see cref="RecycleExtensions.RecycleOne(int?, int)"/>
+		/// (nullable) tests.
         /// </summary>
         [Theory]
         [SpeedVeryFast]
@@ -80,7 +87,8 @@
         [InlineData(null, int.MaxValue, null)]
         public void RecycleOneNullableTests(int? value, int max, int? expectedValue)
         {
-            Assert.Equal(expectedValue, value.RecycleOne(max));
+			// Act & Assert.
+			Assert.Equal(expectedValue, value.RecycleOne(max));
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿namespace Elephant.Extensions.Tests.EnumerableTests
 {
 	/// <summary>
-	/// <see cref="Enumerable.SplitIntoChunks{T}(IEnumerable{T}, int)"/> tests.
+	/// <see cref="EnumerableExtensions.SplitIntoChunks{T}(IEnumerable{T}, int)"/> tests.
 	/// </summary>
 	/// <remarks>
 	/// To avoid duplicating each test for <![CDATA[List<T>, IEnumerable<T> and IList<T>]]>
@@ -11,7 +11,7 @@
 	public class SplitIntoChunksTests
 	{
 		/// <summary>
-		/// <see cref="Enumerable.SplitIntoChunks{T}(IEnumerable{T}, int)"/> normal behaviour.
+		/// <see cref="EnumerableExtensions.SplitIntoChunks{T}(IEnumerable{T}, int)"/> normal behaviour.
 		/// </summary>
 		[Fact]
 		[SpeedVeryFast, UnitTest]

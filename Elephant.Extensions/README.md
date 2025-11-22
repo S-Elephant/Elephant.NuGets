@@ -33,6 +33,7 @@ IEnumerable<List<T>> SplitIntoChunks<T>(this IEnumerable<T> source, int maxChunk
 AddIfNotExists<T>(this List<T> list, T itemToAdd)
 AddOrRemoveIfExists<TSource>(this IList<TSource> list, TSource item)
 AddOrRemoveIfExistsNullable<TSource>(this IList<TSource>? list, TSource item)
+HasAny<TSource>(this IList<TSource>? list)
 ```
 
 ## Recycle extensions
@@ -48,3 +49,10 @@ RecycleOne(this int? value, int max)
 ```c#
 byte[] ToByteArray(this Stream? stream)
 ```
+
+# Upgrade instructions
+
+## 1.1.0 &rarr; 2.0.0
+
+- Renamed `Enumerable` static class (that contains the Enumerable extensions) into `EnumerableExtensions` to prevent Linq conflicts.
+- `ContainsAll()` now returns **false** if the source is null instead of throwing..

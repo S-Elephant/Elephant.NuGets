@@ -4,11 +4,27 @@
 # [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleType", Justification = "Grouped models.")]
 
 #########################################################################################################################################
-# Code files
+# Code files.
 #########################################################################################################################################
 [*.{cs,vb}]
 indent_style = tab
 indent_size = 4
+
+#########################################################################################################################################
+# Edtior rules.
+#########################################################################################################################################
+
+# Collection initialization can be simplified.
+dotnet_diagnostic.IDE0028.severity = none
+
+# 'using' statement can be simplified.
+dotnet_diagnostic.IDE0063.severity = none
+
+# 'new' expression can be simplified.
+dotnet_diagnostic.IDE0090.severity = none
+
+# Collection initialization can be simplified.
+dotnet_diagnostic.IDE0306.severity = none
 
 #########################################################################################################################################
 # Below are the StyleCop rules that aren't enforced.
