@@ -1,12 +1,12 @@
 ﻿namespace Elephant.Extensions.Tests.EnumerableTests
 {
 	/// <summary>
-	/// <see cref="Enumerable.AreAllItemsUnique{TSource}(IEnumerable{TSource}?)"/> tests.
+	/// <see cref="EnumerableExtensions.AreAllItemsUnique{TSource}(IEnumerable{TSource}?)"/> tests.
 	/// </summary>
 	public class AreAllItemsUniqueTests
 	{
 		/// <summary>
-		/// <see cref="Enumerable.AreAllItemsUnique{TSource}"/>
+		/// <see cref="EnumerableExtensions.AreAllItemsUnique{TSource}"/>
 		/// returns true if all items are unique.
 		/// </summary>
 		[Fact]
@@ -24,7 +24,7 @@
 		}
 
 		/// <summary>
-		/// <see cref="Enumerable.AreAllItemsUnique{TSource}"/>
+		/// <see cref="EnumerableExtensions.AreAllItemsUnique{TSource}"/>
 		/// returns false if not all items are unique.
 		/// </summary>
 		[Fact]
@@ -42,7 +42,7 @@
 		}
 
 		/// <summary>
-		/// <see cref="Enumerable.AreAllItemsUnique{TSource}"/>
+		/// <see cref="EnumerableExtensions.AreAllItemsUnique{TSource}"/>
 		/// returns true if source is empty.
 		/// </summary>
 		[Fact]
@@ -60,7 +60,7 @@
 		}
 
 		/// <summary>
-		/// <see cref="Enumerable.AreAllItemsUnique{TSource}"/>
+		/// <see cref="EnumerableExtensions.AreAllItemsUnique{TSource}"/>
 		/// returns true if source is null.
 		/// </summary>
 		[Fact]

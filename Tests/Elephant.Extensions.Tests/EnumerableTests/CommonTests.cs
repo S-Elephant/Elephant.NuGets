@@ -3,12 +3,12 @@
 namespace Elephant.Extensions.Tests.EnumerableTests
 {
 	/// <summary>
-	/// <see cref="Enumerable"/> tests.
+	/// <see cref="EnumerableExtensions"/> tests.
 	/// </summary>
 	public class CommonTests
 	{
 		/// <summary>
-		/// <see cref="Enumerable.None{TSource}(IEnumerable{TSource})"/> tests.
+		/// <see cref="EnumerableExtensions.None{TSource}(IEnumerable{TSource})"/> tests.
 		/// </summary>
 		[Fact]
 		[SpeedFast, UnitTest]
@@ -20,7 +20,7 @@ namespace Elephant.Extensions.Tests.EnumerableTests
 		}
 
 		/// <summary>
-		/// <see cref="Enumerable.IsEmpty{TSource}(IEnumerable{TSource})"/> tests.
+		/// <see cref="EnumerableExtensions.IsEmpty{TSource}(IEnumerable{TSource})"/> tests.
 		/// </summary>
 		[Fact]
 		[SpeedFast, UnitTest]
@@ -32,7 +32,7 @@ namespace Elephant.Extensions.Tests.EnumerableTests
 		}
 
 		/// <summary>
-		/// <see cref="Enumerable.None{TSource}(IEnumerable{TSource})"/> tests.
+		/// <see cref="EnumerableExtensions.None{TSource}(IEnumerable{TSource})"/> tests.
 		/// </summary>
 		[Fact]
 		[SpeedFast, UnitTest]
@@ -44,7 +44,7 @@ namespace Elephant.Extensions.Tests.EnumerableTests
 		}
 
 		/// <summary>
-		/// <see cref="Enumerable.IsEmpty{TSource}(IEnumerable{TSource})"/> tests.
+		/// <see cref="EnumerableExtensions.IsEmpty{TSource}(IEnumerable{TSource})"/> tests.
 		/// </summary>
 		[Fact]
 		[SpeedFast, UnitTest]
@@ -56,7 +56,7 @@ namespace Elephant.Extensions.Tests.EnumerableTests
 		}
 
 		/// <summary>
-		/// <see cref="Enumerable.None{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/> tests.
+		/// <see cref="EnumerableExtensions.None{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/> tests.
 		/// </summary>
 		[Theory]
 		[SpeedFast, UnitTest]
@@ -82,7 +82,7 @@ namespace Elephant.Extensions.Tests.EnumerableTests
 		}
 
 		/// <summary>
-		/// <see cref="Enumerable.ContainsAll{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/> test.
+		/// <see cref="EnumerableExtensions.ContainsAll{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/> test.
 		/// </summary>
 		[Fact]
 		[SpeedVeryFast, UnitTest]
@@ -100,7 +100,7 @@ namespace Elephant.Extensions.Tests.EnumerableTests
 		}
 
 		/// <summary>
-		/// <see cref="Enumerable.ContainsAll{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/> test.
+		/// <see cref="EnumerableExtensions.ContainsAll{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/> test.
 		/// </summary>
 		[Fact]
 		[SpeedVeryFast, UnitTest]
@@ -118,7 +118,7 @@ namespace Elephant.Extensions.Tests.EnumerableTests
 		}
 
 		/// <summary>
-		/// <see cref="Enumerable.ContainsAll{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/> test.
+		/// <see cref="EnumerableExtensions.ContainsAll{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/> test.
 		/// </summary>
 		[Fact]
 		[SpeedVeryFast, UnitTest]
@@ -136,7 +136,7 @@ namespace Elephant.Extensions.Tests.EnumerableTests
 		}
 
 		/// <summary>
-		/// <see cref="Enumerable.ContainsAll{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/> test.
+		/// <see cref="EnumerableExtensions.ContainsAll{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/> test.
 		/// </summary>
 		[Fact]
 		[SpeedVeryFast, UnitTest]
@@ -149,11 +149,32 @@ namespace Elephant.Extensions.Tests.EnumerableTests
 			// Act.
 			bool containsall = source.ContainsAll(values);
 
+			// Assert.
 			Assert.True(containsall);
 		}
 
+
 		/// <summary>
-		/// <see cref="Enumerable.ContainsNone{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/> test.
+		/// <see cref="EnumerableExtensions.ContainsAll{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/>
+		/// returns false if source is null.
+		/// </summary>
+		[Fact]
+		[SpeedVeryFast, UnitTest]
+		public void ContainsAllReturnsFalseIfSourceNull()
+		{
+			// Arrange.
+			List<int> source = null!;
+			List<int> values = new();
+
+			// Act.
+			bool containsall = source.ContainsAll(values);
+
+			// Assert.
+			Assert.False(containsall);
+		}
+
+		/// <summary>
+		/// <see cref="EnumerableExtensions.ContainsNone{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/> test.
 		/// </summary>
 		[Fact]
 		[SpeedVeryFast, UnitTest]
@@ -166,11 +187,12 @@ namespace Elephant.Extensions.Tests.EnumerableTests
 			// Act.
 			bool containsNone = source.ContainsNone(values);
 
+			// Assert.
 			Assert.False(containsNone);
 		}
 
 		/// <summary>
-		/// <see cref="Enumerable.ContainsNone{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/> test.
+		/// <see cref="EnumerableExtensions.ContainsNone{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/> test.
 		/// </summary>
 		[Fact]
 		[SpeedVeryFast, UnitTest]
@@ -188,7 +210,7 @@ namespace Elephant.Extensions.Tests.EnumerableTests
 		}
 
 		/// <summary>
-		/// <see cref="Enumerable.ContainsNone{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/> test.
+		/// <see cref="EnumerableExtensions.ContainsNone{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/> test.
 		/// </summary>
 		[Fact]
 		[SpeedVeryFast, UnitTest]
@@ -206,7 +228,7 @@ namespace Elephant.Extensions.Tests.EnumerableTests
 		}
 
 		/// <summary>
-		/// <see cref="Enumerable.ContainsNone{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/> test.
+		/// <see cref="EnumerableExtensions.ContainsNone{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/> test.
 		/// </summary>
 		[Fact]
 		[SpeedVeryFast, UnitTest]
@@ -224,7 +246,45 @@ namespace Elephant.Extensions.Tests.EnumerableTests
 		}
 
 		/// <summary>
-		/// <see cref="Enumerable.IsFirst{TSource}"/> tests.
+		/// <see cref="EnumerableExtensions.ContainsNone{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/>
+		/// returns true if source is null.
+		/// </summary>
+		[Fact]
+		[SpeedVeryFast, UnitTest]
+		public void ContainsNoneReturnsTrueIfSourceIsNull()
+		{
+			// Arrange.
+			List<int> source = null!;
+			List<int> values = new(1);
+
+			// Act.
+			bool containsNone = source.ContainsNone(values);
+
+			// Assert.
+			Assert.True(containsNone);
+		}
+
+		/// <summary>
+		/// <see cref="EnumerableExtensions.ContainsNone{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/>
+		/// returns true if source is null and if values is empty.
+		/// </summary>
+		[Fact]
+		[SpeedVeryFast, UnitTest]
+		public void ContainsNoneReturnsTrueIfSourceIsNullAndValuesIsEmpty()
+		{
+			// Arrange.
+			List<int> source = null!;
+			List<int> values = new();
+
+			// Act.
+			bool containsNone = source.ContainsNone(values);
+
+			// Assert.
+			Assert.True(containsNone);
+		}
+
+		/// <summary>
+		/// <see cref="EnumerableExtensions.IsFirst{TSource}"/> tests.
 		/// </summary>
 		[Theory]
 		[InlineData(1, true)]
@@ -248,7 +308,43 @@ namespace Elephant.Extensions.Tests.EnumerableTests
 		}
 
 		/// <summary>
-		/// <see cref="Enumerable.IsLast{TSource}"/> tests.
+		/// <see cref="EnumerableExtensions.IsFirst{TSource}"/>
+		/// returns false if empty.
+		/// </summary>
+		[Fact]
+		[SpeedVeryFast, UnitTest]
+		public void IsFirstReturnsFalseIfEmpty()
+		{
+			// Arrange.
+			List<int> source = new();
+
+			// Act.
+			bool isFirst = source.IsFirst(10);
+
+			// Assert.
+			Assert.False(isFirst);
+		}
+
+		/// <summary>
+		/// <see cref="EnumerableExtensions.IsFirst{TSource}"/>
+		/// returns false if source is null.
+		/// </summary>
+		[Fact]
+		[SpeedVeryFast, UnitTest]
+		public void IsFirstReturnsFalseIfSourceNull()
+		{
+			// Arrange.
+			List<int> source = null!;
+
+			// Act.
+			bool isFirst = source.IsFirst(10);
+
+			// Assert.
+			Assert.False(isFirst);
+		}
+
+		/// <summary>
+		/// <see cref="EnumerableExtensions.IsLast{TSource}"/> tests.
 		/// </summary>
 		[Theory]
 		[InlineData(1, false)]
@@ -272,7 +368,7 @@ namespace Elephant.Extensions.Tests.EnumerableTests
 		}
 
 		/// <summary>
-		/// <see cref="Enumerable.IsFirst{TSource}"/> test with a simple class.
+		/// <see cref="EnumerableExtensions.IsFirst{TSource}"/> test with a simple class.
 		/// </summary>
 		[Fact]
 		[SpeedVeryFast, UnitTest]
@@ -296,7 +392,7 @@ namespace Elephant.Extensions.Tests.EnumerableTests
 		}
 
 		/// <summary>
-		/// <see cref="Enumerable.IsFirst{TSource}"/> test with a simple class.
+		/// <see cref="EnumerableExtensions.IsFirst{TSource}"/> test with a simple class.
 		/// </summary>
 		[Fact]
 		[SpeedVeryFast, UnitTest]
@@ -320,7 +416,7 @@ namespace Elephant.Extensions.Tests.EnumerableTests
 		}
 
 		/// <summary>
-		/// <see cref="Enumerable.IsLast{TSource}"/> test with a simple class.
+		/// <see cref="EnumerableExtensions.IsLast{TSource}"/> test with a simple class.
 		/// </summary>
 		[Fact]
 		[SpeedVeryFast, UnitTest]
@@ -344,7 +440,7 @@ namespace Elephant.Extensions.Tests.EnumerableTests
 		}
 
 		/// <summary>
-		/// <see cref="Enumerable.IsLast{TSource}"/> test with a simple class.
+		/// <see cref="EnumerableExtensions.IsLast{TSource}"/> test with a simple class.
 		/// </summary>
 		[Fact]
 		[SpeedVeryFast, UnitTest]
@@ -368,7 +464,7 @@ namespace Elephant.Extensions.Tests.EnumerableTests
 		}
 
 		/// <summary>
-		/// <see cref="Enumerable.IsLast{TSource}"/> test with a simple class and a null value.
+		/// <see cref="EnumerableExtensions.IsLast{TSource}"/> test with a simple class and a null value.
 		/// </summary>
 		[Fact]
 		[SpeedVeryFast, UnitTest]
@@ -401,6 +497,42 @@ namespace Elephant.Extensions.Tests.EnumerableTests
 			/// </summary>
 			// ReSharper disable once UnusedMember.Local
 			public string A { get; set; } = "a";
+		}
+
+		/// <summary>
+		/// <see cref="EnumerableExtensions.IsLast{TSource}(IEnumerable{TSource}, TSource)"/>
+		/// returns false if empty.
+		/// </summary>
+		[Fact]
+		[SpeedVeryFast, UnitTest]
+		public void IsLastReturnsFalseIfEmpty()
+		{
+			// Arrange.
+			List<int> source = new();
+
+			// Act.
+			bool isLast = source.IsFirst(10);
+
+			// Assert.
+			Assert.False(isLast);
+		}
+
+		/// <summary>
+		/// <see cref="EnumerableExtensions.IsLast{TSource}(IEnumerable{TSource}, TSource)"/>
+		/// returns false if source is null.
+		/// </summary>
+		[Fact]
+		[SpeedVeryFast, UnitTest]
+		public void IsLastReturnsFalseIfSourceNull()
+		{
+			// Arrange.
+			List<int> source = null!;
+
+			// Act.
+			bool isLast = source.IsFirst(10);
+
+			// Assert.
+			Assert.False(isLast);
 		}
 	}
 }
