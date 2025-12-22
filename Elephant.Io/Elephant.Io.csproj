@@ -1,9 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.1.3</Version>
-    <PackageReleaseNotes>Add .NET 10 target framework.</PackageReleaseNotes>
+		<Version>1.2.0</Version>
+    <PackageReleaseNotes>Add DirectoryService, method inlining.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->

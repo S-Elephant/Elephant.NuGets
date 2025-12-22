@@ -37,3 +37,20 @@ private async Task Foo(List<string> directoryPaths)
     }
 }
 ```
+
+## DirectoryService
+
+```c#
+DirectoryInfo CreateDirectory(string path);
+void Delete(string path, bool recursive = false);
+IEnumerable<string> EnumerateFiles(string path, string searchPattern = "*", SearchOption searchOption = SearchOption.TopDirectoryOnly);
+IEnumerable<string> EnumerateDirectories(string path, string searchPattern = "*", SearchOption searchOption = SearchOption.TopDirectoryOnly);
+bool Exists(string? path);
+string[] GetFiles(string path, string searchPattern = "*", SearchOption searchOption = SearchOption.TopDirectoryOnly);
+string[] GetDirectories(string path, string searchPattern = "*", SearchOption searchOption = SearchOption.TopDirectoryOnly);
+void Move(string sourceDirName, string destDirName);
+string GetCurrentDirectory();
+bool NotExists(string? path);
+void SetCurrentDirectory(string path);
+```
+
