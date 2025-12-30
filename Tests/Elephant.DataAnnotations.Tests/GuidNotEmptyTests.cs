@@ -94,7 +94,7 @@ namespace Elephant.DataAnnotations.Tests
 		/// <summary>
 		/// Test class.
 		/// </summary>
-		private class ValidationTarget
+		private sealed class ValidationTarget
 		{
 			/// <summary>
 			/// Items to validate.
@@ -118,7 +118,7 @@ namespace Elephant.DataAnnotations.Tests
 		/// <summary>
 		/// Test class.
 		/// </summary>
-		private class NoNullAllowedValidationTarget
+		private sealed class NoNullAllowedValidationTarget
 		{
 			[GuidNotEmpty(false)]
 			public Guid? GuidNullable { get; set; }

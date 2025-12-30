@@ -4,7 +4,7 @@ namespace Elephant.ActivityTrackers.Tests.TestDataClasses
 	/// <summary>
 	/// Activity info test data class for testing classes.
 	/// </summary>
-	internal class ActivityInfo
+	internal sealed class ActivityInfo
 	{
 		/// <summary>
 		/// Test string.
@@ -50,7 +50,7 @@ namespace Elephant.ActivityTrackers.Tests.TestDataClasses
 		/// <inheritdoc/>
 		public override int GetHashCode()
 		{
-			return (ValueString, ValueInt, SomethingElse).GetHashCode();
+			return HashCode.Combine(ValueString, ValueInt, SomethingElse);
 		}
 	}
 }

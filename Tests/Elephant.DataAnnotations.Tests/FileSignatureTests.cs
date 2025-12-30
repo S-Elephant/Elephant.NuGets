@@ -14,7 +14,7 @@ namespace Elephant.DataAnnotations.Tests
 		/// <summary>
 		/// Valid .png data with .png extension.
 		/// </summary>
-		public static TheoryData<byte[], string, string, bool> ValidPngDataWithPngExtension => new ()
+		public static TheoryData<byte[], string, string, bool> ValidPngDataWithPngExtension => new()
 		{
 			{ new byte[] { 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A }, "image/png", "Test.png", true },
 		};
@@ -22,15 +22,15 @@ namespace Elephant.DataAnnotations.Tests
 		/// <summary>
 		/// No .png data with .png extension.
 		/// </summary>
-		public static TheoryData<byte[], string, string, bool> NoDataWithPngExtension => new ()
+		public static TheoryData<byte[], string, string, bool> NoDataWithPngExtension => new()
 		{
-			{ new byte[] { }, "image/png", "Test.png", false },
+			{ Array.Empty<byte>(), "image/png", "Test.png", false },
 		};
 
 		/// <summary>
 		/// Valid .png data with .png extension with wrong content type.
 		/// </summary>
-		public static TheoryData<byte[], string, string, bool> ValidPngDataWithPngExtensionWithBadContentType => new ()
+		public static TheoryData<byte[], string, string, bool> ValidPngDataWithPngExtensionWithBadContentType => new()
 		{
 			{ new byte[] { 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A }, "image/foo", "Test.png", false },
 		};
@@ -38,7 +38,7 @@ namespace Elephant.DataAnnotations.Tests
 		/// <summary>
 		/// Valid .png data with a wrong .txt extension.
 		/// </summary>
-		public static TheoryData<byte[], string, string, bool> ValidPngDataWithTxtExtension => new ()
+		public static TheoryData<byte[], string, string, bool> ValidPngDataWithTxtExtension => new()
 		{
 			{ new byte[] { 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A }, "image/png", "Test.txt", false },
 		};
@@ -46,7 +46,7 @@ namespace Elephant.DataAnnotations.Tests
 		/// <summary>
 		/// Invalid .png data with .png extension.
 		/// </summary>
-		public static TheoryData<byte[], string, string, bool> InvalidPngDataWithPngExtension => new ()
+		public static TheoryData<byte[], string, string, bool> InvalidPngDataWithPngExtension => new()
 		{
 			{ new byte[] { 0x80, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A }, "image/png", "Test.png", false },
 		};
@@ -58,15 +58,15 @@ namespace Elephant.DataAnnotations.Tests
 		/// <summary>
 		/// Valid .txt data with .txt extension.
 		/// </summary>
-		public static TheoryData<byte[], string, string, bool> ValidTextDataWithTxtExtension => new ()
+		public static TheoryData<byte[], string, string, bool> ValidTextDataWithTxtExtension => new()
 		{
-			{ new byte[] { 0x61, 0x62, 0x63, }, "text/plain", "Test.txt", true },
+			{ "abc"u8.ToArray(), "text/plain", "Test.txt", true },
 		};
 
 		/// <summary>
 		/// No data with .txt extension.
 		/// </summary>
-		public static TheoryData<byte[], string, string, bool> NoTextDataWithTxtExtension => new ()
+		public static TheoryData<byte[], string, string, bool> NoTextDataWithTxtExtension => new()
 		{
 			{ Array.Empty<byte>(), "text/plain", "Test.txt", true },
 		};
@@ -78,66 +78,47 @@ namespace Elephant.DataAnnotations.Tests
 		/// <summary>
 		/// Valid .svg data with .svg extension.
 		/// </summary>
-		[SuppressMessage("Microsoft.StyleCop.CSharp.LayoutRules", "SA1500:BracesForMultiLineStatementsShouldNotShareLine", Justification = "Share line for clarity.")]
-		[SuppressMessage("Microsoft.StyleCop.CSharp.ReadabilityRules", "SA1137:ElementsShouldHaveTheSameIndentation", Justification = "Violate indentation for clarity.")]
-		public static TheoryData<byte[], string, string, bool> ValidSvgDataWithSvgExtension => new ()
+		public static TheoryData<byte[], string, string, bool> ValidSvgDataWithSvgExtension => new()
 		{
-			{ new byte[] { 0x3C, 0x3F, 0x78, 0x6D, 0x6C, 0x20, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6F, 0x6E,
-				0x3D, 0x22, 0x31, 0x2E, 0x30, 0x22, 0x20, 0x65, 0x6E, 0x63, 0x6F, 0x64, 0x69, 0x6E, 0x67,
-				0x3D, 0x22, 0x55, 0x54, 0x46, 0x2D, 0x38, 0x22, 0x3F, 0x3E, 0x0A, 0x3C, 0x73, 0x76, 0x67,
-				0x3E, 0x0A, 0x3C, 0x2F, 0x73, 0x76, 0x67, 0x3E, }, "image/svg+xml", "Test.svg", true },
+			{ "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg>\n</svg>"u8.ToArray(), "image/svg+xml", "Test.svg", true },
 		};
 
 		/// <summary>
 		/// Invalid .svg data with .svg extension.
 		/// </summary>
 		[SuppressMessage("Microsoft.StyleCop.CSharp.LayoutRules", "SA1500:BracesForMultiLineStatementsShouldNotShareLine", Justification = "Share line for clarity.")]
-		[SuppressMessage("Microsoft.StyleCop.CSharp.ReadabilityRules", "SA1137:ElementsShouldHaveTheSameIndentation", Justification = "Violate indentation for clarity.")]
-		public static TheoryData<byte[], string, string, bool> InvalidSvgDataWithSvgExtension => new ()
+		public static TheoryData<byte[], string, string, bool> InvalidSvgDataWithSvgExtension => new()
 		{
-			{ new byte[] { 0x3C, 0x3F, 0x78, 0x6D, 0x6C, 0x20, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6F, 0x6E,
+			{
+				new byte[] { 0x3C, 0x3F, 0x78, 0x6D, 0x6C, 0x20, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6F, 0x6E,
 				0x3D, 0x22, 0x31, 0x2E, 0x30, 0x22, 0x20, 0x65, 0x6E, 0x63, 0x6F, 0x64, 0x69, 0x6E, 0x67,
 				0x3D, 0x22, 0x55, 0x54, 0x46, 0x2D, 0x38, 0x22, 0x3F, 0x3E, 0x0A, 0x3C, 0x00, 0x76, 0x67,
-				0x3E, 0x0A, 0x3C, 0x2F, 0x73, 0x70, 0x61, 0x3F, }, "image/svg+xml", "Test.svg", false },
+				0x3E, 0x0A, 0x3C, 0x2F, 0x73, 0x70, 0x61, 0x3F, }, "image/svg+xml", "Test.svg", false
+			},
 		};
 
 		/// <summary>
 		/// Valid .svg data with .txt extension.
 		/// </summary>
-		[SuppressMessage("Microsoft.StyleCop.CSharp.LayoutRules", "SA1500:BracesForMultiLineStatementsShouldNotShareLine", Justification = "Share line for clarity.")]
-		[SuppressMessage("Microsoft.StyleCop.CSharp.ReadabilityRules", "SA1137:ElementsShouldHaveTheSameIndentation", Justification = "Violate indentation for clarity.")]
-		public static TheoryData<byte[], string, string, bool> ValidSvgDataWithTxtExtension => new ()
+		public static TheoryData<byte[], string, string, bool> ValidSvgDataWithTxtExtension => new()
 		{
-			{ new byte[] { 0x3C, 0x3F, 0x78, 0x6D, 0x6C, 0x20, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6F, 0x6E,
-				0x3D, 0x22, 0x31, 0x2E, 0x30, 0x22, 0x20, 0x65, 0x6E, 0x63, 0x6F, 0x64, 0x69, 0x6E, 0x67,
-				0x3D, 0x22, 0x55, 0x54, 0x46, 0x2D, 0x38, 0x22, 0x3F, 0x3E, 0x0A, 0x3C, 0x73, 0x76, 0x67,
-				0x3E, 0x0A, 0x3C, 0x2F, 0x73, 0x76, 0x67, 0x3E, }, "image/svg+xml", "Test.txt", false },
+			{ "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg>\n</svg>"u8.ToArray(), "image/svg+xml", "Test.txt", false },
 		};
 
 		/// <summary>
 		/// Invalid .svg data (but valid XML data ("abc" instead of "svg" tags)) with .svg extension.
 		/// </summary>
-		[SuppressMessage("Microsoft.StyleCop.CSharp.LayoutRules", "SA1500:BracesForMultiLineStatementsShouldNotShareLine", Justification = "Share line for clarity.")]
-		[SuppressMessage("Microsoft.StyleCop.CSharp.ReadabilityRules", "SA1137:ElementsShouldHaveTheSameIndentation", Justification = "Violate indentation for clarity.")]
-		public static TheoryData<byte[], string, string, bool> InvalidSvgDataWithSvgExtensionWithValidXml => new ()
+		public static TheoryData<byte[], string, string, bool> InvalidSvgDataWithSvgExtensionWithValidXml => new()
 		{
-			{ new byte[] { 0x3C, 0x3F, 0x78, 0x6D, 0x6C, 0x20, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6F, 0x6E,
-				0x3D, 0x22, 0x31, 0x2E, 0x30, 0x22, 0x20, 0x65, 0x6E, 0x63, 0x6F, 0x64, 0x69, 0x6E, 0x67,
-				0x3D, 0x22, 0x55, 0x54, 0x46, 0x2D, 0x38, 0x22, 0x3F, 0x3E, 0x0A, 0x3C, 0x61, 0x62, 0x63,
-				0x3E, 0x0A, 0x3C, 0x2F, 0x61, 0x62, 0x63, 0x3E, }, "image/svg+xml", "Test.svg", false },
+			{ "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<abc>\n</abc>"u8.ToArray(), "image/svg+xml", "Test.svg", false },
 		};
 
 		/// <summary>
 		/// Invalid .svg data (has an invalid XML declaration) with .svg extension.
 		/// </summary>
-		[SuppressMessage("Microsoft.StyleCop.CSharp.LayoutRules", "SA1500:BracesForMultiLineStatementsShouldNotShareLine", Justification = "Share line for clarity.")]
-		[SuppressMessage("Microsoft.StyleCop.CSharp.ReadabilityRules", "SA1137:ElementsShouldHaveTheSameIndentation", Justification = "Violate indentation for clarity.")]
-		public static TheoryData<byte[], string, string, bool> InvalidSvgData2WithSvgExtensionWithValidXml => new ()
+		public static TheoryData<byte[], string, string, bool> InvalidSvgData2WithSvgExtensionWithValidXml => new()
 		{
-			{ new byte[] { 0x3C, 0x3F, 0x61, 0x62, 0x63, 0x20, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6F, 0x6E,
-				0x3D, 0x22, 0x31, 0x2E, 0x30, 0x22, 0x20, 0x65, 0x6E, 0x63, 0x6F, 0x64, 0x69, 0x6E, 0x67,
-				0x3D, 0x22, 0x55, 0x54, 0x46, 0x2D, 0x38, 0x22, 0x3F, 0x3E, 0x0A, 0x3C, 0x73, 0x76, 0x67,
-				0x3E, 0x0A, 0x3C, 0x2F, 0x73, 0x76, 0x67, 0x3E, }, "image/svg+xml", "Test.svg", true },
+			{ "<?abc version=\"1.0\" encoding=\"UTF-8\"?>\n<svg>\n</svg>"u8.ToArray(), "image/svg+xml", "Test.svg", true },
 		};
 
 		#endregion
@@ -158,8 +139,8 @@ namespace Elephant.DataAnnotations.Tests
 		/// <returns>Mocked <see cref="IFormFile"/> with the specified contents and filename.</returns>
 		private static FormFile CreateIFormFileMock(ref MemoryStream? stream, byte[] content, string? contentType, string fullFilename)
 		{
-			stream = new (content, true);
-			FormFile file = new (stream, 0, stream.Length, null, fullFilename)
+			stream = new(content, true);
+			FormFile file = new(stream, 0, stream.Length, null, fullFilename)
 			{
 				Headers = new HeaderDictionary(),
 				ContentType = contentType,
@@ -176,7 +157,7 @@ namespace Elephant.DataAnnotations.Tests
 		public void ShouldReturnSuccessIfDataIsNull()
 		{
 			// Arrange.
-			ValidationTargetTxtAndPng target = new (null);
+			ValidationTargetTxtAndPng target = new(null);
 
 			// Act.
 			bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), new List<ValidationResult>(), true);
@@ -200,8 +181,8 @@ namespace Elephant.DataAnnotations.Tests
 		public void Validate(byte[] content, string contentType, string fullFilename, bool expectedIsValid)
 		{
 			// Arrange.
-			ValidationTargetTxtAndPng target = new (CreateIFormFileMock(ref _memoryStream, content, contentType, fullFilename));
-			List<ValidationResult> validationResults = new ();
+			ValidationTargetTxtAndPng target = new(CreateIFormFileMock(ref _memoryStream, content, contentType, fullFilename));
+			List<ValidationResult> validationResults = new();
 
 			// Act.
 			bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), validationResults, true);
@@ -226,8 +207,8 @@ namespace Elephant.DataAnnotations.Tests
 		public void ValidateSvg(byte[] content, string contentType, string fullFilename, bool expectedIsValid)
 		{
 			// Arrange.
-			ValidationTargetSvg target = new (CreateIFormFileMock(ref _memoryStream, content, contentType, fullFilename));
-			List<ValidationResult> validationResults = new ();
+			ValidationTargetSvg target = new(CreateIFormFileMock(ref _memoryStream, content, contentType, fullFilename));
+			List<ValidationResult> validationResults = new();
 
 			// Act.
 			bool isValid = Validator.TryValidateObject(target, new ValidationContext(target), validationResults, true);
@@ -240,7 +221,9 @@ namespace Elephant.DataAnnotations.Tests
 		}
 
 		/// <inheritdoc cref="IDisposable.Dispose"/>
+#pragma warning disable CA1816 // Dispose methods should call SuppressFinalize. Reason: False positive.
 		public void Dispose()
+#pragma warning restore CA1816 // Dispose methods should call SuppressFinalize.
 		{
 			TearDown();
 		}
@@ -256,7 +239,7 @@ namespace Elephant.DataAnnotations.Tests
 		/// <summary>
 		/// Test class with Txt and Png targets.
 		/// </summary>
-		private class ValidationTargetTxtAndPng
+		private sealed class ValidationTargetTxtAndPng
 		{
 			/// <summary>
 			/// <see cref="IFormFile"/> to validate.
@@ -277,7 +260,7 @@ namespace Elephant.DataAnnotations.Tests
 		/// <summary>
 		/// Test class with Svg target.
 		/// </summary>
-		private class ValidationTargetSvg
+		private sealed class ValidationTargetSvg
 		{
 			/// <summary>
 			/// <see cref="IFormFile"/> to validate.

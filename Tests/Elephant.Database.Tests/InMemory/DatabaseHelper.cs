@@ -5,7 +5,7 @@ namespace Elephant.Database.Tests.InMemory
 	/// <summary>
 	/// In-memory database helper.
 	/// </summary>
-	internal class DatabaseHelper
+	internal sealed class DatabaseHelper
 	{
 		/// <summary>
 		/// In-memory context.
@@ -18,12 +18,12 @@ namespace Elephant.Database.Tests.InMemory
 		public DatabaseHelper()
 		{
 			DbContextOptionsBuilder<TestContext> builder = new();
-			builder.UseInMemoryDatabase(databaseName: "TestDbInMemory");
+			_ = builder.UseInMemoryDatabase(databaseName: "TestDbInMemory");
 			TestContext = new TestContext(builder.Options);
 
 			// Delete existing database before creating a new one.
-			TestContext.Database.EnsureDeleted();
-			TestContext.Database.EnsureCreated();
+			_ = TestContext.Database.EnsureDeleted();
+			_ = TestContext.Database.EnsureCreated();
 		}
 	}
 }

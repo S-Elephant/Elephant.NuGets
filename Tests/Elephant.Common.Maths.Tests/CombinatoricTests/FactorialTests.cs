@@ -42,7 +42,7 @@ namespace Elephant.Common.Maths.Tests.CombinatoricTests
 		public void FactorialReturnsArgumentException()
 		{
 			// Act and assert.
-			Assert.Throws<ArgumentException>(() => Combinatorics.Factorial(-1));
+			_ = Assert.Throws<ArgumentException>(() => Combinatorics.Factorial(-1));
 		}
 
 		/// <summary>
@@ -54,7 +54,7 @@ namespace Elephant.Common.Maths.Tests.CombinatoricTests
 		public void FactorialReturnsOverflowException()
 		{
 			// Act and assert.
-			Assert.Throws<OverflowException>(() => Combinatorics.Factorial(100));
+			_ = Assert.Throws<OverflowException>(() => Combinatorics.Factorial(100));
 		}
 	}
 }

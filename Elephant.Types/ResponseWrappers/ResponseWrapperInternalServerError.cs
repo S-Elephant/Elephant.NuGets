@@ -17,7 +17,7 @@ namespace Elephant.Types.ResponseWrappers
 		/// Constructor.
 		/// </summary>
 		public ResponseWrapperInternalServerError(TData? data = default, string message = "Internal server error.")
-            : base(data, StatusCodeInternalServerError, message)
+			: base(data, StatusCodeInternalServerError, message)
 		{
 		}
 
@@ -25,7 +25,7 @@ namespace Elephant.Types.ResponseWrappers
 		/// Constructor.
 		/// </summary>
 		public ResponseWrapperInternalServerError(string message)
-            : base(default, StatusCodeInternalServerError, message)
+			: base(default, StatusCodeInternalServerError, message)
 		{
 		}
 
@@ -33,7 +33,7 @@ namespace Elephant.Types.ResponseWrappers
 		/// Constructor.
 		/// </summary>
 		public ResponseWrapperInternalServerError(Exception exception)
-            : base(default, StatusCodeInternalServerError, exception.ToString())
+			: base(default, StatusCodeInternalServerError, exception.ToString())
 		{
 		}
 	}
@@ -50,7 +50,7 @@ namespace Elephant.Types.ResponseWrappers
 		/// Constructor.
 		/// </summary>
 		public ResponseWrapperInternalServerError(string message = "Internal server error.")
-            : base(StatusCodeInternalServerError, message)
+			: base(StatusCodeInternalServerError, message)
 		{
 		}
 
@@ -58,7 +58,7 @@ namespace Elephant.Types.ResponseWrappers
 		/// Constructor.
 		/// </summary>
 		public ResponseWrapperInternalServerError(Exception exception)
-            : base(StatusCodeInternalServerError, exception.ToString())
+			: base(StatusCodeInternalServerError, exception.ToString())
 		{
 		}
 	}

@@ -71,3 +71,9 @@ romanNumeralConverter.IntToRoman(int.MaxValue, RomanLargeNumberFormat.Overline);
 romanNumeralConverter.SmallRomanToInt("mcmxcix"); // Outputs: 1999
 ```
 
+# Upgrade instructions
+
+## 1.0.0 &rarr; 2.0.0
+
+- Renamed the namespace of `ParenthesesValidator` from `Elephant.Texts.Tests` into `Elephant.Texts`.
+- Renamed the namespace of `IParenthesesValidator` from `Elephant.Texts.Tests` into `Elephant.Texts.Abstractions`.

@@ -80,7 +80,7 @@ namespace Elephant.UndoRedo.Tests
 			UndoRedo<string> undoRedo = new();
 
 			// Act and Assert.
-			Assert.Throws<InvalidOperationException>(() => undoRedo.Undo());
+			_ = Assert.Throws<InvalidOperationException>(() => undoRedo.Undo());
 		}
 
 		/// <summary>
@@ -94,7 +94,7 @@ namespace Elephant.UndoRedo.Tests
 			UndoRedo<string> undoRedo = new();
 
 			// Act and Assert.
-			Assert.Throws<InvalidOperationException>(() => undoRedo.Redo());
+			_ = Assert.Throws<InvalidOperationException>(() => undoRedo.Redo());
 		}
 
 		/// <summary>

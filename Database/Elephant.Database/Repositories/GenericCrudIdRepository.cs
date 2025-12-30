@@ -110,7 +110,7 @@ namespace Elephant.Database.Repositories
 					return 0;
 
 				Table.RemoveRange(toDelete);
-				await SaveAsync(cancellationToken);
+				_ = await SaveAsync(cancellationToken);
 				return toDelete.Count;
 			}
 
@@ -132,7 +132,7 @@ namespace Elephant.Database.Repositories
 				return 0;
 
 			Table.RemoveRange(toDeleteCustom);
-			await SaveAsync(cancellationToken);
+			_ = await SaveAsync(cancellationToken);
 			return toDeleteCustom.Count;
 		}
 

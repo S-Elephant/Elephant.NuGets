@@ -8,7 +8,7 @@
 		/// <summary>
 		/// New line delimiters.
 		/// </summary>
-		private static readonly string[] NewLineDelimiters = { "\r\n", "\n", "\r" };
+		private static readonly string[] NewLineDelimiters = ["\r\n", "\n", "\r"];
 
 		/// <summary>
 		/// Converts the <see cref="Environment.NewLine"/>, rn and/or n separated string <paramref name="newLineValues"/> into a <see cref="List{T}"/>.

@@ -54,3 +54,8 @@ private void Foo()
 }
 ```
 
+# Upgrade instructions
+
+## 1.0.0 &rarr; 2.0.0
+
+- `[FileSignature]` now may throw an `ArgumentException` instead of an `IndexOutOfRangeException `.

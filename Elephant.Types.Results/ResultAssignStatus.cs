@@ -2119,17 +2119,7 @@ namespace Elephant.Types.Results
 		/// <returns><see cref="IResult{TData}"/></returns>
 		public static IResult<TData> InternalServerError(Exception exception, int statusCode = 500, TData? data = default)
 		{
-			return InternalServerError(exception.ToString(), data);
-		}
-
-		/// <summary>
-		/// Custom error with HTTP status code 500.
-		/// </summary>
-		/// <param name="exception"><see cref="Exception"/></param>
-		/// <returns><see cref="IResult{TData}"/></returns>
-		public static IResult InternalServerErrorNoData(Exception exception)
-		{
-			return InternalServerErrorNoData(exception.ToString());
+			return new Result<TData>().AddCustom(data, statusCode, exception.ToString());
 		}
 
 		/// <summary>
@@ -2141,6 +2131,16 @@ namespace Elephant.Types.Results
 		public static IResult<TData> InternalServerError(string? message = null, TData? data = default)
 		{
 			return new Result<TData>().AddInternalServerError(message, data);
+		}
+
+		/// <summary>
+		/// Custom error with HTTP status code 500.
+		/// </summary>
+		/// <param name="exception"><see cref="Exception"/></param>
+		/// <returns><see cref="IResult{TData}"/></returns>
+		public static IResult InternalServerErrorNoData(Exception exception)
+		{
+			return InternalServerErrorNoData(exception.ToString());
 		}
 
 		/// <summary>

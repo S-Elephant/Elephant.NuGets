@@ -8,7 +8,7 @@
 		/// <summary>
 		/// System under test.
 		/// </summary>
-		private readonly IRomanNumeralConverter _romanNumeralConverter;
+		private readonly RomanNumeralConverter _romanNumeralConverter;
 
 		/// <summary>
 		/// Setup.
@@ -32,7 +32,7 @@
 		public void ToRoman_CustomOverline(int num, string expected)
 		{
 			// Arrange.
-			IRomanNumeralConverter customRomanNumeralConverter = new RomanNumeralConverter(combiningOverline: '+');
+			RomanNumeralConverter customRomanNumeralConverter = new RomanNumeralConverter(combiningOverline: '+');
 
 			// Act.
 			string result = customRomanNumeralConverter.IntToRoman(num, RomanLargeNumberFormatType.Overline);
@@ -145,7 +145,7 @@
 		{
 			// Arrange.
 			string customZero = "Zero pikachu's!";
-			IRomanNumeralConverter customRomanNumeralConverter = new RomanNumeralConverter(customZero);
+			RomanNumeralConverter customRomanNumeralConverter = new RomanNumeralConverter(customZero);
 
 			// Act.
 			string result = customRomanNumeralConverter.IntToRoman(0, romanLargeNumberFormat);
@@ -164,7 +164,7 @@
 		public void ToRoman_Negative_ThrowsException(int negativeValue)
 		{
 			// Act and Assert.
-			Assert.Throws<ArgumentOutOfRangeException>(() => _romanNumeralConverter.IntToRoman(negativeValue, RomanLargeNumberFormatType.MPrefix));
+			_ = Assert.Throws<ArgumentOutOfRangeException>(() => _romanNumeralConverter.IntToRoman(negativeValue, RomanLargeNumberFormatType.MPrefix));
 		}
 
 		/// <summary>
@@ -311,7 +311,7 @@
 		public void RomanToInt_ThrowsIfInvalidInputRange()
 		{
 			// Act and Assert.
-			Assert.Throws<ArgumentOutOfRangeException>(() => _romanNumeralConverter.SmallRomanToInt("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMDCXLVII"));
+			_ = Assert.Throws<ArgumentOutOfRangeException>(() => _romanNumeralConverter.SmallRomanToInt("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMDCXLVII"));
 		}
 
 		#endregion

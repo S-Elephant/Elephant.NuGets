@@ -15,7 +15,7 @@ namespace Elephant.Sorters.Tests
 		public void SortsCorrectly(List<int> unsortedList, List<int> expectedSortedList)
 		{
 			// Act.
-			unsortedList.CountingSort(IntKeySelector);
+			_ = unsortedList.CountingSort(IntKeySelector);
 
 			// Assert.
 			Assert.Equal(expectedSortedList, unsortedList);

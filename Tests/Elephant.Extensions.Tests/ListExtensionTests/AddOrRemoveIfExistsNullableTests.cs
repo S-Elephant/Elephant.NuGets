@@ -16,7 +16,7 @@
 			List<int> list = new() { -10, 1, 2, 3 };
 
 			// Act.
-			list.AddOrRemoveIfExists(1);
+			_ = list.AddOrRemoveIfExists(1);
 
 			// Assert.
 			Assert.Equal(new List<int>() { -10, 2, 3 }, list);
@@ -33,7 +33,7 @@
 			List<int> list = new() { -10, 1, 2, 3 };
 
 			// Act.
-			list.AddOrRemoveIfExists(-10);
+			_ = list.AddOrRemoveIfExists(-10);
 
 			// Assert.
 			Assert.Equal(new List<int>() { 1, 2, 3 }, list);
@@ -50,7 +50,7 @@
 			List<int> list = new() { -10, 1, 2, 3 };
 
 			// Act.
-			list.AddOrRemoveIfExists(4);
+			_ = list.AddOrRemoveIfExists(4);
 
 			// Assert.
 			Assert.Equal(new List<int>() { -10, 1, 2, 3, 4 }, list);
@@ -67,7 +67,7 @@
 			List<int> list = new() { -10, 1, 2, 3 };
 
 			// Act.
-			list.AddOrRemoveIfExists(-2);
+			_ = list.AddOrRemoveIfExists(-2);
 
 			// Assert.
 			Assert.Equal(new List<int>() { -10, 1, 2, 3, -2 }, list);
@@ -84,7 +84,7 @@
 			List<int> list = new();
 
 			// Act.
-			list.AddOrRemoveIfExists(0);
+			_ = list.AddOrRemoveIfExists(0);
 
 			// Assert.
 			Assert.Equal(new List<int>() { 0 }, list);
@@ -101,7 +101,7 @@
 			List<int>? list = null;
 
 			// Act.
-			list.AddOrRemoveIfExistsNullable(0);
+			_ = list.AddOrRemoveIfExistsNullable(0);
 
 			// Assert.
 			Assert.Null(list);
@@ -118,7 +118,7 @@
 			List<int>? list = null;
 
 			// Act & Assert.
-			Assert.Throws<NullReferenceException>(() => list!.AddOrRemoveIfExists(1));
+			_ = Assert.Throws<NullReferenceException>(() => list!.AddOrRemoveIfExists(1));
 		}
 
 		/// <summary>
@@ -133,7 +133,7 @@
 			List<int> list = new() { 1, 2, 1, 3 };
 
 			// Act.
-			list.AddOrRemoveIfExists(1);
+			_ = list.AddOrRemoveIfExists(1);
 
 			// Assert.
 			Assert.Equal(new List<int>() { 2, 1, 3 }, list);

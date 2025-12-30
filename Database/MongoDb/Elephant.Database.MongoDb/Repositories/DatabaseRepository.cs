@@ -29,7 +29,7 @@ namespace Elephant.Database.MongoDb.Repositories
 				Indent = true,
 			};
 
-			List<BsonDocument> databases = (await _mongoClient.ListDatabasesAsync(cancellationToken)).ToList();
+			List<BsonDocument> databases = (await _mongoClient.ListDatabasesAsync(cancellationToken)).ToList(cancellationToken: cancellationToken);
 			return databases.ToJson(finalJsonWriterSettings);
 		}
 	}

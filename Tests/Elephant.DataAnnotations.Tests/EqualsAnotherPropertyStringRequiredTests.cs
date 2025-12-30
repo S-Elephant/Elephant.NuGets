@@ -58,7 +58,7 @@ namespace Elephant.DataAnnotations.Tests
 		/// <summary>
 		/// Test class.
 		/// </summary>
-		private class ValidationTargetString
+		private sealed class ValidationTargetString
 		{
 			/// <summary>
 			/// Property to validate.
@@ -86,7 +86,7 @@ namespace Elephant.DataAnnotations.Tests
 		/// <summary>
 		/// Test class.
 		/// </summary>
-		private class ValidationTargetStringCaseInsensitive
+		private sealed class ValidationTargetStringCaseInsensitive
 		{
 			/// <summary>
 			/// Property to validate.

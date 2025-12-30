@@ -1,5 +1,4 @@
 using Elephant.DataAnnotations.Services;
-using Elephant.DataAnnotations.Services.Interfaces;
 // ReSharper disable UnusedMember.Local
 
 namespace Elephant.DataAnnotations.Tests.Services
@@ -10,7 +9,7 @@ namespace Elephant.DataAnnotations.Tests.Services
 	public class DataAnnotationServiceTests
 	{
 		[IfEmptyMakeItNull]
-		private class TestClassAnnotation
+		private sealed class TestClassAnnotation
 		{
 			public string? String { get; set; } = string.Empty;
 
@@ -21,7 +20,7 @@ namespace Elephant.DataAnnotations.Tests.Services
 			public float? Float { get; set; } = null;
 		}
 
-		private class TestWithAnnotations
+		private sealed class TestWithAnnotations
 		{
 			[IfEmptyMakeItNull]
 			public string? String { get; set; } = string.Empty;
@@ -39,7 +38,7 @@ namespace Elephant.DataAnnotations.Tests.Services
 		}
 
 		[IfEmptyMakeItNull]
-		private class TestClassAnnotationWithValues
+		private sealed class TestClassAnnotationWithValues
 		{
 			public string? String { get; set; } = "Foo";
 
@@ -51,7 +50,7 @@ namespace Elephant.DataAnnotations.Tests.Services
 			public string? StringThatIsEmpty { get; set; } = string.Empty;
 		}
 
-		private readonly IDataAnnotationService _systemUnderTest = new DataAnnotationService();
+		private readonly DataAnnotationService _systemUnderTest = new();
 
 		/// <summary>
 		/// Setup.
@@ -71,7 +70,7 @@ namespace Elephant.DataAnnotations.Tests.Services
 			TestWithAnnotations dummy = new();
 
 			// Act.
-			_systemUnderTest.ReplaceEmptyStringsWithNulls(ref dummy);
+			_ = _systemUnderTest.ReplaceEmptyStringsWithNulls(ref dummy);
 
 			// Assert.
 			Assert.Null(dummy.String);
@@ -85,10 +84,10 @@ namespace Elephant.DataAnnotations.Tests.Services
 		public void ReplaceIntWithNullWorks()
 		{
 			// Arrange.
-			TestWithAnnotations dummy = new ();
+			TestWithAnnotations dummy = new();
 
 			// Act.
-			_systemUnderTest.ReplaceEmptyStringsWithNulls(ref dummy);
+			_ = _systemUnderTest.ReplaceEmptyStringsWithNulls(ref dummy);
 
 			// Assert.
 			Assert.Null(dummy.Int);
@@ -105,7 +104,7 @@ namespace Elephant.DataAnnotations.Tests.Services
 			TestWithAnnotations dummy = new();
 
 			// Act.
-			_systemUnderTest.ReplaceEmptyStringsWithNulls(ref dummy);
+			_ = _systemUnderTest.ReplaceEmptyStringsWithNulls(ref dummy);
 
 			// Assert.
 			Assert.Null(dummy.Float);
@@ -122,7 +121,7 @@ namespace Elephant.DataAnnotations.Tests.Services
 			TestWithAnnotations dummy = new();
 
 			// Act.
-			_systemUnderTest.ReplaceEmptyStringsWithNulls(ref dummy);
+			_ = _systemUnderTest.ReplaceEmptyStringsWithNulls(ref dummy);
 
 			// Assert.
 			Assert.Null(dummy.Char);
@@ -139,10 +138,10 @@ namespace Elephant.DataAnnotations.Tests.Services
 			TestWithAnnotations dummy = new();
 
 			// Act.
-			_systemUnderTest.ReplaceEmptyStringsWithNulls(ref dummy);
+			_ = _systemUnderTest.ReplaceEmptyStringsWithNulls(ref dummy);
 
 			// Assert.
-			Assert.NotNull(dummy.IntDontNull);
+			_ = Assert.NotNull(dummy.IntDontNull);
 		}
 
 		/// <summary>
@@ -156,7 +155,7 @@ namespace Elephant.DataAnnotations.Tests.Services
 			TestClassAnnotation dummy = new();
 
 			// Act.
-			_systemUnderTest.ReplaceEmptyStringsWithNulls(ref dummy);
+			_ = _systemUnderTest.ReplaceEmptyStringsWithNulls(ref dummy);
 
 			// Assert.
 			Assert.Null(dummy.Float);
@@ -173,7 +172,7 @@ namespace Elephant.DataAnnotations.Tests.Services
 			TestClassAnnotation dummy = new();
 
 			// Act.
-			_systemUnderTest.ReplaceEmptyStringsWithNulls(ref dummy);
+			_ = _systemUnderTest.ReplaceEmptyStringsWithNulls(ref dummy);
 
 			// Assert.
 			Assert.Equal(0, dummy.IntNonNullable);
@@ -190,11 +189,11 @@ namespace Elephant.DataAnnotations.Tests.Services
 			TestClassAnnotationWithValues dummy = new();
 
 			// Act.
-			_systemUnderTest.ReplaceEmptyStringsWithNulls(ref dummy);
+			_ = _systemUnderTest.ReplaceEmptyStringsWithNulls(ref dummy);
 
 			// Assert.
-			Assert.NotNull(dummy.Float);
-			Assert.NotNull(dummy.Int);
+			_ = Assert.NotNull(dummy.Float);
+			_ = Assert.NotNull(dummy.Int);
 			Assert.NotNull(dummy.String);
 		}
 	}

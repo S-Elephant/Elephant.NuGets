@@ -15,7 +15,7 @@ namespace Elephant.Sorters.Tests
 		public void SortsCorrectly(List<int> unsortedList, List<int> expectedSortedList)
 		{
 			// Act.
-			unsortedList.TreeSort();
+			_ = unsortedList.TreeSort();
 
 			// Assert.
 			Assert.Equal(expectedSortedList, unsortedList);

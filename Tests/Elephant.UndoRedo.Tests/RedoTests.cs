@@ -14,8 +14,8 @@ namespace Elephant.UndoRedo.Tests
 		{
 			// Arrange.
 			UndoRedo<int> undoRedo = new(new List<int> { 1, 2, 5, 7, 10 });
-			undoRedo.UndoXTimes(2);
-			undoRedo.Redo();
+			_ = undoRedo.UndoXTimes(2);
+			_ = undoRedo.Redo();
 
 			// Act.
 			int result = undoRedo.CurrentState;
@@ -33,8 +33,8 @@ namespace Elephant.UndoRedo.Tests
 		{
 			// Arrange.
 			UndoRedo<int> undoRedo = new(new List<int> { 1, 2, 5, 7, -10 });
-			undoRedo.UndoXTimes(4);
-			undoRedo.RedoXTimes(4);
+			_ = undoRedo.UndoXTimes(4);
+			_ = undoRedo.RedoXTimes(4);
 
 			// Act.
 			int result = undoRedo.CurrentState;
@@ -56,8 +56,8 @@ namespace Elephant.UndoRedo.Tests
 		{
 			// Arrange.
 			UndoRedo<int> undoRedo = new(new List<int> { 1, 2, 5, 7, 10 });
-			undoRedo.UndoXTimes(4);
-			undoRedo.RedoXTimes(redoAmount);
+			_ = undoRedo.UndoXTimes(4);
+			_ = undoRedo.RedoXTimes(redoAmount);
 
 			// Act.
 			int result = undoRedo.CurrentState;
@@ -76,8 +76,8 @@ namespace Elephant.UndoRedo.Tests
 		{
 			// Arrange.
 			UndoRedo<int> undoRedo = new(new List<int> { 1, 2, 5, 7, 10 });
-			undoRedo.UndoXTimes(4);
-			undoRedo.RedoXTimes(9, true);
+			_ = undoRedo.UndoXTimes(4);
+			_ = undoRedo.RedoXTimes(9, true);
 
 			// Act.
 			int result = undoRedo.CurrentState;

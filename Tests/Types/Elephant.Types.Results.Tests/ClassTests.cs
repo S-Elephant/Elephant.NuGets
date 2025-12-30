@@ -1,6 +1,5 @@
 using System.Net;
 using Elephant.Types.Results.Abstractions;
-// ReSharper disable UnusedAutoPropertyAccessor.Local
 
 namespace Elephant.Types.Results.Tests
 {
@@ -12,7 +11,7 @@ namespace Elephant.Types.Results.Tests
 		/// <summary>
 		/// Customer test class.
 		/// </summary>
-		private class Customer
+		private sealed class Customer
 		{
 			/// <summary>
 			/// Name.
@@ -67,7 +66,7 @@ namespace Elephant.Types.Results.Tests
 		{
 			// Act.
 			IResult<Customer> result = new Result<Customer>(new Customer("Squirtle"), (int)HttpStatusCode.OK, "Success.");
-			result.AddOk(new Customer());
+			_ = result.AddOk(new Customer());
 
 			// Assert.
 			Assert.True(result.IsSuccess);
@@ -77,7 +76,7 @@ namespace Elephant.Types.Results.Tests
 		}
 
 		/// <summary>
-		/// ?
+		/// Tests that adding multiple successes returns the first success.
 		/// </summary>
 		[Fact]
 		[SpeedVeryFast, UnitTest]
@@ -85,10 +84,10 @@ namespace Elephant.Types.Results.Tests
 		{
 			// Act.
 			IResult<Customer> result = new Result<Customer>(new Customer("Squirtle"), (int)HttpStatusCode.OK, "Success.");
-			result.AddOk(new Customer());
-			result.AddOk(new Customer());
-			result.AddCustom(new Customer("Charizard"), (int)HttpStatusCode.Processing);
-			result.AddOk(new Customer());
+			_ = result.AddOk(new Customer());
+			_ = result.AddOk(new Customer());
+			_ = result.AddCustom(new Customer("Charizard"), (int)HttpStatusCode.Processing);
+			_ = result.AddOk(new Customer());
 
 			// Assert.
 			Assert.True(result.IsSuccess);
@@ -109,10 +108,10 @@ namespace Elephant.Types.Results.Tests
 		{
 			// Act.
 			IResult<Customer> result = new Result<Customer>(new Customer("Squirtle"), (int)HttpStatusCode.OK, "Success.");
-			result.AddOk(new Customer());
-			result.AddOk(new Customer());
-			result.AddCustom(new Customer("Charizard"), (int)HttpStatusCode.InternalServerError);
-			result.AddOk(new Customer());
+			_ = result.AddOk(new Customer());
+			_ = result.AddOk(new Customer());
+			_ = result.AddCustom(new Customer("Charizard"), (int)HttpStatusCode.InternalServerError);
+			_ = result.AddOk(new Customer());
 
 			// Assert.
 			Assert.False(result.IsSuccess);

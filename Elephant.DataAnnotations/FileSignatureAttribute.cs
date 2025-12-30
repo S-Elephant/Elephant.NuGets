@@ -15,7 +15,7 @@ namespace Elephant.DataAnnotations
 		/// Data container class.
 		/// </summary>
 		[DebuggerDisplay("{Extension}, {ContentType}")]
-		private class Data
+		private sealed class Data
 		{
 			/// <summary>
 			/// File extension.
@@ -72,16 +72,16 @@ namespace Elephant.DataAnnotations
 		/// Note that some bytes in <see cref="FileSignatureData"/> are shorter than shown on WikiPedia. This is because some editors use different bytes at the end
 		/// and it would cause this <see cref="FileSignatureAttribute"/> to wrongly invalidate those files.
 		/// </remarks>
-		private static readonly List<Data> FileSignatureData = new ()
+		private static readonly List<Data> FileSignatureData = new()
 		{
 			new (".doc", "application/msword", new () { new byte[] { 0xD0, 0xCF, 0x11, 0xE0, 0xA1, 0xB1, 0x1A, 0xE1 } }),
 			new (".docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", new () { new byte[] { 0x50, 0x4B, 0x03, 0x04 } }),
-			new (".gif", "image/gif", new () { new byte[] { 0x47, 0x49, 0x46, 0x38 } }),
+			new (".gif", "image/gif", new () { "GIF8"u8.ToArray() }),
 			new (".ico", "image/vnd.microsoft.icon", new () { new byte[] { 0x00, 0x00, 0x01, 0x00 } }),
 			new (".jpeg", "image/jpeg", new () { new byte[] { 0xFF, 0xD8, 0xFF } }),
 			new (".jpg", "image/jpeg", new () { new byte[] { 0xFF, 0xD8, 0xFF } }),
-			new (".rtf", "application/rtf", new () { new byte[] { 0x7B, 0x5C, 0x72, 0x74, 0x66, 0x31 } }),
-			new (".pdf", "application/pdf", new () { new byte[] { 0x25, 0x50, 0x44, 0x46, 0x2D } }),
+			new (".rtf", "application/rtf", new () { "{\\rtf1"u8.ToArray() }),
+			new (".pdf", "application/pdf", new () { "%PDF-"u8.ToArray() }),
 			new (".png", "image/png", new () { new byte[] { 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A } }),
 			new (".svg", "image/svg+xml", new ()), // Don't use byte-signature, instead, validate using SVG XML reader instead.
 			new (".tif", "image/tiff", new () { new byte[] { 0x49, 0x49, 0x2A, 0x00 }, new byte[] { 0x4D, 0x4D, 0x00, 0x2A } }),
@@ -92,7 +92,7 @@ namespace Elephant.DataAnnotations
 		/// <summary>
 		/// String containing all currently accepted allowed file extensions.
 		/// </summary>
-		private static string _acceptedExtensions = FileSignatureData
+		private static readonly string _acceptedExtensions = FileSignatureData
 			.Select(x => x.Extension)
 			.Aggregate((current, next) => current + ", " + next);
 
@@ -105,7 +105,7 @@ namespace Elephant.DataAnnotations
 		/// Constructor.
 		/// </summary>
 		/// <param name="allowedFileExtensions">Allowed file extensions (all-lower-case, with or without the leading dot). Case-insensitive.</param>
-		/// <exception cref="IndexOutOfRangeException">Thrown if an allowed extension isn't defined in <see cref="FileSignatureData"/>.</exception>
+		/// <exception cref="ArgumentException">Thrown if an allowed extension isn't defined in <see cref="FileSignatureData"/>.</exception>
 		public FileSignatureAttribute(params AllowedFileExtensionType[] allowedFileExtensions)
 		{
 			AllowedFileExtensions = allowedFileExtensions.Select(allowedFileExtension => DotString + allowedFileExtension.ToString().ToLowerInvariant()).ToArray();
@@ -113,7 +113,7 @@ namespace Elephant.DataAnnotations
 			foreach (string allowedFileExtension in AllowedFileExtensions)
 			{
 				if (FileSignatureData.All(x => x.Extension != allowedFileExtension))
-					throw new IndexOutOfRangeException($"Requested allowed extension \"{allowedFileExtension}\" is not defined in signature list. Currently accepted extensions: {_acceptedExtensions}.");
+					throw new ArgumentException($"Requested allowed extension \"{allowedFileExtension}\" is not defined in signature list. Currently accepted extensions: {_acceptedExtensions}.");
 			}
 		}
 
@@ -125,10 +125,8 @@ namespace Elephant.DataAnnotations
 		/// <returns>True if the file-signature matches the file content and the extension. Also returns true if it is null.</returns>
 		protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
 		{
-			IFormFile? file = value as IFormFile;
-
 			// If there's no data then it must be invalid.
-			if (file == null)
+			if (value is not IFormFile file)
 				return ValidationResult.Success;
 
 			// Get extension.
@@ -179,10 +177,10 @@ namespace Elephant.DataAnnotations
 					return new ValidationResult($"Content type \"{file.ContentType}\" doesn't match the extension \"{extensionLower}\".");
 
 				// If there's no byte data for the extension then always return success.
-				if (!selectedSignature.Signature.Any())
+				if (selectedSignature.Signature.Count == 0)
 					return ValidationResult.Success;
 
-				using (BinaryReader reader = new (file.OpenReadStream()))
+				using (BinaryReader reader = new(file.OpenReadStream()))
 				{
 					byte[] headerBytes = reader.ReadBytes(selectedSignature.Signature.Max(x => x.Length));
 

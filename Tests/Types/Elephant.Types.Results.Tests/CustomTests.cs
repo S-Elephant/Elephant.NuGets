@@ -104,7 +104,7 @@ namespace Elephant.Types.Results.Tests
 		/// <summary>
 		/// Test class.
 		/// </summary>
-		private class Customer
+		private sealed class Customer
 		{
 		}
 

@@ -113,22 +113,20 @@ namespace Elephant.Rijksdriehoek
 		/// <remarks><para>The optional decimal separator must be a dot.</para>
 		/// <para>The x and y values must be separated by either a single blank space or a comma.</para>
 		/// <para>Negative values will result in a 0f value. Rd coordinates can never be smaller than 0.</para></remarks>
-#pragma warning disable S1133
 		[Obsolete("Use https://github.com/NetTopologySuite/NetTopologySuite instead.")]
-#pragma warning restore S1133
 		public static bool TryParseFromPointString(string pointString, out float x, out float y)
 		{
 			try
 			{
 				// Remove the prefix and suffix.
-				string contents = pointString.Split(new[] { "POINT(", ")" }, StringSplitOptions.None)[1];
+				string contents = pointString.Split(["POINT(", ")"], StringSplitOptions.None)[1];
 
 				// Split the coordinates.
 				string[] split = contents.Split(' ', ',');
 
 				// TryParse() the string values (that are dot separated) into floats.
-				float.TryParse(split[0], NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out x);
-				float.TryParse(split[1], NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out y);
+				_ = float.TryParse(split[0], NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out x);
+				_ = float.TryParse(split[1], NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out y);
 
 				// Report success.
 				return true;
@@ -143,15 +141,13 @@ namespace Elephant.Rijksdriehoek
 		/// <summary>
 		/// Used by <see cref="ConvertStringToPolygonRd(string)"/> for splitting coordinates.
 		/// </summary>
-		private static readonly string[] CoordinateSeparators = new string[] { ", " };
+		private static readonly string[] CoordinateSeparators = [", "];
 
 		/// <summary>
 		/// Converts a RD polygon string into a list of floats (rd-x and rd-y).
 		/// </summary>
 		/// <param name="polygonString">Example value: POLYGON ((12.194 500500.123, 121.888 488444.423, 2000.101 450400.400))"</param>
-#pragma warning disable S1133
 		[Obsolete("Use https://github.com/NetTopologySuite/NetTopologySuite instead.")]
-#pragma warning restore S1133
 		public static List<(float x, float y)> ConvertStringToPolygonRd(string polygonString)
 		{
 			if (string.IsNullOrWhiteSpace(polygonString))
@@ -167,12 +163,12 @@ namespace Elephant.Rijksdriehoek
 			// Split into coordinate pairs.
 			string[] coordinatePairs = data.Split(CoordinateSeparators, StringSplitOptions.None);
 
-			var result = new List<(float, float)>();
+			List<(float, float)> result = new();
 			foreach (string coordinatePair in coordinatePairs)
 			{
 				string[] splitCoordinatePair = coordinatePair.Split(' ');
-				float.TryParse(splitCoordinatePair[0], NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out float rdX);
-				float.TryParse(splitCoordinatePair[1], NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out float rdY);
+				_ = float.TryParse(splitCoordinatePair[0], NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out float rdX);
+				_ = float.TryParse(splitCoordinatePair[1], NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out float rdY);
 				result.Add((rdX, rdY));
 			}
 
@@ -240,8 +236,8 @@ namespace Elephant.Rijksdriehoek
 			spq[1, 1] = -0.032d;
 			spq[1, 4] = -0.054d;
 
-			double dLatitude = (0.36 * (latitudeWgs84 - AmersfoortWgs84CoordinateX));
-			double dLongitude = (0.36 * (longitudeWgs84 - AmersfoortWgs84CoordinateY));
+			double dLatitude = 0.36 * (latitudeWgs84 - AmersfoortWgs84CoordinateX);
+			double dLongitude = 0.36 * (longitudeWgs84 - AmersfoortWgs84CoordinateY);
 			double latitudeCalculation = 0;
 			double longitudeCalculation = 0;
 
@@ -290,8 +286,8 @@ namespace Elephant.Rijksdriehoek
 			spq[1, 1] = -0.032d;
 			spq[1, 4] = -0.054d;
 
-			double dLatitude = (0.36d * (latitudeWgs84 - AmersfoortWgs84CoordinateX));
-			double dLongitude = (0.36d * (longitudeWgs84 - AmersfoortWgs84CoordinateY));
+			double dLatitude = 0.36d * (latitudeWgs84 - AmersfoortWgs84CoordinateX);
+			double dLongitude = 0.36d * (longitudeWgs84 - AmersfoortWgs84CoordinateY);
 			double latitudeCalculation = 0d;
 			double longitudeCalculation = 0d;
 
@@ -340,8 +336,8 @@ namespace Elephant.Rijksdriehoek
 			spq[1, 1] = -0.032d;
 			spq[1, 4] = -0.054d;
 
-			double dLatitude = (0.36d * ((double)latitudeWgs84 - AmersfoortWgs84CoordinateX));
-			double dLongitude = (0.36d * ((double)longitudeWgs84 - AmersfoortWgs84CoordinateY));
+			double dLatitude = 0.36d * ((double)latitudeWgs84 - AmersfoortWgs84CoordinateX);
+			double dLongitude = 0.36d * ((double)longitudeWgs84 - AmersfoortWgs84CoordinateY);
 			double latitudeCalculation = 0d;
 			double longitudeCalculation = 0d;
 
@@ -372,6 +368,7 @@ namespace Elephant.Rijksdriehoek
 			double deltaY = (y - AmersfoortRdCoordinateY) * 0.00001d; //// 0.00001 = Math.Pow(10, -5);
 
 			// All lines of latitude above the Equator are indicated with the letter 'N'.
+#pragma warning disable IDE0048 // Add parentheses for clarity. Suppressed for clarity..
 			double sumN =
 				3235.65389d * deltaY +
 				-32.58297d * Math.Pow(deltaX, 2) +
@@ -399,6 +396,7 @@ namespace Elephant.Rijksdriehoek
 				0.00022d * Math.Pow(deltaY, 2) +
 				-0.00022d * Math.Pow(deltaX, 2) +
 				0.00026d * Math.Pow(deltaX, 5);
+#pragma warning restore IDE0048 // Add parentheses for clarity.
 
 			double latitude = AmersfoortWgs84CoordinateX + (sumN / 3600d);
 			double longitude = AmersfoortWgs84CoordinateY + (sumE / 3600d);
@@ -418,6 +416,7 @@ namespace Elephant.Rijksdriehoek
 			double deltaY = (y - AmersfoortRdCoordinateY) * 0.00001d; //// 0.00001 = Math.Pow(10, -5);
 
 			// All lines of latitude above the Equator are indicated with the letter 'N'.
+#pragma warning disable IDE0048 // Add parentheses for clarity. Suppressed for clarity..
 			double sumN =
 				3235.65389d * deltaY +
 				-32.58297d * Math.Pow(deltaX, 2) +
@@ -445,6 +444,7 @@ namespace Elephant.Rijksdriehoek
 				0.00022d * Math.Pow(deltaY, 2) +
 				-0.00022d * Math.Pow(deltaX, 2) +
 				0.00026d * Math.Pow(deltaX, 5);
+#pragma warning restore IDE0048 // Add parentheses for clarity.
 
 			double latitude = AmersfoortWgs84CoordinateX + (sumN / 3600d);
 			double longitude = AmersfoortWgs84CoordinateY + (sumE / 3600d);
@@ -464,6 +464,7 @@ namespace Elephant.Rijksdriehoek
 			decimal deltaY = (y - AmersfoortRdCoordinateY) * 0.00001m; //// 0.00001 = Math.Pow(10, -5);
 
 			// All lines of latitude above the Equator are indicated with the letter 'N'.
+#pragma warning disable IDE0048 // Add parentheses for clarity. Suppressed for clarity..
 			decimal sumN =
 				3235.65389m * deltaY +
 				-32.58297m * Pow(deltaX, 2) +
@@ -491,6 +492,7 @@ namespace Elephant.Rijksdriehoek
 				0.00022m * Pow(deltaY, 2) +
 				-0.00022m * Pow(deltaX, 2) +
 				0.00026m * Pow(deltaX, 5);
+#pragma warning restore IDE0048 // Add parentheses for clarity.
 
 			decimal latitude = AmersfoortWgs84CoordinateXAsDecimal + (sumN / 3600m);
 			decimal longitude = AmersfoortWgs84CoordinateYAsDecimal + (sumE / 3600m);

@@ -5,7 +5,7 @@ namespace Elephant.Database.Tests.InMemory
 	/// <summary>
 	/// Test entity.
 	/// </summary>
-	internal class TestEntity : BaseIdName
+	internal sealed class TestEntity : BaseIdName
 	{
 		/// <summary>
 		/// Constructor.

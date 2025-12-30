@@ -142,3 +142,10 @@ public void ConfigureDatabases(IServiceCollection services, ..)
 }
 ```
 
+# Upgrade instructions
+
+## 1.0.0 &rarr; 2.0.0
+
+- `MongoContext.AutoLoadConfigurationsByAssemblyNames(..)` now may throw an `InvalidOperationException` instead of an `NullReferenceException`.
+- `MongoContextOptionsBuilder.Configure(..)`, `MongoContextOptionsBuilder.GetCollectionInstance(..)`, `MongoContextOptionsBuilder.Entity(..)` may throw `InvalidOperationException` now instead of a `NullReferenceException`.
+- `Elephant.Database.MongoDb.DbSets.DbSet` constructor changed from `public DbSet(IMongoContextOptionsBuilder optionsBuilder, IMongoContext context, IMongoCollection<TEntity> collection)` into `public DbSet(IMongoCollection<TEntity> collection)`

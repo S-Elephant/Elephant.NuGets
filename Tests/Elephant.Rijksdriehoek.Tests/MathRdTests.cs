@@ -282,7 +282,9 @@ namespace Elephant.Rijksdriehoek.Tests
 		/// </summary>
 		[Theory]
 		[SpeedFast, UnitTest]
+#pragma warning disable xUnit1042 // MemberData returns object[]. Reason: List<(float,float)> is not serializable for xUnit test enumeration.
 		[MemberData(nameof(ConvertStringToPolygonRdData))]
+#pragma warning restore xUnit1042
 		[Obsolete("Use https://github.com/NetTopologySuite/NetTopologySuite instead.")]
 		public void ConvertStringToPolygonRd(string polygonString, List<(float x, float y)> expected)
 		{

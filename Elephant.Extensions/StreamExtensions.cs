@@ -11,7 +11,7 @@
 		public static byte[] ToByteArray(this Stream? stream, int bufferSize)
 		{
 			if (stream == null)
-				return new byte[0];
+				return [];
 
 			byte[] buffer = new byte[bufferSize];
 			using MemoryStream memoryStream = new();

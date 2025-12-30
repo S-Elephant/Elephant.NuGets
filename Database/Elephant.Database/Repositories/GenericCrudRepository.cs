@@ -36,7 +36,7 @@ namespace Elephant.Database.Repositories
 		public virtual async Task<TEntity?> ByIdAsync(object id, CancellationToken cancellationToken)
 		{
 			// Note that the object[] array is required because otherwise it will consider the cancellationToken as the second id field in the params list. See: https://stackoverflow.com/questions/55758059/get-error-entity-type-course-is-defined-with-a-single-key-property-but-2-va
-			return await Table.FindAsync(new[] { id }, cancellationToken);
+			return await Table.FindAsync([id], cancellationToken);
 		}
 
 		/// <inheritdoc/>
@@ -52,7 +52,10 @@ namespace Elephant.Database.Repositories
 		}
 
 		/// <inheritdoc/>
-		public virtual async Task InsertAsync(TEntity obj, CancellationToken cancellationToken) => await Table.AddAsync(obj, cancellationToken);
+		public virtual async Task InsertAsync(TEntity obj, CancellationToken cancellationToken)
+		{
+			_ = await Table.AddAsync(obj, cancellationToken);
+		}
 
 		/// <inheritdoc/>
 		public virtual async Task InsertAsync(ICollection<TEntity> objects, CancellationToken cancellationToken)
@@ -72,10 +75,9 @@ namespace Elephant.Database.Repositories
 		/// <inheritdoc/>
 		public virtual void Update(TEntity obj)
 		{
-			if (obj == null)
-				throw new ArgumentNullException(nameof(obj));
+			ArgumentNullException.ThrowIfNull(obj);
 
-			Table.Attach(obj);
+			_ = Table.Attach(obj);
 			Context.Entry(obj).State = EntityState.Modified;
 		}
 
@@ -93,7 +95,7 @@ namespace Elephant.Database.Repositories
 			if (existing == null)
 				return false;
 
-			Table.Remove(existing);
+			_ = Table.Remove(existing);
 
 			return true;
 		}
@@ -143,7 +145,10 @@ namespace Elephant.Database.Repositories
 		}
 
 		/// <inheritdoc/>
-		public virtual async Task<List<TEntity>> AllAsync(CancellationToken cancellationToken) => await Table.ToListAsync(cancellationToken);
+		public virtual async Task<List<TEntity>> AllAsync(CancellationToken cancellationToken)
+		{
+			return await Table.ToListAsync(cancellationToken);
+		}
 
 		/// <inheritdoc/>
 		public virtual async Task<List<TEntity>> AllAsync(QueryTrackingBehavior queryTrackingBehavior = QueryTrackingBehavior.TrackAll, CancellationToken cancellationToken = default, params Expression<Func<TEntity, object>>[] includes)

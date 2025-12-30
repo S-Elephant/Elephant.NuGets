@@ -36,7 +36,7 @@
 		public static bool IsValid(float rdX, float rdY)
 		{
 			return rdX >= RdMinX && rdX <= RdMaxX &&
-			       rdY >= RdMinY && rdY <= RdMaxY;
+				   rdY >= RdMinY && rdY <= RdMaxY;
 		}
 
 		/// <summary>
@@ -51,38 +51,38 @@
 		public static bool IsValid(float? rdX, float? rdY)
 		{
 			return rdX != null && rdY != null &&
-			       rdX >= RdMinX && rdX <= RdMaxX &&
-			       rdY >= RdMinY && rdY <= RdMaxY;
+				   rdX >= RdMinX && rdX <= RdMaxX &&
+				   rdY >= RdMinY && rdY <= RdMaxY;
 		}
 
 		/// <inheritdoc cref="IsValid(float,float)"/>
 		public static bool IsValid(double rdX, double rdY)
 		{
 			return rdX >= RdMinX && rdX <= RdMaxX &&
-			       rdY >= RdMinY && rdY <= RdMaxY;
+				   rdY >= RdMinY && rdY <= RdMaxY;
 		}
 
 		/// <inheritdoc cref="IsValid(float?,float?)"/>
 		public static bool IsValid(double? rdX, double? rdY)
 		{
 			return rdX != null && rdY != null &&
-			       rdX >= RdMinX && rdX <= RdMaxX &&
-			       rdY >= RdMinY && rdY <= RdMaxY;
+				   rdX >= RdMinX && rdX <= RdMaxX &&
+				   rdY >= RdMinY && rdY <= RdMaxY;
 		}
 
 		/// <inheritdoc cref="IsValid(float,float)"/>
 		public static bool IsValid(decimal rdX, decimal rdY)
 		{
 			return rdX >= RdMinX && rdX <= RdMaxX &&
-			       rdY >= RdMinY && rdY <= RdMaxY;
+				   rdY >= RdMinY && rdY <= RdMaxY;
 		}
 
 		/// <inheritdoc cref="IsValid(float?,float?)"/>
 		public static bool IsValid(decimal? rdX, decimal? rdY)
 		{
 			return rdX != null && rdY != null &&
-			       rdX >= RdMinX && rdX <= RdMaxX &&
-			       rdY >= RdMinY && rdY <= RdMaxY;
+				   rdX >= RdMinX && rdX <= RdMaxX &&
+				   rdY >= RdMinY && rdY <= RdMaxY;
 		}
 	}
 }

@@ -84,11 +84,11 @@ namespace Elephant.GeoSystems.Tests.Converters
 		public void OsmTileToGps(int zoom, int tileX, int tileY, double expectedLatitude, double expectedLongitude)
 		{
 			// Act.
-			(double X, double Y) gps = ConverterUtils.OsmTileToGps(zoom, tileX, tileY);
+			(double X, double Y) = ConverterUtils.OsmTileToGps(zoom, tileX, tileY);
 
 			// Assert.
-			Assert.Equal(expectedLatitude, gps.X, Tolerance);
-			Assert.Equal(expectedLongitude, gps.Y, Tolerance);
+			Assert.Equal(expectedLatitude, X, Tolerance);
+			Assert.Equal(expectedLongitude, Y, Tolerance);
 		}
 	}
 }

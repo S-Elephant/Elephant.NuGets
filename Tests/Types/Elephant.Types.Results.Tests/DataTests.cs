@@ -16,7 +16,7 @@ namespace Elephant.Types.Results.Tests
 		public void StaticSuccessConstructorTest()
 		{
 			// Act.
-			IResult<int> result = new Result<int>();
+			Result<int> result = new Result<int>();
 
 			// Assert.
 			Assert.True(result.IsSuccess);
@@ -35,7 +35,7 @@ namespace Elephant.Types.Results.Tests
 		public void StaticErrorConstructorTest()
 		{
 			// Act.
-			IResult<string> result = new Result<string>("Pikachu", (int)HttpStatusCode.InternalServerError, "Internal server error.");
+			Result<string> result = new Result<string>("Pikachu", (int)HttpStatusCode.InternalServerError, "Internal server error.");
 
 			// Assert.
 			Assert.False(result.IsSuccess);
@@ -55,7 +55,7 @@ namespace Elephant.Types.Results.Tests
 		public void StaticErrorConstructorWithoutMessageTest()
 		{
 			// Act.
-			IResult<string> result = new Result<string>("Pikachu", (int)HttpStatusCode.InternalServerError);
+			Result<string> result = new Result<string>("Pikachu", (int)HttpStatusCode.InternalServerError);
 
 			// Assert.
 			Assert.False(result.IsSuccess);
@@ -73,8 +73,8 @@ namespace Elephant.Types.Results.Tests
 		public void AddingSuccessToErrorShouldReturnError()
 		{
 			// Act.
-			IResult<string> result = new Result<string>("Pikachu", (int)HttpStatusCode.InternalServerError);
-			result.AddOk(null, "Success."); // This result should be ignored in the final result.
+			Result<string> result = new Result<string>("Pikachu", (int)HttpStatusCode.InternalServerError);
+			_ = result.AddOk(null, "Success."); // This result should be ignored in the final result.
 
 			// Assert.
 			Assert.False(result.IsSuccess);
@@ -83,7 +83,10 @@ namespace Elephant.Types.Results.Tests
 			Assert.True(result.UsesData);
 		}
 
-		private IResult<int?> TestMethodWithData()
+		/// <summary>
+		/// Creates a NotFound result with nullable data.
+		/// </summary>
+		private static IResult<int?> TestMethodWithData()
 		{
 			return Result<int?>.NotFound();
 		}
@@ -106,7 +109,10 @@ namespace Elephant.Types.Results.Tests
 			Assert.True(result.UsesData);
 		}
 
-		private IResult<int?> TestMethodWithMessage()
+		/// <summary>
+		/// Creates a NotFound result with nullable data.
+		/// </summary>
+		private static IResult<int?> TestMethodWithMessage()
 		{
 			return Result<int?>.NotFound("Message1");
 		}
@@ -129,7 +135,10 @@ namespace Elephant.Types.Results.Tests
 			Assert.True(result.UsesData);
 		}
 
-		private IResult<string?> TestMethodWithStringDataAndMessage()
+		/// <summary>
+		/// Creates a NotFound result with string data and a message.
+		/// </summary>
+		private static IResult<string?> TestMethodWithStringDataAndMessage()
 		{
 			return Result<string?>.NotFound("Message1");
 		}
@@ -152,7 +161,10 @@ namespace Elephant.Types.Results.Tests
 			Assert.True(result.UsesData);
 		}
 
-		private IResult<string> ContinueStringMethod()
+		/// <summary>
+		/// Creates a Continue result with string data and a message.
+		/// </summary>
+		private static IResult<string> ContinueStringMethod()
 		{
 			return Result<string>.Continue(null, "Lorem ipsum");
 		}
@@ -174,7 +186,10 @@ namespace Elephant.Types.Results.Tests
 			Assert.True(result.UsesData);
 		}
 
-		private IResult<bool> ContinueWithFalseDataMethod()
+		/// <summary>
+		/// Creates a Continue result with false data.
+		/// </summary>
+		private static IResult<bool> ContinueWithFalseDataMethod()
 		{
 			return Result<bool>.Continue(false);
 		}
@@ -197,7 +212,10 @@ namespace Elephant.Types.Results.Tests
 			Assert.True(result.UsesData);
 		}
 
-		private IResult<bool> ContinueWithTrueDataMethod()
+		/// <summary>
+		/// Creates a Continue result with true data.
+		/// </summary>
+		private static IResult<bool> ContinueWithTrueDataMethod()
 		{
 			return Result<bool>.Continue(true);
 		}

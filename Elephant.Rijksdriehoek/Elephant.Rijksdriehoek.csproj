@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>1.0.7</Version>
-    <PackageReleaseNotes>Update target framework(s).</PackageReleaseNotes>
+		<Version>1.0.8</Version>
+    <PackageReleaseNotes>Mark RdCoordinate as Serializable.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->

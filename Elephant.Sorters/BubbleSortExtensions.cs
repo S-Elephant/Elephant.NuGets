@@ -36,7 +36,9 @@
 			// Continue looping through the collection until no swaps are made.
 			while (swapped)
 			{
-				swapped = false; // Reset swapped to false to check if there will be any swaps in this pass.
+				// Reset swapped to false to check if there will be any swaps in this pass.
+				swapped = false;
+
 				// Iterate through the collection from the beginning to the 'end' (end is shrinking as the
 				// largest elements "bubble up" to their correct positions).
 				for (int passIndex = 1; passIndex < collectionCount - noSwapsCount; passIndex++)

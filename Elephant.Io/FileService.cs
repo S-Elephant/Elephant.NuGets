@@ -8,15 +8,24 @@ namespace Elephant.Io
 	{
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void Copy(string sourceFileName, string destFileName, bool overwrite = false) => File.Copy(sourceFileName, destFileName, overwrite);
+		public void Copy(string sourceFileName, string destFileName, bool overwrite = false)
+		{
+			File.Copy(sourceFileName, destFileName, overwrite);
+		}
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public bool Exists(string? path) => File.Exists(path);
+		public bool Exists(string? path)
+		{
+			return File.Exists(path);
+		}
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public bool NotExists(string? path) => !Exists(path);
+		public bool NotExists(string? path)
+		{
+			return !Exists(path);
+		}
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

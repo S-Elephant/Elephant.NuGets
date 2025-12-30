@@ -8,7 +8,7 @@
 		/// <summary>
 		/// System under test.
 		/// </summary>
-		private static readonly IAnagram _anagram = new Anagram();
+		private static readonly Anagram _anagram = new Anagram();
 
 		/// <summary>
 		/// <see cref="Anagram.IsValid(string?, string?, bool)"/> tests.

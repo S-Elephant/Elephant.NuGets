@@ -15,31 +15,17 @@ namespace Elephant.Models.ResponseModels
 		/// </summary>
 		private const int DefaultLimit = int.MaxValue;
 
-		/// <inheritdoc cref="Offset"/>
-		private int _offset = DefaultOffset;
-
 		/// <inheritdoc/>
 		public int Offset
 		{
-			get => _offset;
-			set
-			{
-				_offset = value < 0 ? 0 : value;
-			}
-		}
-
-		/// <inheritdoc cref="Limit"/>
-		private int _limit = DefaultLimit;
+			get; set => field = value < 0 ? 0 : value;
+		} = DefaultOffset;
 
 		/// <inheritdoc/>
 		public int Limit
 		{
-			get => _limit;
-			set
-			{
-				_limit = value < 1 ? int.MaxValue : value;
-			}
-		}
+			get; set => field = value < 1 ? int.MaxValue : value;
+		} = DefaultLimit;
 
 		/// <inheritdoc/>
 		public int TotalPageCount { get; set; }

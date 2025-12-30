@@ -50,7 +50,10 @@ namespace Elephant.DataAnnotations
 				 */
 				StringBuilder escapedExtraAllowedCharacters = new();
 				foreach (char extraAllowedCharacter in extraAllowedCharacters)
-					escapedExtraAllowedCharacters.Append($"\\{extraAllowedCharacter}");
+				{
+					_ = escapedExtraAllowedCharacters.Append('\\');
+					_ = escapedExtraAllowedCharacters.Append(extraAllowedCharacter);
+				}
 
 				finalRegex = finalRegex.Insert(BaseRegex.Length - 1, escapedExtraAllowedCharacters);
 			}

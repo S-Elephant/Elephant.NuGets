@@ -47,22 +47,13 @@ namespace Elephant.Types.ResponseWrappers
 		public TData? Data { get; protected set; } = default;
 
 		/// <inheritdoc/>
-		public bool IsSuccess
-        {
-            get { return IsSuccessStatusCode(StatusCode); }
-        }
+		public bool IsSuccess => IsSuccessStatusCode(StatusCode);
 
 		/// <inheritdoc/>
-		public bool IsError
-        {
-            get { return IsErrorStatusCode(StatusCode); }
-        }
+		public bool IsError => IsErrorStatusCode(StatusCode);
 
 		/// <inheritdoc/>
-		public bool IsInformativeRedirectionOrCustom
-        {
-            get { return IsInformativeRedirectionOrCustomStatusCode(StatusCode); }
-        }
+		public bool IsInformativeRedirectionOrCustom => IsInformativeRedirectionOrCustomStatusCode(StatusCode);
 
 		/// <inheritdoc/>
 		public int StatusCode { get; protected set; } = Status200Ok;
@@ -142,9 +133,9 @@ namespace Elephant.Types.ResponseWrappers
 			return this;
 		}
 
-        #region Assign status
+		#region Assign status
 
-        /// <inheritdoc/>
+		/// <inheritdoc/>
 		public virtual IResponseWrapper<TData> Ok(string? message = "Success.")
 		{
 			return Success(Status200Ok, message);
@@ -266,8 +257,8 @@ namespace Elephant.Types.ResponseWrappers
 			return new ResponseWrapper<TData>(data).NoContent(message);
 		}
 
-        #endregion
-    }
+		#endregion
+	}
 
 	/// <summary>
 	/// <see cref="ResponseWrapper{TData}"/> without data.

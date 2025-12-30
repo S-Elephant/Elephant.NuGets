@@ -2,8 +2,8 @@
 
 	<!-- This must be updated for every release -->
 	<PropertyGroup>
-		<Version>4.0.4</Version>
-    <PackageReleaseNotes>Update target framework(s).</PackageReleaseNotes>
+		<Version>4.0.5</Version>
+		<PackageReleaseNotes>Improve ElephantCancellationTokenSource.CancelAndDispose().</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Core -->
@@ -15,7 +15,8 @@
 		<Company>SquirtingElephant</Company>
 		<Authors>SquirtingElephant</Authors>
 		<Description>Shared types library.</Description>
-		<CheckEolTargetFramework>false</CheckEolTargetFramework> <!-- Suppress the warning: warning NETSDK1138: The target framework 'netcoreapp3.0' is out of support and.. -->
+		<!-- Suppress the warning: warning NETSDK1138: The target framework 'netcoreapp3.0' is out of support and.. -->
+		<CheckEolTargetFramework>false</CheckEolTargetFramework>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 	</PropertyGroup>
 

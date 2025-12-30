@@ -39,10 +39,10 @@ namespace Elephant.Database.MongoDb.Contexts
 		/// <param name="throwIfNotFound">If true, will throw an <see cref="ArgumentNullException"/> if any assembly is not found.</param>
 		/// <param name="assemblyNames">The assembly names to scan (case sensitive).</param>
 		/// <returns>Amount of times <see cref="BaseConfiguration.Configure"/> was called by this in this one call.</returns>
-		/// <exception cref="NullReferenceException">Thrown if <paramref name="throwIfNotFound"/> and any <paramref name="assemblyNames"/> wasn't not found.</exception>
+		/// <exception cref="InvalidOperationException">Thrown if <paramref name="throwIfNotFound"/> and any <paramref name="assemblyNames"/> wasn't not found.</exception>
 		protected int AutoLoadConfigurationsByAssemblyNames(bool throwIfNotFound, params string[] assemblyNames)
 		{
-			if (!assemblyNames.Any())
+			if (assemblyNames.Length == 0)
 				return 0; // There are no assemblies to scan.
 
 			List<Assembly> assemblies = AppDomain.CurrentDomain.GetAssemblies().
@@ -51,7 +51,7 @@ namespace Elephant.Database.MongoDb.Contexts
 
 			if (throwIfNotFound && assemblies.Count != assemblyNames.Length)
 			{
-				throw new NullReferenceException($"One or more assemblies not found. Assemblies expected: {string.Join(", ", assemblyNames)}. Assemblies found: {string.Join(", ", assemblies.Select(x => x.FullName ?? "<Unknown>"))}");
+				throw new InvalidOperationException($"One or more assemblies not found. Assemblies expected: {string.Join(", ", assemblyNames)}. Assemblies found: {string.Join(", ", assemblies.Select(x => x.FullName ?? "<Unknown>"))}");
 			}
 
 			return AutoLoadConfigurations(assemblies, OptionsBuilder);
@@ -62,7 +62,9 @@ namespace Elephant.Database.MongoDb.Contexts
 		/// classes that derive from <see cref="BaseConfiguration"/> in the specified <paramref name="assembliesToScan"/>.
 		/// </summary>
 		/// <returns>Amount of times <see cref="BaseConfiguration.Configure"/> was called by this in this one call.</returns>
+#pragma warning disable CA1822 // Mark members as static. Reason: Needs to be instance method for possible mocking, etc.
 		protected int AutoLoadConfigurations(List<Assembly> assembliesToScan, IMongoContextOptionsBuilder mongoContextOptionsBuilder)
+#pragma warning restore CA1822 // Mark members as static.
 		{
 			int callCount = 0;
 

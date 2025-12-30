@@ -42,7 +42,7 @@ namespace Elephant.Texts
 		/// Contains subtractive combinations (like CM for 900) and single-symbol values.
 		/// Ordered from largest (900) to smallest (1) for efficient conversion.
 		/// </remarks>
-		private static readonly int[] NumeralComponentsDesc = { 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
+		private static readonly int[] NumeralComponentsDesc = [900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
 
 		/// <summary>
 		/// Array of Roman numeral symbols corresponding to the <see cref="NumeralComponentsDesc"/>.
@@ -51,7 +51,7 @@ namespace Elephant.Texts
 		/// Maintains exact index alignment with the Values array.
 		/// Includes both standard symbols (D, L, V) and subtractive combinations (CM, CD, etc.).
 		/// </remarks>
-		private static readonly string[] NumeralSymbols = { "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
+		private static readonly string[] NumeralSymbols = ["CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"];
 
 		/// <summary>
 		/// Apostrophus lookup dictionary for the thousands values.
@@ -107,30 +107,32 @@ namespace Elephant.Texts
 						{
 							case RomanLargeNumberFormatType.MPrefix:
 								// Just append M's (limited to 3999).
-								sb.Insert(0, new string('M', chunk));
+								_ = sb.Insert(0, new string('M', chunk));
 								break;
 
 							case RomanLargeNumberFormatType.Overline:
 								// Use Unicode combining overline (V̅, X̅, etc.).
-								sb.Insert(0, ApplyOverlines(chunkRoman));
+								_ = sb.Insert(0, ApplyOverlines(chunkRoman));
 								break;
 
 							case RomanLargeNumberFormatType.Parentheses:
 								// Enclose in parentheses (e.g., (V) = 5000).
-								sb.Insert(0, ")");
-								sb.Insert(0, chunkRoman);
-								sb.Insert(0, "(");
+								_ = sb.Insert(0, ")");
+								_ = sb.Insert(0, chunkRoman);
+								_ = sb.Insert(0, "(");
 								break;
 
 							case RomanLargeNumberFormatType.Apostrophus:
 								// Use ancient apostrophus notation (|Ↄ|Ↄ = 5000).
-								sb.Insert(0, ConvertToApostrophus(chunkRoman, magnitude));
+								_ = sb.Insert(0, ConvertToApostrophus(chunkRoman, magnitude));
 								break;
+							default:
+								throw new ArgumentOutOfRangeException(nameof(format), format, $"Unsupported RomanLargeNumberFormatType: {format}");
 						}
 					}
 					else
 					{
-						sb.Insert(0, chunkRoman);
+						_ = sb.Insert(0, chunkRoman);
 					}
 				}
 
@@ -191,6 +193,9 @@ namespace Elephant.Texts
 				case 500: return "D";
 				case 900: return "CM";
 				case 1000: return "M";
+				default:
+					// Fall through to general algorithm.
+					break;
 			}
 
 			// Optimized for minimal allocations.
@@ -200,25 +205,25 @@ namespace Elephant.Texts
 			if (intValue >= 1000)
 			{
 				int thousands = intValue / 1000;
-				sb.Append('M', thousands);
+				_ = sb.Append('M', thousands);
 				intValue %= 1000;
 			}
 
 			// Process remaining using subtraction principle.
 #pragma warning disable SA1501 // Statement should not be on a single line. Suppressed for clarity.
 #pragma warning disable SA1107 // Code should not contain multiple statements on one line. Suppressed for clarity.
-			while (intValue >= 900) { sb.Append("CM"); intValue -= 900; }
-			while (intValue >= 500) { sb.Append('D'); intValue -= 500; }
-			while (intValue >= 400) { sb.Append("CD"); intValue -= 400; }
-			while (intValue >= 100) { sb.Append('C'); intValue -= 100; }
-			while (intValue >= 90) { sb.Append("XC"); intValue -= 90; }
-			while (intValue >= 50) { sb.Append('L'); intValue -= 50; }
-			while (intValue >= 40) { sb.Append("XL"); intValue -= 40; }
-			while (intValue >= 10) { sb.Append('X'); intValue -= 10; }
-			while (intValue >= 9) { sb.Append("IX"); intValue -= 9; }
-			while (intValue >= 5) { sb.Append('V'); intValue -= 5; }
-			while (intValue >= 4) { sb.Append("IV"); intValue -= 4; }
-			while (intValue >= 1) { sb.Append('I'); intValue -= 1; }
+			while (intValue >= 900) { _ = sb.Append("CM"); intValue -= 900; }
+			while (intValue >= 500) { _ = sb.Append('D'); intValue -= 500; }
+			while (intValue >= 400) { _ = sb.Append("CD"); intValue -= 400; }
+			while (intValue >= 100) { _ = sb.Append('C'); intValue -= 100; }
+			while (intValue >= 90) { _ = sb.Append("XC"); intValue -= 90; }
+			while (intValue >= 50) { _ = sb.Append('L'); intValue -= 50; }
+			while (intValue >= 40) { _ = sb.Append("XL"); intValue -= 40; }
+			while (intValue >= 10) { _ = sb.Append('X'); intValue -= 10; }
+			while (intValue >= 9) { _ = sb.Append("IX"); intValue -= 9; }
+			while (intValue >= 5) { _ = sb.Append('V'); intValue -= 5; }
+			while (intValue >= 4) { _ = sb.Append("IV"); intValue -= 4; }
+			while (intValue >= 1) { _ = sb.Append('I'); intValue -= 1; }
 #pragma warning restore SA1107 // Code should not contain multiple statements on one line.
 #pragma warning restore SA1501 // Statement should not be on a single line.
 
@@ -245,7 +250,7 @@ namespace Elephant.Texts
 			int thousands = chunkIntValue / 1000;
 			if (thousands > 0)
 			{
-				sb.Append('M', thousands);
+				_ = sb.Append('M', thousands);
 				chunkIntValue %= 1000;
 			}
 
@@ -262,12 +267,12 @@ namespace Elephant.Texts
 				string symbol = NumeralSymbols[i];
 				if (count == 1)
 				{
-					sb.Append(symbol);
+					_ = sb.Append(symbol);
 				}
 				else
 				{
 					// Only needed for C (100) which can appear up to 3 times (300).
-					sb.Append(symbol[0], count);
+					_ = sb.Append(symbol[0], count);
 				}
 			}
 
@@ -289,8 +294,8 @@ namespace Elephant.Texts
 
 			for (int i = 0; i < roman.Length; i++)
 			{
-				sb.Append(roman[i]);
-				sb.Append(CombiningOverline);
+				_ = sb.Append(roman[i]);
+				_ = sb.Append(CombiningOverline);
 			}
 
 			return sb.ToString();
@@ -321,9 +326,9 @@ namespace Elephant.Texts
 			{
 				char c = roman[i];
 				if (ApostrophusThousandsLookup.TryGetValue(c, out string replacement))
-					sb.Append(replacement);
+					_ = sb.Append(replacement);
 				else
-					sb.Append(c);
+					_ = sb.Append(c);
 			}
 
 			return sb.ToString();

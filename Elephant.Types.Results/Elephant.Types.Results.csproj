@@ -2,8 +2,8 @@
 
   <!-- This must be updated for every release -->
   <PropertyGroup>
-    <Version>1.0.3</Version>
-    <PackageReleaseNotes>First public release.</PackageReleaseNotes>
+    <Version>1.1.0</Version>
+    <PackageReleaseNotes>Bugfix: Result.InternalServerError should use its parameter.</PackageReleaseNotes>
   </PropertyGroup>
 
   <!-- Core -->

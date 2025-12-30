@@ -1,5 +1,4 @@
 ﻿using System.Globalization;
-using System.Linq;
 
 namespace Elephant.Common
 {
@@ -18,9 +17,9 @@ namespace Elephant.Common
 		public static string CapitalizeFirstChar(string stringToCapitalize)
 		{
 			if (stringToCapitalize.Length > 1)
-				return char.ToUpper(stringToCapitalize[0]) + stringToCapitalize.Substring(1);
+				return char.ToUpper(stringToCapitalize[0], CultureInfo.InvariantCulture) + stringToCapitalize.Substring(1);
 
-			return stringToCapitalize.ToUpper();
+			return stringToCapitalize.ToUpper(CultureInfo.InvariantCulture);
 		}
 
 		/// <summary>
@@ -78,7 +77,7 @@ namespace Elephant.Common
 		/// <returns>The joined string or an empty string if there was nothing to join.</returns>
 		public static string Join(char separatorChar, params string?[] stringsToCombine)
 		{
-			if (!stringsToCombine.Any())
+			if (stringsToCombine.Length == 0)
 				return string.Empty;
 
 			List<string> strippedStringsToCombine = new();
@@ -170,7 +169,7 @@ namespace Elephant.Common
 		/// <summary>
 		/// All new line delimiters.
 		/// </summary>
-		private static readonly string[] NewLineDelimiters = { "\r\n", "\n", "\r" };
+		private static readonly string[] NewLineDelimiters = ["\r\n", "\n", "\r"];
 
 		/// <summary>
 		/// Split by new line.
@@ -193,7 +192,7 @@ namespace Elephant.Common
 		/// <example>Turns "the !long white dog." into "The !Long White Dog.".</example>
 		public static string ToTitleCase(string stringToTitleCase)
 		{
-			return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(stringToTitleCase.ToLower());
+			return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(stringToTitleCase.ToLower(CultureInfo.InvariantCulture));
 		}
 
 		/// <summary>

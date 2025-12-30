@@ -1,0 +1,18 @@
+#########################################################################################################################################
+# Code files.
+#########################################################################################################################################
+[*.{cs,vb}]
+indent_style = tab
+indent_size = 4
+
+#########################################################################################################################################
+# Test Editor rules.
+#########################################################################################################################################
+
+# Identifiers should not contain underscores.
+# Disabled because test projects are allowed to use underscorse for identifiers.
+dotnet_diagnostic.CA1707.severity = none
+
+# Avoid constant arrays as arguments.
+# Disabled because this is not relevant for tests.
+dotnet_diagnostic.CA1861.severity = none

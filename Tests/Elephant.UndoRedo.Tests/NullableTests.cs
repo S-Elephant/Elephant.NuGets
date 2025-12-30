@@ -8,20 +8,13 @@ namespace Elephant.UndoRedo.Tests
 		/// <summary>
 		/// Data test class.
 		/// </summary>
-		private class DataTest
+		private sealed class DataTest
 		{
-			/// <summary>
-			/// Test value.
-			/// </summary>
-			// ReSharper disable once UnusedAutoPropertyAccessor.Local
-			private int Value { get; set; }
-
 			/// <summary>
 			/// Constructor.
 			/// </summary>
-			public DataTest(int value)
+			public DataTest()
 			{
-				Value = value;
 			}
 		}
 
@@ -33,8 +26,8 @@ namespace Elephant.UndoRedo.Tests
 		public void CurrentStateReturnsExpected()
 		{
 			// Arrange.
-			DataTest lastItem = new(100);
-			UndoRedo<DataTest?> undoRedo = new(new List<DataTest?> { new(1), new(3), new(5), new(6), new(9), lastItem });
+			DataTest lastItem = new();
+			UndoRedo<DataTest?> undoRedo = new(new List<DataTest?> { new(), new(), new(), new(), new(), lastItem });
 
 			DataTest? result = undoRedo.CurrentState;
 
@@ -82,7 +75,7 @@ namespace Elephant.UndoRedo.Tests
 		public void CurrentReferenceTypeStateReturnsCorrect()
 		{
 			// Arrange.
-			DataTest lastItem = new(-100);
+			DataTest lastItem = new();
 			UndoRedo<DataTest?> undoRedo = new(new List<DataTest?> { null, lastItem });
 
 			DataTest? result = undoRedo.CurrentState;

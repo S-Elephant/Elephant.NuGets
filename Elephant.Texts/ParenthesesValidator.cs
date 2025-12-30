@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Elephant.Texts.Abstractions;
 
-namespace Elephant.Texts.Tests
+namespace Elephant.Texts
 {
 	/// <inheritdoc/>
 	public class ParenthesesValidator : IParenthesesValidator
@@ -24,7 +25,7 @@ namespace Elephant.Texts.Tests
 		/// <summary>
 		/// True if the <see cref="_defaultPairs"/> are being used for the <see cref="_pairs"/>.
 		/// </summary>
-		private bool _isUsingDefaultPairs;
+		private readonly bool _isUsingDefaultPairs;
 
 		/// <summary>
 		/// Constructor.
@@ -129,7 +130,9 @@ namespace Elephant.Texts.Tests
 					if (c == opener)
 					{
 						expectedCloser = _pairs[opener];
+#pragma warning disable IDE0047 // Remove unnecessary parentheses. Reason: clarity.
 						isSymmetric = (opener == expectedCloser);
+#pragma warning restore IDE0047 // Remove unnecessary parentheses.
 						isOpener = true;
 						break;
 					}
@@ -142,7 +145,7 @@ namespace Elephant.Texts.Tests
 					{
 						if (stack.Count > 0 && stack.Peek() == c)
 						{
-							stack.Pop(); // Treat as closer.
+							_ = stack.Pop(); // Treat as closer.
 						}
 						else
 						{

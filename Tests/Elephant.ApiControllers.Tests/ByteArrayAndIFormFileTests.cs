@@ -15,7 +15,7 @@ namespace Elephant.ApiControllers.Tests
 		public void FromBytesToFormFileAndBack()
 		{
 			// Arrange.
-			byte[] bytes = new byte[] { 0x3C, 0x3F, 0x78, 0x6D, 0x6C, 0x20, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6F, 0x6E, };
+			byte[] bytes = [0x3C, 0x3F, 0x78, 0x6D, 0x6C, 0x20, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6F, 0x6E,];
 
 			// Act.
 			// Two act lines because I don't want to manually construct an IFormFile.
@@ -34,7 +34,7 @@ namespace Elephant.ApiControllers.Tests
 		public void FromEmptyBytesToFormFileAndBack()
 		{
 			// Arrange.
-			byte[] bytes = Array.Empty<byte>();
+			byte[] bytes = [];
 
 			// Act.
 			// Two act lines because I don't want to manually construct an IFormFile.

@@ -12,10 +12,14 @@ namespace Elephant.Sorters.Tests
 		[Theory]
 		[SpeedVeryFast, UnitTest]
 		[MemberData(nameof(CorrectListSortingData))]
-		public void SortsCorrectly(List<int> unsortedList, List<int> expectedSortedList)
+		public void SortsCorrectly(int[] unsortedArray, int[] expectedSortedArray)
 		{
+			// Arrange.
+			List<int> unsortedList = new(unsortedArray);
+			List<int> expectedSortedList = new(expectedSortedArray);
+
 			// Act.
-			unsortedList.CubeSort();
+			_ = unsortedList.CubeSort();
 
 			// Assert.
 			Assert.Equal(expectedSortedList, unsortedList);
@@ -25,41 +29,41 @@ namespace Elephant.Sorters.Tests
 		/// Provides a series of test data for testing sorters.
 		/// Each item in the series represents a test case, consisting of an unsorted list and the list's expected state after sorting.
 		/// </summary>
-		/// <returns>A series of test data.</returns>
-		public static IEnumerable<object[]> CorrectListSortingData()
+		/// <returns>Series of test data.</returns>
+		public static TheoryData<int[], int[]> CorrectListSortingData { get; } = new TheoryData<int[], int[]>
 		{
-			yield return new object[] { new List<int>(), new List<int>() }; // Test with an empty list.
-			yield return new object[] { new List<int> { 1 }, new List<int> { 1 } }; // Test with a single element list.
-			yield return new object[] { new List<int> { 2, 1 }, new List<int> { 1, 2 } }; // Test with two elements.
-			yield return new object[] { new List<int> { 3, 2, 1, 5 }, new List<int> { 1, 2, 3, 5 } }; // Test with three elements.
-			yield return new object[] { new List<int> { 5, 3, 8, 4, 2, 5, 4, 1 }, new List<int> { 1, 2, 3, 4, 4, 5, 5, 8 } }; // Test with multiple elements.
-		}
+			{ Array.Empty<int>(), Array.Empty<int>() }, // Test with an empty list.
+			{ new[] { 1 }, new[] { 1 } }, // Test with a single element list.
+			{ new[] { 2, 1 }, new[] { 1, 2 } }, // Test with two elements.
+			{ new[] { 3, 2, 1, 5 }, new[] { 1, 2, 3, 5 } }, // Test with three elements.
+			{ new[] { 5, 3, 8, 4, 2, 5, 4, 1 }, new[] { 1, 2, 3, 4, 4, 5, 5, 8 } }, // Test with multiple elements.
+		};
 
 		/// <summary>
-		/// Tests the CubeSort extension method to ensure it sorts an array correctly.
-		/// Each set of data is used to verify that the CubeSort method correctly sorts the input array.
+		/// Tests the CubeSort extension method to ensure it throws when the collection size is invalid.
+		/// Each set of data is used to verify that the CubeSort method correctly throws an exception for invalid input.
 		/// </summary>
 		[Theory]
 		[SpeedVeryFast, UnitTest]
 		[MemberData(nameof(BadSortingData))]
-		public void ThrowsBecauseOfCollectionSize(List<int> unsortedList)
+		public void ThrowsBecauseOfCollectionSize(int[] unsortedArray)
 		{
 			// Arrange.
-			Action sortAction = () => unsortedList.CubeSort();
+			List<int> unsortedList = new(unsortedArray);
 
 			// Act & Assert.
-			Assert.Throws<ArgumentException>(sortAction);
+			_ = Assert.Throws<ArgumentException>(() => unsortedList.CubeSort());
 		}
 
 		/// <summary>
-		/// Provides a series of test data for testing sorters.
-		/// Each item in the series represents a test case, consisting of an unsorted array and the array tis expected state after sorting.
+		/// Provides a series of test data for testing sorters with invalid collection sizes.
+		/// Each item in the series represents a test case consisting of an unsorted array that should cause an exception.
 		/// </summary>
-		/// <returns>A series of test data.</returns>
-		public static IEnumerable<object[]> BadSortingData()
+		/// <returns>Series of test data.</returns>
+		public static TheoryData<int[]> BadSortingData { get; } = new TheoryData<int[]>
 		{
-			yield return new object[] { new List<int> { 3, 2, 1 } };
-			yield return new object[] { new List<int> { 3, 2, 1, 2, 6 } };
-		}
+			new[] { 3, 2, 1 }, // Test with three elements.
+			new[] { 3, 2, 1, 2, 6 }, // Test with five elements.
+		};
 	}
 }

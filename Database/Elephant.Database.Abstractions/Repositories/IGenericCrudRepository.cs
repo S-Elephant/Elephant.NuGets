@@ -109,7 +109,9 @@ namespace Elephant.Database.Abstractions.Repositories
 		/// Delete all rows from the table, resets the auto-increment and saves.
 		/// </summary>
 		/// <remarks>Works only on relational databases. Does NOT work on an in-memory database.</remarks>
+#pragma warning disable CA1068 // CancellationToken parameters must come last. // TODO: switch these 2 parameter positions.
 		Task DeleteAllAndResetAutoIncrementAsync(CancellationToken cancellationToken = default, string schema = "dbo");
+#pragma warning restore CA1068 // CancellationToken parameters must come last.
 
 		#region Transactions
 

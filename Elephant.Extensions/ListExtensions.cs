@@ -29,7 +29,7 @@
 		public static IList<TSource> AddOrRemoveIfExists<TSource>(this IList<TSource> list, TSource item)
 		{
 			if (list.Contains(item))
-				list.Remove(item);
+				_ = list.Remove(item);
 			else
 				list.Add(item);
 
@@ -48,7 +48,7 @@
 				return null;
 
 			if (list.Contains(item))
-				list.Remove(item);
+				_ = list.Remove(item);
 			else
 				list.Add(item);
 

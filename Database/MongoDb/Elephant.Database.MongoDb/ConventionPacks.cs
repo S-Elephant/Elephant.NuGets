@@ -26,9 +26,9 @@ namespace Elephant.Database.MongoDb
 			const string conventionName = "camelCase";
 
 			// When to use.
-			if (namespaces.Any())
+			if (namespaces.Length > 0)
 			{
-				ConventionRegistry.Register(conventionName, conventionPack, type => namespaces.Any(namespaceName => type.FullName != null && namespaceName.StartsWith(type.FullName)));
+				ConventionRegistry.Register(conventionName, conventionPack, type => namespaces.Any(namespaceName => type.FullName != null && namespaceName.StartsWith(type.FullName, StringComparison.Ordinal)));
 			}
 			else
 				ConventionRegistry.Register(conventionName, conventionPack, _ => true);

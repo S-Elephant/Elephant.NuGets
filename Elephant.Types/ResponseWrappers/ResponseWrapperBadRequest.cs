@@ -16,7 +16,7 @@ namespace Elephant.Types.ResponseWrappers
 		/// Constructor.
 		/// </summary>
 		public ResponseWrapperBadRequest(TData? data = default, string message = "Bad request.")
-            : base(data, StatusCodeBadRequest, message)
+			: base(data, StatusCodeBadRequest, message)
 		{
 		}
 
@@ -24,7 +24,7 @@ namespace Elephant.Types.ResponseWrappers
 		/// Constructor.
 		/// </summary>
 		public ResponseWrapperBadRequest(string message)
-            : base(default, StatusCodeBadRequest, message)
+			: base(default, StatusCodeBadRequest, message)
 		{
 		}
 	}
@@ -41,7 +41,7 @@ namespace Elephant.Types.ResponseWrappers
 		/// Constructor.
 		/// </summary>
 		public ResponseWrapperBadRequest(string message = "Bad request.")
-            : base(StatusCodeBadRequest, message)
+			: base(StatusCodeBadRequest, message)
 		{
 		}
 	}

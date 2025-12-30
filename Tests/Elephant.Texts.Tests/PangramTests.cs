@@ -8,7 +8,7 @@
 		/// <summary>
 		/// System under test.
 		/// </summary>
-		private readonly IPangram _pangram;
+		private readonly Pangram _pangram;
 
 		/// <summary>
 		/// Setup.
@@ -18,6 +18,7 @@
 			_pangram = new Pangram();
 		}
 
+#pragma warning disable IDE0022 // Use block body for method. Reason: clarity and brevity.
 		/// <summary>Classic "quick brown fox" pangram.</summary>
 		[Fact][SpeedVeryFast, UnitTest] public void ClassicPangram() => Assert.True(_pangram.IsValid("The quick brown fox jumps over the lazy dog"));
 
@@ -86,5 +87,6 @@
 
 		/// <summary>Very long non-pangram string.</summary>
 		[Fact][SpeedFast, UnitTest] public void MillionCharsNonPangram() => Assert.False(_pangram.IsValid(new string('x', 1_000_000)));
+#pragma warning restore IDE0022 // Use block body for method.
 	}
 }

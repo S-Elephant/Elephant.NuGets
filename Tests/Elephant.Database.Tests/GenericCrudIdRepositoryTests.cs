@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -37,10 +36,13 @@ namespace Elephant.Database.Tests
 			await _systemUnderTest.Seed(CancellationToken.None);
 
 			// Custom ordering: descending by Id.
-			Func<IQueryable<TestEntity>, IOrderedQueryable<TestEntity>> orderBy = q => q.OrderByDescending(x => x.Id);
+			static IOrderedQueryable<TestEntity> TestOrderBy(IQueryable<TestEntity> q)
+			{
+				return q.OrderByDescending(x => x.Id);
+			}
 
 			// Act.
-			int recordsDeletedCount = await _systemUnderTest.DeleteOverflowingEntities(3, orderBy, CancellationToken.None);
+			int recordsDeletedCount = await _systemUnderTest.DeleteOverflowingEntities(3, TestOrderBy, CancellationToken.None);
 
 			// Assert.
 			Assert.Equal(2, recordsDeletedCount); // With descending order overflow should be ids 2 and 1.
@@ -172,10 +174,13 @@ namespace Elephant.Database.Tests
 			await _systemUnderTest.Seed(CancellationToken.None);
 
 			// Custom ordering: descending by Id (ties broken by Id implicitly).
-			Func<IQueryable<TestEntity>, IOrderedQueryable<TestEntity>> orderBy = q => q.OrderByDescending(x => x.Id);
+			static IOrderedQueryable<TestEntity> TestOrderBy(IQueryable<TestEntity> q)
+			{
+				return q.OrderByDescending(x => x.Id);
+			}
 
 			// Act.
-			List<int> overflowing = await _systemUnderTest.OverflowingIds(3, orderBy, QueryTrackingBehavior.NoTracking, CancellationToken.None);
+			List<int> overflowing = await _systemUnderTest.OverflowingIds(3, TestOrderBy, QueryTrackingBehavior.NoTracking, CancellationToken.None);
 
 			// Assert.
 			Assert.Equal(new List<int> { 2, 1 }, overflowing); // Ordering desc -> sequence [5,4,3,2,1], keep first 3 => overflow [2,1].

@@ -1,4 +1,6 @@
-﻿namespace Elephant.Common.Tests.StringOperationsTests
+﻿using System.Globalization;
+
+namespace Elephant.Common.Tests.StringOperationsTests
 {
 	/// <summary>
 	/// <see cref="StringOperations"/> tests.
@@ -221,7 +223,7 @@
 			// Arrange.
 			string[] strings = new string[100];
 			for (int i = 0; i < strings.Length; i++)
-				strings[i] = i.ToString();
+				strings[i] = i.ToString(CultureInfo.InvariantCulture);
 
 			// Act.
 			string joinedString = StringOperations.Join('/', strings);

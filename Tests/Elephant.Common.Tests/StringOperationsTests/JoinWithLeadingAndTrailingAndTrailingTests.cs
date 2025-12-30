@@ -91,7 +91,7 @@
 		public void TestIf1NullValueReturnsTwoSeparators()
 		{
 			// Act.
-			string joinedString = StringOperations.JoinWithLeadingAndTrailing('/', new string?[] { null });
+			string joinedString = StringOperations.JoinWithLeadingAndTrailing('/', [null]);
 
 			// Assert.
 			Assert.Equal(2, joinedString.Count(x => x == '/'));

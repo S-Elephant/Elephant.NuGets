@@ -24,7 +24,7 @@ namespace Elephant.Sorters
 
 			// Build the heap by rearranging the array.
 			// Starting from the first non-leaf node all the way to the root node.
-			for (int heapStartIndex = count / 2 - 1; heapStartIndex >= 0; heapStartIndex--)
+			for (int heapStartIndex = (count / 2) - 1; heapStartIndex >= 0; heapStartIndex--)
 				HeapSortUtilities.Heapify(collection, count, heapStartIndex);
 
 			// One by one, extract elements from the heap.

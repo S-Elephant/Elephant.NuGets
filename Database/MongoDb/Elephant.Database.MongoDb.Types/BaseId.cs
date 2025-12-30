@@ -11,7 +11,9 @@ namespace Elephant.Database.MongoDb.Types
 		/// <inheritdoc/>
 		[BsonElement("_id")]
 		[BsonRepresentation(BsonType.ObjectId)]
-		public string MongoId { get; set; } = ObjectId.GenerateNewId().ToString() !;
+#pragma warning disable SA1009 // Closing parenthesis should be spaced correctly. False positive.
+		public string MongoId { get; set; } = ObjectId.GenerateNewId().ToString()!;
+#pragma warning restore SA1009 // Closing parenthesis should be spaced correctly.
 	}
 
 	/// <summary>
@@ -28,7 +30,7 @@ namespace Elephant.Database.MongoDb.Types
 			if (x == null || y == null)
 				return x == null && y == null;
 
-			return x.MongoId.Equals(y.MongoId);
+			return x.MongoId.Equals(y.MongoId, StringComparison.Ordinal);
 		}
 
 		/// <inheritdoc cref="IEqualityComparer{T}.GetHashCode(T)"/>

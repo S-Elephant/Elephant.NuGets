@@ -1,7 +1,7 @@
 ﻿namespace Elephant.ActivityTrackers.Tests.TestDataClasses
 {
 	/// <summary>
-	/// ?
+	/// Activity information structure.
 	/// </summary>
 	internal struct ActivityInfoStruct
 	{
@@ -21,7 +21,7 @@
 		public int SomethingElse { get; set; }
 
 		/// <summary>
-		/// ?
+		/// Constructor.
 		/// </summary>
 		public ActivityInfoStruct()
 		{
@@ -31,7 +31,7 @@
 		}
 
 		/// <summary>
-		/// ?
+		/// Constructor with parameters.
 		/// </summary>
 		public ActivityInfoStruct(string valueString, int valueInt)
 		{
