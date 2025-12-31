@@ -33,13 +33,18 @@ namespace Elephant.ApiControllers
 		/// Convert the <see cref="byte"/> array into an <see cref="IFormFile"/> array.
 		/// </summary>
 		/// <param name="byteArray"><see cref="byte"/> array to convert into an <see cref="IFormFile"/>.</param>
-		/// <param name="name">name</param>
-		/// <param name="filename">filename.</param>
+		/// <param name="stream">Opened <see cref="MemoryStream"/>. Please close this stream manually.</param>
+		/// <param name="name">Name</param>
+		/// <param name="filename">Filename.</param>
 		/// <param name="contentType">MIME type. Some common types can be found here: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types.</param>
 		/// <returns><paramref name="byteArray"/> as an <see cref="IFormFile"/>.</returns>
-		public static IFormFile ToIFormFile(this byte[] byteArray, string name = "", string filename = "", string contentType = "")
+		/// <remarks>
+		/// Caller is responsible for disposing the <paramref name="stream"/> parameter after the returned <see cref="IFormFile"/> is no longer needed.
+		/// Failure to dispose the stream will result in a memory leak.
+		/// </remarks>
+		public static IFormFile ToIFormFile(this byte[] byteArray, out MemoryStream stream, string name = "", string filename = "", string contentType = "")
 		{
-			MemoryStream stream = new(byteArray); // DON'T dispose this stream because we return the FormFile at the end of this method.
+			stream = new(byteArray); // DON'T dispose this stream because we return the FormFile at the end of this method.
 			FormFile result = new(stream, 0, byteArray.Length, name, filename)
 			{
 				Headers = new HeaderDictionary(),

@@ -196,6 +196,10 @@ byte[] ToByteArray(this Stream? stream)
 - Renamed `Enumerable` static class (that contains the Enumerable extensions) into `EnumerableExtensions` to prevent Linq conflicts.
 - `ContainsAll()` now returns **false** if the source is null instead of throwing..
 
+## 2.x.x &rarr; 3.0.0
+
+- `ToIFormFile()` got a new out parameter: `out MemoryStream stream`.
+
 # Contributing
 
 Contributions are welcome. Please read our [CONTRIBUTING.md](../CONTRIBUTING.md) file for guidelines on how to proceed.

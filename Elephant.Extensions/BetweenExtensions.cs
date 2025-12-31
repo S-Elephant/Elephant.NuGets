@@ -6,7 +6,7 @@
 	/// </summary>
 	/// <remarks>
 	/// Taken from: https://stackoverflow.com/a/13470099/37055.
-	/// <remarks>NaN values may cause weird results.</remarks>
+	/// NaN values may cause weird results.
 	/// </remarks>
 	public static class BetweenExtensions
 	{
@@ -24,7 +24,7 @@
 		/// <param name="value">The value to check.</param>
 		/// <param name="min">Inclusive minimum border.</param>
 		/// <param name="max">Inclusive maximum border.</param>
-		/// <returns>return true if the value is between the min and max else false.</returns>
+		/// <returns>Return true if the value is between the min and max else false.</returns>
 		/// <remarks>NaN values may cause weird results.</remarks>
 		// ReSharper disable once InconsistentNaming
 		public static bool IsBetweenII<T>(this T value, T min, T max)
@@ -40,7 +40,7 @@
 		/// <param name="value">The value to check.</param>
 		/// <param name="min">Exclusive minimum border.</param>
 		/// <param name="max">Inclusive maximum border.</param>
-		/// <returns>return true if the value is between the min and max else false.</returns>
+		/// <returns>Return true if the value is between the min and max else false.</returns>
 		/// <remarks>NaN values may cause weird results.</remarks>
 		// ReSharper disable once InconsistentNaming
 		public static bool IsBetweenEI<T>(this T value, T min, T max)
@@ -56,7 +56,7 @@
 		/// <param name="value">The value to check.</param>
 		/// <param name="min">Inclusive minimum border.</param>
 		/// <param name="max">Exclusive maximum border.</param>
-		/// <returns>return true if the value is between the min and max else false.</returns>
+		/// <returns>Return true if the value is between the min and max else false.</returns>
 		/// <remarks>NaN values may cause weird results.</remarks>
 		// ReSharper disable once InconsistentNaming
 		public static bool IsBetweenIE<T>(this T value, T min, T max)
@@ -72,7 +72,7 @@
 		/// <param name="value">The value to check.</param>
 		/// <param name="min">Exclusive minimum border.</param>
 		/// <param name="max">Exclusive maximum border.</param>
-		/// <returns>return true if the value is between the min and max else false.</returns>
+		/// <returns>Return true if the value is between the min and max else false.</returns>
 		/// <remarks>NaN values may cause weird results.</remarks>
 		// ReSharper disable once InconsistentNaming
 		public static bool IsBetweenEE<T>(this T value, T min, T max)

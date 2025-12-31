@@ -24,6 +24,10 @@ dotnet_diagnostic.CA1805.severity = none
 # Reason: preference.
 dotnet_diagnostic.IDE0011.severity = none
 
+# Collection initialization can be simplified (https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0028).
+# Reason: preference.
+dotnet_diagnostic.IDE0028.severity = silent
+
 # Use conditional expression for assignment (https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0045).
 # Reason: readability, preference.
 dotnet_diagnostic.IDE0045.severity = silent
@@ -55,7 +59,11 @@ dotnet_diagnostic.IDE0090.severity = warning
 # Reason: readability, preference.
 dotnet_diagnostic.IDE0290.severity = silent
 
-# Collection initialization can be simplified (https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0306).
+# Collection initialization can be simplified / Use collection expression for fluent (https://learn.microsoft.com/en-gb/dotnet/fundamentals/code-analysis/style-rules/ide0305).
+# Reason: preference.
+dotnet_diagnostic.IDE0305.severity = silent
+
+# Collection initialization can be simplified / Use collection expression for new (https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0306).
 # Example: IDE0306 prefers List<int> l1 = [.. Enumerable.Range(1, 10)];  over  List<int> l1 = new List<int>(Enumerable.Range(1, 10));
 # Reason: readability, preference.
 dotnet_diagnostic.IDE0306.severity = none
@@ -71,6 +79,10 @@ dotnet_diagnostic.SA1000.severity = none
 
 # A single-line comment within a C# code file does not begin with a single space.
 dotnet_diagnostic.SA1005.severity = none
+
+# Closing parenthesis should be followed by a space.
+# Reason: This rule conflicts with null-forgiving operator ! which sometimes should immediately follow parentheses without space: SomeMethod()!.
+dotnet_diagnostic.SA1009.severity = none
 
 # Opening square brackets should not be preceded by a space.
 dotnet_diagnostic.SA1010.severity = none
