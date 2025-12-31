@@ -10,6 +10,56 @@ Contains static ReadOnlyCollection unique mock data in x10, x100 and x1000 for:
 - Streets.
 - Zip Codes (United States).
 
-# Notes
+# Installation
 
-SemVer will start from version 1.0.0 and versions < 1.0.0 may undergo heavy changes.
+Choose one:
+
+## **Package Manager** (Visual Studio GUI)
+1. Right-click your project → "Manage NuGet Packages".
+2. Search for `Elephant.Constants.MockData`.
+3. Click "Install".
+
+## **.NET CLI** (Command Line)
+```bash
+dotnet add package Elephant.Constants.MockData
+```
+
+## **PackageReference** (Project File)
+```xml
+<PackageReference Include="Elephant.Constants.MockData" Version="x.x.x" />
+```
+
+## **Package Manager (CLI)**
+```bash
+nuget install Elephant.Constants.MockData
+```
+
+# How to Use
+
+XUnit example
+
+~~~csharp
+public class CitiesTests
+{
+    [Fact]
+    public void Cities_Contains_NewYork()
+    {
+        // Arrange.
+        ReadOnlyCollection<string> list = Cities.Us10;
+
+        // Act.
+        bool contains = list.Contains("New York");
+
+        // Assert.
+        Assert.True(contains);
+    }
+}
+~~~
+
+# Contributing
+
+Contributions are welcome. Please read our [CONTRIBUTING.md](../../CONTRIBUTING.md) file for guidelines on how to proceed.
+
+# License
+
+This project is licensed under the MIT License. See the [LICENSE.txt](../../LICENSE.txt) file for details.

@@ -6,6 +6,9 @@
 	/// </summary>
 	public static class DbType
 	{
+		/// <summary>
+		/// Sqlite primitive database types.
+		/// </summary>
 		private static class Primitives
 		{
 			/// <summary>

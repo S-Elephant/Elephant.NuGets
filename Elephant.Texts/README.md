@@ -14,9 +14,35 @@ Provides various text utilities:
   - Integer to Roman supported range: `0 - int.MaxValue`.
   - Roman to integer supported range: `0 - 3999`.
 
-# Examples
+# Installation
 
-## General
+Choose one:
+
+## **Package Manager** (Visual Studio GUI)
+1. Right-click your project → "Manage NuGet Packages".
+2. Search for `Elephant.Texts`.
+3. Click "Install".
+
+## **.NET CLI** (Command Line)
+```bash
+dotnet add package Elephant.Texts
+```
+
+## **PackageReference** (Project File)
+```xml
+<PackageReference Include="Elephant.Texts" Version="x.x.x" />
+```
+
+## **Package Manager (CLI)**
+```bash
+nuget install Elephant.Texts
+```
+
+# How to Use
+
+## Examples
+
+### General
 ```c#
 bool isValidAnagram1 = new Anagram().IsValid("new york times", "monkeys write");
 bool isValidAnagram2 = new Anagram().IsValid("résumé", "mésuré");
@@ -29,7 +55,9 @@ bool isValidPangram1 = new Pangram().IsValid("The quick brown fox jumps over the
 bool isValidPangram2 = new Pangram().IsValid(new System.Text.StringBuilder().Append('x', 1_000_000).Append("abcdefghijklmnopqrstuvwxyz").ToString()));
 ```
 
-## Parentheses validator
+
+
+### Parentheses validator
 
 ```c#
 IParenthesesValidator parenthesesValidator;
@@ -50,7 +78,7 @@ isValid = customValidator.IsValid("«t{e}st»"); // Returns true
 
 
 
-## Roman
+### Roman
 
 ```c#
 IRomanNumeralConverter romanNumeralConverter = new RomanNumeralConverter();
@@ -73,7 +101,15 @@ romanNumeralConverter.SmallRomanToInt("mcmxcix"); // Outputs: 1999
 
 # Upgrade instructions
 
-## 1.0.0 &rarr; 2.0.0
+## 1.x.x &rarr; 2.0.0
 
 - Renamed the namespace of `ParenthesesValidator` from `Elephant.Texts.Tests` into `Elephant.Texts`.
 - Renamed the namespace of `IParenthesesValidator` from `Elephant.Texts.Tests` into `Elephant.Texts.Abstractions`.
+
+# Contributing
+
+Contributions are welcome. Please read our [CONTRIBUTING.md](../CONTRIBUTING.md) file for guidelines on how to proceed.
+
+# License
+
+This project is licensed under the MIT License. See the [LICENSE.txt](../LICENSE.txt) file for details.
