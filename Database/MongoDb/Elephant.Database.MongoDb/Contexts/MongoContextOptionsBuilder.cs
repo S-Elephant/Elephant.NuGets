@@ -40,7 +40,7 @@ namespace Elephant.Database.MongoDb.Contexts
 			(string Name, Type Type)[] contextProperties = context.GetType().GetRuntimeProperties()
 				.Where(
 					p => !(p.GetMethod ?? p.SetMethod)!.IsStatic
-						 && !p.GetIndexParameters().Any()
+						 && p.GetIndexParameters().Length == 0
 						 && p.DeclaringType != typeof(MongoContext)
 						 && p.PropertyType.GetTypeInfo().IsGenericType
 						 && p.PropertyType.GetGenericTypeDefinition() == typeof(DbSet<>))
@@ -57,11 +57,7 @@ namespace Elephant.Database.MongoDb.Contexts
 				Type dbSetType = typeof(DbSet<>).MakeGenericType(propertyInfo.Type);
 				object? dbSet = Activator.CreateInstance(dbSetType, this, context, GetCollectionInstance(propertyInfo));
 
-				PropertyInfo? propertyInfo2 = context.GetType().GetProperty(propertyInfo.Name);
-				if (propertyInfo2 == null)
-				{
-					throw new NullReferenceException($"{nameof(PropertyInfo)} may not be null when attempting to retrieve it from context with name: {propertyInfo.Name}.");
-				}
+				PropertyInfo? propertyInfo2 = context.GetType().GetProperty(propertyInfo.Name) ?? throw new InvalidOperationException($"{nameof(PropertyInfo)} may not be null when attempting to retrieve it from context with name: {propertyInfo.Name}.");
 				propertyInfo2.SetValue(context, dbSet);
 			}
 
@@ -74,16 +70,8 @@ namespace Elephant.Database.MongoDb.Contexts
 		{
 			Type builderType = typeof(EntityTypeBuilder<>).MakeGenericType(propertyInfo.Type);
 
-			object? builder = _entityToBuilderMap.ContainsKey(propertyInfo.Type)
-				? _entityToBuilderMap[propertyInfo.Type]
-				: Activator.CreateInstance(builderType, Database);
-			PropertyInfo? collectionProperty = builderType.GetProperty("Collection");
-
-			if (collectionProperty == null)
-			{
-				throw new NullReferenceException("Missing Collection property.");
-			}
-
+			object? builder = _entityToBuilderMap.TryGetValue(propertyInfo.Type, out object? value) ? value : Activator.CreateInstance(builderType, Database);
+			PropertyInfo? collectionProperty = builderType.GetProperty("Collection") ?? throw new InvalidOperationException("Missing Collection property.");
 			object? collection = collectionProperty.GetValue(_entityToBuilderMap[propertyInfo.Type]);
 
 			if (collection == null)
@@ -94,7 +82,7 @@ namespace Elephant.Database.MongoDb.Contexts
 				MethodInfo generic = getCollectionMethod.MakeGenericMethod(propertyInfo.Type);
 
 				collection =
-					generic.Invoke(Database, new object?[] { propertyInfo.Name, null }) ??
+					generic.Invoke(Database, [propertyInfo.Name, null]) ??
 					throw new InvalidOperationException(
 						$"GetCollection<{propertyInfo.Type}>(\"{propertyInfo.Name}\") doesn't return a value.");
 
@@ -109,15 +97,9 @@ namespace Elephant.Database.MongoDb.Contexts
 		public IEntityTypeBuilder<TEntity> Entity<TEntity>(Action<IEntityTypeBuilder<TEntity>> buildAction)
 			where TEntity : class
 		{
-			EntityTypeBuilder<TEntity>? builder = _entityToBuilderMap.ContainsKey(typeof(TEntity))
+			EntityTypeBuilder<TEntity>? builder = (_entityToBuilderMap.ContainsKey(typeof(TEntity))
 				? _entityToBuilderMap[typeof(TEntity)] as EntityTypeBuilder<TEntity>
-				: new EntityTypeBuilder<TEntity>(Database);
-
-			if (builder == null)
-			{
-				throw new NullReferenceException($"{nameof(EntityTypeBuilder<TEntity>)} cannot be null. Failed to retrieve it.");
-			}
-
+				: new EntityTypeBuilder<TEntity>(Database)) ?? throw new InvalidOperationException($"{nameof(EntityTypeBuilder<>)} cannot be null. Failed to retrieve it.");
 			buildAction.Invoke(builder);
 			_entityToBuilderMap[typeof(TEntity)] = builder;
 			return builder;

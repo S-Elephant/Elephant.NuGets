@@ -41,7 +41,7 @@
 			// General single-pass check: try to add each element to a HashSet and bail out
 			// as soon as a duplicate is detected. This enumerates source only once and
 			// stops early when a duplicate exists.
-			HashSet<TSource> seen = new HashSet<TSource>();
+			HashSet<TSource> seen = [];
 			foreach (TSource item in source)
 			{
 				if (!seen.Add(item))
@@ -351,7 +351,7 @@
 		/// Preserves the original order of elements.
 		/// </summary>
 		/// <typeparam name="T">IEnumerable type.</typeparam>
-		/// <param name="source">Source list.</param>
+		/// <param name="source">Source IEnumerable.</param>
 		/// <param name="maxChunkSize">Maximum chunk size.</param>
 		/// <returns>Chunked <paramref name="source"/> with the original order of elements preserved.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null.</exception>
@@ -370,7 +370,7 @@
 				int count = concreteList.Count;
 				if (maxChunkSize >= count)
 				{
-					yield return source.ToList();
+					yield return concreteList;
 					yield break;
 				}
 
@@ -395,7 +395,7 @@
 				for (int i = 0; i < count; i += maxChunkSize)
 				{
 					int len = Math.Min(maxChunkSize, count - i);
-					List<T> chunk = new List<T>(len);
+					List<T> chunk = new(len);
 					for (int j = 0; j < len; j++)
 						chunk.Add(indexedList[i + j]);
 					yield return chunk;
@@ -404,7 +404,7 @@
 			}
 
 			// General enumerable path (single-pass).
-			List<T> bucket = new List<T>(maxChunkSize);
+			List<T> bucket = new(maxChunkSize);
 			int bucketCount = 0;
 			using (IEnumerator<T> en = source.GetEnumerator())
 			{

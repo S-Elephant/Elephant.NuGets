@@ -32,11 +32,11 @@ namespace Elephant.GeoSystems.Tests.Converters
 		public void RdsToGpsFloat(float rdX, float rdY, double expectedLatitude, double expectedLongitude)
 		{
 			// Act.
-			(double X, double Y) gps = ConverterUtils.RdToGps(rdX, rdY);
+			(double X, double Y) = ConverterUtils.RdToGps(rdX, rdY);
 
 			// Assert.
-			Assert.Equal(expectedLatitude, gps.X, Tolerance);
-			Assert.Equal(expectedLongitude, gps.Y, Tolerance);
+			Assert.Equal(expectedLatitude, X, Tolerance);
+			Assert.Equal(expectedLongitude, Y, Tolerance);
 		}
 
 		/// <summary>
@@ -62,11 +62,11 @@ namespace Elephant.GeoSystems.Tests.Converters
 		public void RdsToGpsDouble(double rdX, double rdY, double expectedLatitude, double expectedLongitude)
 		{
 			// Act.
-			(double X, double Y) gps = ConverterUtils.RdToGps(rdX, rdY);
+			(double X, double Y) = ConverterUtils.RdToGps(rdX, rdY);
 
 			// Assert.
-			Assert.Equal(expectedLatitude, gps.X, Tolerance);
-			Assert.Equal(expectedLongitude, gps.Y, Tolerance);
+			Assert.Equal(expectedLatitude, X, Tolerance);
+			Assert.Equal(expectedLongitude, Y, Tolerance);
 		}
 
 		/// <summary>
@@ -93,11 +93,11 @@ namespace Elephant.GeoSystems.Tests.Converters
 		public void RdsToGpsDecimal(decimal rdX, decimal rdY, decimal unroundedExpectedLatitude, decimal unroundedExpectedLongitude)
 		{
 			// Act.
-			(decimal X, decimal Y) gps = ConverterUtils.RdToGps(rdX, rdY);
+			(decimal X, decimal Y) = ConverterUtils.RdToGps(rdX, rdY);
 
 			// Assert.
-			Assert.Equal(Math.Round(unroundedExpectedLatitude, 4), gps.X);
-			Assert.Equal(Math.Round(unroundedExpectedLongitude, 4), gps.Y);
+			Assert.Equal(Math.Round(unroundedExpectedLatitude, 4), X);
+			Assert.Equal(Math.Round(unroundedExpectedLongitude, 4), Y);
 		}
 	}
 }

@@ -20,7 +20,7 @@
 			List<int> list = new() { -10, 1, 2, 3 };
 
 			// Act.
-			list.AddIfNotExists(valueToAdd);
+			_ = list.AddIfNotExists(valueToAdd);
 
 			// Assert.
 			Assert.Equal(new List<int>() { -10, 1, 2, 3 }, list);
@@ -37,7 +37,7 @@
 			List<int> list = new() { -10, 1, 2, 3, 7 };
 
 			// Act.
-			list.AddIfNotExists(5);
+			_ = list.AddIfNotExists(5);
 
 			// Assert.
 			Assert.Equal(new List<int>() { -10, 1, 2, 3, 7, 5 }, list);
@@ -56,7 +56,7 @@
 			List<int> list = new() { -10, 1, 2, 3, 7 };
 
 			// Act.
-			list.AddIfNotExists(5).AddIfNotExists(3).AddIfNotExists(10);
+			_ = list.AddIfNotExists(5).AddIfNotExists(3).AddIfNotExists(10);
 
 			// Assert.
 			Assert.Equal(new List<int>() { -10, 1, 2, 3, 7, 5, 10 }, list);
@@ -74,7 +74,7 @@
 			List<int> list = null!;
 
 			// Act & Assert.
-			Assert.Throws<ArgumentNullException>(() => list.AddIfNotExists(5));
+			_ = Assert.Throws<ArgumentNullException>(() => list.AddIfNotExists(5));
 		}
 
 		/// <summary>
@@ -90,10 +90,10 @@
 			List<Person> list = new() { existing };
 
 			// Act: different instance but equal by overridden Equals.
-			list.AddIfNotExists(new Person("John"));
+			_ = list.AddIfNotExists(new Person("John"));
 
 			// Assert: not added.
-			Assert.Single(list);
+			_ = Assert.Single(list);
 			Assert.Same(existing, list[0]);
 		}
 
@@ -110,10 +110,16 @@
 			}
 
 			/// <summary>Test method.</summary>
-			public override bool Equals(object? obj) => obj is Person p && string.Equals(Name, p.Name, StringComparison.Ordinal);
+			public override bool Equals(object? obj)
+			{
+				return obj is Person p && string.Equals(Name, p.Name, StringComparison.Ordinal);
+			}
 
 			/// <summary>Test method.</summary>
-			public override int GetHashCode() => Name?.GetHashCode(StringComparison.Ordinal) ?? 0;
+			public override int GetHashCode()
+			{
+				return Name?.GetHashCode(StringComparison.Ordinal) ?? 0;
+			}
 		}
 
 		/// <summary>
@@ -128,7 +134,7 @@
 			List<string?> list = new() { "a" };
 
 			// Act.
-			list.AddIfNotExists(null);
+			_ = list.AddIfNotExists(null);
 
 			// Assert.
 			Assert.Equal(new List<string?>() { "a", null }, list);

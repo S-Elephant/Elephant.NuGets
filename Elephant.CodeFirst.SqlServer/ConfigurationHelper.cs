@@ -18,12 +18,12 @@ namespace Elephant.CodeFirst.SqlServer
 			where TEntity : class, IId
 		{
 			tableName = ToTableName<TEntity>(tableName);
-			builder.ToTable(tableName, schema);
+			_ = builder.ToTable(tableName, schema);
 
-			builder.HasKey(p => p.Id)
+			_ = builder.HasKey(p => p.Id)
 				.HasName($"PK_{tableName}");
 
-			builder.Property(p => p.Id)
+			_ = builder.Property(p => p.Id)
 				.ValueGeneratedOnAdd()
 				.IsRequired();
 
@@ -36,9 +36,9 @@ namespace Elephant.CodeFirst.SqlServer
 		public static void ToIdNameTableWithPrimaryKey<TEntity>(ref EntityTypeBuilder<TEntity> builder, string? schema = null, string? tableName = null)
 			where TEntity : class, IId, IName
 		{
-			ToIdTableWithPrimaryKey(ref builder, schema, tableName);
+			_ = ToIdTableWithPrimaryKey(ref builder, schema, tableName);
 
-			builder.Property(p => p.Name)
+			_ = builder.Property(p => p.Name)
 				.HasColumnType(DbTypes.Name)
 				.IsRequired();
 		}
@@ -50,12 +50,12 @@ namespace Elephant.CodeFirst.SqlServer
 			where TEntity : class, IGuid
 		{
 			tableName = ToTableName<TEntity>(tableName);
-			builder.ToTable(tableName, schema);
+			_ = builder.ToTable(tableName, schema);
 
-			builder.HasKey(p => p.Id)
+			_ = builder.HasKey(p => p.Id)
 				.HasName($"PK_{tableName}");
 
-			builder.Property(p => p.Id)
+			_ = builder.Property(p => p.Id)
 				.HasColumnType(DbTypes.Guid)
 				.ValueGeneratedOnAdd()
 				.HasDefaultValueSql("NEWID()")
@@ -70,7 +70,7 @@ namespace Elephant.CodeFirst.SqlServer
 		{
 			ToGuidTableWithPrimaryKey(ref builder, schema, tableName);
 
-			builder.Property(p => p.Name)
+			_ = builder.Property(p => p.Name)
 			 .HasColumnType(DbTypes.Name)
 			 .IsRequired();
 		}
@@ -81,7 +81,7 @@ namespace Elephant.CodeFirst.SqlServer
 		public static void AddName<T>(ref EntityTypeBuilder<T> builder)
 			where T : class, IIdName
 		{
-			builder.Property(p => p.Name)
+			_ = builder.Property(p => p.Name)
 				.HasColumnType(DbTypes.Name)
 				.IsRequired();
 		}
@@ -92,7 +92,7 @@ namespace Elephant.CodeFirst.SqlServer
 		public static void AddDescription<T>(ref EntityTypeBuilder<T> builder)
 			where T : class, IIdNameDescription
 		{
-			builder.Property(p => p.Description)
+			_ = builder.Property(p => p.Description)
 				.HasColumnType(DbTypes.NVarCharMax)
 				.IsRequired();
 		}
@@ -113,12 +113,23 @@ namespace Elephant.CodeFirst.SqlServer
 		public static void AddIsEnabled<T>(ref EntityTypeBuilder<T> builder, bool defaultValue = true)
 			where T : class, IIsEnabled
 		{
-			builder.Property(p => p.IsEnabled)
+			_ = builder.Property(p => p.IsEnabled)
 				.HasColumnType(DbTypes.Bool)
 				.HasDefaultValue(defaultValue)
 				.IsRequired();
 		}
 
-		private static string ToTableName<T>(string? tableName) => tableName ?? typeof(T).Name;
+		/// <summary>
+		/// Returns the specified table name or, if null, the name of type <typeparamref name="T"/>.
+		/// </summary>
+		/// <typeparam name="T">Entity type whose name will be used as the table name if <paramref name="tableName"/> is null.</typeparam>
+		/// <param name="tableName">Optional table name. If null, the name of type <typeparamref name="T"/> is used.</param>
+		/// <returns>
+		/// Table name to use which is either the provided <paramref name="tableName"/> or the name of type <typeparamref name="T"/>.
+		/// </returns>
+		private static string ToTableName<T>(string? tableName)
+		{
+			return tableName ?? typeof(T).Name;
+		}
 	}
 }

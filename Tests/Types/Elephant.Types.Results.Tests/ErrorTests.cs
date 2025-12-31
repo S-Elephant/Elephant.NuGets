@@ -43,13 +43,16 @@ namespace Elephant.Types.Results.Tests
 			Assert.True(result.UsesData);
 		}
 
-		private IResult<string> ErrorMethod(bool errorOccurred)
+		/// <summary>
+		/// Creates an error result.
+		/// </summary>
+		private static IResult<string> ErrorMethod(bool errorOccurred)
 		{
 			IResult<string> result = Result<string>.Ok("Success.");
 
 			if (errorOccurred)
 			{
-				result.AddError("Error 1")
+				_ = result.AddError("Error 1")
 					.AddInternalServerError("Error 2")
 					.AddContinue("Continue")
 					.AddOk("Ok data")
@@ -80,7 +83,7 @@ namespace Elephant.Types.Results.Tests
 		/// <summary>
 		/// Test class.
 		/// </summary>
-		private class Customer
+		private sealed class Customer
 		{
 		}
 
@@ -92,7 +95,7 @@ namespace Elephant.Types.Results.Tests
 		public void ErrorWithClassDataTest()
 		{
 			// Act.
-			IResult<Customer> result = Result<Customer>.Error(new AccessViolationException(), data: new Customer());
+			IResult<Customer> result = Result<Customer>.Error(new InvalidOperationException(), data: new Customer());
 
 			// Assert.
 			Assert.False(result.IsSuccess);

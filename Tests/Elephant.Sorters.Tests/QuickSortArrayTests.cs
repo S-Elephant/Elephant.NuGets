@@ -14,7 +14,7 @@ namespace Elephant.Sorters.Tests
 		public void SortsCorrectly(int[] unsortedArray, int[] expectedSortedArray)
 		{
 			// Act.
-			unsortedArray.QuickSort();
+			_ = unsortedArray.QuickSort();
 
 			// Assert.
 			Assert.Equal(expectedSortedArray, unsortedArray);
@@ -29,7 +29,7 @@ namespace Elephant.Sorters.Tests
 		public void QuickSortWithIndicesSortsCorrectly(int[] unsorted, int[] expected, int leftIndex, int rightIndex)
 		{
 			// Act.
-			unsorted.QuickSort(leftIndex, rightIndex);
+			_ = unsorted.QuickSort(leftIndex, rightIndex);
 
 			// Assert.
 			Assert.Equal(expected, unsorted);
@@ -41,40 +41,32 @@ namespace Elephant.Sorters.Tests
 		/// and the second element is the expected result after sorting.
 		/// </summary>
 		/// <returns>A series of test data.</returns>
-		public static IEnumerable<object[]> QuickSortWithIndicesSortsCorrectlyTestData()
+		public static TheoryData<int[], int[], int, int> QuickSortWithIndicesSortsCorrectlyTestData()
 		{
-			yield return new object[] { Array.Empty<int>(), Array.Empty<int>(), 0, -1 }; // No elements to sort.
-			yield return new object[] { new[] { 1 }, new[] { 1 }, 0, 0 }; // Single element.
-			yield return new object[]
-			{
-				new[] { 3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 99, 5 },
-				new[] { 1, 1, 2, 3, 3, 4, 5, 5, 5, 6, 9, 99 },
-				0, 11,
-			}; // Full array.
-			yield return new object[]
-			{
-				new[] { 2, 3, 1 },
-				new[] { 2, 1, 3 },
-				1, 2,
-			}; // Partial sort, only sort positions 1 to 2.
-			yield return new object[]
-			{
-				new[] { 8, 4, 3, 7, 6, 5, 2 },
-				new[] { 8, 3, 4, 5, 6, 7, 2 },
-				1, 5,
-			}; // Sort from position 1 to 5.
-			yield return new object[]
-			{
-				new[] { 10, 20, 30, 40, 50 },
-				new[] { 10, 20, 30, 40, 50 },
-				0, 4,
-			}; // Already sorted.
-			yield return new object[]
-			{
-				new[] { 99, 85, 70, 65, 30, 25 },
-				new[] { 99, 25, 30, 65, 70, 85 },
-				1, 5,
-			}; // Reverse sorted segment.
+			TheoryData<int[], int[], int, int> data = new();
+			data.Add([], [], 0, -1); // No elements to sort.
+			data.Add([1], [1], 0, 0); // Single element.
+			data.Add(
+				[3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 99, 5],
+				[1, 1, 2, 3, 3, 4, 5, 5, 5, 6, 9, 99],
+				0, 11); // Full array.
+			data.Add(
+				[2, 3, 1],
+				[2, 1, 3],
+				1, 2); // Partial sort, only sort positions 1 to 2.
+			data.Add(
+				[8, 4, 3, 7, 6, 5, 2],
+				[8, 3, 4, 5, 6, 7, 2],
+				1, 5); // Sort from position 1 to 5.
+			data.Add(
+				[10, 20, 30, 40, 50],
+				[10, 20, 30, 40, 50],
+				0, 4); // Already sorted.
+			data.Add(
+				[99, 85, 70, 65, 30, 25],
+				[99, 25, 30, 65, 70, 85],
+				1, 5); // Reverse sorted segment.
+			return data;
 		}
 
 		/// <summary>
@@ -86,7 +78,7 @@ namespace Elephant.Sorters.Tests
 		public void ThrowsIfRightIndexOutOfRange()
 		{
 			// Arrange.
-			int[] data = { 0, 1, 2 };
+			int[] data = [0, 1, 2];
 
 			// Act.
 			Exception? exception = Record.Exception(() => data.QuickSort(1, 7));
@@ -104,7 +96,7 @@ namespace Elephant.Sorters.Tests
 		public void DoesNotThrowIfLeftIndexOutOfRange()
 		{
 			// Arrange.
-			int[] data = { 0, 1, 2 };
+			int[] data = [0, 1, 2];
 
 			// Act.
 			Exception? exception = Record.Exception(() => data.QuickSort(-1000, 2));

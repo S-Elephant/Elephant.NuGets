@@ -49,9 +49,9 @@
 			IList<int>? sourceIList = null;
 
 			// Act & Assert: for all supported types.
-			Assert.Throws<ArgumentNullException>(() => sourceList!.SplitIntoChunks(3).ToList());
-			Assert.Throws<ArgumentNullException>(() => sourceEnumerable!.SplitIntoChunks(3).ToList());
-			Assert.Throws<ArgumentNullException>(() => sourceIList!.SplitIntoChunks(3).ToList());
+			_ = Assert.Throws<ArgumentNullException>(() => sourceList!.SplitIntoChunks(3).ToList());
+			_ = Assert.Throws<ArgumentNullException>(() => sourceEnumerable!.SplitIntoChunks(3).ToList());
+			_ = Assert.Throws<ArgumentNullException>(() => sourceIList!.SplitIntoChunks(3).ToList());
 		}
 
 		/// <summary>
@@ -99,7 +99,7 @@
 			List<List<int>> chunkedIList = sourceIList.SplitIntoChunks(10).ToList();
 
 			// Assert: for all supported types.
-			Assert.Single(chunkedList);
+			_ = Assert.Single(chunkedList);
 			Assert.Equal(new List<int> { int.MinValue, 1, 2, 3 }, chunkedList[0]);
 			Assert.Equal(chunkedList, chunkedEnumerable);
 			Assert.Equal(chunkedList, chunkedIList);
@@ -122,9 +122,9 @@
 			IList<int> sourceIList = [.. sourceList];
 
 			// Act & Assert: for all supported types.
-			Assert.Throws<ArgumentOutOfRangeException>(() => sourceList.SplitIntoChunks(size).ToList());
-			Assert.Throws<ArgumentOutOfRangeException>(() => sourceEnumerable.SplitIntoChunks(size).ToList());
-			Assert.Throws<ArgumentOutOfRangeException>(() => sourceIList.SplitIntoChunks(size).ToList());
+			_ = Assert.Throws<ArgumentOutOfRangeException>(() => sourceList.SplitIntoChunks(size).ToList());
+			_ = Assert.Throws<ArgumentOutOfRangeException>(() => sourceEnumerable.SplitIntoChunks(size).ToList());
+			_ = Assert.Throws<ArgumentOutOfRangeException>(() => sourceIList.SplitIntoChunks(size).ToList());
 		}
 	}
 }

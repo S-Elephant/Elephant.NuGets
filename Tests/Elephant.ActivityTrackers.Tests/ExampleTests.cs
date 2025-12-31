@@ -8,7 +8,7 @@
 		/// <summary>
 		/// Example.
 		/// </summary>
-		internal class ExampleClass
+		internal sealed class ExampleClass
 		{
 			private readonly ActivityTracker _activityTracker = new();
 
@@ -46,8 +46,8 @@
 			ExampleClass example = new();
 
 			// Act.
-			Exception? exception = Record.Exception(() => example.Foo());
-			Exception? exception2 = Record.Exception(() => example.UpdateGui());
+			Exception? exception = Record.Exception(example.Foo);
+			Exception? exception2 = Record.Exception(example.UpdateGui);
 
 			// Assert.
 			Assert.Null(exception);

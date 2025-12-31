@@ -44,7 +44,9 @@ namespace Elephant.Sorters
 						{
 							// Determine if we're sorting in ascending or descending order.
 							// This depends on which part of the bitonic sequence the element is in.
+#pragma warning disable IDE0047 // Remove unnecessary parentheses. Reason: clarity.
 							bool up = ((firstElementIndex & sequenceSize) == 0);
+#pragma warning restore IDE0047 // Remove unnecessary parentheses.
 
 							// Perform the compare-and-swap operation.
 							// If 'up' is true, sort ascending; if false, sort descending.

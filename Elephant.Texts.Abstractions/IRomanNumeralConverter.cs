@@ -30,7 +30,7 @@ namespace Elephant.Texts.Abstractions
 		/// <param name="intValue">Integer to convert. Must be greater or equal to zero or it will throw a <see cref="ArgumentOutOfRangeException"/>.</param>
 		/// <param name="format">Format for representing large numbers. Defaults to <see cref="RomanLargeNumberFormatType.MPrefix"/>.</param>
 		/// <returns>Roman numeral representation of the number.</returns>
-		/// <exception cref="ArgumentOutOfRangeException">Thrown if <paramref name="intValue"/> is negative.</exception>
+		/// <exception cref="ArgumentOutOfRangeException">Thrown if <paramref name="intValue"/> is negative or unsupported.</exception>
 		string IntToRoman(int intValue, RomanLargeNumberFormatType format = RomanLargeNumberFormatType.MPrefix);
 
 		/// <summary>

@@ -4,6 +4,30 @@
 
 Contains shared/common/generic types but contains no specific types.
 
+# Installation
+
+Choose one:
+
+## **Package Manager** (Visual Studio GUI)
+1. Right-click your project → "Manage NuGet Packages".
+2. Search for `Elephant.Types`.
+3. Click "Install".
+
+## **.NET CLI** (Command Line)
+```bash
+dotnet add package Elephant.Types
+```
+
+## **PackageReference** (Project File)
+```xml
+<PackageReference Include="Elephant.Types" Version="x.x.x" />
+```
+
+## **Package Manager (CLI)**
+```bash
+nuget install Elephant.Types
+```
+
 # Basic types
 
 ## BaseId
@@ -62,8 +86,6 @@ And a paged response wrapper:
 - IPagedResponseWrapper
 
 
-
-
 ## PagedResponseWrapper
 
 Paginated version of the [ResponseWrapper](##ResponseWrapper)
@@ -78,3 +100,11 @@ Contains the following operator enums:
 - Logicals
 - Relationals
 - Special
+
+# Contributing
+
+Contributions are welcome. Please read our [CONTRIBUTING.md](../CONTRIBUTING.md) file for guidelines on how to proceed.
+
+# License
+
+This project is licensed under the MIT License. See the [LICENSE.txt](../LICENSE.txt) file for details.

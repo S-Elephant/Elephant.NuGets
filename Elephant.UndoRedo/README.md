@@ -1,10 +1,36 @@
-[![Nuget downloads](https://img.shields.io/nuget/v/Elephant.UndoRedo)](https://www.nuget.org/packages/Elephant.UndoRedo/) [![NuGet Downloads](https://img.shields.io/nuget/dt/Elephant.UndoRedo.svg)](https://www.nuget.org/packages/Elephant.UndoRedo/) ![Workflow](https://github.com/S-Elephant/Elephant.NuGets/actions/workflows/GitHubActions.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/S-Elephant/Elephant.NuGets/tree/master/Elephant.UndoRedo/LICENSE.txt)
+﻿[![Nuget downloads](https://img.shields.io/nuget/v/Elephant.UndoRedo)](https://www.nuget.org/packages/Elephant.UndoRedo/) [![NuGet Downloads](https://img.shields.io/nuget/dt/Elephant.UndoRedo.svg)](https://www.nuget.org/packages/Elephant.UndoRedo/) ![Workflow](https://github.com/S-Elephant/Elephant.NuGets/actions/workflows/GitHubActions.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/S-Elephant/Elephant.NuGets/tree/master/Elephant.UndoRedo/LICENSE.txt)
 
 # About
 
 Provides undo-redo logic.
 
-# Example
+# Installation
+
+Choose one:
+
+## **Package Manager** (Visual Studio GUI)
+1. Right-click your project → "Manage NuGet Packages".
+2. Search for `Elephant.UndoRedo`.
+3. Click "Install".
+
+## **.NET CLI** (Command Line)
+```bash
+dotnet add package Elephant.UndoRedo
+```
+
+## **PackageReference** (Project File)
+```xml
+<PackageReference Include="Elephant.UndoRedo" Version="x.x.x" />
+```
+
+## **Package Manager (CLI)**
+```bash
+nuget install Elephant.UndoRedo
+```
+
+# How to Use
+
+## Example
 
 ```c#
 using Elephant.UndoRedo;
@@ -24,7 +50,7 @@ internal class ExampleClass
 }
 ```
 
-# Other features
+## Other features
 
 ```c#
 private UndoRedo<int> _undoRedoManager = new();
@@ -42,4 +68,12 @@ private void Example()
   _undoRedoManager.RedoAll();
 }
 ```
+
+# Contributing
+
+Contributions are welcome. Please read our [CONTRIBUTING.md](../CONTRIBUTING.md) file for guidelines on how to proceed.
+
+# License
+
+This project is licensed under the MIT License. See the [LICENSE.txt](../LICENSE.txt) file for details.
 

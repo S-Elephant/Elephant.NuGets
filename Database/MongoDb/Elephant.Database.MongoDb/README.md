@@ -2,7 +2,9 @@
 
 # About
 
-Features:
+Provides lightweight, dependency-injectable helpers for working with MongoDB in .NET projects. It includes a configurable `MongoContext`, a generic CRUD repository (`IGenericCrudRepository`), optional assembly-based configuration auto-loading, and utilities for listing databases to help standardize data access and speed up development.
+
+## Features:
 
 - MongoDb Configurations (that can optionally be auto-loaded).
   - Configurations may optionally be put in a different assembly or even across multiple assemblies.
@@ -10,7 +12,33 @@ Features:
 - Generic MongoContext.
 - List all MongoDb databases.
 
-# MongoDb connection strings explained in short
+# Installation
+
+Choose one:
+
+## **Package Manager** (Visual Studio GUI)
+1. Right-click your project → "Manage NuGet Packages".
+2. Search for `Elephant.Database.MongoDb`.
+3. Click "Install".
+
+## **.NET CLI** (Command Line)
+```bash
+dotnet add package Elephant.Database.MongoDb
+```
+
+## **PackageReference** (Project File)
+```xml
+<PackageReference Include="Elephant.Database.MongoDb" Version="x.x.x" />
+```
+
+## **Package Manager (CLI)**
+```bash
+nuget install Elephant.Database.MongoDb
+```
+
+# How to Use
+
+## MongoDb connection strings explained in short
 
 ```json
 Explanation:
@@ -23,11 +51,9 @@ Example without authenication database:
 "mongodb://admin:password123@server-001:27017"
 ```
 
-Note that the default MongoDb port is **27017**.
+> NOTE: the default MongoDb port is **27017**.
 
 You can easily test connection strings to a working MongoDb using [Compass](https://www.mongodb.com/try/download/compass) (its official and free).
-
-# Getting started
 
 ## Create a database POCO/Entity
 
@@ -73,8 +99,6 @@ namespace MongoDbShop.Entities.Shop
 
 ```
 
-
-
 ## Create a custom repository and interface that inherits from the generic one
 
 Example:
@@ -99,9 +123,6 @@ public class ProductRepository : GenericCrudRepository<Product>, IProductReposit
 }
 ```
 
-
-
-
 ## (Optional) Add them to the dependency injection
 
 ```c#
@@ -120,9 +141,9 @@ public void ConfigureServices(..)
 }
 ```
 
-# Conventions
+## Conventions
 
-## camelCase example
+### camelCase example
 
 ```c#
 using Elephant.Database.MongoDb;
@@ -142,3 +163,18 @@ public void ConfigureDatabases(IServiceCollection services, ..)
 }
 ```
 
+# Upgrade instructions
+
+## 1.0.0 &rarr; 2.0.0
+
+- `MongoContext.AutoLoadConfigurationsByAssemblyNames(..)` now may throw an `InvalidOperationException` instead of an `NullReferenceException`.
+- `MongoContextOptionsBuilder.Configure(..)`, `MongoContextOptionsBuilder.GetCollectionInstance(..)`, `MongoContextOptionsBuilder.Entity(..)` may throw `InvalidOperationException` now instead of a `NullReferenceException`.
+- `Elephant.Database.MongoDb.DbSets.DbSet` constructor changed from `public DbSet(IMongoContextOptionsBuilder optionsBuilder, IMongoContext context, IMongoCollection<TEntity> collection)` into `public DbSet(IMongoCollection<TEntity> collection)`
+
+# Contributing
+
+Contributions are welcome. Please read our [CONTRIBUTING.md](../../../CONTRIBUTING.md) file for guidelines on how to proceed.
+
+# License
+
+This project is licensed under the MIT License. See the [LICENSE.txt](../../../LICENSE.txt) file for details.

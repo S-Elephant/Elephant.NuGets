@@ -1,8 +1,4 @@
-# Common suppressions for copy-paste:
-# [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1649:FileNameMustMatchTypeName", Justification = "Local interface.")]
-# [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1649:FileNameMustMatchTypeName", Justification = "Grouped models.")]
-# [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleType", Justification = "Grouped models.")]
-
+# Possible severity values: none, silent, suggestion, warning, error.
 #########################################################################################################################################
 # Code files.
 #########################################################################################################################################
@@ -11,19 +7,65 @@ indent_style = tab
 indent_size = 4
 
 #########################################################################################################################################
-# Edtior rules.
+# Enable to treat all Roslyn analyzer diagnostics as errors.
+#########################################################################################################################################
+dotnet_analyzer_diagnostic.severity = error
+
+#########################################################################################################################################
+# Editor rules.
 #########################################################################################################################################
 
-# Collection initialization can be simplified.
-dotnet_diagnostic.IDE0028.severity = none
+# Member 'Status' is explicitly initialized to its default value (https://learn.microsoft.com/en-gb/dotnet/fundamentals/code-analysis/quality-rules/ca1805).
+# Example: 	public int? Status { get; set; } = null;
+# Reason: Clarity.
+dotnet_diagnostic.CA1805.severity = none
 
-# 'using' statement can be simplified.
+# Add braces to 'if' statement (https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0011).
+# Reason: preference.
+dotnet_diagnostic.IDE0011.severity = none
+
+# Collection initialization can be simplified (https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0028).
+# Reason: preference.
+dotnet_diagnostic.IDE0028.severity = silent
+
+# Use conditional expression for assignment (https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0045).
+# Reason: readability, preference.
+dotnet_diagnostic.IDE0045.severity = silent
+
+# Use conditional expression for return (https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0046).
+# Reason: readability, preference.
+dotnet_diagnostic.IDE0046.severity = silent
+
+# Substring can be simplified (https://learn.microsoft.com/en-gb/dotnet/fundamentals/code-analysis/style-rules/ide0057).
+# Reason: readability.
+dotnet_diagnostic.IDE0057.severity = silent
+
+# 'using' statement can be simplified (https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0063).
+# Example: IDE0063 prefers using var a = b;  over  using (var a = b) { .. }
+# Reason clarity, control.
 dotnet_diagnostic.IDE0063.severity = none
 
-# 'new' expression can be simplified.
-dotnet_diagnostic.IDE0090.severity = none
+# Use pattern matching (https://learn.microsoft.com/en-gb/dotnet/fundamentals/code-analysis/style-rules/ide0078-ide0260).
+# Example: if (status.State == OperationStateType.Running || status.State == OperationStateType.Pending) becomes: if (status.State is OperationStateType.Running or OperationStateType.Pending)
+# Reason: readability, preference.
+dotnet_diagnostic.IDE0078.severity = silent
 
-# Collection initialization can be simplified.
+# 'new' expression can be simplified (https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0090).
+# Example: IDE0090 prefers List<string> names = new();  over  List<string> names = new List<string>();
+# Reason clarity.
+dotnet_diagnostic.IDE0090.severity = warning
+
+# Use primary constructor (https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0290).
+# Reason: readability, preference.
+dotnet_diagnostic.IDE0290.severity = silent
+
+# Collection initialization can be simplified / Use collection expression for fluent (https://learn.microsoft.com/en-gb/dotnet/fundamentals/code-analysis/style-rules/ide0305).
+# Reason: preference.
+dotnet_diagnostic.IDE0305.severity = silent
+
+# Collection initialization can be simplified / Use collection expression for new (https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0306).
+# Example: IDE0306 prefers List<int> l1 = [.. Enumerable.Range(1, 10)];  over  List<int> l1 = new List<int>(Enumerable.Range(1, 10));
+# Reason: readability, preference.
 dotnet_diagnostic.IDE0306.severity = none
 
 #########################################################################################################################################
@@ -32,11 +74,15 @@ dotnet_diagnostic.IDE0306.severity = none
 #########################################################################################################################################
 
 # A violation of this rule occurs when the spacing around a keyword is incorrect.
-# Supressed because it caused problems with the new() keyword without a space between new and ().
+# Reason: it caused problems with the new() keyword without a space between new and ().
 dotnet_diagnostic.SA1000.severity = none
 
 # A single-line comment within a C# code file does not begin with a single space.
 dotnet_diagnostic.SA1005.severity = none
+
+# Closing parenthesis should be followed by a space.
+# Reason: This rule conflicts with null-forgiving operator ! which sometimes should immediately follow parentheses without space: SomeMethod()!.
+dotnet_diagnostic.SA1009.severity = none
 
 # Opening square brackets should not be preceded by a space.
 dotnet_diagnostic.SA1010.severity = none
@@ -103,6 +149,11 @@ dotnet_diagnostic.SA1405.severity = none
 
 # A C# statement contains a complex arithmetic expression which omits parenthesis around operators.
 dotnet_diagnostic.SA1407.severity = none
+
+# Braces for multi-line statements should not share line.
+# I.e. private string Foo { get => field; } = string.Empty; // would normally cause a false positive.
+# Reason: Generates false positives for .NET10 getter/setters that use a property with an initial value.
+dotnet_diagnostic.SA1500.severity = none
 
 # The opening and closing braces for a C# statement have been omitted.
 dotnet_diagnostic.SA1503.severity = none

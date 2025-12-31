@@ -16,7 +16,7 @@
 		public void SortsCorrectly(List<int> unsortedList, List<int> expectedSortedList)
 		{
 			// Act.
-			unsortedList.MergeSort();
+			_ = unsortedList.MergeSort();
 
 			// Assert.
 			Assert.Equal(expectedSortedList, unsortedList);

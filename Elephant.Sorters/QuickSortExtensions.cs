@@ -23,7 +23,7 @@ namespace Elephant.Sorters
 			where T : IComparable<T>
 		{
 			// Calls the QuickSort method on the entire collection.
-			QuickSort(collection, 0, collection.Count - 1);
+			_ = QuickSort(collection, 0, collection.Count - 1);
 
 			return collection;
 		}
@@ -57,8 +57,8 @@ namespace Elephant.Sorters
 			{
 				int pivot = QuickSortUtilities.Partition(collection, leftIndex, rightIndex);
 
-				collection.QuickSort(leftIndex, pivot - 1);
-				collection.QuickSort(pivot + 1, rightIndex);
+				_ = collection.QuickSort(leftIndex, pivot - 1);
+				_ = collection.QuickSort(pivot + 1, rightIndex);
 			}
 
 			return collection;

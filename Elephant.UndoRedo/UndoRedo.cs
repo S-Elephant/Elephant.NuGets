@@ -12,7 +12,6 @@ namespace Elephant.UndoRedo
 	{
 		private readonly Stack<TStateType?> _undoStack = new();
 		private readonly Stack<TStateType?> _redoStack = new();
-		private TStateType? _currentState = default(TStateType);
 
 		/// <summary>
 		/// Stored undo count.
@@ -27,12 +26,12 @@ namespace Elephant.UndoRedo
 		/// <summary>
 		/// Returns the current state or null if there's no state.
 		/// </summary>
-		public TStateType? CurrentState => _currentState;
+		public TStateType? CurrentState { get; private set; } = default;
 
 		/// <summary>
 		/// Returns true if <see cref="CurrentState"/> is not null.
 		/// </summary>
-		public bool HasState => _currentState != null;
+		public bool HasState => CurrentState != null;
 
 		/// <summary>
 		/// Returns true if calling <see cref="Undo(bool)"/> is possible.
@@ -56,7 +55,7 @@ namespace Elephant.UndoRedo
 		/// </summary>
 		public UndoRedo(TStateType initialState)
 		{
-			_currentState = initialState;
+			CurrentState = initialState;
 			_undoStack.Push(initialState);
 		}
 
@@ -69,7 +68,7 @@ namespace Elephant.UndoRedo
 			if (!initialStatesAsList.Any())
 				return;
 
-			_currentState = initialStatesAsList[0];
+			CurrentState = initialStatesAsList[0];
 			_undoStack.Push(initialStatesAsList[0]);
 
 			for (int i = 1; i < initialStatesAsList.Count; i++)
@@ -80,9 +79,9 @@ namespace Elephant.UndoRedo
 		/// Clear all states and set the <see cref="CurrentState"/> to <paramref name="initialState"/>.
 		/// </summary>
 		/// <param name="initialState">Optional initial state after clearing.</param>
-		public void Clear(TStateType? initialState = default(TStateType))
+		public void Clear(TStateType? initialState = default)
 		{
-			_currentState = initialState;
+			CurrentState = initialState;
 			_undoStack.Clear();
 			_redoStack.Clear();
 		}
@@ -98,8 +97,8 @@ namespace Elephant.UndoRedo
 		/// <param name="newState">New state to save. This will be the new current state of the system.</param>
 		public void SaveState(TStateType newState)
 		{
-			_undoStack.Push(_currentState); // Move current state onto the undo stack.
-			_currentState = newState;
+			_undoStack.Push(CurrentState); // Move current state onto the undo stack.
+			CurrentState = newState;
 			_redoStack.Clear(); // Clear redo stack on new state.
 		}
 
@@ -134,14 +133,14 @@ namespace Elephant.UndoRedo
 			if (!CanUndo)
 			{
 				if (ignoreError)
-					return _currentState;
+					return CurrentState;
 
 				throw new InvalidOperationException("No states to undo.");
 			}
 
-			_redoStack.Push(_currentState);
-			_currentState = _undoStack.Pop();
-			return _currentState;
+			_redoStack.Push(CurrentState);
+			CurrentState = _undoStack.Pop();
+			return CurrentState;
 		}
 
 		/// <summary>
@@ -152,7 +151,7 @@ namespace Elephant.UndoRedo
 		{
 			int count = _undoStack.Count;
 			for (int i = 0; i < count; i++)
-				Undo();
+				_ = Undo();
 
 			return CurrentState;
 		}
@@ -173,15 +172,15 @@ namespace Elephant.UndoRedo
 		public TStateType? UndoXTimes(int undoAmount, bool ignoreError = false)
 		{
 			if (undoAmount <= 0)
-				return _currentState;
+				return CurrentState;
 
 			if (!CanUndoUsingAmount(undoAmount) && !ignoreError)
 				throw new InvalidOperationException($"No or not enough states to undo {undoAmount} times.");
 
 			for (int i = 0; i < undoAmount; i++)
-				Undo(ignoreError);
+				_ = Undo(ignoreError);
 
-			return _currentState;
+			return CurrentState;
 		}
 
 		/// <summary>
@@ -226,14 +225,14 @@ namespace Elephant.UndoRedo
 			if (!CanRedo)
 			{
 				if (ignoreError)
-					return _currentState;
+					return CurrentState;
 
 				throw new InvalidOperationException("No states to redo.");
 			}
 
-			_undoStack.Push(_currentState);
-			_currentState = _redoStack.Pop();
-			return _currentState;
+			_undoStack.Push(CurrentState);
+			CurrentState = _redoStack.Pop();
+			return CurrentState;
 		}
 
 		/// <summary>
@@ -244,7 +243,7 @@ namespace Elephant.UndoRedo
 		{
 			int count = _redoStack.Count;
 			for (int i = 0; i < count; i++)
-				Redo();
+				_ = Redo();
 
 			return CurrentState;
 		}
@@ -265,15 +264,15 @@ namespace Elephant.UndoRedo
 		public TStateType? RedoXTimes(int redoAmount, bool ignoreError = false)
 		{
 			if (redoAmount <= 0)
-				return _currentState;
+				return CurrentState;
 
 			if (!CanRedoUsingAmount(redoAmount) && !ignoreError)
 				throw new InvalidOperationException($"No or not enough states to undo {redoAmount} times.");
 
 			for (int i = 0; i < redoAmount; i++)
-				Redo(ignoreError);
+				_ = Redo(ignoreError);
 
-			return _currentState;
+			return CurrentState;
 		}
 	}
 }

@@ -72,7 +72,7 @@ namespace Elephant.ActivityTrackers
 
 			if (_activities.ContainsKey(activityKey))
 			{
-				var activityInfo = _activities[activityKey];
+				Data activityInfo = _activities[activityKey];
 				activityInfo.Count++;
 				activityInfo.ActivityDataList.Add(data);
 				_activities[activityKey] = activityInfo;
@@ -119,7 +119,7 @@ namespace Elephant.ActivityTrackers
 				if (_activities[activityKey].Count > 1)
 					_activities[activityKey].Count--;
 				else
-					_activities.Remove(activityKey);
+					_ = _activities.Remove(activityKey);
 			}
 		}
 

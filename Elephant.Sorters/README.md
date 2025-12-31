@@ -1,8 +1,32 @@
-[![Nuget downloads](https://img.shields.io/nuget/v/Elephant.Sorters.svg)](https://www.nuget.org/packages/Elephant.Sorters/) [![NuGet Downloads](https://img.shields.io/nuget/dt/Elephant.Sorters.svg)](https://www.nuget.org/packages/Elephant.Sorters/) ![Workflow](https://github.com/S-Elephant/Elephant.NuGets/actions/workflows/GitHubActions.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/S-Elephant/Elephant.NuGets/tree/master/Elephant.Sorters/LICENSE.txt)
+﻿[![Nuget downloads](https://img.shields.io/nuget/v/Elephant.Sorters.svg)](https://www.nuget.org/packages/Elephant.Sorters/) [![NuGet Downloads](https://img.shields.io/nuget/dt/Elephant.Sorters.svg)](https://www.nuget.org/packages/Elephant.Sorters/) ![Workflow](https://github.com/S-Elephant/Elephant.NuGets/actions/workflows/GitHubActions.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/S-Elephant/Elephant.NuGets/tree/master/Elephant.Sorters/LICENSE.txt)
 
 # About
 
 Implements various sorters. I made this mostly for legacy systems and educational purposes. I recommend using the build-in Sort() from C# which uses a combination of insertion sort, heapsort, quicksort as described [here](https://learn.microsoft.com/en-us/dotnet/api/system.array.sort?view=net-8.0) and [here](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.sort?view=net-8.0).
+
+# Installation
+
+Choose one:
+
+## **Package Manager** (Visual Studio GUI)
+1. Right-click your project → "Manage NuGet Packages".
+2. Search for `Elephant.Sorters`.
+3. Click "Install".
+
+## **.NET CLI** (Command Line)
+```bash
+dotnet add package Elephant.Sorters
+```
+
+## **PackageReference** (Project File)
+```xml
+<PackageReference Include="Elephant.Sorters" Version="x.x.x" />
+```
+
+## **Package Manager (CLI)**
+```bash
+nuget install Elephant.Sorters
+```
 
 # How to use
 
@@ -156,3 +180,11 @@ Is a parallel sorting algorithm that builds a self-balancing multi-dimensional a
 1. **Build Tree**: Create a Binary Search Tree (BST) by inserting elements from the array.
 2. **In-order Traversal**: Recursively perform an in-order traversal of the BST.
 3. **Create Sorted Array**: During traversal, collect and arrange elements in sequence, resulting in a sorted array.
+
+# Contributing
+
+Contributions are welcome. Please read our [CONTRIBUTING.md](../CONTRIBUTING.md) file for guidelines on how to proceed.
+
+# License
+
+This project is licensed under the MIT License. See the [LICENSE.txt](../LICENSE.txt) file for details.

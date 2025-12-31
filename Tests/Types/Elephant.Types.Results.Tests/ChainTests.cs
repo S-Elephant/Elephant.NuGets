@@ -10,10 +10,10 @@ namespace Elephant.Types.Results.Tests
 		/// <summary>
 		/// Combined success, informative and error statuses in a single chain.
 		/// </summary>
-		private IResult<string> ChainDataMethod()
+		private static IResult<string> ChainDataMethod()
 		{
 			IResult<string> result = Result<string>.Ok("Success.");
-			result.AddError("Unable to fetch cat food.")
+			_ = result.AddError("Unable to fetch cat food.")
 				.AddInternalServerError("Unable to fetch cat food.")
 				.AddInternalServerError()
 				.AddInternalServerError("Unable to fetch cat food.")
@@ -44,10 +44,10 @@ namespace Elephant.Types.Results.Tests
 		/// <summary>
 		/// Combined success, informative and error statuses in a single chain.
 		/// </summary>
-		private IResult ChainNoDataMethod()
+		private static IResult ChainNoDataMethod()
 		{
 			IResult result = Result.OkNoData();
-			result.AddErrorNoData("Unable to fetch cat food.")
+			_ = result.AddErrorNoData("Unable to fetch cat food.")
 				.AddInternalServerErrorNoData("Unable to fetch cat food.")
 				.AddInternalServerErrorNoData()
 				.AddInternalServerErrorNoData("Unable to fetch cat food.")

@@ -1,10 +1,18 @@
-[![Nuget downloads](https://img.shields.io/nuget/v/Elephant.GeoSystems)](https://www.nuget.org/packages/Elephant.GeoSystems/) [![NuGet Downloads](https://img.shields.io/nuget/dt/Elephant.GeoSystems.svg)](https://www.nuget.org/packages/Elephant.GeoSystems/) ![Workflow](https://github.com/S-Elephant/Elephant.NuGets/actions/workflows/GitHubActions.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/S-Elephant/Elephant.NuGets/tree/master/Elephant.GeoSystems/LICENSE.txt)
+﻿[![Nuget downloads](https://img.shields.io/nuget/v/Elephant.GeoSystems)](https://www.nuget.org/packages/Elephant.GeoSystems/) [![NuGet Downloads](https://img.shields.io/nuget/dt/Elephant.GeoSystems.svg)](https://www.nuget.org/packages/Elephant.GeoSystems/) ![Workflow](https://github.com/S-Elephant/Elephant.NuGets/actions/workflows/GitHubActions.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/S-Elephant/Elephant.NuGets/tree/master/Elephant.GeoSystems/LICENSE.txt)
 
 # About
 
 Provides various conversions, validations and data-containers for using and converting between Rd, Open Street Map, GPS and custom positioning systems.
 
 ## WARNING: This is [WIP] Work In Progress. Please be careful when using this NuGet in production environments. While in WIP, this NuGet will not use Semantic Versioning.
+
+# Supported positioning systems
+
+- Custom.
+- GPS (WGS84).
+- Open Street Map tile API coordinates.
+- RD (=Rijksdriehoek).
+
 
 # Abreviations
 
@@ -16,16 +24,33 @@ Provides various conversions, validations and data-containers for using and conv
 | GPS | https://en.wikipedia.org/wiki/Global_Positioning_System |
 |Utils|Utilities|
 
+# Installation
 
+Choose one:
 
-# Supported positioning systems
+## **Package Manager** (Visual Studio GUI)
+1. Right-click your project → "Manage NuGet Packages".
+2. Search for `Elephant.GeoSystems`.
+3. Click "Install".
 
-- Custom.
-- GPS (WGS84).
-- Open Street Map tile API coordinates.
-- RD (=Rijksdriehoek).
+## **.NET CLI** (Command Line)
+```bash
+dotnet add package Elephant.GeoSystems
+```
 
-# Constants
+## **PackageReference** (Project File)
+```xml
+<PackageReference Include="Elephant.GeoSystems" Version="x.x.x" />
+```
+
+## **Package Manager (CLI)**
+```bash
+nuget install Elephant.GeoSystems
+```
+
+# How to Use
+
+## Constants
 
 ```c#
 // Earth.
@@ -44,7 +69,7 @@ int AmersfoortRdCoordinateX = 155000;
 int AmersfoortRdCoordinateY = 463000;
 ```
 
-# # Conversions
+## Conversions
 
 ```c#
 ConverterUtils.GpsToOsmTile(int zoom, float latitude, float longitude);
@@ -60,16 +85,16 @@ ConverterUtils.RdToGps(double rdX, double rdY);
 ConverterUtils.RdToGps(decimal rdX, decimal rdY);
 ```
 
-# Validators
+## Validators
 
 ```c#
 GpsValidator.IsValid(float latitude, float longitude) // Plus another 5 overloads.
 RdValidator.IsValid(float rdX, float rdY) // Plus another 5 overloads.
 ```
 
-# Convert Polygon into/from a WKT (=Well Known Text) string snippet
+## Convert Polygon into/from a WKT (=Well Known Text) string snippet
 
-I removed my code and I suggest that you use the NetTopologySuite NuGet instead found [here](https://github.com/NetTopologySuite/NetTopologySuite). Conversion examples:
+I removed my code and I suggest that you use the `NetTopologySuite` NuGet instead found [here](https://github.com/NetTopologySuite/NetTopologySuite). Conversion examples:
 
 ```c#
 /// <summary>
@@ -97,3 +122,11 @@ Convert a Polygon to WKT text:
 ```c#
 string wkt = myPolgyon.ToText();
 ```
+
+# Contributing
+
+Contributions are welcome. Please read our [CONTRIBUTING.md](../CONTRIBUTING.md) file for guidelines on how to proceed.
+
+# License
+
+This project is licensed under the MIT License. See the [LICENSE.txt](../LICENSE.txt) file for details.

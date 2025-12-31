@@ -9,7 +9,7 @@ namespace Elephant.DataAnnotations.Tests
 		/// <summary>
 		/// Test class.
 		/// </summary>
-		private class ValidationTargetString
+		private sealed class ValidationTargetString
 		{
 			/// <summary>
 			/// Property to validate.
@@ -29,7 +29,7 @@ namespace Elephant.DataAnnotations.Tests
 		/// <summary>
 		/// Test class.
 		/// </summary>
-		private class ValidationTargetStringAllowDot
+		private sealed class ValidationTargetStringAllowDot
 		{
 			/// <summary>
 			/// Property to validate.
@@ -49,7 +49,7 @@ namespace Elephant.DataAnnotations.Tests
 		/// <summary>
 		/// Test class.
 		/// </summary>
-		private class ValidationTargetStringAllowDotAndUnderscore
+		private sealed class ValidationTargetStringAllowDotAndUnderscore
 		{
 			/// <summary>
 			/// Property to validate.
@@ -69,7 +69,7 @@ namespace Elephant.DataAnnotations.Tests
 		/// <summary>
 		/// Test class.
 		/// </summary>
-		private class ValidationTargetFloat
+		private sealed class ValidationTargetFloat
 		{
 			/// <summary>
 			/// Property to validate.
@@ -89,7 +89,7 @@ namespace Elephant.DataAnnotations.Tests
 		/// <summary>
 		/// Test class.
 		/// </summary>
-		private class ValidationTargetInt
+		private sealed class ValidationTargetInt
 		{
 			/// <summary>
 			/// Property to validate.
@@ -110,7 +110,7 @@ namespace Elephant.DataAnnotations.Tests
 		/// Test class.
 		/// Extra characters: \/[]{}+-
 		/// </summary>
-		private class ValidationTargetStringWithExtraCharacters
+		private sealed class ValidationTargetStringWithExtraCharacters
 		{
 			/// <summary>
 			/// Property to validate.

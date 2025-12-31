@@ -1,4 +1,4 @@
-[![Nuget downloads](https://img.shields.io/nuget/v/Elephant.ActivityTrackers)](https://www.nuget.org/packages/Elephant.ActivityTrackers/) [![NuGet Downloads](https://img.shields.io/nuget/dt/Elephant.ActivityTrackers.svg)](https://www.nuget.org/packages/Elephant.ActivityTrackers/) ![Workflow](https://github.com/S-Elephant/Elephant.NuGets/actions/workflows/GitHubActions.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/S-Elephant/Elephant.NuGets/tree/master/Elephant.ActivityTrackers/LICENSE.txt)
+﻿[![Nuget downloads](https://img.shields.io/nuget/v/Elephant.ActivityTrackers)](https://www.nuget.org/packages/Elephant.ActivityTrackers/) [![NuGet Downloads](https://img.shields.io/nuget/dt/Elephant.ActivityTrackers.svg)](https://www.nuget.org/packages/Elephant.ActivityTrackers/) ![Workflow](https://github.com/S-Elephant/Elephant.NuGets/actions/workflows/GitHubActions.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/S-Elephant/Elephant.NuGets/tree/master/Elephant.ActivityTrackers/LICENSE.txt)
 
 # About
 
@@ -6,7 +6,33 @@ Is able to track various activities and also has a generic version with custom k
 
 For example: while downloading and uploading various images you may want to disable other actions, GUI elements or other things based on what activities are currently running. You may also want to know more about those activities for debugging purposes and perhaps you are also saving different versions of the same images simultaneously.
 
-# Example
+# Installation
+
+Choose one:
+
+## **Package Manager** (Visual Studio GUI)
+1. Right-click your project → "Manage NuGet Packages".
+2. Search for `Elephant.ActivityTrackers`.
+3. Click "Install".
+
+## **.NET CLI** (Command Line)
+```bash
+dotnet add package Elephant.ActivityTrackers
+```
+
+## **PackageReference** (Project File)
+```xml
+<PackageReference Include="Elephant.ActivityTrackers" Version="x.x.x" />
+```
+
+## **Package Manager (CLI)**
+```bash
+nuget install Elephant.ActivityTrackers
+```
+
+# How to Use
+
+## Example
 
 ```c#
 using Elephant.ActivityTrackers;
@@ -33,7 +59,7 @@ internal class ExampleClass
 }
 ```
 
-# Generic example
+## Generic example
 
 ```c#
 using Elephant.ActivityTrackers;
@@ -101,3 +127,10 @@ internal class ExampleGenericClass
 }
 ```
 
+# Contributing
+
+Contributions are welcome. Please read our [CONTRIBUTING.md](../CONTRIBUTING.md) file for guidelines on how to proceed.
+
+# License
+
+This project is licensed under the MIT License. See the [LICENSE.txt](../LICENSE.txt) file for details.

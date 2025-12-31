@@ -8,7 +8,7 @@
 		/// <summary>
 		/// System under test.
 		/// </summary>
-		private IParenthesesValidator _parenthesesValidator;
+		private readonly ParenthesesValidator _parenthesesValidator;
 
 		/// <summary>
 		/// Setup.

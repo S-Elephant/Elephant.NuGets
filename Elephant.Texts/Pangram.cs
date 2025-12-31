@@ -5,12 +5,6 @@ namespace Elephant.Texts
 	/// <inheritdoc/>
 	public class Pangram : IPangram
 	{
-		/// <summary>
-		/// Bitmask representing all 26 letters of the English alphabet (A-Z).
-		/// The least significant 26 bits are set (0x03FFFFFF in hexadecimal).
-		/// </summary>
-		private const uint AllLettersMask = 0x03FFFFFF;
-
 		/// <inheritdoc/>
 		public bool IsValid(string? sentence)
 		{

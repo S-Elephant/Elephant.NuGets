@@ -89,7 +89,7 @@ namespace Elephant.Common.Tests.StringOperationsTests
 			IEnumerable<string> splitValues = StringOperations.SplitByNewLine(originalValue);
 
 			// Assert.
-			Assert.Single(splitValues);
+			_ = Assert.Single(splitValues);
 			Assert.Equal(string.Empty, splitValues.First());
 		}
 
@@ -124,7 +124,7 @@ namespace Elephant.Common.Tests.StringOperationsTests
 			IEnumerable<string> splitValues = StringOperations.SplitByNewLine(originalValue);
 
 			// Assert.
-			Assert.Single(splitValues);
+			_ = Assert.Single(splitValues);
 			Assert.Equal("single line", splitValues.First());
 		}
 

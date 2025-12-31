@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Elephant.Common.Tests.StringOperationsTests
+﻿namespace Elephant.Common.Tests.StringOperationsTests
 {
 	/// <summary>
 	/// <see cref="StringOperations"/> remove substrings tests.
@@ -39,7 +37,7 @@ namespace Elephant.Common.Tests.StringOperationsTests
 		public void RemoveSubstringsFromStringTestCaseSensitivity()
 		{
 			// Act.
-			string result = StringOperations.RemoveSubstringsFromString("The big white dog.", new[] { "the", "white" });
+			string result = StringOperations.RemoveSubstringsFromString("The big white dog.", ["the", "white"]);
 
 			// Assert.
 			Assert.Equal("The big  dog.", result);
@@ -53,7 +51,7 @@ namespace Elephant.Common.Tests.StringOperationsTests
 		public void RemoveSubstringsFromStringTestFirstOccuranceOnly()
 		{
 			// Act.
-			string result = StringOperations.RemoveSubstringsFromString("The very very big dog.", new[] { "very" });
+			string result = StringOperations.RemoveSubstringsFromString("The very very big dog.", ["very"]);
 
 			// Assert.
 			Assert.Equal("The  very big dog.", result);
@@ -67,7 +65,7 @@ namespace Elephant.Common.Tests.StringOperationsTests
 		public void RemoveSubstringsFromStringTestNonExisting()
 		{
 			// Act.
-			string result = StringOperations.RemoveSubstringsFromString("The dog.", new[] { "Small" });
+			string result = StringOperations.RemoveSubstringsFromString("The dog.", ["Small"]);
 
 			// Assert.
 			Assert.Equal("The dog.", result);
@@ -109,7 +107,7 @@ namespace Elephant.Common.Tests.StringOperationsTests
 		public void RemoveSubstringsFromStringTestEmptyCollection()
 		{
 			// Act.
-			string result = StringOperations.RemoveSubstringsFromString("The big dog.", Array.Empty<string>());
+			string result = StringOperations.RemoveSubstringsFromString("The big dog.", []);
 
 			// Assert.
 			Assert.Equal("The big dog.", result);
@@ -137,7 +135,7 @@ namespace Elephant.Common.Tests.StringOperationsTests
 		public void RemoveSubstringsFromStringTestMultipleSubstrings()
 		{
 			// Act.
-			string result = StringOperations.RemoveSubstringsFromString(Source, new[] { "big", "white", "around" });
+			string result = StringOperations.RemoveSubstringsFromString(Source, ["big", "white", "around"]);
 
 			// Assert.
 			Assert.Equal("The   dog walked  the block and then around the house.", result);
@@ -151,7 +149,7 @@ namespace Elephant.Common.Tests.StringOperationsTests
 		public void RemoveSubstringsFromStringTestEmptyStringInCollection()
 		{
 			// Act.
-			string result = StringOperations.RemoveSubstringsFromString("The big dog.", new[] { "", "big" });
+			string result = StringOperations.RemoveSubstringsFromString("The big dog.", ["", "big"]);
 
 			// Assert.
 			Assert.Equal("The  dog.", result);

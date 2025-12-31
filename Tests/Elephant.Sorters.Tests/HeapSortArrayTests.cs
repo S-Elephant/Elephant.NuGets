@@ -16,7 +16,7 @@ namespace Elephant.Sorters.Tests
 		public void SortsCorrectly(int[] unsortedArray, int[] expectedSortedArray)
 		{
 			// Act.
-			unsortedArray.HeapSort();
+			_ = unsortedArray.HeapSort();
 
 			// Assert.
 			Assert.Equal(expectedSortedArray, unsortedArray);

@@ -8,7 +8,7 @@
 		/// <summary>
 		/// Example custom data (can also be a struct).
 		/// </summary>
-		internal class ActivityInfo
+		internal sealed class ActivityInfo
 		{
 			/// <summary>
 			/// Example data.
@@ -50,7 +50,7 @@
 		/// <summary>
 		/// Example.
 		/// </summary>
-		internal class ExampleGenericClass
+		internal sealed class ExampleGenericClass
 		{
 			// In this example we use a string key to distinguish between different activities.
 			private readonly ActivityTrackerGeneric<string, ActivityInfo> _activityTracker = new();
@@ -68,10 +68,10 @@
 				_activityTracker.Add("processing-image", processingImage2);
 
 				// Will remove 1 "processing-image" key with the ActivityInfo that contains string "My custom data here" only.
-				_activityTracker.Remove("processing-image", processingImage1);
+				_ = _activityTracker.Remove("processing-image", processingImage1);
 
 				// Will remove nothing because the combination of key and value doesn't exist.
-				_activityTracker.Remove("processing-image", processingImage3);
+				_ = _activityTracker.Remove("processing-image", processingImage3);
 
 				// Will remove one entry from key "processing-image", regardless of it's value.
 				_activityTracker.Remove("processing-image");
@@ -100,8 +100,8 @@
 			ExampleGenericClass example = new();
 
 			// Act.
-			Exception? exception = Record.Exception(() => example.Foo());
-			Exception? exception2 = Record.Exception(() => example.UpdateGui());
+			Exception? exception = Record.Exception(example.Foo);
+			Exception? exception2 = Record.Exception(example.UpdateGui);
 
 			// Assert.
 			Assert.Null(exception);

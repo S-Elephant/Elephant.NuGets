@@ -63,7 +63,7 @@ namespace Elephant.Database.MongoDb.Repositories
 		/// <inheritdoc/>
 		public async Task<IEnumerable<string>> Insert(List<TEntity> entitiesToInsert, InsertManyOptions? insertManyOptions, CancellationToken cancellationToken)
 		{
-			if (!entitiesToInsert.Any())
+			if (entitiesToInsert.Count == 0)
 				return new List<string>();
 
 			await DbSet.InsertManyAsync(entitiesToInsert, insertManyOptions, cancellationToken);

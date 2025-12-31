@@ -1,21 +1,47 @@
-[![Nuget downloads](https://img.shields.io/nuget/v/Elephant.ApiControllers)](https://www.nuget.org/packages/Elephant.ApiControllers/) [![NuGet Downloads](https://img.shields.io/nuget/dt/Elephant.ApiControllers.svg)](https://www.nuget.org/packages/Elephant.ApiControllers/) ![Workflow](https://github.com/S-Elephant/Elephant.NuGets/actions/workflows/GitHubActions.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/S-Elephant/Elephant.NuGets/tree/master/Elephant.ApiControllers/LICENSE.txt)
+﻿[![Nuget downloads](https://img.shields.io/nuget/v/Elephant.ApiControllers)](https://www.nuget.org/packages/Elephant.ApiControllers/) [![NuGet Downloads](https://img.shields.io/nuget/dt/Elephant.ApiControllers.svg)](https://www.nuget.org/packages/Elephant.ApiControllers/) ![Workflow](https://github.com/S-Elephant/Elephant.NuGets/actions/workflows/GitHubActions.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/S-Elephant/Elephant.NuGets/tree/master/Elephant.ApiControllers/LICENSE.txt)
 
 # About
 
-Contains Controller helpers/extensions.
+Provides helpers and extensions for ASP.NET Core controllers to simplify common API patterns. Includes `ElephantControllerBase` for consistent API result handling, ControllerExtensions for file conversion helpers, and Unwrap helpers that translate service `IResult` objects into appropriate `IActionResult` responses. Use these helpers to reduce boilerplate, enforce consistent response mapping, and make testable controllers easier to maintain.
+
+# Installation
+
+Choose one:
+
+## **Package Manager** (Visual Studio GUI)
+1. Right-click your project → "Manage NuGet Packages".
+2. Search for `Elephant.ApiControllers`.
+3. Click "Install".
+
+## **.NET CLI** (Command Line)
+```bash
+dotnet add package Elephant.ApiControllers
+```
+
+## **PackageReference** (Project File)
+```xml
+<PackageReference Include="Elephant.ApiControllers" Version="x.x.x" />
+```
+
+## **Package Manager (CLI)**
+```bash
+nuget install Elephant.ApiControllers
+```
+
+# How to Use
 
 ## ElephantControllerBase
 
 ```c#
-protected IActionResult ToApiResult<T>(ResponseWrapper<T> result) where T : new();
-protected IActionResult CreatedResult();
+ToApiResult(): Converts a service response wrapper into an IActionResult using standard HTTP status mapping.
+CreatedResult(): Returns a 201 Created response with optional payload.
 ```
 
 ## ControllerExtensions
 
 ```c#
-public static byte[] ToByteArray(this IFormFile formFile);
-public static IFormFile ToIFormFile(this byte[] byteArray, string name = "", string filename = "", string contentType = "");
+ToByteArray(): Convert an uploaded file to a byte array.
+ToIFormFile(): Recreate an IFormFile from a byte array.
 ```
 
 ## Unwrap example
@@ -50,3 +76,10 @@ MyController : ElephantControllerBase
 }
 ```
 
+# Contributing
+
+Contributions are welcome. Please read our [CONTRIBUTING.md](../CONTRIBUTING.md) file for guidelines on how to proceed.
+
+# License
+
+This project is licensed under the MIT License. See the [LICENSE.txt](../LICENSE.txt) file for details.

@@ -8,7 +8,7 @@
 		/// <summary>
 		/// System under test.
 		/// </summary>
-		private static readonly IPalindrome _palindrome = new Palindrome();
+		private static readonly Palindrome _palindrome = new Palindrome();
 
 		/// <summary>
 		/// <see cref="Palindrome.IsValid(string?)"/> tests.

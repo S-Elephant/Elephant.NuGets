@@ -8,7 +8,7 @@ namespace Elephant.Database.Tests.InMemory
 	/// <summary>
 	/// Test <see cref="GenericCrudIdRepository{TEntity,TContext}"/>.
 	/// </summary>
-	internal class TestRepository : GenericCrudIdRepository<TestEntity, TestContext>
+	internal sealed class TestRepository : GenericCrudIdRepository<TestEntity, TestContext>
 	{
 		/// <summary>
 		/// Constructor.
@@ -33,7 +33,7 @@ namespace Elephant.Database.Tests.InMemory
 				},
 				cancellationToken);
 
-			await SaveAsync(cancellationToken);
+			_ = await SaveAsync(cancellationToken);
 		}
 	}
 }

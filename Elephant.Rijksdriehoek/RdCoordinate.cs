@@ -8,10 +8,11 @@ namespace Elephant.Rijksdriehoek
 	/// <summary>
 	/// A struct for Rijksdriehoekscoördinaten using <see cref="float"/>.
 	/// </summary>
+	[Serializable]
 	public struct RdCoordinate : IRdCoordinateFloat
 	{
 		/// <inheritdoc />
-		public bool IsValid { get => MathRd.IsValidRdCoordinate(X, Y); }
+		public readonly bool IsValid => MathRd.IsValidRdCoordinate(X, Y);
 
 		/// <inheritdoc />
 		public float X { get; set; }
@@ -39,13 +40,13 @@ namespace Elephant.Rijksdriehoek
 		}
 
 		/// <inheritdoc />
-		public float Distance(IRdCoordinate<float> otherRdCoordinate)
+		public readonly float Distance(IRdCoordinate<float> otherRdCoordinate)
 		{
 			return MathRd.Distance(X, Y, otherRdCoordinate.X, otherRdCoordinate.Y);
 		}
 
 		/// <inheritdoc />
-		public float Distance(RdCoordinate? otherRdCoordinate)
+		public readonly float Distance(RdCoordinate? otherRdCoordinate)
 		{
 			if (otherRdCoordinate == null)
 				return 0f;
@@ -54,9 +55,7 @@ namespace Elephant.Rijksdriehoek
 		}
 
 		/// <inheritdoc cref="MathRd.TryParseFromPointString(string, out float, out float)"/>
-#pragma warning disable S1133
 		[Obsolete("Use https://github.com/NetTopologySuite/NetTopologySuite instead.")]
-#pragma warning restore S1133
 		public static RdCoordinate? TryParseFromPointString(string pointString)
 		{
 			if (MathRd.TryParseFromPointString(pointString, out float x, out float y))
@@ -68,17 +67,26 @@ namespace Elephant.Rijksdriehoek
 		/// <summary>
 		/// Creates and returns a new <see cref="RdCoordinate"/> that is the result of a + b.
 		/// </summary>
-		public static RdCoordinate operator +(RdCoordinate a, RdCoordinate b) => new(a.X + b.X, a.Y + b.Y);
+		public static RdCoordinate operator +(RdCoordinate a, RdCoordinate b)
+		{
+			return new(a.X + b.X, a.Y + b.Y);
+		}
 
 		/// <summary>
 		/// Creates and returns a new <see cref="RdCoordinate"/> that is the result of a - b.
 		/// </summary>
-		public static RdCoordinate operator -(RdCoordinate a, RdCoordinate b) => new(a.X - b.X, a.Y - b.Y);
+		public static RdCoordinate operator -(RdCoordinate a, RdCoordinate b)
+		{
+			return new(a.X - b.X, a.Y - b.Y);
+		}
 
 		/// <summary>
 		/// Creates and returns a new <see cref="RdCoordinate"/> that is the result of a * b.
 		/// </summary>
-		public static RdCoordinate operator *(RdCoordinate a, RdCoordinate b) => new(a.X * b.X, a.Y * b.Y);
+		public static RdCoordinate operator *(RdCoordinate a, RdCoordinate b)
+		{
+			return new(a.X * b.X, a.Y * b.Y);
+		}
 
 		/// <summary>
 		/// Creates and returns a new <see cref="RdCoordinate"/> that is the result of a / b.
@@ -94,16 +102,22 @@ namespace Elephant.Rijksdriehoek
 		/// <summary>
 		/// Check if the two <see cref="RdCoordinate"/>s are equal.
 		/// </summary>
-		public static bool operator ==(RdCoordinate left, RdCoordinate right) => left.Equals(right);
+		public static bool operator ==(RdCoordinate left, RdCoordinate right)
+		{
+			return left.Equals(right);
+		}
 
 		/// <summary>
 		/// Check if the two <see cref="RdCoordinate"/>s are not equal.
 		/// </summary>
-		public static bool operator !=(RdCoordinate left, RdCoordinate right) => !(left == right);
+		public static bool operator !=(RdCoordinate left, RdCoordinate right)
+		{
+			return !(left == right);
+		}
 
 #if NETSTANDARD2_0 || NETSTANDARD2_1
 		/// <inheritdoc cref="object.Equals(object)"/>
-		public override bool Equals(object? obj)
+		public override readonly bool Equals(object? obj)
 #else
 		/// <inheritdoc/>
 		public override bool Equals([NotNullWhen(true)] object? obj)
@@ -122,7 +136,7 @@ namespace Elephant.Rijksdriehoek
 		}
 
 		/// <inheritdoc cref="object.GetHashCode"/>
-		public override int GetHashCode()
+		public override readonly int GetHashCode()
 		{
 			unchecked
 			{
@@ -134,7 +148,7 @@ namespace Elephant.Rijksdriehoek
 		}
 
 		/// <inheritdoc />
-		public override string ToString()
+		public override readonly string ToString()
 		{
 			return $"{X},{Y}";
 		}

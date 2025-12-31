@@ -8,6 +8,6 @@ namespace Elephant.Database.MongoDb.Abstractions.Contexts
 	public interface IMongoContext
 	{
 		/// <inheritdoc cref="IMongoDatabase"/>
-		public IMongoDatabase Database { get; }
+		IMongoDatabase Database { get; }
 	}
 }

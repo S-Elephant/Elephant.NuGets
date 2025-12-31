@@ -81,8 +81,8 @@ namespace Elephant.ActivityTrackers.Tests
 			// Arrange.
 			ActivityTrackerGeneric<string?, ActivityInfo> systemUnderTest = new();
 
-			// Act and assert.
-			Assert.Throws<ArgumentNullException>(() => systemUnderTest.Add(null, new ActivityInfo()));
+			// Act & Assert.
+			_ = Assert.Throws<ArgumentNullException>(() => systemUnderTest.Add(null, new ActivityInfo()));
 		}
 
 		/// <summary>
@@ -296,7 +296,7 @@ namespace Elephant.ActivityTrackers.Tests
 			systemUnderTest.Add(10, new ActivityInfo("Class 10.1", 76));
 
 			// Act.
-			systemUnderTest.Remove(0, activityInfoToRemove);
+			_ = systemUnderTest.Remove(0, activityInfoToRemove);
 
 			// Assert.
 			Assert.DoesNotContain(activityInfoToRemove, systemUnderTest.GetData(0));

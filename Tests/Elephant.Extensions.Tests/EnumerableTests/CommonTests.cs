@@ -490,7 +490,7 @@ namespace Elephant.Extensions.Tests.EnumerableTests
 		/// <summary>
 		/// Simple class used for testing.
 		/// </summary>
-		private class SimpleClass
+		private sealed class SimpleClass
 		{
 			/// <summary>
 			/// Test value.

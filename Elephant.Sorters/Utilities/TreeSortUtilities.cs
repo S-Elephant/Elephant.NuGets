@@ -75,7 +75,7 @@
 				// Otherwise, recursively insert the value into the correct sub-tree based on its value.
 				if (value.CompareTo(node.Value) < 0)
 					node.Left = Insert(node.Left, value);
-				else if (value.CompareTo(node.Value) > 0)
+				else
 					node.Right = Insert(node.Right, value);
 
 				// Return the node, with its potentially updated children.

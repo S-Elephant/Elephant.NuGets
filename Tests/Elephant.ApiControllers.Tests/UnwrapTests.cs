@@ -13,7 +13,7 @@ namespace Elephant.ApiControllers.Tests
 		/// <summary>
 		/// System under test class used for exposing protected methods.
 		/// </summary>
-		private class ElephantControllerBaseParent : ElephantControllerBase
+		private sealed class ElephantControllerBaseParent : ElephantControllerBase
 		{
 			/// <summary>
 			/// Expose for testing purposes.
@@ -164,7 +164,7 @@ namespace Elephant.ApiControllers.Tests
 		/// <summary>
 		/// Customer test class.
 		/// </summary>
-		private class Customer
+		private sealed class Customer
 		{
 			/// <summary>
 			/// Name.
@@ -250,7 +250,7 @@ namespace Elephant.ApiControllers.Tests
 
 			// Assert.
 			ObjectResult createdResult = Assert.IsType<ObjectResult>(actionResult);
-			List<Customer> actionResultContents = ((List<Customer>)createdResult.Value);
+			List<Customer> actionResultContents = (List<Customer>)createdResult.Value;
 			Assert.Equal(createdCustomers, actionResultContents);
 		}
 	}

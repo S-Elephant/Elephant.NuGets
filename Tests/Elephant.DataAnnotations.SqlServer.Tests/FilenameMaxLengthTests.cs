@@ -8,7 +8,7 @@ namespace Elephant.DataAnnotations.SqlServer.Tests
 		/// <summary>
 		/// Test class to validate.
 		/// </summary>
-		private class ValidationTarget
+		private sealed class ValidationTarget
 		{
 			/// <summary>
 			/// Items to validate.

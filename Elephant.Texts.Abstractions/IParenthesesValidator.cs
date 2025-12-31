@@ -1,4 +1,4 @@
-﻿namespace Elephant.Texts.Tests
+﻿namespace Elephant.Texts.Abstractions
 {
 	/// <summary>
 	/// Validate strings for balanced parentheses of various types using strict nesting.
@@ -27,6 +27,6 @@
 		/// True if all parentheses are properly balanced and closed, false otherwise.
 		/// Non-parentheses characters are ignored during validation.
 		/// </returns>
-		public bool IsValid(string? text);
+		bool IsValid(string? text);
 	}
 }

@@ -20,7 +20,7 @@ namespace Elephant.Database.Extensions
 		{
 			foreach (TEntity entity in dbSet)
 			{
-				dbSet.Remove(entity);
+				_ = dbSet.Remove(entity);
 			}
 
 			return dbSet;

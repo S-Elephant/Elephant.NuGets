@@ -1,4 +1,4 @@
-[![Nuget downloads](https://img.shields.io/nuget/v/Elephant.Types.Results)](https://www.nuget.org/packages/Elephant.Types.Results/) [![NuGet Downloads](https://img.shields.io/nuget/dt/Elephant.Types.Results.svg)](https://www.nuget.org/packages/Elephant.Types.Results/) ![Workflow](https://github.com/S-Elephant/Elephant.NuGets/actions/workflows/GitHubActions.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/S-Elephant/Elephant.NuGets/tree/master/Elephant.Types.Results/LICENSE.txt)
+﻿[![Nuget downloads](https://img.shields.io/nuget/v/Elephant.Types.Results)](https://www.nuget.org/packages/Elephant.Types.Results/) [![NuGet Downloads](https://img.shields.io/nuget/dt/Elephant.Types.Results.svg)](https://www.nuget.org/packages/Elephant.Types.Results/) ![Workflow](https://github.com/S-Elephant/Elephant.NuGets/actions/workflows/GitHubActions.yml/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/S-Elephant/Elephant.NuGets/tree/master/Elephant.Types.Results/LICENSE.txt)
 
 # About
 
@@ -12,10 +12,35 @@ There are really many reasons that can be found online. I'll highlight the 3 tha
 2. I don't like throwing exceptions for something that is expected.
 3. In some situations (e.x. n-tier) you don't want to be dealing with HTTP status codes in your data access- and business logic layers.
 
-# Usage examples
+# Installation
 
+Choose one:
 
-## With data
+## **Package Manager** (Visual Studio GUI)
+1. Right-click your project → "Manage NuGet Packages".
+2. Search for `Elephant.Types.Results`.
+3. Click "Install".
+
+## **.NET CLI** (Command Line)
+```bash
+dotnet add package Elephant.Types.Results
+```
+
+## **PackageReference** (Project File)
+```xml
+<PackageReference Include="Elephant.Types.Results" Version="x.x.x" />
+```
+
+## **Package Manager (CLI)**
+```bash
+nuget install Elephant.Types.Results
+```
+
+# How to Use
+
+## Usage examples
+
+### With data
 
 ```c#
 public async Task<IResult<Customer>> UpdateCustomerAsync(Customer customer, CancellationToken cancellationToken)
@@ -26,7 +51,7 @@ public async Task<IResult<Customer>> UpdateCustomerAsync(Customer customer, Canc
 }
 ```
 
-## Without data
+### Without data
 
 ```c#
 public async Task<IResult> UpdateCustomerAsync(Customer customer, CancellationToken cancellationToken)
@@ -50,7 +75,7 @@ public async Task<IResult> UpdateCustomerAsync(Customer customer, CancellationTo
 }
 ```
 
-## Multi status support
+### Multi status support
 
 ```c#
 private IResult<string> ErrorMethod(bool errorOccurred)
@@ -86,14 +111,14 @@ private IResult ChainNoDataMethod()
 }
 ```
 
-## Custom errors
+### Custom errors
 
 ```c#
 return Result.ErrorNoData("Something went wrong.");
 return Result<Customer>.Error(new YourCustomException(), 23122, customer); // With 23122 being your optional custom code.
 ```
 
-## Unwrap in controller
+### Unwrap in controller
 
 If you easily want to unwrap it in your controller, you may use the NuGet [Elephant.ApiController](https://www.nuget.org/packages/Elephant.ApiControllers) version 3.0.0 or greater and then:
 
@@ -127,8 +152,6 @@ MyController : ElephantControllerBase
 }
 ```
 
-
-
 # Other
 
 You can override **Result.GetResultStatus** if for example you want to prioritize different statuses using custom logic.
@@ -137,5 +160,10 @@ You can create custom statuses as long as you derive from **IResultStatus**.
 
 You can also override the success, error, informative and custom status checks in the **ResultStatus** class. This way you can create custom errors and successes and etc.
 
+# Contributing
 
+Contributions are welcome. Please read our [CONTRIBUTING.md](../CONTRIBUTING.md) file for guidelines on how to proceed.
 
+# License
+
+This project is licensed under the MIT License. See the [LICENSE.txt](../LICENSE.txt) file for details.

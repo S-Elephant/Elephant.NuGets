@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace Elephant.Texts.Tests
+﻿namespace Elephant.Texts.Tests
 {
 	/// <summary>
 	/// <see cref="ParenthesesValidator"/> tests using custom pairs.
@@ -17,7 +15,7 @@ namespace Elephant.Texts.Tests
 		public void IsValid_EmptyOrNullInput_ReturnsTrue(string? input)
 		{
 			// Arrange.
-			IParenthesesValidator customValidator = new ParenthesesValidator(new() { { '«', '»' }, { '{', '}' } });
+			ParenthesesValidator customValidator = new ParenthesesValidator(new() { { '«', '»' }, { '{', '}' } });
 
 			// Act.
 			bool isValid = customValidator.IsValid(input);
@@ -34,7 +32,7 @@ namespace Elephant.Texts.Tests
 		public void IsValid_WithDefaultPairs_ValidatesProperlyNestedPairs()
 		{
 			// Arrange.
-			IParenthesesValidator customValidator = new ParenthesesValidator(new() { { '«', '»' }, { '{', '}' } });
+			ParenthesesValidator customValidator = new ParenthesesValidator(new() { { '«', '»' }, { '{', '}' } });
 
 			// Act.
 			bool isValid = customValidator.IsValid("«»[]{}<>");
@@ -61,7 +59,7 @@ namespace Elephant.Texts.Tests
 		public void IsValid_WithAsymmetricPairs_ValidatesCorrectly(string input, bool expected)
 		{
 			// Arrange.
-			IParenthesesValidator customValidator = new ParenthesesValidator(new() { { '«', '»' }, { '{', '}' } });
+			ParenthesesValidator customValidator = new ParenthesesValidator(new() { { '«', '»' }, { '{', '}' } });
 
 			// Act.
 			bool isValid = customValidator.IsValid(input);
@@ -84,7 +82,7 @@ namespace Elephant.Texts.Tests
 		public void IsValid_WithSymmetricPairs_ValidatesCorrectly(string input, bool expected)
 		{
 			// Arrange.
-			IParenthesesValidator customValidator = new ParenthesesValidator(new() { { '|', '|' } });
+			ParenthesesValidator customValidator = new ParenthesesValidator(new() { { '|', '|' } });
 
 			// Act.
 			bool isValid = customValidator.IsValid(input);
@@ -105,7 +103,7 @@ namespace Elephant.Texts.Tests
 		public void IsValid_WithMixedPairs_ValidatesCorrectly(string input, bool expected)
 		{
 			// Arrange.
-			IParenthesesValidator customValidator = new ParenthesesValidator(new() { { '«', '»' }, { '|', 'l' } });
+			ParenthesesValidator customValidator = new ParenthesesValidator(new() { { '«', '»' }, { '|', 'l' } });
 
 			// Act.
 			bool isValid = customValidator.IsValid(input);
@@ -127,7 +125,7 @@ namespace Elephant.Texts.Tests
 		public void IsValid_WithMixedPairs_EnforcesNesting(string input, bool expected)
 		{
 			// Arrange.
-			IParenthesesValidator customValidator = new ParenthesesValidator(new() { { '«', '»' } });
+			ParenthesesValidator customValidator = new ParenthesesValidator(new() { { '«', '»' } });
 
 			// Act.
 			bool isValid = customValidator.IsValid(input);
@@ -147,7 +145,7 @@ namespace Elephant.Texts.Tests
 		public void IsValid_WithOnlyCustomPairs_IgnoresStandardBrackets(string input, bool expected)
 		{
 			// Arrange.
-			IParenthesesValidator customValidator = new ParenthesesValidator(new() { { '§', '¶' } });
+			ParenthesesValidator customValidator = new ParenthesesValidator(new() { { '§', '¶' } });
 
 			// Act.
 			bool isValid = customValidator.IsValid(input);

@@ -16,7 +16,7 @@
 		public void SortsCorrectly(int[] unsortedArray, int[] expectedSortedArray)
 		{
 			// Act.
-			unsortedArray.MergeSort();
+			_ = unsortedArray.MergeSort();
 
 			// Assert.
 			Assert.Equal(expectedSortedArray, unsortedArray);

@@ -16,7 +16,7 @@ namespace Elephant.Types.Results.Tests
 		public void StaticSuccessConstructorTest()
 		{
 			// Act.
-			IResult result = new Result();
+			Result result = new();
 
 			// Assert.
 			Assert.True(result.IsSuccess);
@@ -34,8 +34,8 @@ namespace Elephant.Types.Results.Tests
 		public void AddingAnErrorReturnsError()
 		{
 			// Act.
-			IResult result = new Result();
-			result.AddCustom(false, (int)HttpStatusCode.InternalServerError, "Internal server error.");
+			Result result = new();
+			_ = result.AddCustom(false, (int)HttpStatusCode.InternalServerError, "Internal server error.");
 
 			// Assert.
 			Assert.False(result.IsSuccess);
@@ -54,7 +54,7 @@ namespace Elephant.Types.Results.Tests
 		public void StaticErrorConstructorTest()
 		{
 			// Act.
-			IResult result = new Result((int)HttpStatusCode.BadRequest);
+			Result result = new((int)HttpStatusCode.BadRequest);
 
 			// Assert.
 			Assert.False(result.IsSuccess);
@@ -73,11 +73,11 @@ namespace Elephant.Types.Results.Tests
 		public void AddingMultipleSuccessAndErrorTest()
 		{
 			// Act.
-			IResult result = new Result();
-			result.AddOk(true, "Success.");
-			result.AddCustom(false, (int)HttpStatusCode.InternalServerError, "Internal server error.");
-			result.AddCustom(true, (int)HttpStatusCode.BadRequest);
-			result.AddCustom(false, (int)HttpStatusCode.OK);
+			Result result = new();
+			_ = result.AddOk(true, "Success.");
+			_ = result.AddCustom(false, (int)HttpStatusCode.InternalServerError, "Internal server error.");
+			_ = result.AddCustom(true, (int)HttpStatusCode.BadRequest);
+			_ = result.AddCustom(false, (int)HttpStatusCode.OK);
 
 			// Assert.
 			Assert.False(result.IsSuccess);
@@ -116,7 +116,7 @@ namespace Elephant.Types.Results.Tests
 		{
 			// Act.
 			IResult result = Result.SwitchingProtocolsNoData();
-			result.AddContinueNoData();
+			_ = result.AddContinueNoData();
 
 			// Assert.
 			Assert.False(result.IsSuccess);
@@ -126,7 +126,10 @@ namespace Elephant.Types.Results.Tests
 			Assert.False(result.UsesData);
 		}
 
-		private IResult NotFoundMethod()
+		/// <summary>
+		/// Creates a NotFound result without data.
+		/// </summary>
+		private static IResult NotFoundMethod()
 		{
 			return Result.NotFoundNoData();
 		}
@@ -148,7 +151,10 @@ namespace Elephant.Types.Results.Tests
 			Assert.False(result.UsesData);
 		}
 
-		private IResult ContinueMethod()
+		/// <summary>
+		/// Creates a Continue result without data.
+		/// </summary>
+		private static IResult ContinueMethod()
 		{
 			return Result.ContinueNoData();
 		}

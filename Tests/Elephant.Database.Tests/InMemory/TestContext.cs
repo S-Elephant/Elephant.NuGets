@@ -10,7 +10,7 @@ namespace Elephant.Database.Tests.InMemory
 	/// <summary>
 	/// Test context.
 	/// </summary>
-	internal class TestContext : DbContext, IContext
+	internal sealed class TestContext : DbContext, IContext
 	{
 		/// <summary>
 		/// Constructor.
@@ -55,7 +55,7 @@ namespace Elephant.Database.Tests.InMemory
 		{
 			base.OnModelCreating(modelBuilder);
 
-			modelBuilder.Entity<TestEntity>()
+			_ = modelBuilder.Entity<TestEntity>()
 				.HasKey(p => p.Id);
 		}
 	}

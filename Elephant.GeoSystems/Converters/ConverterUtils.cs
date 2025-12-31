@@ -25,6 +25,8 @@ namespace Elephant.GeoSystems.Converters
 			return GpsToOsmTile(zoom, (double)latitude, (double)longitude);
 		}
 
+#pragma warning disable IDE0048 // Add parentheses for clarity. Reason: Reduces readability of the formula.
+
 		/// <inheritdoc cref="GpsToOsmTile(int,float,float)"/>
 		public static (int TileX, int TileY) GpsToOsmTile(int zoom, double latitude, double longitude)
 		{
@@ -188,7 +190,7 @@ namespace Elephant.GeoSystems.Converters
 		private static decimal Atan(decimal y, decimal x = 1m)
 		{
 			decimal[] cordicAngles =
-			{
+			[
 				0.7853981633974483096157M,
 				0.4636476090008061162143M,
 				0.2449786631268641541720M,
@@ -214,7 +216,7 @@ namespace Elephant.GeoSystems.Converters
 				0.0000002384185791015441M,
 				0.0000001192092895508223M,
 				0.0000000596046447753906M,
-			};
+			];
 
 			decimal angle = 0.0M;
 			decimal currentX = 1.0M;
@@ -384,8 +386,8 @@ namespace Elephant.GeoSystems.Converters
 		/// <inheritdoc cref="GpsToRd(float,float)"/>
 		public static (decimal X, decimal Y) GpsToRd(decimal latitudeWgs84, decimal longitudeWgs84)
 		{
-			(double X, double Y) rdCoordinate = GpsToRd((double)latitudeWgs84, (double)longitudeWgs84);
-			return new((decimal)rdCoordinate.X, (decimal)rdCoordinate.Y);
+			(double X, double Y) = GpsToRd((double)latitudeWgs84, (double)longitudeWgs84);
+			return new((decimal)X, (decimal)Y);
 		}
 
 		/// <summary>
@@ -443,6 +445,7 @@ namespace Elephant.GeoSystems.Converters
 				   -0.00022d * deltaX2 +
 				   0.00026d * deltaX3 * deltaX2; // deltaX^5, re-using deltaX3 (deltaX^3) and deltaX2 (deltaX^2).
 		}
+#pragma warning restore IDE0048 // Add parentheses for clarity.
 
 		/// <summary>
 		/// Convert an RD coordinate into a GPS (WGS84) coordinate.

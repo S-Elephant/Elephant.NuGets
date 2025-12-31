@@ -52,6 +52,7 @@ namespace Elephant.ApiControllers
 		/// <param name="result"><see cref="ResponseWrapper{TData}"/></param>
 		/// <param name="useData">If true, <see cref="ResponseWrapper{TData}.Data"/> will be returned if applicable and possible; Otherwise, <see cref="ResponseWrapper{TData}.Data"/> will never be returned.</param>
 		[Obsolete("Use Unwrap() and the new NuGet Elephant.Types.Results(.Abstractions) instead.")]
+#pragma warning disable CA2201 // Do not raise reserved exception types. Suppressed because: obsolete method.
 		protected IActionResult ToApiResult<TData>(IResponseWrapper<TData> result, bool useData = true)
 			where TData : new()
 		{
@@ -63,26 +64,27 @@ namespace Elephant.ApiControllers
 					StatusCodes.Status201Created => result.UsesData && useData ? CreatedResult(result.Data) : CreatedResult(),
 					StatusCodes.Status204NoContent => NoContent(),
 					StatusCodes.Status401Unauthorized => throw new Exception($"IsSuccess is {result.IsSuccess} and {nameof(result.StatusCode)} is {result.StatusCode}?"),
-                    StatusCodes.Status404NotFound => throw new Exception($"IsSuccess is {result.IsSuccess} and {nameof(result.StatusCode)} is {result.StatusCode}?"),
-                    StatusCodes.Status422UnprocessableEntity => throw new Exception($"IsSuccess is {result.IsSuccess} and {nameof(result.StatusCode)} is {result.StatusCode}?"),
-                    StatusCodes.Status500InternalServerError => throw new Exception($"IsSuccess is {result.IsSuccess} and {nameof(result.StatusCode)} is {result.StatusCode}?"),
-                    _ => throw new InvalidEnumArgumentException(nameof(StatusCodes), result.StatusCode, result.StatusCode.GetType()),
+					StatusCodes.Status404NotFound => throw new Exception($"IsSuccess is {result.IsSuccess} and {nameof(result.StatusCode)} is {result.StatusCode}?"),
+					StatusCodes.Status422UnprocessableEntity => throw new Exception($"IsSuccess is {result.IsSuccess} and {nameof(result.StatusCode)} is {result.StatusCode}?"),
+					StatusCodes.Status500InternalServerError => throw new Exception($"IsSuccess is {result.IsSuccess} and {nameof(result.StatusCode)} is {result.StatusCode}?"),
+					_ => throw new InvalidEnumArgumentException(nameof(StatusCodes), result.StatusCode, result.StatusCode.GetType()),
 				};
 			}
 
 			return result.StatusCode switch
 			{
 				StatusCodes.Status200OK => throw new Exception($"IsSuccess is {result.IsSuccess} and {nameof(result.StatusCode)} is {result.StatusCode}?"),
-                StatusCodes.Status201Created => throw new Exception($"IsSuccess is {result.IsSuccess} and {nameof(result.StatusCode)} is {result.StatusCode}?"),
+				StatusCodes.Status201Created => throw new Exception($"IsSuccess is {result.IsSuccess} and {nameof(result.StatusCode)} is {result.StatusCode}?"),
 				StatusCodes.Status204NoContent => throw new Exception($"IsSuccess is {result.IsSuccess} and {nameof(result.StatusCode)} is {result.StatusCode}?"),
 				StatusCodes.Status400BadRequest => BadRequest(result.Message),
 				StatusCodes.Status401Unauthorized => Unauthorized(result.Message),
 				StatusCodes.Status404NotFound => NotFound(result.Message),
-                StatusCodes.Status422UnprocessableEntity => UnprocessableEntity(result.Message),
-                StatusCodes.Status500InternalServerError => StatusCode(result.StatusCode, result.Message),
+				StatusCodes.Status422UnprocessableEntity => UnprocessableEntity(result.Message),
+				StatusCodes.Status500InternalServerError => StatusCode(result.StatusCode, result.Message),
 				_ => throw new InvalidEnumArgumentException(nameof(StatusCodes), result.StatusCode, result.StatusCode.GetType()),
 			};
 		}
+#pragma warning restore CA2201 // Do not raise reserved exception types
 
 		/// <summary>
 		/// Convert to <see cref="IActionResult"/>.

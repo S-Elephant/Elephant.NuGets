@@ -23,6 +23,6 @@
 		/// Returns true if both strings are empty after normalization (including whitespace/punctuation-only strings).
 		/// Returns false if one string is empty/normalized-empty and the other is not.
 		/// </returns>
-		public bool IsValid(string? source, string? target, bool useAllLetters = true);
+		bool IsValid(string? source, string? target, bool useAllLetters = true);
 	}
 }

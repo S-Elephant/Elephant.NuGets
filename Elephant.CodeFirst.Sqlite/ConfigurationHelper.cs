@@ -18,12 +18,12 @@ namespace Elephant.CodeFirst.Sqlite
 			where T : class, IId
 		{
 			tableName = ToTableName<T>(tableName);
-			builder.ToTable(tableName);
+			_ = builder.ToTable(tableName);
 
-			builder.HasKey(p => p.Id)
+			_ = builder.HasKey(p => p.Id)
 				.HasName($"PK_{ToTableName<T>(tableName)}");
 
-			builder.Property(p => p.Id)
+			_ = builder.Property(p => p.Id)
 				.ValueGeneratedOnAdd()
 				.IsRequired();
 
@@ -36,7 +36,7 @@ namespace Elephant.CodeFirst.Sqlite
 		public static void AddName<T>(ref EntityTypeBuilder<T> builder)
 			where T : class, IIdName
 		{
-			builder.Property(p => p.Name)
+			_ = builder.Property(p => p.Name)
 				.HasColumnType(DbType.Name)
 				.IsRequired();
 		}
@@ -47,7 +47,7 @@ namespace Elephant.CodeFirst.Sqlite
 		public static void AddDescription<T>(ref EntityTypeBuilder<T> builder)
 			where T : class, IIdNameDescription
 		{
-			builder.Property(p => p.Description)
+			_ = builder.Property(p => p.Description)
 				.HasColumnType(DbType.TextMax)
 				.IsRequired();
 		}
@@ -68,12 +68,23 @@ namespace Elephant.CodeFirst.Sqlite
 		public static void AddIsEnabled<T>(ref EntityTypeBuilder<T> builder, bool defaultValue = true)
 			where T : class, IIsEnabled
 		{
-			builder.Property(p => p.IsEnabled)
+			_ = builder.Property(p => p.IsEnabled)
 				.HasColumnType(DbType.Bool)
 				.HasDefaultValue(defaultValue)
 				.IsRequired();
 		}
 
-		private static string ToTableName<T>(string? tableName) => tableName ?? typeof(T).Name;
+		/// <summary>
+		/// Returns the specified table name or, if null, the name of type <typeparamref name="T"/>.
+		/// </summary>
+		/// <typeparam name="T">Entity type whose name will be used as the table name if <paramref name="tableName"/> is null.</typeparam>
+		/// <param name="tableName">Optional table name. If null, the name of type <typeparamref name="T"/> is used.</param>
+		/// <returns>
+		/// Table name to use which is either the provided <paramref name="tableName"/> or the name of type <typeparamref name="T"/>.
+		/// </returns>
+		private static string ToTableName<T>(string? tableName)
+		{
+			return tableName ?? typeof(T).Name;
+		}
 	}
 }

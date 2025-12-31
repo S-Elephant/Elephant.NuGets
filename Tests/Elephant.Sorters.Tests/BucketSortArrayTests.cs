@@ -19,14 +19,14 @@ namespace Elephant.Sorters.Tests
 			// Arrange.
 			int min = 0;
 			int max = 0;
-			if (unsortedArray.Any())
+			if (unsortedArray.Length > 0)
 			{
 				min = unsortedArray.Min();
 				max = unsortedArray.Max();
 			}
 
 			// Act.
-			unsortedArray.BucketSort(BucketSortNormalizers.IntNormalizer(min, max));
+			_ = unsortedArray.BucketSort(BucketSortNormalizers.IntNormalizer(min, max));
 
 			// Assert.
 			Assert.Equal(expectedSortedArray, unsortedArray);

@@ -34,7 +34,7 @@
 		public static bool IsValid(float latitude, float longitude)
 		{
 			return latitude >= LatitudeMin && latitude <= LatitudeMax &&
-			       longitude >= LongitudeMin && longitude <= LongitudeMax;
+				   longitude >= LongitudeMin && longitude <= LongitudeMax;
 		}
 
 		/// <summary>
@@ -47,38 +47,38 @@
 		public static bool IsValid(float? latitude, float? longitude)
 		{
 			return latitude != null && longitude != null &&
-			       latitude >= LatitudeMin && latitude <= LatitudeMax &&
-			       longitude >= LongitudeMin && longitude <= LongitudeMax;
+				   latitude >= LatitudeMin && latitude <= LatitudeMax &&
+				   longitude >= LongitudeMin && longitude <= LongitudeMax;
 		}
 
 		/// <inheritdoc cref="IsValid(float,float)"/>
 		public static bool IsValid(double latitude, double longitude)
 		{
 			return latitude >= LatitudeMin && latitude <= LatitudeMax &&
-			       longitude >= LongitudeMin && longitude <= LongitudeMax;
+				   longitude >= LongitudeMin && longitude <= LongitudeMax;
 		}
 
 		/// <inheritdoc cref="IsValid(float?,float?)"/>
 		public static bool IsValid(double? latitude, double? longitude)
 		{
 			return latitude != null && longitude != null &&
-			       latitude >= LatitudeMin && latitude <= LatitudeMax &&
-			       longitude >= LongitudeMin && longitude <= LongitudeMax;
+				   latitude >= LatitudeMin && latitude <= LatitudeMax &&
+				   longitude >= LongitudeMin && longitude <= LongitudeMax;
 		}
 
 		/// <inheritdoc cref="IsValid(float,float)"/>
 		public static bool IsValid(decimal latitude, decimal longitude)
 		{
 			return latitude >= LatitudeMin && latitude <= LatitudeMax &&
-			       longitude >= LongitudeMin && longitude <= LongitudeMax;
+				   longitude >= LongitudeMin && longitude <= LongitudeMax;
 		}
 
 		/// <inheritdoc cref="IsValid(float?,float?)"/>
 		public static bool IsValid(decimal? latitude, decimal? longitude)
 		{
 			return latitude != null && longitude != null &&
-			       latitude >= LatitudeMin && latitude <= LatitudeMax &&
-			       longitude >= LongitudeMin && longitude <= LongitudeMax;
+				   latitude >= LatitudeMin && latitude <= LatitudeMax &&
+				   longitude >= LongitudeMin && longitude <= LongitudeMax;
 		}
 	}
 }

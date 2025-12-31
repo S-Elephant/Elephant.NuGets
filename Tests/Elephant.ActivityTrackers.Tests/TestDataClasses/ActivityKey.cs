@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Activity key test data class for testing classes being used as keys.
 	/// </summary>
-	internal class ActivityKey
+	internal sealed class ActivityKey
 	{
 		/// <summary>
 		/// Test string.
