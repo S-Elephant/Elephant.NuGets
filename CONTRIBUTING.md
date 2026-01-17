@@ -2,7 +2,7 @@
 
 - Always use explicit types instead of `var` (e.g., `string name = "John";` not `var name = "John";`) unless the explicit type would be very long and dictionary value-key-pairs may also use var.
 - Favor implicit object creation `new()` over explicit type repetition.
-- All code comments should end with a period/full stop.
+- All code comments must start with a capital character (if applicable) end with a period (full stop) unless they already end with another punctuation mark.
 - Add XML summaries for all methods and for all properties and fields.
 - For unit- and integration tests always use the Triple A pattern. Add the comments: `// Arrange.`, `// Act,`, `// Assert.` or `// Act & Assert.` where applicable.
 - Write proper variable names without single letters if possible. I.e. `foreach (Video v in sampleVideos)` should be `foreach (Video video in sampleVideos)`
