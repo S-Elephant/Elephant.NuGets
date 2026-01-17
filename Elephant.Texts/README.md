@@ -9,6 +9,7 @@ Provides various text utilities:
 - Pangrams
 - Parentheses validator
   - Supports default, custom symmetric and custom asymmetric parentheses.
+- Truncator
 - Roman numerals
   - Supports 4 different Roman large number formats (for values `> 3999`).
   - Integer to Roman supported range: `0 - int.MaxValue`.
@@ -97,6 +98,11 @@ romanNumeralConverter.IntToRoman(int.MaxValue, RomanLargeNumberFormat.Overline);
 
 // Supported range for SmallRomanToInt(): Between 0 and 3999.
 romanNumeralConverter.SmallRomanToInt("mcmxcix"); // Outputs: 1999
+```
+### Truncator
+
+```c#
+<span disabled>Truncator.TruncateWithEllipsis(@tag.Name, 5)</span> // If tag.Name = "Red cars" then it now becomes "Red..".
 ```
 
 # Upgrade instructions

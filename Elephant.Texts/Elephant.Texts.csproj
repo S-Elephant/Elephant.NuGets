@@ -2,8 +2,8 @@
 
   <!-- This must be updated for every release -->
   <PropertyGroup>
-    <Version>2.0.0</Version>
-    <PackageReleaseNotes>Rename a namespace.</PackageReleaseNotes>
+    <Version>2.1.0</Version>
+    <PackageReleaseNotes>Add text truncator.</PackageReleaseNotes>
   </PropertyGroup>
 
   <!-- Core -->
