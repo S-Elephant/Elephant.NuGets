@@ -10,18 +10,39 @@ namespace Elephant.Texts
 	{
 		/// <summary>
 		/// Truncates <paramref name="value"/> to at most <paramref name="maxLength"/> characters and appends <paramref name="ellipsis"/> when truncation occurs.
-		/// Returns null if <paramref name="value"/> is null.
-		/// If <paramref name="maxLength"/> is less than or equal to zero an empty string is returned.
-		/// If <paramref name="maxLength"/> is less than the length of <paramref name="ellipsis"/> (measured in text elements) the ellipsis is truncated to fit.
-		/// This implementation avoids splitting Unicode text elements (grapheme clusters) when truncating and measures both <paramref name="value"/> and <paramref name="ellipsis"/> by text elements for consistent Unicode handling.
-		/// When <paramref name="allowGraphemeOverflow"/> is true the method may return a string longer than <paramref name="maxLength"/> (measured in UTF-16 code units) to avoid splitting a grapheme cluster; when false the returned string will be less than or equal to <paramref name="maxLength"/> (in UTF-16 code units).
+		/// <para>Input <paramref name="value"/> must not be null; <see cref="ArgumentNullException"/> is thrown when null.</para>
+		/// <para>If <paramref name="maxLength"/> is less than or equal to zero an empty string is returned.</para>
+		/// <para>If <paramref name="maxLength"/> is less than the length of <paramref name="ellipsis"/> the ellipsis is truncated to fit.</para>
+		/// <para>The method preserves Unicode text elements (grapheme clusters) in the input value by iterating text elements; all lengths and truncation boundaries are measured in UTF-16 code units (the value returned by <c>string.Length</c>).</para>
+		/// </summary>
+		/// <param name="value">Input string to truncate. Cannot be null.</param>
+		/// <param name="maxLength">Maximum allowed length of the returned string including ellipsis when applied (measured in UTF-16 code units).</param>
+		/// <param name="ellipsis">String to append when truncation occurs. Defaults to "..". Measured in UTF-16 code units.</param>
+		/// <param name="allowGraphemeOverflow">If true, preserve grapheme clusters even if the returned string exceeds <paramref name="maxLength"/>; if false (default) ensure returned string length is less than or equal to <paramref name="maxLength"/> (in UTF-16 code units).</param>
+		/// <returns>Truncated string. Never null.</returns>
+		/// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> is null.</exception>
+		public static string TruncateWithEllipsis(string value, int maxLength, string ellipsis = "..", bool allowGraphemeOverflow = false)
+		{
+			// Sanity check.
+			if (value == null)
+				throw new ArgumentNullException(nameof(value));
+
+			return TruncateNullableWithEllipsis(value, maxLength, ellipsis, allowGraphemeOverflow) ?? string.Empty;
+		}
+
+		/// <summary>
+		/// Truncates <paramref name="value"/> to at most <paramref name="maxLength"/> characters and appends <paramref name="ellipsis"/> when truncation occurs.
+		/// <para>Returns null if <paramref name="value"/> is null.</para>
+		/// <para>If <paramref name="maxLength"/> is less than or equal to zero an empty string is returned.</para>
+		/// <para>If <paramref name="maxLength"/> is less than the length of <paramref name="ellipsis"/> the ellipsis is truncated to fit.</para>
+		/// <para>The method preserves Unicode text elements (grapheme clusters) in the input value by iterating text elements; all lengths and truncation boundaries are measured in UTF-16 code units (the value returned by <c>string.Length</c>).</para>
 		/// </summary>
 		/// <param name="value">Input string to truncate or null.</param>
 		/// <param name="maxLength">Maximum allowed length of the returned string including ellipsis when applied (measured in UTF-16 code units).</param>
-		/// <param name="ellipsis">String to append when truncation occurs. Defaults to "..".</param>
+		/// <param name="ellipsis">String to append when truncation occurs. Defaults to "..". Measured in UTF-16 code units.</param>
 		/// <param name="allowGraphemeOverflow">If true, preserve grapheme clusters even if the returned string exceeds <paramref name="maxLength"/>; if false (default) ensure returned string length is less than or equal to <paramref name="maxLength"/> (in UTF-16 code units).</param>
 		/// <returns>Truncated string, original string when no truncation required, or null if <paramref name="value"/> is null.</returns>
-		public static string? TruncateWithEllipsis(string? value, int maxLength, string ellipsis = "..", bool allowGraphemeOverflow = false)
+		public static string? TruncateNullableWithEllipsis(string? value, int maxLength, string ellipsis = "..", bool allowGraphemeOverflow = false)
 		{
 			// Null handling.
 			if (value == null)

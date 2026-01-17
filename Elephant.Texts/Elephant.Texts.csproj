@@ -2,8 +2,8 @@
 
   <!-- This must be updated for every release -->
   <PropertyGroup>
-    <Version>2.1.0</Version>
-    <PackageReleaseNotes>Add text truncator.</PackageReleaseNotes>
+    <Version>2.2.0</Version>
+    <PackageReleaseNotes>Add text truncator method.</PackageReleaseNotes>
   </PropertyGroup>
 
   <!-- Core -->
