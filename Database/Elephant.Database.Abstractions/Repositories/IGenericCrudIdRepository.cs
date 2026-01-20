@@ -36,7 +36,7 @@ namespace Elephant.Database.Abstractions.Repositories
 		Task<int> HighestIdAsync(CancellationToken cancellationToken);
 
 		/// <summary>
-		/// Return the highest id that exists in the table.
+		/// Return the lowest id that exists in the table.
 		/// Returns -1 if there are no records.
 		/// </summary>
 		Task<int> LowestIdAsync(CancellationToken cancellationToken);

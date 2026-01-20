@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <!-- This must be updated for every release -->
   <PropertyGroup>
-    <Version>1.0.0</Version>
-    <PackageReleaseNotes>Add two new methods.</PackageReleaseNotes>
+    <Version>1.0.1</Version>
+    <PackageReleaseNotes>Bugfix a comment.</PackageReleaseNotes>
   </PropertyGroup>
 
   <!-- Core -->
